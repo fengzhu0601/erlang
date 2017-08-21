@@ -54,6 +54,7 @@ do_open(File) ->
     SharedStringsBinary = proplists:get_value("xl/sharedStrings.xml", ExcelData),
     {SharedStringsDoc, _} = xmerl_scan:string(erlang:binary_to_list(SharedStringsBinary)),
     SharedStringXML = xmerl_xpath:string("/sst/si/t", SharedStringsDoc),
+    io:format("SharedStringXML:~p~n",[SharedStringXML]),
     {ok, StringTable} = new_excel_string_table(SharedStringXML),
 
     % parse sheets info
@@ -73,7 +74,8 @@ do_open(File) ->
                         Rows =
                             lists:foldl(
                                 fun(RowXML, Acc) ->
-                                    [new_excel_row(RowXML, StringTable) | Acc]
+                                    Acc ++ [new_excel_row(RowXML, StringTable)]
+%%                                    [new_excel_row(RowXML, StringTable) | Acc]
                                 end,
                                 [],
                                 RowsXML
@@ -83,11 +85,14 @@ do_open(File) ->
                     [], SheetInfos
                 )}}.
 new_excel_string_table(SharedStringXML) ->
-    new_excel_string_table(SharedStringXML, dict:new(), 0).
+    new_excel_string_table(SharedStringXML, [], 0).
+%%    new_excel_string_table(SharedStringXML, dict:new(), 0).
 
 new_excel_string_table([], StringTable, _Index) -> {ok, StringTable};
 new_excel_string_table([#xmlElement{content = [#xmlText{value = Value}]}|T], StringTable, Index) ->
-    NewStringTable = dict:store(Index, Value, StringTable),
+%%    io:format("Index:~p~n",[Index]),
+%%    NewStringTable = dict:store(Index, Value, StringTable),
+    NewStringTable = [{Index, Value}|StringTable],
     new_excel_string_table(T, NewStringTable, Index + 1).
 
 new_excel_sheet(#xmlElement{attributes = Attrs}) ->
@@ -115,7 +120,8 @@ new_excel_cell(#xmlElement{attributes = Attrs, content = [#xmlElement{content = 
             #excel_cell{c = C, v = V};
         {value, #xmlAttribute{value = _}} ->
 %%            io:format("V:~p~n", [V]),
-            #excel_cell{c = C, v = dict:fetch(list_to_integer(V), StringTable)}
+%%            #excel_cell{c = C, v = dict:fetch(list_to_integer(V), StringTable)}
+            #excel_cell{c = C, v = proplists:get_value(list_to_integer(V), StringTable)}
     end.
 
 %% 将excel表数据写到erlang文件
@@ -130,15 +136,7 @@ write() ->
             Head = lists:flatten(io_lib:format("-module(~s).~n~n-export([get/1]).~n~n", [ModName])),
             Unmatch = lists:flatten(io_lib:format("get(_) -> ~w.\n", [{0, [{0, 0, 0}]}])),
 
-            File=
-            lists:foldl(
-                fun(#excel_row{r=R, cells = CellList}, Acc) ->
-                    Fa = lists:flatten(io_lib:format("xxxxxxxxxxxxxxxxxxxxxx~w~n",[CellList])),
-                    <<Acc/binary, (list_to_binary(Fa))/binary>>
-                end,
-                <<>>,
-                lists:reverse(RowList)
-            ),
+            File= read_line_foreach(RowList,<<>>),
 
             case file:write_file(Path ++ FileName,
                                  <<(list_to_binary(Head))/binary,
@@ -155,4 +153,43 @@ write() ->
         end,
         lists:reverse(SheetList)
     ).
+
+get_cell_list(CellList) ->
+    lists:foldl(
+        fun(#excel_cell{c=_C, v= V}, Acc) ->
+            io:format("V:~p~n",[V]),
+            [V|Acc]
+%%            erlang:append_element(Acc, V)
+        end,
+        [],
+        lists:reverse(CellList)
+    ).
+
+list_to_term(String) ->
+    case erl_scan:string(String++".") of
+        {ok, T, _} ->
+            case erl_parse:parse_term(T) of
+                {ok, Term} ->
+                    Term;
+                {error, _} ->
+                    String
+            end;
+        {error,_,_} ->
+            String
+    end.
+
+read_line_foreach([], Result) ->
+    Result;
+read_line_foreach([Row|RowList], Result) ->
+    Bin = read_line_foreach_(Row, Result),
+    read_line_foreach(RowList, <<Result/binary, Bin/binary>>).
+
+read_line_foreach_(#excel_row{r=1, cells = _CellList}, Result) ->
+    Result;
+read_line_foreach_(#excel_row{r=R, cells = CellList}, Result) ->
+    A = get_cell_list(CellList),
+    [First|_] = A,
+    io:format("A:~p~n",[A]),
+    Fa = lists:flatten(io_lib:format("get(~w) -> ~w;\n",[First, A])),
+    <<Result/binary, (list_to_binary(Fa))/binary>>.
 
