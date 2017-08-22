@@ -60,7 +60,7 @@ start_link() ->
     {ok, State :: #state{}} | {ok, State :: #state{}, timeout() | hibernate} |
     {stop, Reason :: term()} | ignore).
 init([]) ->
-    lib_config:write(),
+    lib_config:pre_compile(),
     {ok, #state{}}.
 
 %%--------------------------------------------------------------------

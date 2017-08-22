@@ -26,9 +26,22 @@
 %%====================================================================
 %% API functions
 %%====================================================================
+pre_compile() ->
+    case rebar_utils:find_files("./apps/learn_erlang/data", ".*\\.xlsx") of
+        [] ->
+            ok;
+        FoundFiles ->
+            io:format("FoundFiles:~p~n", [FoundFiles]),
+            lists:foreach(
+                fun(File) ->
+                    write(File)
+                end,
+                FoundFiles
+            )
+    end.
 
 open() ->
-    open("./apps/learn_erlang/data/test.xlsx").
+    open("./apps/learn_erlang/data/a.xlsx").
 open(File) when is_list(File) ->
     case check_extension(File) of
         true ->
@@ -106,6 +119,7 @@ new_excel_row(#xmlElement{attributes = Attrs, content = CellsXML}, StringTable) 
     Cells =
         lists:foldl(
             fun(CellXML, Acc) ->
+                io:format("CellXML:~p~n", [CellXML]),
                 [new_excel_cell(CellXML, StringTable) | Acc]
             end,
             [],
@@ -113,7 +127,27 @@ new_excel_row(#xmlElement{attributes = Attrs, content = CellsXML}, StringTable) 
         ),
     #excel_row{r = list_to_integer(R), cells = Cells}.
 
+
+%% 如果是空,设置成空列表
+new_excel_cell(#xmlElement{attributes = Attrs, content = []}, StringTable) ->
+    {value, #xmlAttribute{value = C}} = lists:keysearch(r, #xmlAttribute.name, Attrs),
+    case lists:keysearch(t, #xmlAttribute.name, Attrs) of
+        false ->
+            io:format("========================~n"),
+            io:format("========================~n"),
+            io:format("========================~n"),
+            io:format("========================~n"),
+            io:format("========================~n"),
+            #excel_cell{c = C, v = []};
+        {value, #xmlAttribute{value = _}} ->
+%%            io:format("V:~p~n", [V]),
+%%            #excel_cell{c = C, v = dict:fetch(list_to_integer(V), StringTable)}
+%%            #excel_cell{c = C, v = proplists:get_value(list_to_integer(V), StringTable)}
+            #excel_cell{c = C, v = []}
+    end;
+
 new_excel_cell(#xmlElement{attributes = Attrs, content = [#xmlElement{content = [#xmlText{value = V}]}]}, StringTable) ->
+    io:format("Attr:~p,V:~p~n", [Attrs,V]),
     {value, #xmlAttribute{value = C}} = lists:keysearch(r, #xmlAttribute.name, Attrs),
     case lists:keysearch(t, #xmlAttribute.name, Attrs) of
         false ->
@@ -125,8 +159,8 @@ new_excel_cell(#xmlElement{attributes = Attrs, content = [#xmlElement{content = 
     end.
 
 %% 将excel表数据写到erlang文件
-write() ->
-    {ok, #excel{sheets = SheetList}}=open(),
+write(ExcelFile) ->
+    {ok, #excel{sheets = SheetList}}=open(ExcelFile),
     lists:foreach(
         fun(#excel_sheet{id=Id,name=Name,rows=RowList}) ->
             io:format("Id:~p,Name:~p~n",[Id,Name]),
@@ -157,8 +191,9 @@ write() ->
 get_cell_list(CellList) ->
     lists:foldl(
         fun(#excel_cell{c=_C, v= V}, Acc) ->
-            io:format("V:~p~n",[V]),
-            [V|Acc]
+%%            io:format("V:~p~n",[V]),
+            Acc ++ [list_to_term(V)]
+%%            [V|Acc]
 %%            erlang:append_element(Acc, V)
         end,
         [],
@@ -181,15 +216,28 @@ list_to_term(String) ->
 read_line_foreach([], Result) ->
     Result;
 read_line_foreach([Row|RowList], Result) ->
-    Bin = read_line_foreach_(Row, Result),
+    io:format("Row:~p~n", [Row]),
+    Bin = read_line_foreach_(Row),
     read_line_foreach(RowList, <<Result/binary, Bin/binary>>).
 
-read_line_foreach_(#excel_row{r=1, cells = _CellList}, Result) ->
-    Result;
-read_line_foreach_(#excel_row{r=R, cells = CellList}, Result) ->
+read_line_foreach_(#excel_row{r=1, cells = CellList}) ->
+    <<>>;
+read_line_foreach_(#excel_row{r=2, cells = CellList}) ->
+    <<>>;
+read_line_foreach_(#excel_row{r=R, cells = CellList}) ->
     A = get_cell_list(CellList),
     [First|_] = A,
     io:format("A:~p~n",[A]),
     Fa = lists:flatten(io_lib:format("get(~w) -> ~w;\n",[First, A])),
-    <<Result/binary, (list_to_binary(Fa))/binary>>.
+    <<(list_to_binary(Fa))/binary>>.
+
+
+
+
+
+
+
+
+
+
 
