@@ -1,12 +1,11 @@
-{application, learn_erlang,
+{application, regis,
  [{description, "An OTP application"},
   {vsn, "0.1.0"},
   {registered, []},
-  {mod, { learn_erlang_app, []}},
+  {mod, { regis_app, []}},
   {applications,
    [kernel,
-    stdlib,
-    regis
+    stdlib
    ]},
   {env,[]},
   {modules, []},
