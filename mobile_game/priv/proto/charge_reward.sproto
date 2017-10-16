@@ -1,0 +1,69 @@
+@include "game.sproto"
+
+# 服务器推送
+proto MSG_CHARGE_INFO_SC = 1
+{
+    client
+    {
+        message=empty
+    }
+    server
+    {
+        message
+        {
+            dayCost:u32, #每日消费数
+            totalCost:u32 #累计消费数
+        }
+    }
+}
+
+# 客户端请求
+# 请求领取奖励
+proto MSG_CHARGE_REWARD_CS = 2
+{
+    client
+    {
+        message
+        {
+            id:u32 #表奖励id
+        }
+    }
+    server
+    {
+        message=empty
+    }
+}
+
+
+proto MSG_CHARGE_REWARD_QQ_CS = 3
+{
+    client
+    {
+        message
+        {
+            id:u32,  #表奖励id
+            openid:sstr,
+            token:sstr,
+            payToken:sstr,   # 微信这个为""
+            appkey:sstr,
+            appid:sstr,
+            pf:sstr,
+            pfKey:sstr,
+            zoneid:sstr,
+            account:u8,    # 1 = "qq" or 2 = "wx"
+            record:u8      # 0 第一次, 1第二次提交,代表成功充值
+        }
+    }
+    server
+    {
+        message=empty
+    }
+    errnos{
+        ERR_PAY_NOT_ENOUGH,
+        ERR_ERROR_ORDER_ID,
+        ERR_QQ_PAY_HAS_ORDER,
+        ERR_QQ_PAY_TOKEN,
+        ERR_QQ_PAY_FAILURE,
+        ERR_PAY_LIMIT
+    }
+}

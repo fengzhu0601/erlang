@@ -1,0 +1,60 @@
+#!/usr/bin/env escript
+%%% coding:utf-8
+%%%-------------------------------------------------------------------
+%%% @author wcg
+%%% @doc
+%%%
+%%% @end
+%%%-------------------------------------------------------------------
+%% API
+-mode(compile).
+%-module(gen_log).
+
+-export([main/1, start/0,log/1]).
+
+-define(enable_sufixx, enable_debug_log).
+-define(macro_sufixx, debug_log).
+
+-define(DEFAULT_LOG, "src/include/sys_debug_log.txt").
+-define(DEFAULT_DIR, "src/include/sys_debug_log.hrl").
+
+start() ->
+    generate(?DEFAULT_LOG,?DEFAULT_DIR).
+
+main(_) ->
+    generate(?DEFAULT_LOG,?DEFAULT_DIR).
+
+
+
+generate(Log, Dir) ->
+    LogList = log_list(Log),
+    LogDest = io_lib:format("%%==============auto generate hrl (time:~p)==================~n",[calendar:local_time()]),
+    LogTop = io_lib:format("-ifndef(SYS_DEBUG_LOG_HRL_).~n-define(SYS_DEBUG_LOG_HRL_,1).~n",[]),
+    LogHead1 = io_lib:format("-include_lib(\"common/src/com_log.hrl\").~n~n",[]),
+    LogHead2 = io_lib:format("-include(\"sys_debug_log_enable.hrl\").~n~n",[]),
+    LogStr  = lists:concat(lists:map(fun log/1, LogList)),
+    LogFooter= io_lib:format("-endif.~n",[]),
+    file:write_file(Dir,io_lib:format("~s",[LogDest++LogTop++LogHead1++LogHead2++LogStr++LogFooter])).
+
+log({Log, Color}) ->
+    log({Log, Color, ""});
+log({Log,Color, _Desc}) ->
+    Header= io_lib:format("%% ~p ~n",[Log]),
+    IfDef = io_lib:format("-ifdef(~p_~p).~n",[?enable_sufixx,Log]),
+    Define1= io_lib:format("-define(~p_~p(_MSG), ?DEBUG_LOG_COLOR(?~p,\"<~p>\" _MSG)).~n",[?macro_sufixx,Log,Color,Log]),
+    Define2= io_lib:format("-define(~p_~p(_FMT,_MSG), ?DEBUG_LOG_COLOR(?~p,\"<~p>\" _FMT,_MSG)).~n",[?macro_sufixx,Log,Color,Log]),
+    Else = io_lib:format("-else.~n",[]),
+    NotDef1= io_lib:format("-define(~p_~p(_MSG), ok).~n", [?macro_sufixx,Log]),
+    NotDef2= io_lib:format("-define(~p_~p(_FMT,_MSG), ok).~n", [?macro_sufixx,Log]),
+    End = io_lib:format("-endif.~n~n",[]),
+    Header++IfDef++Define1++Define2++Else++NotDef1++NotDef2++End;
+log(_Ingnore) ->
+    "".
+
+
+log_list(Log) ->
+    case file:consult(Log) of
+        {ok,LogList} -> LogList;
+        _ -> []
+    end.
+

@@ -1,0 +1,48 @@
+
+@include "game.sproto"
+
+typedef title_id=u16
+
+#推送称号信息
+proto PUSH_MSG_TITLE_INFO=1
+{
+    client{
+    }
+    server{
+    	message{
+    	    wear_title:title_id,           ## 当前穿戴的称号
+    		titles:list<title_id:title_id> ## 当前拥有的称号，包括穿戴的称号
+        }
+        
+    }
+}
+
+##获取/失去一个称号时推送
+proto PUSH_MSG_ADD_TITLE=2
+{
+    client{
+    }
+    server{
+        message{
+            state:u8,          #1表示增加称号、2表示失去称号
+        	title_id:title_id  #增加的称号ID
+        }
+    }
+}
+
+
+#改变当前称号
+proto MSG_TITLE_CHANGE_TITLE=11
+{
+    client{
+        message{
+        	title_id:title_id
+        }
+    }
+    server{
+        message{
+        	title_id:title_id
+        }
+    }
+}
+

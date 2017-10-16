@@ -1,0 +1,15 @@
+﻿id	名字	坐骑描述	icon	path1(后景）	path2（前景）	乘骑属性，乘骑后增加
+id	client_name	client_desc	client_icon	client_path1	client_path2	speed
+1	草原战马		"horse/icon/icon_mount_00001.png"	"avatars/horse/mount_00001.skel"	"avatars/horse/mount_00001.skel"	{{37,120}}
+2	冲锋岩羊		"horse/icon/icon_mount_00002.png"	"avatars/horse/mount_00002_hou.skel"	"avatars/horse/mount_00002_qian.skel"	{{37,125}}
+3	狂怒犹猪		"horse/icon/icon_mount_00003.png"	"avatars/horse/mount_00003_hou.skel"	"avatars/horse/mount_00003_qian.skel"	{{37,130}}
+4	月光角鹿		"horse/icon/icon_mount_00004.png"	"avatars/horse/mount_00004_hou.skel"	"avatars/horse/mount_00004_qian.skel"	{{37,135}}
+5	极地雪狼		"horse/icon/icon_mount_00005.png"	"avatars/horse/mount_00005_hou.skel"	"avatars/horse/mount_00005_qian.skel"	{{37,140}}
+6	嗜血暴熊		"horse/icon/icon_mount_00006.png"	"avatars/horse/mount_00006_hou.skel"	"avatars/horse/mount_00006_qian.skel"	{{37,145}}
+7	威武狮王		"horse/icon/icon_mount_00007.png"	"avatars/horse/mount_00007_hou.skel"	"avatars/horse/mount_00007_qian.skel"	{{37,150}}
+8	独角飞马		"horse/icon/icon_mount_00008.png"	"avatars/horse/mount_00008_hou.skel"	"avatars/horse/mount_00008_qian.skel"	{{37,155}}
+9	重装狮鹫		"horse/icon/icon_mount_00009.png"	"avatars/horse/mount_00009_hou.skel"	"avatars/horse/mount_00009_qian.skel"	{{37,160}}
+10	虚空飞龙		"horse/icon/icon_mount_00010.png"	"avatars/horse/mount_00010_hou.skel"	"avatars/horse/mount_00010_qian.skel"	{{37,165}}
+101	午夜凶影		"horse/icon/icon_mount_special_00001.png"	"avatars/horse/mount_special_00001.skel"	"avatars/horse/mount_special_00001.skel"	{{37,165}}
+102	绿野熊猫		"horse/icon/icon_mount_special_00002.png"	"avatars/horse/mount_special_00002.skel"	"avatars/horse/mount_special_00002.skel"	{{37,165}}
+103	烈焰魔龙		"horse/icon/icon_mount_special_00003.png"	"avatars/horse/mount_special_00003_hou.skel"	"avatars/horse/mount_special_00003_qian.skel"	{{37,165}}

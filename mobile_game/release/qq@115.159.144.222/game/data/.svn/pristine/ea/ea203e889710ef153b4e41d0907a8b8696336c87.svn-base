@@ -1,0 +1,6 @@
+﻿ID	职业（英文）	战斗骨骼（"音效文件路径"）	{delay（毫秒）,"音效文件路径"}	{delay,"音效文件路径"}	{delay,"音效文件路径"}	{delay,"音效文件路径"}	{delay,"音效文件路径"}
+id	career	skel	jump_sound	land_sound	down_sound	hurt_sound	die_sound
+1	soldier	avatars/soldier.skel	{0,"sounds/tiao.mp3"}	{0,"sounds/sound63.mp3"}	{0,"sounds/sound63.mp3"}	{0,"sounds/zs_ss.mp3"}	{0,"sounds/zs_sw.mp3"}
+2	magican	avatars/magican.skel	{0,"sounds/tiao.mp3"}	{0,"sounds/sound63.mp3"}	{0,"sounds/sound63.mp3"}	{0,"sounds/fs_ss.mp3"}	{0,"sounds/fs_sw.mp3"}
+3	amazon	avatars/paladin.skel	{0,"sounds/tiao.mp3"}	{0,"sounds/sound63.mp3"}	{0,"sounds/sound63.mp3"}	{0,"sounds/fs_ss.mp3"}	{0,"sounds/fs_sw.mp3"}
+4	paladin	avatars/paladin.skel	{0,"sounds/tiao.mp3"}	{0,"sounds/sound63.mp3"}	{0,"sounds/sound63.mp3"}	{0,"sounds/fs_ss.mp3"}	{0,"sounds/fs_sw.mp3"}

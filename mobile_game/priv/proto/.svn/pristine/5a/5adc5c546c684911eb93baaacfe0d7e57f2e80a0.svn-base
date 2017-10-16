@@ -1,0 +1,44 @@
+@include "scene.sproto" #include agent_id
+
+## 技能伤害覆盖点
+proto MSG_DEBUG_SKILL_HIT_AREA =1
+{
+    client{}
+
+    server{
+        message{
+            idx:agent_id,
+            ps:list<p:{x:s16, y:s16}> #point
+        }
+    }
+}
+
+
+## 移动server端当前位置
+proto MSG_DEBUG_MOVE=2
+{
+    client{}
+
+    server{
+        message{
+            idx:agent_id,
+            x:u16,
+            y:u16,
+            h:u16
+        }
+    }
+}
+
+
+
+## 显示后台的错误消息, 方便发现错误
+proto MSG_DEBUG_ERROR_MSG=3
+{
+    client{}
+
+    server{
+        message{
+            msg:binary
+        }
+    }
+}

@@ -1,0 +1,508 @@
+@include "game.sproto"
+
+typedef ins_id = u16
+typedef pass_time = u32
+typedef team_id = u32
+
+struct member_info
+{
+    id:player_id,
+    name:sstr,
+    level:player_level,
+    combar_power:player_power,
+    carrer:player_carrer,
+    hp:u32
+}
+
+
+## 得到副本信息
+proto MSG_MAIN_INSTANCE_INFO=1
+{
+    client{}
+
+    server{
+        # Coin:16
+        # while
+        #  lenth:u8
+        #  City:u8
+        #  Sub:u8
+        #  while
+        #     lenth:u8
+        #     0 or 1 or 2
+        # while
+        #  Id:16 
+        #  PassTimeSrc:pass_time %%最好通关时间秒
+        #  lianjicount:u16
+        #  shoujicount:u16
+        #  fenshu:u16
+        message {
+            info:binary
+        }
+   }
+}
+
+## 开始单人模式副本
+## Id:16
+proto MSG_MAIN_INSTANCE_SINGLE_START=2
+{
+    client{
+        message {
+            Id:ins_id
+        }
+    }
+
+    server{}
+}
+
+## 进入下一个场景
+proto MSG_MAIN_INSTANCE_ENTER_NEXT=3
+{
+    client{
+        message = empty
+    }
+
+    server{}
+}
+
+
+
+## 扫荡副本
+proto MSG_MAIN_INSTANCE_CLEAN=5
+{
+    client{
+        message{
+            Id:ins_id
+        }
+    }
+
+    server{
+        message{
+            ## ReplyNum:reply_num, ## 回复码
+            prizeInfo:list<{itemId:u32, itemCount:u32}>
+        }
+    }
+}
+
+
+## 副本完成
+## ID:16
+proto MSG_MAIN_INSTANCE_COMPLETE=6
+{
+    client{}
+
+    server{
+        message{
+            Id:ins_id,
+            PassTimeSrc:pass_time, 
+            Lianjicount:u16,
+            Shoujicount:u16,
+            Fenshu:u16,
+            Coin:u16,
+            No1FenShu:u16,
+            No1Name:sstr,
+            No1Job:u8,
+            SelfRank:u8,
+            CanGetPrize:u8,
+            prizeInfo:list<{itemId:u32, itemCount:u32}>,
+            firstninestarpassprizeinfo:list<{itemId:u32, itemCount:u32}>,
+            lianjiprize:list<{itemId:u32, itemCount:u32}>,
+            shoujiprize:list<{itemId:u32, itemCount:u32}>,
+            passtimeprize:list<{itemId:u32, itemCount:u32}>
+        }
+    }
+}
+
+## 创建房间
+proto MSG_MAIN_INSTANCE_TEAM_CREATE=12
+{
+    client{
+        message {
+             Id:ins_id,
+             IsAllowMidwayJoin:bool ##是否运行中途加入
+        }
+    }
+
+    server{
+        message {
+            teamId:team_id
+        }
+    }
+}
+
+
+## 主动离开队伍
+proto MSG_MAIN_INSTANCE_TEAM_LEAVE=13
+{
+    client{
+        message = empty
+    }
+
+    server{
+        message {
+            id:player_id
+        }
+    }
+}
+
+## 开始副本
+proto MSG_MAIN_INSTANCE_TEAM_START=14
+{
+    client{
+        message = empty
+    }
+
+    server{
+    }
+}
+
+
+## 快速加入队伍
+## S-C RoomId:32
+proto MSG_MAIN_INSTANCE_TEAM_QUICK_JOIN=15
+{
+    client{
+        message {
+             Id:ins_id
+        }
+    }
+
+    server{
+        message{
+            Id:ins_id,
+            teamId:team_id,
+            membersInfo:list<info:member_info>
+        }
+    }
+}
+
+
+
+## 剔除队伍
+# memberId:64
+proto MSG_MAIN_INSTANCE_TEAM_KICKOUT=16
+{
+    client{
+        message{
+            id:player_id
+        }
+    }
+
+    server{
+        message{
+            id:player_id
+        }
+    }
+}
+
+
+## 加入队伍通知
+proto MSG_MAIN_INSTANCE_TEAM_MEMBER_JOIN=17
+{
+    client{
+    }
+
+    server{
+        message{
+            joinMemberInfo:member_info
+        }
+    }
+}
+
+## 解散
+proto MSG_MAIN_INSTANCE_TEAM_DISSOLVE=18
+{
+    client{
+        message = empty
+    }
+
+    server{
+        message = empty
+    }
+}
+
+
+## 本层完成
+proto MSG_MAIN_INSTANCE_LAYER_COMPLETE=19
+{
+    client{
+    }
+
+    server{
+        message = empty
+    }
+}
+
+
+##  进入随机副本
+proto MSG_MAIN_INSTANCE_RAND_START=20
+{
+    client{
+        message{
+            itemId:item_id    #消耗物品id
+        }
+    }
+
+    server{
+       message{
+            ReplyNum:reply_num
+            ,Id:ins_id
+       } 
+    }
+}
+
+
+##  有时限的副本时间结束时通知客户端
+proto MSG_MAIN_INSTANCE_TIME_OVER=21 disable
+{
+    client{
+        message=empty
+    }
+
+    server{
+       message=empty
+    }
+}
+
+## 激活传送门
+proto MSG_MAIN_INSTANCE_DOOR_ACTIVE=22
+{
+    client{
+    }
+
+    server{
+        message
+        {
+            x:u16,             #x,y坐标
+            y:u16,
+            target:scene_id    #目标场景
+        }
+    }
+}
+
+## 进入下一层
+proto MSG_INSTANCE_ENTER_NEXT_LAYER=23
+{
+    client
+    {
+        message
+        {
+            target:scene_id,        #客户端发送进入场景ID
+            is_last_scene:u8        #是否是最后一个场景. 0 不是最后一个场景 1是最后一个场景
+        }
+    }
+    server
+    {
+
+    }
+}
+
+## 开始单机副本
+## Id:16
+proto MSG_MAIN_INSTANCE_CLIENT_START=40
+{
+    client{
+        message {
+            Id:ins_id
+        }
+    }
+
+    server{}
+}
+
+
+## main instance rank info 
+proto MSG_MAIN_INSTANCE_RANK_INFO=41
+{
+    client
+    {
+        message
+        {
+            sceneid:scene_id,
+            index:u8,
+            count:u8
+        }
+    }
+
+    server{
+        # while
+        #  PlayerId:64
+        #  PlayerName/bytes
+        #  PlayerLevel:8
+        #  PlayerJob:8
+        #  Combat:32
+        #  FenShu:16
+        message {
+            info:binary
+        }
+   }
+}
+
+
+## main instance shop
+proto MSG_MAIN_INSTANCE_SHOP=42
+{
+    client
+    {
+        message
+        {
+            goodsid:u32,
+            count:u8
+        }
+    }
+
+    server{
+        message=empty
+    }
+    errnos{
+        ERR_MAIN_INS_START_NOT_ENOUGH, 
+        ERR_MAIN_SHOP_NOT_GOODS
+    }
+}
+
+proto MSG_MAIN_INSTANCE_CHAPTER_STAR_PRIZE=43
+{
+    client
+    {
+        message
+        {
+            city_id:u8,
+            sub:u8,
+            is_get_index:u8
+        }
+    }
+
+    server{
+        message=empty
+    }
+    errnos{
+        ERR_CHAPTER_START_PRIZE
+    }
+}
+
+proto MSG_MAIN_INSTANCE_TRANSPORT_DOOR_ACTIVE=44
+{
+    client{
+    }
+
+    server{
+        message
+        {
+            DoorId:u16
+        }
+    }
+}
+
+proto MSG_MAIN_INSTANCE_MEMBERS_INFO=45
+{
+    client{
+    }
+
+    server{
+        message
+        {
+            id:player_id,
+            Hp:u32,
+            MaxHp:u32,
+            Level:u8
+        }
+    }
+}
+
+proto MSG_MAIN_INSTANCE_NOTIFY_COMPLETE=46
+{
+    client{
+    }
+
+    server{
+        message=empty
+    }
+}
+
+proto MSG_MAIN_INSTANCE_NOTIFY_TEAM_MASTER=47
+{
+    client{
+    }
+
+    server{
+        message{
+            id:player_id
+        }
+    }
+}
+
+proto MSG_MAIN_INSTANCE_ID_INFO=48
+{
+    client{
+    }
+
+    server{
+        message{
+            playerId:player_id,
+            agentId:s16
+        }
+    }
+}
+
+proto MSG_MAIN_INSTANCE_CHALLENGE_INFO=49
+{
+    client{
+    }
+
+    server{
+        ## id,
+        ## buy_challenge_times = 0,    %% 购买挑战次数
+        ## RemainChallengeTimes = max_challenge_times - challenge_times %% 剩余挑战次数
+        message{
+            info:binary
+        }
+    }
+}
+
+proto MSG_MAIN_INSTANCE_BUY_CHALLENGE_TIMES=50
+{
+    client{
+        message{
+            Id:ins_id,      ## 副本id
+            num:u16         ## 购买次数
+        }
+    }
+
+    server{
+        message{
+            Id:ins_id,                  ## 副本Id
+            buy_challenge_times:u16,    ## 购买挑战次数
+            remain_challenge_times:u16  ## 剩余可挑战次数
+        }
+    }
+}
+
+## 服务器推送可扫荡副本列表
+proto MSG_PUSH_ROOM_CLEAN_LIST=51
+{
+    client{
+    }
+
+    server{
+        message{
+            clean_room_list:list<Id:ins_id> ## 可扫荡副本列表
+        }
+    }
+}
+
+proto MSG_MAIN_INSTANCE_OPEN_CARD=52
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message{
+            Card:list<{itemId:u32, itemCount:u32}>
+        }
+    }
+
+    errnos{
+        ERR_MAX_COUNT,
+        ERR_COST_DIAMOND_FAIL
+    }
+}

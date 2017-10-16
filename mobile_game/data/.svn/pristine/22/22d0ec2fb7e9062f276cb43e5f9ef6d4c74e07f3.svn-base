@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<!-- edited with XMLSpy v2011 (http://www.altova.com) by aaa (dd) -->
+<scene_50210>
+	<!--副本事件流程-->
+	<State StateId="1" Desc="副本状态1">
+		<Event EventId="10001" Times="1" Desc="玩家进入场景">
+			<True Func="set_event" Par="{500, 9001}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+		<Event EventId="9001" Times="1" Desc="监听自定义事件">
+			<True Func="lock_area" Par="{1,{0, 50}}" Desc="锁屏区域{序号,{X1, X2}}"/>
+			<!--6020008 骷髅兽 6020009 堕落天使  6020010 雷鸟 6021001 月光巨狼 6021004 骨龙 6021002 龙战士 精英-->
+			<True Func="create_monsters" Par="[{6021002, 5, 18, 0, 4, 1}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{6021001, 10, 15, 0, 4, 1},{6020010, 10, 18, 0, 4, 1}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{6020010, 13, 15, 0, 4, 1},{6020010, 13, 18, 0, 4, 1}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{6020009, 16, 15, 0, 4, 1},{6020009, 16, 18, 0, 4, 1}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{6020009, 19, 15, 0, 4, 1},{6020009, 19, 18, 0, 4, 1}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{6020008, 21, 15, 0, 4, 1},{6020008, 21, 18, 0, 4, 1}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{6020008, 24, 15, 0, 4, 1},{6020008, 24, 18, 0, 4, 1}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{6021004, 67, 18, 0, 4, 1}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{6020008, 47, 16, 0, 7, 1},{6020008, 47, 19, 0, 7, 1}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{6020008, 50, 16, 0, 7, 1},{6020008, 50, 19, 0, 7, 1}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{6020009, 53, 16, 0, 7, 1},{6020009, 53, 19, 0, 7, 1}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{6020009, 56, 16, 0, 7, 1},{6020009, 56, 19, 0, 7, 1}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{6020010, 59, 16, 0, 7, 1},{6020010, 59, 19, 0, 7, 1}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{6020010, 61, 16, 0, 7, 1},{6020010, 61, 19, 0, 7, 1}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+		</Event>
+		<Event EventId="10003" Times="1" Desc="监听自定义事件">
+			<Can Func="is_all_monster_die" Par="" Desc="是否杀死某个标志的怪物"/>
+			<True Func="fuben_complete" Par="" Desc="副本结束"/>
+		</Event>
+	</State>
+</scene_50210>

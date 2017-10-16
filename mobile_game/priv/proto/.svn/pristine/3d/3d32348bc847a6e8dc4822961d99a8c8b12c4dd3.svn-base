@@ -1,0 +1,89 @@
+## 公会挖矿
+@include "game.sproto"
+
+## 发送挖矿奖励
+#proto MSG_GUILD_MINING_SEND_PRIZE = 1
+#{
+#	client{}#
+
+#	server{
+#		message{
+#			prizeInfo:list<{itemId:item_bid, itemCount:u32}>	# 挖矿发放奖励列表
+#		}
+#	}
+#}
+
+## 购买次数
+proto MSG_GUILD_MINING_BUY_COUNT = 2
+{
+	client{
+		message{
+			buy_count:u8		#玩家购买的挖矿次数
+		}
+	}
+
+	server{
+		message{
+			sign:u8			# 返回码 0表示成功，1表示失败
+		}
+	}
+}
+
+## 召集玩家
+proto MSG_GUILD_MINING_ZHAOJI = 3
+{
+	client{
+		message = empty
+	}
+
+	server{
+		message{
+			sign:u8		# 玩家角色ID
+		}
+	}
+}
+
+## 挖矿信息推送
+proto MSG_GUILD_MINING_INFO_SEND = 4
+{
+	client{
+		message=empty
+	}
+
+	server{
+		message{
+			# 玩家信息列表{位置, Id, 昵称, 职业, Level, Power, 装备, 装备特效}
+			# size:8
+			# wheil
+			# Index:8
+			# PlayerId:64
+			# PlayerName:sstr
+			# Car:8
+			# Level:8
+			# Power:32
+			# EquipListBin:binary
+			# EftsListBin:binary
+			PlayerBin:binary,
+			end_time:u32,					# 定时器
+			mining_count:u8,				# 剩余的挖矿次数
+			buyed_count:u8				# 已购买的次数
+		}
+	}
+}
+
+## 挖矿类型
+proto MSG_GUILD_MINING_KIND = 5
+{
+	client{
+		message{
+			mining_kind:u8	,	# 0为参与挖矿, 1为一键挖矿
+			seat:u8			# 玩家位置
+		}
+	}
+
+	server{
+		message{
+			sign:u8			# 返回码 0表示成功，1表示失败
+		}
+	}
+}

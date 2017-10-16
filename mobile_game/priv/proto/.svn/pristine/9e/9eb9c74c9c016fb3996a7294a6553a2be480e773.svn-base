@@ -1,0 +1,490 @@
+# 好友模块 
+# 
+@include "game.sproto"
+struct friend_info{
+    Id:player_id,             # 所要查找玩家id
+    Name:sstr,                # 所要查找玩家name
+    Lev:player_level,         # 所要查找玩家level
+    Career:player_carrer,     # 玩家的职业career
+    GiftQua:u8,               # 红包品质 0蓝 1紫 2橙
+    GiftNum:u8,               # 已经发送红包的数量
+    GiftStat:u8,              # 红包状态 0未开启抢红包 1开启抢红包
+    score:u16,                # 友好度
+    IsOnline:u8               # 是否在线 0否 1是
+    
+}
+#申请添加好友
+proto MSG_FRIEND_APPLY=1
+{
+    client{
+        message{
+            Id:player_id             # 所要添加好友的id
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+#-define(REPLY_MSG_FRIEND_APPLY_OK,   0).   %% 申请添加好友成功
+#-define(REPLY_MSG_FRIEND_APPLY_1,   1).   %% 已经是好友了
+#-define(REPLY_MSG_FRIEND_APPLY_2,   2).   %% 好友数量达到最大值
+#-define(REPLY_MSG_FRIEND_APPLY_3,   3).   %% 不能添加自己为好友
+#-define(REPLY_MSG_FRIEND_APPLY_4,   4).   %% 所添加的好友不存在
+#-define(REPLY_MSG_FRIEND_APPLY_5,   5).   %% 已经申请，请勿重复申请
+#-define(REPLY_MSG_FRIEND_APPLY_255,   255).   %% 申请添加好友失败，请重试
+        }
+    }
+}
+
+
+#回复好友申请
+proto MSG_FRIEND_REPLY_APPLY=2
+{
+    client{
+        message{
+            Id:player_id,             # 申请的玩家id
+            IsAgree:u8                # 是否同意申请
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num,
+#-define(REPLY_MSG_FRIEND_REPLY_APPLY_OK,   0).   %% 添加好友回复成功
+#-define(REPLY_MSG_FRIEND_REPLY_APPLY_1,   1).   %% 已经是好友了 
+#-define(REPLY_MSG_FRIEND_REPLY_APPLY_2,   2).   %% 好友数量达到最大值
+#-define(REPLY_MSG_FRIEND_REPLY_APPLY_3,   3).   %% 好友申请超时
+#-define(REPLY_MSG_FRIEND_REPLY_APPLY_255,   255).   %% 添加好友回复异常
+            Id:player_id              # 申请的玩家id
+        }
+    }
+}
+
+
+#删除好友
+proto MSG_FRIEND_DEL=3
+{
+    client{
+        message{
+            Id:player_id             # 所要删除的玩家id
+        }
+    }
+
+    server{
+        message{
+            Id:player_id              # 所要删除的玩家id
+        }
+    }
+}
+
+# 模糊搜索玩家信息
+proto MSG_FRIEND_INFOS=4
+{
+    client{
+        message{
+            Name:sstr                 #所要查找玩家name
+        }
+    }
+
+    server{
+        message{
+            FriendsInfo:list<FriendInfo:friend_info>    #好友相关信息
+        }
+    }
+}
+            
+#获取好友列表
+proto MSG_FRIEND_LIST=5
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message{
+            FriendsInfo:list<FriendInfo:friend_info>
+        }
+    }
+}
+
+
+
+#获取好友面板个人信息(可以请求也会推送
+proto MSG_FRIEND_MY_INFO=6 
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message{
+            Score:u16,                 # 友好度
+            GiftQua:u8,               # 红包品质 0蓝 1紫 2橙
+            SendGiftNum:u8,           # 已经发送红包的数量
+            RecvGiftNum:u8,           # 已经接受红包的数量
+            GiftStat:u8               # 红包状态 0未开启抢红包 1开启抢红包
+        }
+    }
+}
+
+#获取申请信息列表(也会推送
+proto MSG_FRIEND_MSGS=7
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message{
+            GiftMsg:list<{
+                Id:player_id,      # 玩家id
+                Name:sstr,         # 玩家name
+                Lev:player_level,  # 玩家lev
+                Career:player_carrer,  # 玩家career
+                ItemInfoL:list<{ItemBid:item_bid, Count:u32}>
+            }>,                    # 赠送红包申请
+            ReqGift:list<{
+                Id:player_id,      # 玩家id
+                Name:sstr,         # 玩家name
+                Lev:player_level,  # 玩家lev
+                Career:player_carrer, # 玩家career
+                GiftQua:u8            # 红包品质 0蓝 1紫 2橙
+            }>,                     # 索取红包索取
+            FriendMsg:list<{
+                Id:player_id,      # 玩家id
+                Name:sstr,         # 玩家name
+                Lev:player_level,  # 玩家lev
+                Career:player_carrer# 玩家career
+            }>,                      # 好友申请
+            FriendSendFlowers:list<{
+                msg_id:u16,                     #信息id
+                player_id:player_id,            #玩家id
+                player_name:sstr,               #玩家名称
+                player_lev:player_level,        #玩家等级
+                player_career:player_carrer,    #玩家职业
+                item_bid:item_bid,              #物品id
+                msg:sstr                        #祝福语
+            }>
+        }
+    }
+}
+
+
+# 附近玩家信息
+proto MSG_FRIEND_NEAR=8
+{
+    client{
+        message{
+            Count:u8         #所要查询玩家的信息
+        }
+    }
+
+    server{
+        message{
+            FriendsInfo:list<FriendInfo:friend_info>    #附近玩家信息
+        }
+    }
+}
+
+
+# 服务端推送 
+proto MSG_FRIEND_DEL_MSG=9
+{
+    client{}
+    server{
+        message{
+            SendGiftIds:list<
+                SendGiftId:player_id             # 赠送礼包id
+            >,           
+            ReqGiftIds:list<
+                ReqGiftId:player_id              # 索取礼包id
+            >,           
+            FriendIds:list<
+                FriendId:player_id             # 申请好友的玩家id
+            >
+        }
+    }
+}
+
+# 红包申请转发
+proto MSG_FRIEND_GIFT_MSG=10
+{
+    client{}
+    server{
+        message{
+            Id:player_id,             # 所要查找玩家id
+            Name:sstr,                # 所要查找玩家name
+            Lev:player_level,         # 所要查找玩家level
+            Career:player_carrer,         # 玩家的职业career
+            GiftQua:u8               # 红包品质 0蓝 1紫 2橙
+        }
+    }
+}
+
+
+# 好友申请转发
+proto MSG_FRIEND_APPLY_MSG=11
+{
+    client{}
+    server{
+        message{
+            Id:player_id,             # 所要查找玩家id
+            Name:sstr,                # 所要查找玩家name
+            Lev:player_level,         # 所要查找玩家level
+            Career:player_carrer         # 玩家的职业career
+        }
+    }
+}
+# 赠送红包申请转发 
+proto MSG_FRIEND_SEND_GIFT_MSG=18
+{
+    client{}
+    server{
+        message{
+                Id:player_id,      # 玩家id
+                Name:sstr,         # 玩家name
+                Lev:player_level,  # 玩家lev
+                Career:player_carrer,  # 玩家career
+                ItemInfoL:list<{ItemBid:item_bid, Count:u32}>
+        }
+    }
+}
+# 抢红包
+proto MSG_FRIEND_ROB_GIFT=12
+{
+    client{
+        message{
+            Id:player_id             # 要抢好友的id
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+#-define(REPLY_MSG_FRIEND_ROB_GIFT_OK,    0).   %% 抢红包成功
+#-define(REPLY_MSG_FRIEND_ROB_GIFT_1,    1).   %% 对方未开启抢红包模式 
+#-define(REPLY_MSG_FRIEND_ROB_GIFT_2,    2).   %% 对方发送红包数量已达上限
+#-define(REPLY_MSG_FRIEND_ROB_GIFT_3,    3).   %% 接受红包数量已达上限 
+#-define(REPLY_MSG_FRIEND_ROB_GIFT_4,    4).   %% 已经抢过对方红包
+#%-define(REPLY_MSG_FRIEND_ROB_GIFT_5,    5).   %% 占位 
+#-define(REPLY_MSG_FRIEND_ROB_GIFT_6,    6).   %% 你这个禽兽居然抢自己的红包
+#-define(REPLY_MSG_FRIEND_ROB_GIFT_7,    7).   %% 所抢玩家不在线
+#-define(REPLY_MSG_FRIEND_ROB_GIFT_255,   255). %% 抢红包异常
+        }
+    }
+}
+
+# 索取红包申请
+proto MSG_FRIEND_ASK_FOR_GIFT=13
+{
+    client{
+        message{
+            Id:player_id             # 所要添加好友的id
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+#-define(REPLY_MSG_FRIEND_ASK_FOR_GIFT_OK,   0).   %% 索取红包申请成功
+#-define(REPLY_MSG_FRIEND_ASK_FOR_GIFT_1,   1).   %% 不能向自己索取红包
+#-define(REPLY_MSG_FRIEND_ASK_FOR_GIFT_2,   2).   %% 发送红包数量已达上限
+#-define(REPLY_MSG_FRIEND_ASK_FOR_GIFT_3,   3).   %% 已经领取过礼包
+#-define(REPLY_MSG_FRIEND_ASK_FOR_GIFT_4,   4).   %% 领取礼包数量已达到上限
+#-define(REPLY_MSG_FRIEND_ASK_FOR_GIFT_5,   5).   %% 已经申请过
+#-define(REPLY_MSG_FRIEND_ASK_FOR_GIFT_6,   6).   %% 索取的对象不在线
+#-define(REPLY_MSG_FRIEND_ASK_FOR_GIFT_255,   255).   %% 索取红包异常
+        }
+    }
+}
+
+# 索取红包回复
+proto MSG_FRIEND_REP_ASK_FOR_GIFT=14
+{
+    client{
+        message{
+            Id:player_id,            # 所要添加好友的id
+            IsAgree:u8               # 是否同意 0否 1是
+        }
+    }
+    server{
+        message{
+            replyNum:reply_num
+#-define(REPLY_MSG_FRIEND_REP_ASK_FOR_GIFT_OK,   0).   %% 回复索取红包成功
+#-define(REPLY_MSG_FRIEND_REP_ASK_FOR_GIFT_1,   1).   %% 发送红包已达上限 
+#-define(REPLY_MSG_FRIEND_REP_ASK_FOR_GIFT_2,   2).   %% 接受红包已达上限 
+#-define(REPLY_MSG_FRIEND_REP_ASK_FOR_GIFT_3,   3).   %% 已经获得红包 
+#-define(REPLY_MSG_FRIEND_REP_ASK_FOR_GIFT_4,   4).   %% 申请已超时
+#-define(REPLY_MSG_FRIEND_REP_ASK_FOR_GIFT_255,   255).   %% 回复索取红包异常 
+        }
+    }
+}
+
+# 赠送红包
+proto MSG_FRIEND_SEND_GIFT=15
+{
+    client{
+        message{
+            Id:player_id            # 所要赠送的玩家id
+        }
+    }
+    server{
+        message{
+            replyNum:reply_num
+
+#-define(REPLY_MSG_FRIEND_SEND_GIFT_OK,    0).   %% 送红包成功
+#-define(REPLY_MSG_FRIEND_SEND_GIFT_1,    1).   %% 发送红包数量已达上限
+#-define(REPLY_MSG_FRIEND_SEND_GIFT_2,    2).   %% 对方接受红包数量已达上限
+#-define(REPLY_MSG_FRIEND_SEND_GIFT_3,    3).   %% 已经领取过红包
+#-define(REPLY_MSG_FRIEND_SEND_GIFT_4,    4).   %%  不能自己给自己发红包哟
+#-define(REPLY_MSG_FRIEND_SEND_GIFT_5,    5).   %%  所赠送的玩家不在线
+#-define(REPLY_MSG_FRIEND_SEND_GIFT_255,   255). %% 抢红包异常
+        }
+    }
+}
+
+# 接受赠送红包
+proto MSG_FRIEND_ACCEPT_SEND_GIFT=19
+{
+    client{
+        message{
+            Id:player_id            # 接受赠送的玩家id
+        }
+    }
+    server{
+        message{
+            replyNum:reply_num
+#-define(REPLY_MSG_FRIEND_ACCEPT_SEND_GIFT_1,   1).   %% 接受赠送红包超时
+#-define(REPLY_MSG_FRIEND_ACCEPT_SEND_GIFT_255, 255). %% 接受赠送红包异常
+        }
+    }
+}
+
+# 设置开启抢红包模式
+proto MSG_FRIEND_SET_GIFT_STAT=16
+{
+    client{
+        message{
+            Stat:u8   #状态  0关闭 1开启
+        }
+    }
+    server{
+        message{
+            Stat:u8   #状态  0关闭 1开启
+        }
+    }
+}
+
+
+#更新好友列表信息(服务器推送
+proto MSG_FRIEND_CHANGE=17
+{
+    client{}
+    server{
+        message{
+            Type:u8,  #类型1添加 2更新
+            FriendInfo:friend_info
+        }
+    }
+}
+
+
+
+# 赠送红包申请转发 
+# proto MSG_FRIEND_SEND_GIFT_MSG=18
+
+
+
+# 接受赠送红包
+#proto MSG_FRIEND_ACCEPT_SEND_GIFT=19
+
+
+# 已经赠送和收到礼包玩家的id列表(凌晨0点服务器会推送)
+proto MSG_FRIEND_GIFT_APPLYS=20
+{
+    client{
+       message=empty
+    }
+    server{
+        message{
+            SendIds:list<SId:player_id>            # 送出去的玩家列表
+            ,RecvIds:list<RId:player_id>           # 收到的玩家列表
+            ,FApplyIds:list<FId:player_id>           # 好友申请列表
+            ,GApplyIds:list<GId:player_id>           # 索取礼包申请列表
+        }
+    }
+}
+
+
+# 添加赠送或者收到礼包的玩家id
+proto MSG_FRIEND_ADD_GIFT_APPLY=21
+{
+    client{ }
+    server{
+        message{
+            Type:u8                 # 类型 1添加赠送列表 2添加收到列表  3添加好友申请列表 4删除好友申请列表 5添加索取申请列表 6删除索取申请列表
+            ,Id:player_id           # 玩家id
+        }
+    }
+}
+
+# 赠送鲜花
+proto MSG_GIVE_GIFT_TO_FRIEND=22
+{
+    client
+    {
+        message
+        {
+            itembid:item_bid,           #物品bid
+            to_player_id:player_id,     #发送到的玩家
+            msg:sstr                    #祝福语
+        }
+    }
+    server
+    {
+        message=empty
+    }
+    errnos
+    {
+        ERR_NO_CFG,             #获取到的数据为空
+        ERR_COST_NOT_ENOUGH,    #消耗不足
+        ERR_PLAYER_OFFLINE,     #该玩家不在线
+        ERR_FRIEND_NO_FRIEND    #该玩家不是好友
+    }
+}
+
+# 被赠送人接收信息,信息需要存储，可以被删除
+proto MSG_GIVE_GIFT_RECIVE_INFO=23
+{
+    client
+    {}
+    server
+    {
+        message
+        {
+            msg_id:u16,                     #信息id
+            player_id:player_id,            #玩家id
+            player_name:sstr,               #玩家名称
+            player_lev:player_level,        #玩家等级
+            player_career:player_carrer,    #玩家职业
+            item_bid:item_bid,              #物品id
+            msg:sstr                        #祝福语
+        }
+    }
+}
+
+# 删除该玩家，接受鲜花的历史记录信息
+proto MSG_DEL_GIFT_INFO=24
+{
+    client
+    {
+        message
+        {
+            msg_id:u16  #信息id
+        }
+    }
+    server
+    {
+        message=empty
+    }
+}

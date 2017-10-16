@@ -1,0 +1,124 @@
+@include "game.sproto"
+## 私聊
+proto MSG_CHAT_P2P=1
+{
+    client{
+        message{
+            playerId : player_id,   #私聊对象id，当id为零判断name
+            channel  : u8,          #频道
+#-define(CHAT_P2P_NORMAL,  1).   %世界频道
+#-define(CHAT_P2P_FERIEND, 2).   %好友频道
+            msg      : lstr,        #发送的信息
+            type     : u8,          #新加 消息类型 1文本消息 2 语音消息
+            duration : u8           #新加 语音消息持续时间
+        }
+    }
+    server{
+        message{
+            channel  : u8,           #频道
+            playerId : player_id,    #发送信息的玩家id
+            name     : sstr,         #发送信息的玩家name
+            career   : player_carrer,    #发送信息的玩家career
+            title    : u8,          #称号
+#level    : player_level, #发送信息的玩家level
+            msg      : lstr,         #发送的信息
+            type     : u8,          #新加 消息类型 1文本消息 2 语音消息
+            duration : u8           #新加 语音消息持续时间
+        }
+    }
+}
+## 群聊
+proto MSG_CHAT_GROUP=2
+{
+    client{
+        message{
+            channel  : u8,           #频道
+#-define(CHAT_WORLD, 1).   %世界频道
+#-define(CHAT_SCENE, 2).   %场景频道
+#-define(CHAT_GUILD, 3).   %帮会频道
+#-define(CHAT_TEAM,  4).   %队伍频道
+#-define(CHAT_HORN,  5).   %喇叭频道
+
+            msg      : lstr,         #发送的信息
+            type     : u8,          #新加 消息类型 1文本消息 2 语音消息
+            duration : u8           #新加 语音消息持续时间
+        }
+    }
+    server{
+        message{
+            channel  : u8,            #频道
+            playerId : player_id,    #发送信息的玩家id
+            name     : sstr,         #发送信息的玩家name
+            career   : player_carrer,    #发送信息的玩家career
+            title    : u8,              #称号
+#            level    : player_level, #发送信息的玩家level
+            msg      : lstr,         #发送的信息
+            type     : u8,          #新加 消息类型 1:文本消息 2:语音消息 3:多人竞技场 4:多人组队副本 5:怪物攻城 6:单人竞技场
+            duration : u8           #新加 语音消息持续时间
+        }
+    }
+}
+
+## 系统发布聊天消息
+proto MSG_CHAT_SYSTEM=3
+{
+    client{
+        message{
+            msg:lstr          #发送的信息
+        }
+    }
+    server{
+        message{
+            msg:lstr          #发送的信息
+        }
+    }
+}
+
+
+## 系统发布聊天消息
+proto MSG_CHAT_SYSTEM_EX=4
+{
+    client{
+        message=empty
+    }
+    server{
+        message{
+            id:u16,      # 公告ID
+            val:list<Tmp:lstr>
+        }
+    }
+}
+
+
+
+proto MSG_CHAT_SYSTEM_B=5
+{
+    client{}
+    server{
+        message{
+            id:u16,     
+            num:u16
+        }
+    }
+}
+
+## 发送系统公告
+proto MSG_CHAT_SYSTEM_C=6
+{
+    client
+    {
+        message=empty
+    }
+    server
+    {
+        message
+        {
+            id:u16,     ## 此id为配置表broadcast.txt中的信息id
+            kindType:u8,  ##0 普通类型 1 装备类型  2宠物类型 注：对应发送列表
+            Val:list<{posId:u8, type:u8, mes1:lstr}>,  ## 非装备类型 type:1 发送的是字符串，2 发送的是整数(整数转化成字符串的形式发出), 3 公会boss的id, 4 剩余时间的秒数
+            equipVal:list<{posId:u8, type:u8, mes:lstr, quality:u8, qhLevel:u8}>,  ## type：1 发送的是字符串，2 发送的是装备的id(发送的是装备类型时徐发送quality,其余情况发0), 3 公会boss的id ,4 剩余类型，5，宠物类型
+            petList:list<{posId:u8,type:u8,petId:lstr,petLevel:u8,jinjieNum:u8}>    ## 当发送的数据类型是整数时需要把整数类型转换成字符串类型（比如：装备id, 公会boss id) posId 指配置表中 消息文本填充处的数字
+        }
+    }
+}
+

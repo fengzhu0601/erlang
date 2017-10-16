@@ -1,0 +1,3 @@
+2. 现在的操作只能对设置为all的table保证操作的正确性
+   添加非all的支持和redis类似的expert object
+3. kv table proferments

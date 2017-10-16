@@ -1,0 +1,357 @@
+@include "game.sproto"
+
+#进入竞技场（匹配
+proto MSG_ARENA_MATCH=1
+{
+    client{
+        message{
+            arenaType:u8   # 1 人机模式 2 p2p模式 3 多人p2p模式
+        }
+    }
+    server{
+        message{
+            replyNum:reply_num
+        }
+    }
+}
+
+
+
+#获取竞技场面板
+proto MSG_ARENA_PANEL=2
+{
+    client{
+        message=empty
+    }
+    server{
+        message{
+            lev:u8        #竞技场等级
+            ,cent:u32     #竞技场积分
+            ,index:u8     #竞技场排名
+# ,honour:u32    #竞技场荣誉
+        }
+    }
+}
+
+
+#获取竞技场抽奖面板信息
+proto MSG_ARENA_TRUN_PANEL=3
+{
+    client{
+        message=empty
+    }
+    server{
+        message{
+            trun:list< hasStar:bool >,                           #奖盘状态
+            awards:list<{itemBid:item_bid, itemNum:u32, IsGet:bool}>       #奖励状态
+        }
+    }
+}
+
+#竞技场抽奖
+proto MSG_ARENA_TRUN=4
+{
+    client{
+        message=empty
+    }
+    server{
+        message{
+            replyNum:reply_num,  #回复码
+            index:u8             #转盘位置
+        }
+    }
+}
+
+struct arena_rank_info
+{
+    index:u8                        #排名
+    ,arena_lev:u8                   #竞技场等级
+    ,playerId:player_id             #角色id
+    ,playerName:sstr                #角色名字
+    ,playerCarrer:player_carrer     #职业
+    ,playerPower:player_power       #战力
+    ,serverId:u32                   #服务器id
+    ,playerLev:player_level         #等级
+    ,arena_score:u32                #积分
+}
+
+struct arena_result
+{
+    arena_lev:u8                    #竞技场等级
+    ,playerId:player_id             #角色id
+    ,playerName:sstr                #角色名字
+    ,playerCarrer:player_carrer     #职业
+    ,playerLev:player_level         #等级
+    ,serverId:u32                   #服务器id
+    ,kill:u16                       #杀人数
+    ,die:u16                        #死亡数
+    ,cent:s16                       #积分
+}
+
+#获取排行榜信息
+proto MSG_ARENA_RANK=5
+{
+    client{
+        message{
+            startPos:u8
+            ,len:u8
+        }
+    }
+    server{
+        message{
+            size:u8
+            ,awards:list<ARankInfo:arena_rank_info>
+        }
+    }
+}
+
+#获取竞技场统计界面信息
+proto MSG_ARENA_COUNT=6
+{
+    client{
+        message=empty
+    }
+    server{
+        message{
+            p2eWin:u16
+            ,p2eLoss:u16
+            ,p2pWin:u16
+            ,p2pLoss:u16
+            ,p2pKill:u32
+            ,multiP2pWin:u16
+            ,multiP2pLoss:u16
+            ,multiP2pKill:u32
+        }
+    }
+}
+
+
+#竞技场战斗结算界面
+proto MSG_ARENA_RESULT=7
+{
+    client{}
+    server{
+        message{
+            result:bool            #0失败1成功
+            ,kill:u16              #杀人数
+            ,die:u16               #死亡数
+            ,cent:s16              #积分
+            ,playerHonor:u32       #荣誉
+            ,awards:list<{itemBid:item_bid, itemNum:u32}>       #奖励状态
+        }
+    }
+}
+
+#竞技场战斗结算界面(多人
+proto MSG_ARENA_MULTI_RESULT=9
+{
+    client{}
+    server{
+        message{
+            MultiResult:list<{AllKill:u16, ResultInfos:list<ResultInfo:arena_result> }>       ## 多人结算面板
+
+        }
+    }
+}
+
+# 取消匹配
+proto MSG_ARENA_CANEL_MATCH=8
+{
+    client{
+        message=empty
+    }
+    server{}
+}
+
+
+#竞技场战斗结算界面(多人
+#proto MSG_ARENA_MULTI_RESULT=9
+
+
+
+
+
+## 玩家的竞技场资料
+struct arena_player_info
+{
+    playerSort:u32                  #排名
+    ,playerHonor:u32                #荣誉
+    ,playerWinStreak:u16            #连胜数
+    ,challengedCount:u16            #挑战次数
+    ,buyCount:u16                   #购买次数
+    ,canGetPrize:u8                 #可否领奖(1可领奖 0不可领奖)
+    ,overTime:u32                   #游戏结束时间绝对值
+}
+proto MSG_ARENA_PLAYER_INFO_CSC=101
+{
+    client
+    {
+        message=empty
+    }
+    server
+    {
+        message
+        {
+            PlayerInfo:arena_player_info    ##玩家的竞技场资料
+        }
+    }
+}
+
+##可挑战清单
+proto MSG_ARENA_SORE_PLAYERS_CSC=102
+{
+    client
+    {
+        message=empty
+    }
+    server
+    {
+        message
+        {
+            Players:list<
+            {
+                id:player_id,
+                name:sstr,
+                rank:u32,
+                power:u32,
+                career:player_carrer,
+                level:player_level,
+                EqmL:list<item:item_info>
+            }>
+        }
+    }
+}
+
+## 请求挑战
+proto MSG_ARENA_CHALLENGE_PLAYER_CSC=103
+{
+    client
+    {
+        message
+        {
+            playerID:player_id ##对手ID
+        }
+    }
+    server
+    {
+        message
+        {
+            ret:u8,                         ## 请求结果 0不行 1可以
+            ai:u8,                          ## AI的难度（后期可提高AI到极大难度已验证是否做弊）
+            challengedCount:u16,            ## 挑战次数
+            playerId : player_id,
+            hp       : player_hp,
+            mp       : player_mp,
+            sp       : u16,
+            attr     : attr,
+            skills   : list<id:u32>,
+            skillchanges: list<id:u16>
+        }
+    }
+}
+
+## 请求结算
+proto MSG_ARENA_COMPLETE_CHALLENGE_SC=104
+{
+    client{}
+    server
+    {
+        message
+        {
+            ret:u8
+            ,playerSort:u32                 #排名
+            ,playerHonor:u32                #荣誉
+            ,playerWinStreak:u16            #连胜数
+        }
+    }
+}
+
+## 请求竞技场领奖
+proto MSG_ARENA_GET_CHALLENGE_PRIZE_CS=105
+{
+    client
+    {
+        message=empty
+    }
+    server
+    {
+        message
+        {
+            playerSort:u32,                 ## 排名
+            pirzeID:u32                     ## 奖励
+        }
+    }
+}
+
+
+## 请求竞技场日志
+struct arena_challenge_log
+{
+    playerId:player_id              #optID
+    ,name:sstr                      #opt名字
+    ,job:player_carrer              #opt职业
+    ,isAccord:u8                    #0被挑战 1挑战
+    ,datetime:u32                   #挑战时间
+    ,isVictory:u8                   #0失败 1成功
+    ,ranking:u16                    #战况结果自已的排名
+    ,honor:u32                      #荣誉
+}
+proto MSG_ARENA_GET_CHALLENGE_LOG_CSC=106
+{
+    client
+    {
+        message=empty
+    }
+    server
+    {
+        message
+        {
+            op_type:u8                              #1初始化 2增加
+            ,LogL:list<log:arena_challenge_log>      #物品信息列表
+        }
+    }
+}
+
+##购买次数
+proto MSG_ARENA_BUY_CHALLENGE_COUNT_CSC=107
+{
+    client
+    {
+        message=empty
+    }
+    server
+    {
+        message
+        {
+            ret:u8 #请求结果 0不行 1可以
+            ,buyCount:u16                   #购买次数
+        }
+    }
+}
+
+struct arena_rank_p2e_info
+{
+    index:u8                        #排名
+    ,playerId:player_id             #角色id
+    ,playerName:sstr                #角色名字
+    ,playerCarrer:player_carrer     #职业
+    ,playerPower:player_power       #战力
+    ,serverId:u32                   #服务器id
+    ,playerLev:player_level         #等级
+}
+#获取排行榜信息
+proto MSG_ARENA_P2E_RANK=120
+{
+    client{
+        message{
+            startPos:u8
+            ,len:u8
+        }
+    }
+    server{
+        message{
+            size:u8
+            ,awards:list<ARankInfo:arena_rank_p2e_info>
+        }
+    }
+}

@@ -1,0 +1,22 @@
+﻿唯一编号（1-100预留充值活动，101-199等级达成，201-299装备强化）	条件	奖励	任务说明	指引链接
+id	condition	prize	client_des	client_link
+111	{3,10}	281111	达到10级	open_helper_ui
+112	{3,16}	281112	达到16级	open_helper_ui
+113	{3,22}	281113	达到22级	open_helper_ui
+121	{50,7}	281114	穿戴7件紫色装备	open_helper_ui
+122	{53,5}	281115	强化任意装备部位至+5	open_equip_op_ui
+123	{53,10}	281116	强化任意装备部位至+10	open_equip_op_ui
+211	{12,11111}	281117	通关第二章节普通副本	open_instance_ui
+221	{36,5}	281118	兽魂升级5次	open_pet_ui
+311	{32,2}	281119	宠物升级2次	open_pet_ui
+321	{60,3}	281120	洗练装备3次	open_equip_op_ui
+411	{38,2}	281121	公会建筑升级2次	open_guild_ui
+421	{42,100}	281122	竞技场排名100名内	open_ranking_ui
+511	{62,2}	281123	完成2次赏金任务	
+512	{63,5}	281124	完成5个5星以上每日任务	open_daily_task_ui
+513	{63,10}	281125	完成10个5星以上每日任务	open_daily_task_ui
+514	{63,15}	281126	完成15个5星以上每日任务	open_daily_task_ui
+521	{9,2}	281127	参与黑市拍卖行竞拍2次	open_auction_ui
+611	{4,10000}	281128	战力突破10000	open_helper_ui
+621	{58,1}	281129	合成2级宝石1次	open_equip_op_ui
+711	{52,6}	281130	装备6件绿色套装	open_helper_ui

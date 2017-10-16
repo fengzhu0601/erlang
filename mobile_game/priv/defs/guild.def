@@ -1,0 +1,111 @@
+atom guild_id_tab
+atom guild_tab
+atom player_apply_tab
+atom player_guild_member
+atom guild_player_association_tab
+atom guild_member_online_tab
+atom guild_buildings_tab
+atom guild_event_tab
+atom player_guild_tech_buildings
+
+atom guild_member_lvup_cfg
+atom guild_buildings_cfg
+atom guild_tech_cfg
+atom guild_shop_cfg
+
+#atom ranking_guild
+
+atom position_change
+atom join_guild
+atom quit_guild
+
+atom pd_guild_tech_prev_attr #公会科技增加属性
+
+enum guild_position
+{
+    GUILD_MASTER_POSITIONID=1,         #会长职务ID
+    GUILD_VICE_MASTER_POSTION=2,       #副会长职务ID
+    GUILD_MEMBER_POSTION=3             #成员职务ID
+}
+
+enum guild_operation
+{
+    GUILD_APPLY_AGREE_OR_REFUSED=1,    #同意入会
+    GUILD_REMOVE_MEMBER=2,             #移除普通会员
+    GUILD_REMOVE_VICE_MATER=3,         #移除副会长
+    GUILD_APPOINT_OR_REMOVE_POSITION=4,#任免职位
+    GUILD_MASTER_TRANSFER=5,           #会长转让
+    GUILD_QUIT=6,                      #退出公会
+    GUILD_VIEW_APPLY_LIST=7,           #查看公会申请人
+    GUILD_UPDATE_NOTICE=8,             #修改公会公告
+    GUILD_BOSS_DONATE=9,               #公会boss献祭
+    GUILD_BOSS_PHASE=10,               #公会boss进阶
+    GUILD_BOSS_CALL=11,                #公会boss召唤
+    GUILD_BOSS_DAMAGE=12,              #公会BOSS伤害
+    GUILD_BOSS_REVIVE=13               #公会BOSS复活
+}
+
+enum guild_event_type
+{
+    GUILD_EVENT_TYPE_ADDEXP_ID=1,      #公会事件，增加贡献值的TypeID
+    GUILD_EVENT_TYPE_JOIN=2,           #公会事件，加入公会
+    GUILD_EVENT_TYPE_REMOVE=3,         #公会事件，移除公会
+    GUILD_EVENT_TYPE_QUIT=4,           #公会事件，退出公会
+    GUILD_EVENT_TYPE_POSITION=5        #公会事件，任免职位
+}
+
+enum msg_guild_create
+{
+    ERR_GUILD_CREATE_LEVEL_LESS_THAN=521,    #玩家等级不足
+    ERR_GUILD_CREATE_DIAMOND_LESS_THAN=522,  #玩家钻石不足
+    ERR_GUILD_CREATE_ITEM_LESS_THAN=523,     #玩家道具不足
+    ERR_GUILD_COST_FAIL=524,                 #消耗货币失败
+    ERR_GUILD_CREATE_NAME_REPEAT=525,        #公会名称重复
+    ERR_GUILD_CREATE_GOLD_LESS_THAN=526,     #玩家金币不足
+}
+
+enum msg_guild_appoint_or_remove_player
+{
+    ERR_GUILD_NOT_ENOUGH_POSITION_NUM=531,  #没有足够的职位数量
+    ERR_GUILD_PLAYER_NOT_IN_THIS_GULD=532,  #任免职位玩家不在该公会
+    ERR_GUILD_THIS_POSITION_IS_NULL=533,    #没有该职位
+    ERR_GUILD_MASTER_CONNOT_REMOVE=541,         #会长无法被剔除公会
+    ERR_GUILD_NO_THIS_POSITION=542,             #没有该职位
+    ERR_GUILD_OTHER_PLAYER_NOT_JOIN_GUILD=543,  #被操作人没有加入公会
+    ERR_GUILD_MASTER_CONNOT_CHANGE_POSITION=544,#会长不能改变自己职位
+}
+
+enum msg_guild_building_addexp
+{
+    ERR_GUILD_NO_MEMBER_CFG=551,           #成员表配置信息错误
+    ERR_GUILD_NO_THISBUILDINGID=552,       #该工会没有该建筑
+    ERR_GUILD_EXIT_MORE_THISBUILDINGS=553, #存在多个相同类型的建筑
+    ERR_GUILD_NO_BUILDING_LVUPCFG=554,     #不存在该等级下的建筑升级配置
+    ERR_GUILD_TYPE_IS_ERROR=555,           #消耗类型出错
+    ERR_GUILD_LV_LESS_THEN_BUILDINGS=557,  #限制条件验证失败
+    ERR_GUILD_LV_MAX=558,                  #公会已达最大等级
+}
+
+enum msg_guild_apply
+{
+    ERR_GUILD_MAX_NUM = 561,               #公会成员已到最大值
+
+}
+
+enum msg_guild_shop
+{
+     ERR_GUILD_VERIFY_CONDITION_ERROR=571,  #购买物品的条件不足
+     ERR_GUILD_NO_GUILD_SHOP_CFG=572,       #公会商品配置表没有该物品
+}
+
+enum msg_guild_search
+{
+    ERR_GUILD_FIND_GUILD_IS_NULL=581,       #搜索公会为空
+}
+
+enum msg_guild_tech_lvup
+{
+    ERR_GUILD_NO_THIS_TECH_BUILDINGID=591,    #没有该科技类型
+    ERR_GUILD_TECH_LV_MAX=592,                #科技等级已经达到最大级
+    ERR_GUILD_TECH_VERIFY_CONDITION_FAIL=593, #科技升级验证条件失败
+}

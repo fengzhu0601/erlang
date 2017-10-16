@@ -1,0 +1,10 @@
+A Simple client accepter pool.
+
+
+Who To Use?
+1.  Add listen a socket.
+     lc_listener_sup:start_listener/4.
+2.  Close listen socket.
+    lc_listener_sup:stop_listener/1.
+ 
+see lc_child.erl.in

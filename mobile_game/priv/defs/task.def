@@ -1,0 +1,78 @@
+
+eatom  task_type_module
+{
+    task_type_main,
+    task_type_branch,
+    task_type_daily,
+}
+
+## 任务类型
+enum task_type
+{
+    TT_MAIN = 0 : task_type_main,     ## 主线任务
+    TT_BRANCH =1: task_type_branch,   ## 支线
+    TT_DAILY =2 : task_type_daily,    ## 日常
+}
+
+
+eatom gola_type_module
+{
+    task_plugin_kill_monster,
+    task_plugin_npc_talk,
+    task_plugin_collect_item,
+    task_plugin_buy_item,
+    #task_plugin_convoy_npc,
+    task_plugin_guard_frontier,
+    task_plugin_single_instance,
+}
+
+
+## 目标类型
+enum gola_type
+{
+    TG_KILL_MONSTER    = 1 :task_plugin_kill_monster,    ## 杀怪
+    TG_NPC_TALK        = 2 :task_plugin_npc_talk,        ## NPC 对话
+    TG_COLLECT_ITEM    = 3 :task_plugin_collect_item,    ## 采集物品
+    TG_BUY_ITEM        = 4 :task_plugin_buy_item,        ## 购买物品
+    TG_COLLECT_VIRTUAL_GOODS  = 5,
+    #TG_CONVOY_NPC      = 5 :task_plugin_convoy_npc,      ## 护送NPC goal {MonsterId = [{SceneId = SX = SY = Ex = Ey}]}
+    TG_GUARD_FRONTIER  = 7 :task_plugin_guard_frontier,  ##  戍边 gola {Time         = SceneId}
+    TG_SINGLE_INSTANCE = 8 :task_plugin_single_instance, ## 单人副本 {InstanceId        = Count}
+    ##TG_COMPLETE_TASK   = 6 ## 完成其他任务N次 goal {TaskId    = Time}
+    task_ev_gem_he_cheng	=	9,	#宝石合成
+
+    task_ev_pet_hatching	=	10,	#宠物孵化
+    task_ev_pet_advance	=	11,	#宠物进阶
+    task_ev_pet_skill_level	=	12,	#宠物技能升级
+    task_ev_pet_treasure	=	13,	#宠物寻宝
+
+    task_ev_guild_tech_level	=	14,	#公会科技每次升级
+    task_ev_guild_activity	=	15,	#公会活动，没有该功能
+
+    task_ev_friend_add	=	16,	#每次添加好友
+
+    task_ev_crown_exchange	=	17,	#皇冠兑换
+    task_ev_crown_imbue	=	18,	#皇冠附魔
+    task_ev_crown_level	=	19,	#皇冠碎片升级
+
+    task_ev_arena_pve_fight	=	20,	#竞技场pve
+    task_ev_arena_pev_fight_win	=	21,	#竞技场pve胜利
+
+    task_ev_seller_buy_item	=	22,	#在神秘商人处购买物品
+
+    task_ev_get_item	=	23,	#获得某个道具
+
+    task_ev_equ_he_cheng	=	24,	#装备合成
+    task_ev_equ_ji_cheng	=	25,	#装备继承
+    task_ev_equ_qiang_hua	=	26,	#装备强化
+    task_ev_equ_xiangqian	=	27,	#装备镶嵌
+
+    task_new_wizard = 28,           #新手指引类型
+    task_ev_nine_star_pass_ins = 30, # 九星通关副本
+    task_ev_blessing            = 31, #祝福
+    task_ev_mount              = 32 #做鸡
+}
+
+
+
+

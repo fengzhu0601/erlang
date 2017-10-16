@@ -1,0 +1,8 @@
+ID	功能开放名字(open_fun.txt的client_name)	功能昵称	说明	开启icon路径(mainSceneUI/icon)	锁icon路径	执行代码
+id	client_name	client_nice_name	client_des	client_icon_path	client_lock_icon_path	code
+1	equip_op_ui	锻造	装备锻造	20.png	20_lock.png	open_equip_op_ui
+2	skill_ui	技能	升级技能	6.png	6_lock.png	open_skill_ui
+3	horse_ui	坐骑	培养坐骑	18.png	18_lock.png	open_horse_ui
+4	pet_ui	宠物	培养宠物	19.png	19_lock.png	open_pet_ui
+5	guild_ui	公会	提升公会建筑	13.png	19_lock.png	open_guild_ui
+6	activity_ui	活动	提升等级	12.png	19_lock.png	day_activity_ui

@@ -1,0 +1,25 @@
+## 得到副本信息
+MSG_MAIN_INSTANCE_INFO=1
+# S-C
+# while
+#  Id:16 
+#  PassTimeSrc:32, %%最好通关时间秒
+#  TodayPassedTimes:8 当天通关的次数
+#  is_cleanning:8
+#  if is_cleanning == 1
+#     结束时间:64
+
+
+
+
+
+## 请求得到随机奖励的位置
+#C-S
+MSG_MAIN_INSTANCE_ROULETTE_GET_PRIZE_INDEX=8
+#S-C index:8 随机位置 0-7
+
+## 请求得到随机奖励的位置
+#C-S
+MSG_MAIN_INSTANCE_ROULETTE_GET_PRIZE=9
+
+

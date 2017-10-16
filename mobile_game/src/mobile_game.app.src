@@ -1,0 +1,14 @@
+{
+    application, mobile_game,
+    [
+        {description, "game"},
+        {vsn, "1"},
+        {registered, []},
+        {applications, [
+            kernel,
+            stdlib
+        ]},
+        {mod, { mobile_game_app, []}},
+        {env, []}
+    ]
+}.

@@ -1,0 +1,38 @@
+## 开服充值满额送礼
+
+@include "game.sproto"
+
+## 开服充值满额送礼
+proto MSG_RECHARGE_REWARD_INFO=1
+{
+    client{}
+
+    server{
+        message
+        {
+            Recharge:u32,           ## 累计充值金额
+            reward_status:list<{
+                id:u16,             ## 奖励序号
+                status:u8           ## 奖励状态 0不能领取, 1可以领取, 2已经领取
+            }>
+        }
+    }
+}
+
+## 领取开服充值满额奖励
+proto MSG_RECHARGE_REWARD_GET_PRIZE=2
+{
+    client{
+        message
+        {
+            id:u16           ## 奖励序号
+        }
+    }
+
+    server{
+        message
+        {
+            replynum:u8     ## 返回码
+        }
+    }
+}

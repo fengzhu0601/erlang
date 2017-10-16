@@ -1,0 +1,58 @@
+
+@include "game.sproto"
+#成就列表
+proto MSG_ACCOMPLISHMENT_LIST=1
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message{
+            achievementList:list<{
+                id:u32,        			#成就ID
+                type_value:u32,         #进度
+                level:u8,               #对应等级
+                status:u8,              #状态
+                extract_reward_level:u8 #已领到奖励等级
+            }>
+        }
+    }
+}
+
+
+#领取奖励
+proto MSG_ACCOMPLISHMENT_EXTRACT_REWARD=2
+{
+    client{
+    	message{
+    		AchievementID:u32
+    	}
+    }
+
+    server{
+        message{
+            AchievementID:u32,
+            extract_reward_level:u8 #已领到奖励等级
+        }
+    }
+    errnos
+    {
+        ERR_ACC_THIS_ACCID_NOT_ACCEPT,    ##该成就没有被接取
+        ERR_ACC_CHECH_ERR,                ##该等级成就还未完成
+        ERR_NO_CFG                        ##没有配置信息
+    }
+}
+
+#更新成就信息
+proto MSG_ACCOMPLISHMENTS_ACHIEVEMENT_CHANGE=3
+{
+    client{}
+    server{
+        message{
+            id:u32,        			#成就ID
+            level:u8,
+            type_value:u32          #进度
+        }
+    }
+}

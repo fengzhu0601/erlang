@@ -1,0 +1,4 @@
+atom pd_all_rides          ##所有坐骑信息
+atom pd_riding             ##当前乘骑的坐骑
+
+atom pd_ride_soul         ## 兽魂

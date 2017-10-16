@@ -1,0 +1,398 @@
+%%% coding:utf-8
+%%%-------------------------------------------------------------------
+%%% @author zlb
+%%% @doc 拍卖行服务模块
+%%%
+%%% @end
+%%%-------------------------------------------------------------------
+
+-module(auction_svr).
+-behaviour(gen_server).
+
+
+-include_lib("pangzi/include/pangzi.hrl").
+
+
+-include("inc.hrl").
+-include("auction.hrl").
+-include("player_eng.hrl").
+-include("item_new.hrl").
+-include("load_db_misc.hrl").
+
+-define(pd_timer_mng_for_auction, pd_timer_mng_for_auction).   %% 拍卖行定时器
+
+-export([start_link/0]).
+-export([
+    init/1,
+    handle_call/3,
+    handle_cast/2,
+    handle_info/2,
+    terminate/2,
+    code_change/3
+]).
+
+-export([
+    create/1,         %% 创建拍卖
+    add_price/1,       %%  加价
+    high_price/1,      %%  一口价成交
+    cancel_auction/2,  %% 取消拍卖
+    get_all/0,         %% 获取所有拍卖信息
+    get_com_auction/1, %% 通过个人拍卖信息获取公共拍卖信息
+    get_all_log/0     %% 获取拍卖行的日志
+]).
+
+-record(state, {
+    auction_sec = 0
+}).
+
+load_db_table_meta() ->
+    [
+        #db_table_meta{
+            name = ?com_auction_tab,
+            fields = record_info(fields, ?com_auction_tab),
+            record_name = ?com_auction_tab,
+            load_all = true,
+            shrink_size = 1,
+            flush_interval = 3
+        },
+        #db_table_meta{
+            name = ?com_auction_timeout_tab,
+            fields = record_info(fields, ?com_auction_tab),
+            record_name = ?com_auction_tab,
+            load_all = true,
+            shrink_size = 1,
+            flush_interval = 3
+        },
+        #db_table_meta
+        {
+            name = ?auction_log_tab,
+            fields = record_info(fields, ?auction_log_tab),
+            record_name = ?auction_log_tab,
+            %load_all = true
+            shrink_size = 1,
+            flush_interval = 3
+        }
+    ].
+
+
+%% 通过个人拍卖背包索引获取拍卖信息
+-spec get_com_auction({_, _}) -> ?none | _.
+get_com_auction({AId, IsTimeout}) ->
+    case dbcache:lookup(?if_else(IsTimeout,?com_auction_timeout_tab,?com_auction_tab), AId) of
+        [ComA] -> 
+            ComA;
+        _ -> 
+            ?none
+    end.
+
+
+%% 创建竞拍
+create(CAT) ->
+    gen_server:call(?MODULE, {create_auction, CAT}).
+
+%% 竞拍加价
+add_price(CAT) ->
+    gen_server:call(?MODULE, {add_price, CAT}).
+
+%% 一口价成交
+high_price(CAT) ->
+    gen_server:call(?MODULE, {high_price, CAT}).
+
+%% 下架物品
+cancel_auction(PlayerId, {AId, IsTimeout}) ->
+    gen_server:call(?MODULE, {cancel_auction, {PlayerId, AId, IsTimeout}}).
+
+%% 获取所有公共信息
+get_all() ->
+    ets:tab2list(?com_auction_tab).
+
+
+%% 获取所有的拍卖行日志信息
+get_all_log() ->
+    ets:tab2list(?auction_log_tab).
+
+%%----------------------------------------------------
+%% timer
+%% INLINE
+start_timer(Ms, Msg) ->
+    {Ref, Mng_2} = com_proc_timer:start_timer(Ms, Msg, get(?pd_timer_mng_for_auction)),
+    put(?pd_timer_mng_for_auction, Mng_2),
+    Ref.
+
+%% INLINE
+get_next_time_out() ->
+    com_proc_timer:next_timeout(get(?pd_timer_mng_for_auction)).
+
+%% INLINE
+cancel_timer(Ref) ->
+    case catch com_proc_timer:cancel_timer(Ref, get(?pd_timer_mng_for_auction)) of
+        {'EXIT', _} ->
+            ?ERROR_LOG("cancel_timer timer ~p crash", [Ref]);
+        Mng_2 ->
+            put(?pd_timer_mng_for_auction, Mng_2)
+    end.
+
+%% 拍卖时间到 
+handle_timer(Ref, {auction_time_end, AuctionId}) ->
+    case dbcache:lookup(?com_auction_tab, AuctionId) of
+        [CAT = #com_auction_tab{timer_ref = Ref}] ->
+            handle_auction_timeout(CAT);
+        _E ->
+            ?ERROR_LOG("auction timeout error !AuctionId:~w lookup:~w", [AuctionId, _E])
+    end,
+    ok.
+
+%% 通知客户端进入休市状态
+send_client_close() ->
+    [spawn(fun() -> world:send_to_player(PlayerId, ?mod_msg(auction_mng, {close_client_auction})) end)
+        || {PlayerId, _Pid} <- com_prog:get_members(world)].
+
+
+%% 拍卖超时（流拍/超时被拍卖走
+handle_auction_timeout(CAT = #com_auction_tab{id = AId, bider_id = BiderId, seller = _Name, 
+            item = Item, timer_ref = TimeRef, money_type = _MoneyType, cur_price = _CurPrice}) ->
+    case BiderId of
+        ?undefined -> %% 流拍
+            NCAT = CAT#com_auction_tab{timer_ref = ?undefined},
+            case dbcache:insert_new(?com_auction_timeout_tab, NCAT) of
+                ?true -> 
+                    ok;
+                _E ->
+                    ?ERROR_LOG("player ~p create new com_auction_timeout_tab not already exists  ~w", [AId, _E])
+            end,
+            %% 取消定时器
+            cancel_timer(TimeRef),
+            ok;
+        _ ->   %% 超时被拍走
+            auction_mng:bider_win(BiderId, Item)
+    end,
+
+    _ItemID =
+    if
+        is_integer(Item) ->
+            Item;
+        is_record(Item, item_new) ->
+            #item_new{bid = Bid} = Item,
+            Bid;
+        is_tuple(Item) ->
+            element(1, Item);
+        true ->
+            ?ERROR_LOG("undefine auction item ")
+    end,
+
+    dbcache:delete(?com_auction_tab, AId),
+    dbcache:delete(?auction_log_tab, AId),
+
+    %% 设置拍卖行的休市时间
+    #{black_shop_refresh := {MinDay, MaxDay}} = misc_cfg:get_black_shop_misc(),
+    RandDay = com_util:random(MinDay, MaxDay),
+    NowSec = com_time:timestamp_sec(),
+
+    load_db_misc:set(?misc_auction_close_time, NowSec + RandDay*?SECONDS_PER_DAY),
+    ok.
+
+%%--------------------------------------------------------------------
+%% @doc Starts the server
+%% @spec start_link() -> {ok, Pid} | ignore | {error, Error}
+%% @end
+start_link() ->
+    gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
+
+%%--------------------------------------------------------------------
+%% @private
+%% @doc
+%% Initializes the server
+%%
+%% @spec init(Args) -> {ok, State} |
+%%                     {ok, State, Timeout} |
+%%                     ignore |
+%%                     {stop, Reason}
+%% @end
+%%--------------------------------------------------------------------
+-spec(init(Args :: term()) ->
+    {ok, State :: #state{}} | {ok, State :: #state{}, timeout() | hibernate} |
+    {stop, Reason :: term()} | ignore).
+init([]) ->
+    ?pd_new(?pd_timer_mng_for_auction, com_proc_timer:new()),
+    self() ! my_init,
+    {ok, #state{}, get_next_time_out()}.
+
+%%--------------------------------------------------------------------
+%% @private
+%% @doc
+%% Handling call messages
+%%
+%% @end
+%%--------------------------------------------------------------------
+-spec(handle_call(Request :: term(), From :: {pid(), Tag :: term()},
+        State :: #state{}) ->
+    {reply, Reply :: term(), NewState :: #state{}} |
+    {reply, Reply :: term(), NewState :: #state{}, timeout() | hibernate} |
+    {noreply, NewState :: #state{}} |
+    {noreply, NewState :: #state{}, timeout() | hibernate} |
+    {stop, Reason :: term(), Reply :: term(), NewState :: #state{}} |
+    {stop, Reason :: term(), NewState :: #state{}}).
+
+%% 创建竞拍
+handle_call({create_auction, CAT = #com_auction_tab{}}, _From, State = #state{auction_sec = ASec}) ->
+    Now = com_time:timestamp_sec(),
+    AId = gen_id:next_id(?com_auction_tab),
+
+    TimeOutSec = ASec,
+    TimeRef = start_timer(?MICOSEC_PER_SECONDS * TimeOutSec, {auction_time_end, AId}),
+    NCAT = CAT#com_auction_tab{id = AId, timeout = Now + TimeOutSec, timer_ref = TimeRef},
+
+%%    ?debug_log_auction("create_auction time ~w, timeout ~w, timeout_len ~w", [Now, Now + TimeOutSec, ?MICOSEC_PER_SECONDS * (TimeOutSec)]),
+    Reply = case dbcache:insert_new(?com_auction_tab, NCAT#com_auction_tab{item_state = ?item_auction_ing}) of
+                true -> {ok, NCAT};
+                _ -> {error, create_auction_error}
+            end,
+    {reply, Reply, State#state{}, get_next_time_out()};
+
+%% 竞拍加价
+handle_call({add_price, CAT}, _From, State) ->
+    dbcache:update(?com_auction_tab, CAT),
+    {reply, ok, State, get_next_time_out()};
+
+%% 一口价成交
+handle_call({high_price, #com_auction_tab{id = AId, bider_id = BiderId, timer_ref = TimeRef, item = Item}}, _From, State) ->
+    %?INFO_LOG("high_price com_auction_tab ~p",[Item]),
+    cancel_timer(TimeRef),    %% 先取消定时器
+    dbcache:delete(?com_auction_tab, AId),
+    auction_mng:bider_win(BiderId, Item),
+    {reply, ok, State, get_next_time_out()};
+
+%% 取消竞拍
+handle_call({cancel_auction, {PlayerId, AId, IsTimeout}}, _From, State) ->
+    Reply = case get_com_auction({AId, IsTimeout}) of
+                #com_auction_tab{timer_ref = TimerRef} ->
+                    case TimerRef of
+                        ?undefined ->
+                            dbcache:delete(?com_auction_timeout_tab, AId);
+                        _ ->
+                            dbcache:delete(?com_auction_tab, AId),
+                            cancel_timer(TimerRef)
+                    end,
+                    MyABag = auction_mng:lookup_auction_bag(PlayerId),
+                    NMyABag = lists:keydelete(AId, 1, MyABag),
+                    dbcache:update_element(?player_auction_tab, PlayerId
+                        , {#auction_tab.auction_bag, NMyABag}),
+                    ok;
+                _ ->
+                    {error, not_found}
+            end,
+    {reply, Reply, State, get_next_time_out()};
+
+handle_call(_Request, _From, State) ->
+    {reply, ok, State, get_next_time_out()}.
+
+
+%%--------------------------------------------------------------------
+%% @private
+%% @doc
+%% Handling cast messages
+%%
+%% @end
+%%--------------------------------------------------------------------
+-spec(handle_cast(Request :: term(), State :: #state{}) ->
+    {noreply, NewState :: #state{}} |
+    {noreply, NewState :: #state{}, timeout() | hibernate} |
+    {stop, Reason :: term(), NewState :: #state{}}).
+handle_cast(_Request, State) ->
+    {noreply, State, get_next_time_out()}.
+
+%%--------------------------------------------------------------------
+%% @private
+%% @doc
+%% Handling all non call/cast messages
+%%
+%% @spec handle_info(Info, State) -> {noreply, State} |
+%%                                   {noreply, State, Timeout} |
+%%                                   {stop, Reason, State}
+%% @end
+%%--------------------------------------------------------------------
+-spec(handle_info(Info :: timeout | term(), State :: #state{}) ->
+    {noreply, NewState :: #state{}} |
+    {noreply, NewState :: #state{}, timeout() | hibernate} |
+    {stop, Reason :: term(), NewState :: #state{}}).
+
+
+handle_info(my_init, State) ->
+    Now = com_time:timestamp_sec(),
+    %ComATL = ets:tab2list(?com_auction_tab),
+    lists:foreach(fun(#com_auction_tab{id = Id, timeout = TimeOut}) ->
+        if
+            TimeOut > Now + 5 ->
+                TimeRef = start_timer(?MICOSEC_PER_SECONDS * (TimeOut - Now), {auction_time_end, Id}),
+                dbcache:update_element(?com_auction_tab, Id, {#com_auction_tab.timer_ref, TimeRef});
+            ?true ->   %% 拍卖超时（包括流拍/超时被拍卖走
+                pass
+                %handle_auction_timeout(CAT)
+        end
+    end, 
+    ets:tab2list(?com_auction_tab)),
+
+
+    %% 获取当前时间的秒数
+    #{black_shop_end := {Ht,Mt,St}} = misc_cfg:get_black_shop_misc(),
+    TSec1 = Ht*?SECONDS_PER_HOUR + Mt*60 + St,
+
+    {{_DY,_DM,_DD},{H,M,S}} = calendar:local_time(),
+    TSec2 = H*?SECONDS_PER_HOUR + M*60 + S,
+    ASec1 =
+    case TSec1 > TSec2 of
+        true -> 
+            TSec1 - TSec2;
+        _ -> 
+            TSec1 - TSec2 + 86400
+    end,
+
+    {noreply, State#state{auction_sec = ASec1}, get_next_time_out()};
+
+handle_info(timeout, State) ->
+    {TimerList, Mng_2} = com_proc_timer:take_timeout_timer(get(?pd_timer_mng_for_auction)),
+%%    ?INFO_LOG("TimerList = ~p", [TimerList]),
+    put(?pd_timer_mng_for_auction, Mng_2),
+    lists:foreach(fun({TRef, Msg}) ->
+        case catch handle_timer(TRef, Msg) of
+            {'EXIT', E} ->
+                ?ERROR_LOG("handle timer ~p mod ~p msg ~p", [TRef, Msg, E]);
+            _ -> ok
+        end
+                  end,
+        TimerList),
+    send_client_close(),
+    {noreply, State, get_next_time_out()};
+
+handle_info(_Info, State) ->
+    {noreply, State, get_next_time_out()}.
+
+%%--------------------------------------------------------------------
+%% @private
+%% @doc
+%% This function is called by a gen_server when it is about to
+%% terminate. It should be the opposite of Module:init/1 and do any
+%% necessary cleaning up. When it returns, the gen_server terminates
+%% with Reason. The return value is ignored.
+%%
+%% @spec terminate(Reason, State) -> void()
+%% @end
+%%--------------------------------------------------------------------
+-spec(terminate(Reason :: (normal | shutdown | {shutdown, term()} | term()),
+        State :: #state{}) -> term()).
+terminate(_Reason, _State) ->
+    ok.
+
+%%--------------------------------------------------------------------
+%% @private
+%% @doc
+%% Convert process state when code is changed
+%%
+%% @spec code_change(OldVsn, State, Extra) -> {ok, NewState}
+%% @end
+%%--------------------------------------------------------------------
+-spec(code_change(OldVsn :: term() | {down, term()}, State :: #state{},
+        Extra :: term()) ->
+    {ok, NewState :: #state{}} | {error, Reason :: term()}).
+code_change(_OldVsn, State, _Extra) ->
+    {ok, State}.

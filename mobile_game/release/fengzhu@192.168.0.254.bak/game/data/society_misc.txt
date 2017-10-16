@@ -1,0 +1,14 @@
+﻿ID（必须服务器给出）	值	客服端	字段说明
+id	data	client_data	client_comment
+summon_time	[{week,1}]		召唤次数重置时间
+summon_num	3		每周召唤次数
+immo_num	3		献祭次数
+immo_consume	14001		献祭消耗
+immo_prize	179002		献祭奖励
+advance_prize	179003		进阶奖励
+immo_time	[{day,24}]		每日献祭重置时间
+summon_consume	14004		召唤消耗
+open_guildboss	2		公会BOSS开放（公会大厅等级）
+revive_time	30		公会BOSS挑战复活时间
+revive_consume	14005		公会BOSS挑战复活消费
+boss_broadcast	[{5,4004},{20,4004}]		公会BOSS召唤提示[{时间间隔，公告ID}]

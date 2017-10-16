@@ -1,0 +1,12 @@
+
+## 添加一个社区buff
+## BuffId:16
+MSG_BUFF_ADD=1
+
+# BUffId:16
+MSG_BUFF_ADD_OK=2
+
+
+## 删除一个buff
+# BuffId:16
+MSG_BUFF_DEL=3

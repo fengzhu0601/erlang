@@ -1,0 +1,35 @@
+@include "game.sproto"
+
+## 开服冲榜购买物品
+proto MSG_IMPACT_RANKING_LIST_BUY_PRIZE=1
+{
+    client{
+        message
+        {
+            id:u16           ## 配置表Id
+        }
+    }
+
+    server{
+        message
+        {
+            replynum:u8     ## 返回码
+        }
+    }
+}
+
+## 开服冲榜套装
+proto MSG_IMPACT_RANKING_LIST_SUIT_INFO=2
+{
+    client{}
+
+    server{
+        message
+        {
+            suit_list:list<{
+                bid:u32,        ## 套装bid(都是曾经获得过的)
+                count:u8        ## 件数
+            }>
+        }
+    }
+}

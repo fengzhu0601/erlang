@@ -1,0 +1,320 @@
+@include "game.sproto"
+
+
+
+#-define(PET_STATUS_INIT, 0).%%未初始化
+#-define(PET_STATUS_ALIVE,1).%%初始化中
+#-define(PET_STATUS_BUSY, 2).%%忙碌中
+#-define(PET_STATUS_FIGHT,3).%%战斗中
+#-define(PET_STATUS_SEAL, 4).%%封印中
+
+struct initiative_skill_info
+{
+	s1:skill_id,
+	s2:skill_id,
+	s3:skill_id
+}
+struct passivity_skill_info
+{
+	s_1:skill_id,
+	s_2:skill_id,
+	s_3:skill_id,
+	s_4:skill_id,
+	s_5:skill_id,
+	s_6:skill_id
+}
+struct pet_info
+{
+    id:pet_id,
+    bid:pet_bid,
+    name:sstr,
+    level:pet_level,
+    exp:u32,
+    tacit_value:u8,
+    status:pet_status,
+    quality:pet_quality,
+    facade:pet_facade,
+    advance_count:u8,
+    exclusive_skill:skill_id,
+    initiative_skill:initiative_skill_info,
+    passivity_skill:passivity_skill_info,
+    attr:attr,
+    pet_power:player_power  ##宠物战斗力
+}
+
+
+## 寵物列表
+proto MSG_PET_LIST=1
+{
+    client{
+    	message=empty
+    }
+
+    server{
+        message {
+        	way:u8,##	1:全部,2:添加,3:改變,4:刪除
+            pet_list:list<pet:pet_info>
+        }
+   }
+}
+
+## 封印寵物
+proto MSG_PET_SEAL =2
+{
+    client{
+        message {
+            petid:pet_id
+        }
+    }
+
+    server{
+    	message=empty
+    }##成功後會更新寵物列表/背包數據
+
+    errnos{
+    	ERR_PET_FIGHT_STATUS
+    }
+}
+
+## 學習技能
+proto MSG_PET_SKILL_STUDY = 3
+{
+    client{
+        message{
+        	petid:pet_id,
+        	pet_skill_pos:u8,##技能位置
+        	skill_book:u32 #技能書
+        }
+    }
+    server{
+    	message{
+    		petid:pet_id,
+    		pet_skill_pos:u8,
+    		skill_id:skill_id
+    	}
+    }
+    errnos{
+    	ERR_PET_SKILL_ALREADY_STUDY
+	}
+}
+
+## 遗忘技能
+proto MSG_PET_SKILL_FORGET = 4
+{
+    client{
+        message{
+        	petid:pet_id,
+        	skill_id:skill_id##技能ID
+        }
+    }
+    server{
+    	message{
+    		petid:pet_id,
+    		pet_skill_id:skill_id# =0
+    	}
+    }
+    errnos{
+    	ERR_PET_SKILL_NOT_STUDY
+	}
+}
+
+
+## 升級技能
+proto MSG_PET_SKILL_UPLEVEL =5
+{
+    client{
+        message{
+            petid:pet_id,
+			skill_id:skill_id
+        }
+    }
+
+    server{
+    	message{
+			petid:pet_id,
+			pet_skill_pos:u8,
+			skill_id:skill_id
+		}
+    }
+}
+
+## 進階寵物
+proto MSG_PET_ADVANCE =6
+{
+    client{
+        message{
+            petid:pet_id,
+            costs:list<{type:u8,value:u32}>#type:1为宠物,2为背包里的进阶石；value:为对应的ID
+        }
+    }
+
+    server{
+    	message{
+			petid:pet_id
+		}
+    }
+    errnos{
+    	ERR_PET_CANT_ADVANCE
+    }
+}
+
+## 升級寵物
+proto MSG_PET_UPLEVEL =7
+{
+    client{
+    }
+
+    server{
+    	message{
+			petid:pet_id,
+			level:pet_level
+		}
+    }
+}
+
+## 宠物寻宝
+proto MSG_PET_TREASURE = 8
+{
+    client{
+        message{
+            petid:pet_id,
+            treasureid:treasure_id
+        }
+    }
+    server{
+        message{
+            petid:pet_id,
+            treasureid:treasure_id,
+            finish_time:u32
+        }
+    }
+    errnos{
+        ERR_PET_TREASURE,
+        ERR_PET_TREASURE_NOT_EXIST
+    }
+}
+
+## 取消宠物寻宝
+proto MSG_PET_CANCEL_TREASURE = 9
+{
+    client{
+        message{
+            petid:pet_id,
+            treasureid:treasure_id
+        }
+    }
+    server{
+        message{
+            petid:pet_id,
+            treasureid:treasure_id
+        }
+    }
+    errnos{
+        ERR_PET_NOT_TREASURE
+    }
+}
+
+##技能曹开启
+proto MSG_PET_SKILL_POS_OPEN = 10
+{
+    client{
+        message{
+            petid:pet_id,
+            type:u8,
+            position:u8
+        }
+    }
+    server{
+        message{
+            petid:pet_id,
+            type:u8,
+            position:u8
+        }
+    }
+    errnos{
+        ERR_PET_POS_ISOPEN,
+        ERR_PET_POS_CANOPEN
+    }
+}
+
+##宠物设置出战/休息
+proto MSG_PET_STATE = 11
+{
+    client{
+        message{
+            petid:pet_id
+        }
+    }
+    server{
+        message{
+            petid:pet_id,
+            newstate:u8
+        }
+    }
+}
+
+## 宠物属性改变
+proto MSG_PET_ATTR_CHANGE=12
+{
+    client{}
+
+    server{
+        message {
+            attr:attr
+        }
+    }
+}
+
+proto MSG_PET_TREASURE_LIST = 13
+{
+    client{}
+    server{
+        message{
+            lists:list<{petid:pet_id,treasureid:treasure_id,finish_time:u32}>
+        }
+    }
+}
+
+proto MSG_PET_TREASURE_LOG_LIST = 14
+{
+    client{
+        message=empty
+    }
+    server{
+        message{
+            lists:list<{name:sstr,
+                        treasureid:treasure_id,
+                        prizes:list<{itemBid:item_bid, count:u16}>,
+                        finish_time:u32
+                        }>
+        }
+    }
+}
+
+## 寻宝结束后推送奖励信息
+proto MSG_PUSH_PET_TREASURE_FINISH = 15
+{
+    client{
+    }
+        server{
+            message{
+                level:player_level,
+                exp:player_exp
+            }
+        }
+}
+
+## 根据宠物ID获取宠物信息
+proto MSG_PET_EGG_DATA = 16
+{
+    client{
+            message{
+                pet_id:pet_id
+            }
+        }
+        server{
+            message{
+                pet:pet_info  #一个宠物信息
+            }
+        }
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Module pd_gb_sets</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css" title="EDoc">
+</head>
+<body bgcolor="white">
+<div class="navbar"><a name="#navbar_top"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<hr>
+
+<h1>Module pd_gb_sets</h1>
+<ul class="index"><li><a href="#description">Description</a></li><li><a href="#index">Function Index</a></li><li><a href="#functions">Function Details</a></li></ul>一个使用gb_sets 最为容器的进程字典set.
+
+<p><b>Authors:</b> zl.</p>
+
+<h2><a name="description">Description</a></h2>一个使用gb_sets 最为容器的进程字典set
+  
+<h2><a name="index">Function Index</a></h2>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#add_element_rb-2">add_element_rb/2</a></td><td>insert a element to sets, return is insert successed.</td></tr>
+<tr><td valign="top"><a href="#add_element_rs-2">add_element_rs/2</a></td><td>same as add_element_rb but return elements.</td></tr>
+<tr><td valign="top"><a href="#add_new_element-2">add_new_element/2</a></td><td>like gb_sets:insert/2 Assumes that Element is not present in Set1.</td></tr>
+<tr><td valign="top"><a href="#clear-1">clear/1</a></td><td>clear the contents, return contents.</td></tr>
+<tr><td valign="top"><a href="#count-2">count/2</a></td><td>returns the number of elements equal specific Element.</td></tr>
+<tr><td valign="top"><a href="#del_element-2">del_element/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#del_element_rb-2">del_element_rb/2</a></td><td>delete a element from sets, return is delete successed.</td></tr>
+<tr><td valign="top"><a href="#del_element_rs-2">del_element_rs/2</a></td><td>same as del_element_rb but return elements.</td></tr>
+<tr><td valign="top"><a href="#erase-1">erase/1</a></td><td>erase a set contains return elements as a list.</td></tr>
+<tr><td valign="top"><a href="#fold-3">fold/3</a></td><td>wrap fold.</td></tr>
+<tr><td valign="top"><a href="#foreach-2">foreach/2</a></td><td>wrap foreach.</td></tr>
+<tr><td valign="top"><a href="#is_element-2">is_element/2</a></td><td>checks element is an element of key container.</td></tr>
+<tr><td valign="top"><a href="#is_empty-1">is_empty/1</a></td><td>checks the key container is empty, the container must exist.</td></tr>
+<tr><td valign="top"><a href="#new-1">new/1</a></td><td>create a set.</td></tr>
+<tr><td valign="top"><a href="#new_from_list-2">new_from_list/2</a></td><td>create a set from the elements in List.</td></tr>
+<tr><td valign="top"><a href="#new_from_ordset-2">new_from_ordset/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#size-1">size/1</a></td><td>return the number of elements.</td></tr>
+<tr><td valign="top"><a href="#to_list-1">to_list/1</a></td><td>return the elements of set as a list.</td></tr>
+</table>
+
+<h2><a name="functions">Function Details</a></h2>
+
+<h3 class="function"><a name="add_element_rb-2">add_element_rb/2</a></h3>
+<div class="spec">
+<p><tt>add_element_rb(Key::term(), Element::term()) -&gt; boolean()</tt><br></p>
+</div><p>insert a element to sets, return is insert successed.</p>
+
+<h3 class="function"><a name="add_element_rs-2">add_element_rs/2</a></h3>
+<div class="spec">
+<p><tt>add_element_rs(Key::term(), Element::term()) -&gt; <a href="gb_sets.html#type-set">gb_sets:set()</a></tt><br></p>
+</div><p>same as add_element_rb but return elements</p>
+
+<h3 class="function"><a name="add_new_element-2">add_new_element/2</a></h3>
+<div class="spec">
+<p><tt>add_new_element(Key::term(), Element::term()) -&gt; <a href="gb_sets.html#type-set">gb_sets:set()</a></tt><br></p>
+</div><p>like gb_sets:insert/2 Assumes that Element is not present in Set1.
+  return old set.</p>
+
+<h3 class="function"><a name="clear-1">clear/1</a></h3>
+<div class="spec">
+<p><tt>clear(Key::term()) -&gt; list()</tt><br></p>
+</div><p>clear the contents, return contents</p>
+
+<h3 class="function"><a name="count-2">count/2</a></h3>
+<div class="spec">
+<p><tt>count(Key::term(), Element::term()) -&gt; 0 | 1</tt><br></p>
+</div><p>returns the number of elements equal specific Element</p>
+
+<h3 class="function"><a name="del_element-2">del_element/2</a></h3>
+<div class="spec">
+<p><tt>del_element(Key, Element) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="del_element_rb-2">del_element_rb/2</a></h3>
+<div class="spec">
+<p><tt>del_element_rb(Key::term(), Element::term()) -&gt; boolean()</tt><br></p>
+</div><p>delete a element from sets, return is delete successed.</p>
+
+<h3 class="function"><a name="del_element_rs-2">del_element_rs/2</a></h3>
+<div class="spec">
+<p><tt>del_element_rs(Key::term(), Element::term()) -&gt; <a href="gb_sets.html#type-set">gb_sets:set()</a></tt><br></p>
+</div><p>same as del_element_rb but return elements</p>
+
+<h3 class="function"><a name="erase-1">erase/1</a></h3>
+<div class="spec">
+<p><tt>erase(Key::term()) -&gt; undefined | list()</tt><br></p>
+</div><p>erase a set contains return elements as a list.</p>
+
+<h3 class="function"><a name="fold-3">fold/3</a></h3>
+<div class="spec">
+<p><tt>fold(Key::term(), Fun, Acc0) -&gt; Acc1</tt>
+<ul class="definitions"><li><tt>Fun = fun((E::term(), AccIn) -&gt; AccOut)</tt></li><li><tt>Acc0 = T</tt></li><li><tt>Acc1 = T</tt></li><li><tt>AccIn = T</tt></li><li><tt>AccOut = T</tt></li></ul></p>
+</div><p>wrap fold</p>
+
+<h3 class="function"><a name="foreach-2">foreach/2</a></h3>
+<div class="spec">
+<p><tt>foreach(Key::term(), Fun) -&gt; ok</tt>
+<ul class="definitions"><li><tt>Fun = fun((Elem::term()) -&gt; term())</tt></li></ul></p>
+</div><p>wrap foreach</p>
+
+<h3 class="function"><a name="is_element-2">is_element/2</a></h3>
+<div class="spec">
+<p><tt>is_element(Key::term(), Element::term()) -&gt; boolean()</tt><br></p>
+</div><p>checks element is an element of key container.</p>
+
+<h3 class="function"><a name="is_empty-1">is_empty/1</a></h3>
+<div class="spec">
+<p><tt>is_empty(Key::term()) -&gt; boolean()</tt><br></p>
+</div><p>checks the key container is empty, the container must exist.</p>
+
+<h3 class="function"><a name="new-1">new/1</a></h3>
+<div class="spec">
+<p><tt>new(Key::term()) -&gt; ok</tt><br></p>
+</div><p>create a set.</p>
+
+<h3 class="function"><a name="new_from_list-2">new_from_list/2</a></h3>
+<div class="spec">
+<p><tt>new_from_list(Key::term(), List::[term()]) -&gt; ok</tt><br></p>
+</div><p>create a set from the elements in List.</p>
+
+<h3 class="function"><a name="new_from_ordset-2">new_from_ordset/2</a></h3>
+<div class="spec">
+<p><tt>new_from_ordset(Key::term(), List::[term()]) -&gt; ok</tt><br></p>
+</div>
+
+<h3 class="function"><a name="size-1">size/1</a></h3>
+<div class="spec">
+<p><tt>size(Key::term()) -&gt; non_neg_integer()</tt><br></p>
+</div><p>return the number of elements</p>
+
+<h3 class="function"><a name="to_list-1">to_list/1</a></h3>
+<div class="spec">
+<p><tt>to_list(Key::term()) -&gt; list()</tt><br></p>
+</div><p>return the elements of set as a list</p>
+<hr>
+
+<div class="navbar"><a name="#navbar_bottom"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<p><i>Generated by EDoc, May 10 2015, 19:34:57.</i></p>
+</body>
+</html>

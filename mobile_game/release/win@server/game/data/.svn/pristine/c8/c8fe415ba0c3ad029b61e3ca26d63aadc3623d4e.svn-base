@@ -1,0 +1,1009 @@
+﻿ID（技能类型[1玩家技能、2小怪技能、3BOSS技能,4皇冠技能释放动作,5释放物]*100W+技能归属怪物编号/职业编号*1000+技能编号*10+技能分段编号，由策划确定）ps:机关id（1000+机关物编号）		动作名（即动画名）	重复次数（当前段的重复播放次数,释放物不能配置）	目标类型（0代表敌方，1代表自己，2代表友方）	放出的buff(buff表ID，[buff_id,buff_id,...]）	是否可以被敌方技能打断（1是，0否）	攻击僵直时间（攻击命中开始计时，按毫秒）	受击僵直时间（受击后的僵直时间,包括抖动，按毫秒计算）	击中向量，Vector2，以像素为单位{X初始速度，Y初始速度}	攻击方向模式（1按角色朝向，2按位置,默认为2）	击飞滞空时间（最高点是的停滞时间，按毫秒计）	震屏参数，{延时delay,频率freq,震动幅度等级level,震动次数count}在当前段动画播放时开始	技能段时间（毫秒）(仅定点释放技需配置）	击退时间（毫秒）	击退僵直（毫秒）击退时间结束时的僵直效果时间	攻击深度（上下距离的格子数，中间默认有1个格子。比如配1，则实际的受击宽度为3）	释放物数组,{delay,id},delay代表释放时间点,按ms计,id为emits表ID,delay暂时只支持0,没有则配置[],定点释放技能只能配一个，移动释放技可配多个	技能段伤害系数(该技能段伤害=技能伤害*该系数，按千分比）	技能段音效（[{delay（毫秒）,"音效文件路径"},{}],没有配空数组）	角度折算（0=不折算角度，1=折算角度）	最大命中次数（必须要填,支持一个动作多个碰撞判定）	打击光效
+id	client_name	action	repeat_count	target_type	buffs	can_break_by_enemy	attack_rigid_time	hit_rigid_time	beat_vector	direction_mode	beat_air_stay_time	shake	time	beat_back_time	back_rigid_time	attack_depth	emits	damage_coef	sounds	client_has_calc_hit_info	client_max_hit_count	client_hitEffect
+10	火球(三首魔龙)	attack1	0	0		1	50	50	{800,500}	1				10	10	10	[]	1		0	1	effects/blow_point/blow_point_2.frames
+20	雷球(三首魔龙)	attack2	0	0		1	50	50	{0,-500}	1				10	10	10	[]	1		0	1	effects/blow_point/blow_point_2.frames
+30	毒气(三首魔龙)	attack3	0	0		1	50	50	{0,-500}	1				10	10	10	[]	1		0	1	effects/blow_point/blow_point_2.frames
+40	抓击(三首魔龙)	attack4	0	0		1	50	50	{0,-500}	1				10	10	3	[]	1		0	1	effects/blow_point/blow_point_1.frames
+50	龙尾（三首魔龙）	attack5	0	0		1	50	50	{0,-500}	1				10	10	3	[]	1		0	1	effects/blow_point/blow_point_2.frames
+1001	倒塌的石柱	attack1	0	0		0	0	50	{0,-500}	1				200	200	10	[]	1000	[{950,"sounds/sound251.wav"}]	0	1	effects/blow_point/jidatx_1.frames
+1010	占有-暴风雪1	skill3	0	0		0	0	5	{400,0}	2	150	{50,10,2,3}	200	200	200	1	[{0,9000702}]	0	[{0,"sounds/fs111.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1011	占有-暴风雪2	skill3	0	0		0	0	5	{400,0}	2	150	{50,10,2,3}	200	200	200	1	[{0,9000702}]	0	[{0,"sounds/fs112.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1012	占有-暴风雪3	skill3	0	0		0	0	5	{400,0}	2	150	{50,10,2,3}	200	200	200	1	[{0,9000702}]	0	[{0,"sounds/fs113.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1021	暴风雪1	skill3	0	0	[33]	0	0	5	{400,0}	2	150	{50,10,2,3}	200	200	200	1	[{0,9000204}]	0	[{0,"sounds/fs111.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1022	暴风雪2	skill3	0	0	[33]	0	0	5	{400,0}	2	150	{50,10,2,3}	200	200	200	1	[{0,9000204}]	0	[{0,"sounds/fs112.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1023	暴风雪3	skill3	0	0	[33]	0	0	5	{400,0}	2	150	{50,10,2,3}	200	200	200	1	[{0,9000204}]	0	[{0,"sounds/fs113.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1031	暴风雪1	skill3	0	0	[33]	0	0	5	{400,0}	2	150	{50,10,2,3}	200	200	200	1	[{0,9000204}]	0	[{0,"sounds/fs111.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1032	暴风雪2	skill3	0	0	[33]	0	0	5	{400,0}	2	150	{50,10,2,3}	200	200	200	1	[{0,9000204}]	0	[{0,"sounds/fs112.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1033	暴风雪3	skill3	0	0	[33]	0	0	5	{400,0}	2	150	{50,10,2,3}	200	200	200	1	[{0,9000204}]	0	[{0,"sounds/fs113.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+40010	隐形机关怪-电击	attack1	0	0		1	50	250		1				200	200	1	[{0,9000704}]	1000	[]	0	1	effects/blow_point/jidatx_1.frames
+201011	机关-地刺	attack1	0	0		0	0	50	{200,300}	2				200	200	1	[]	1000	[{950,"sounds/sound251.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+202011	机关-滚筒	attack1	0	0		0	0	50	{100,200}	1				200	200	1	[]	1000	[{950,"sounds/sound251.wav"}]	0	1	effects/blow_point/jidatx_1.frames
+203011	机关-落石	attack1	0	0		0	0	50	{200,100}	2				200	200	3	[]	1000	[{950,"sounds/sound251.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+204011	机关-天刺	attack1	0	0		0	0	50	{0,-800}	2				200	200	1	[]	1000	[{950,"sounds/sound251.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+205011	弩车	attack1	0	0		0	0	50		1				200	200	1	[]	1000	[{950,"sounds/sound251.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+206011	机关-滚石	attack1	0	0		0	0	50	{0,-800}	1				200	200	1	[]	1000	[{950,"sounds/sound251.wav"}]	0	1	effects/blow_point/jidatx_1.frames
+207011	藤蔓攻击1	attack1	0	0	[207011]	0	0	50		2				200	200	1	[]	1000	[{950,"sounds/sound251.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+207012	藤蔓攻击2	attack2	0	0		0	0	50		2				200	200	1	[]	1000	[{950,"sounds/sound251.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+207013	藤蔓攻击3	attack3	0	0		0	0	50		2				200	200	1	[]	1000	[{950,"sounds/sound251.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+210011	机关-滚木	attack1	0	0		0	0	50	{100,200}	1				200	200	1	[]	1000	[{950,"sounds/sound251.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+211011	机关-石头	attack1	0	0		0	0	5	{100,200}	1				200	200	1	[]	1000	[{950,"sounds/sound251.wav"}]	0	1	effects/blow_point/jidatx_1.frames
+212011	机关-镰刀	attack1	0	0		0	0	5	{0,-900}	2				200	200	1	[]	1000	[{950,"sounds/sound251.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+213011	机关-电击	attack1	0	0		1	50	250		1				200	200	1	[{0,9000704}]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+214011	机关-电气裂缝	attack1_2	0	0		0	0	50	{200,300}	2				200	200	1	[]	1000	[{950,"sounds/sound251.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+215011	机关-寒气裂缝	attack1_2	0	0		0	0	50	{200,300}	2				200	200	1	[]	1000	[{950,"sounds/sound251.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+216011	机关-风裂缝	attack1_2	0	0		0	0	50	{200,300}	2				200	200	1	[]	1000	[{950,"sounds/sound251.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+217011	机关-火裂缝	attack1_2	0	0		0	0	50	{200,300}	2				200	200	1	[]	1000	[{950,"sounds/sound251.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001011	普通攻击1	attack1	0	0		1	50	50	{100,0}	1				10	10	1	[]	1000	[{100,"sounds/z1.wav"},{100,"sounds/1.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001021	普通攻击2	attack2	0	0		1	50	50	{100,0}	1				30	250	1	[]	1000	[{100,"sounds/z1.wav"},{100,"sounds/2.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001031	普通攻击3	attack3	0	0		1	100	100	{800,0}	1				100	250	1	[]	1000	[{100,"sounds/z2.wav"},{100,"sounds/3.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001041	普通攻击4	attack4	0	0		1	200	150	{1000,600}	1		{300,13,5,5}		200	200	1	[]	1000	[{100,"sounds/z3.wav"},{100,"sounds/4.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001051	后跳	kickfoot	0	1	[1001051]	0	250	5						200	200	1	[]	1000	[{0,"sounds/tiao.wav"}]	0	1	
+1001061	冲撞	runAttack	0	0		1	150	150	{800,600}	1		{200,13,2,2}		200	200	1	[]	1000	[{0,"sounds/sound113.wav"}]	0	1	effects/blow_point/02baodian.frames
+1001071	上挑	upattack	0	0		1	50	50	{100,1100}	1	200			200	200	1	[]	1000	[{0,"sounds/sound33.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001081	跳打	jumpAttack	0	0		1	100	50	{0,400}	1				200	200	1	[]	1000	[{0,"sounds/sound37.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001091	砸地1	fallDownAttack	0	0		1	100	500		2				200	200	1	[]	600	[]	0	1	effects/blow_point/blow_point_2.frames
+1001092	砸地2	fallLandAttack	0	0		1	200	100	{200,800}	2		{0,13,8,2}		200	200	1	[]	900	[{0,"sounds/sound64.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001101	重击	powerattack	0	0		1	200	5	{600,0}	1		{700,13,3,2}		200	200	1	[]	1000	[{0,"sounds/sound113.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001141	冲锋斩杀	skill1_1	0	0		1	200	200	{800,1000}	1		{800,13,2,2}		200	200	1	[]	700	[{700,"sounds/sound113.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001142	冲锋斩杀2	skill1_2	0	0		1	150	5	{400,1000}	1	200	{600,13,5,2}		200	200	1	[]	900	[{400,"sounds/sound129.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001111	剑刃风暴	skill2	6	0		1	50	50		2				200	200	1	[]	100	[{0,"sounds/sound204.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001112	剑刃风暴最后一击	attack3	0	0		1	100	100	{800,0}	1				100	250	1	[]	600	[{100,"sounds/z2.wav"},{100,"sounds/3.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001151	火焰冲锋1	0	0	1		1	300	5		1				200	200	1	[]	0	[{200,"sounds/sound252.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001152	火焰冲锋2	skill5	0	0		0	0	5	{80,1300}	1	200	{2000,13,5,4}	2100	200	200	1	[{0,9000101}]	0	[{0,"sounds/sound167.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001131	霸王回旋1	skill3_1	0	0	[1001131]	1	100	5	{200,500}	1				200	200	1	[]	200	[{260,"sounds/sound201.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001132	霸王回旋2	skill3_2	0	0	[1001131]	1	150	50	{0,800}	1	200	{150,13,2,2}		200	200	1	[]	400	[{0,"sounds/sound149.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001133	霸王回旋3	skill3_3	0	0	[1001131]	1	200	200	{1000,-1500}	1		{100,13,8,2}		250	300	1	[]	800	[{100,"sounds/sound167.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001121	蓄力一击1	0	0	1	[1001141,1001142]	0	30	5		2		{800,13,5,2}		200	200	1	[]	0	[]	0	1	effects/blow_point/blow_point_2.frames
+1001122	蓄力一击1	skill6_1	0	0		1	30	30	{50,600}	2				200	200	1	[]	100	[{800,"sounds/sound252.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001123	蓄力一击2	skill6_2	0	0		1	30	30	{-100,300}	2				200	200	1	[]	100	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001124	蓄力一击3	skill6_3	0	0		1	30	30	{100,300}	2				200	200	1	[]	200	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001125	蓄力一击4	skill6_4	0	0		1	30	30	{-100,300}	2				200	200	1	[]	200	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001126	蓄力一击5	skill6_5	0	0		1	30	30	{100,300}	2				200	200	1	[]	250	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001127	蓄力一击6	skill6_6	0	0		1	30	30	{-100,300}	2				200	200	1	[]	250	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001128	蓄力一击7	skill6_7	0	0		1	30	30	{100,300}	2				200	200	1	[]	250	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001129	蓄力一击8	skill6_8	0	0		1	30	30	{-100,300}	2				200	200	1	[]	250	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001130	蓄力一击9	skill6_9	0	0		1	30	30	{100,300}	2				200	200	1	[]	250	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001155	蓄力一击10	skill6_10	0	0		1	30	30	{-100,500}	2				200	200	1	[]	250	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001156	蓄力一击11	skill6_11	0	0		1	300	5	{200,1000}	2		{0,13,10,6}		200	200	1	[]	300	[{0,"sounds/sound85.wav"}]	1	1	effects/blow_point/blow_point_2.frames
+1011121	蓄力一击1（吸附）	0	0	1	[1001141,1001142]	0	30	5		2		{800,13,5,2}		200	200	1	[]	0	[]	0	1	effects/blow_point/blow_point_2.frames
+1011122	蓄力一击1（吸附）	skill6_1	0	0		1	30	30	{-1000,600}	2				200	200	1	[]	100	[{800,"sounds/sound252.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1011123	蓄力一击2（吸附）	skill6_2	0	0		1	30	30	{-100,300}	2				200	200	1	[]	100	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1011124	蓄力一击3（吸附）	skill6_3	0	0		1	30	30	{100,300}	2				200	200	1	[]	200	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1011125	蓄力一击4（吸附）	skill6_4	0	0		1	30	30	{-100,300}	2				200	200	1	[]	200	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1011126	蓄力一击5（吸附）	skill6_5	0	0		1	30	30	{100,300}	2				200	200	1	[]	250	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1011127	蓄力一击6（吸附）	skill6_6	0	0		1	30	30	{-100,300}	2				200	200	1	[]	250	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1011128	蓄力一击7（吸附）	skill6_7	0	0		1	30	30	{100,300}	2				200	200	1	[]	250	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1011129	蓄力一击8（吸附）	skill6_8	0	0		1	30	30	{-100,300}	2				200	200	1	[]	250	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1011130	蓄力一击9（吸附）	skill6_9	0	0		1	30	30	{100,300}	2				200	200	1	[]	250	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1011155	蓄力一击10（吸附）	skill6_10	0	0		1	30	30	{-100,500}	2				200	200	1	[]	250	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1011156	蓄力一击11（吸附）	skill6_11	0	0		1	300	5	{200,1000}	2		{0,13,10,6}		200	200	1	[]	300	[{0,"sounds/sound85.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001161	鬼哭神嚎1	skill4_1	0	0		1	50	50		1		{100,13,2,2}		200	200	1	[]	300	[{0,"sounds/sound128.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001162	鬼哭神嚎2	skill4_2	0	0		1	50	50		1		{0,13,2,2}		200	200	1	[]	400	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001163	鬼哭神嚎3	skill4_3	0	0		1	50	50		1		{100,13,2,2}		200	200	1	[]	500	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001164	鬼哭神嚎4	skill4_4	0	0		1	50	250	{800,0}	1		{0,13,2,2}		80	200	1	[]	500	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001165	鬼哭神嚎5	skill4_5	0	0		0	0	5	{650,800}	1		{200,13,8,6}	200	200	200	1	[{0,9000102}]	0	[{0,"sounds/sound129.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001171	连续技1-剑刃风暴	skill2	6	0		1	50	50		2				200	200	1	[]	400	[{0,"sounds/sound204.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001172	连续技2-蓄力一击1	skill6_1	0	0		1	30	30	{50,600}	2				200	200	1	[]	300	[{800,"sounds/sound252.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001173	连续技2-蓄力一击2	skill6_2	0	0		1	30	30	{-100,300}	2				200	200	1	[]	300	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001174	连续技2-蓄力一击3	skill6_3	0	0		1	30	30	{100,300}	2				200	200	1	[]	300	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001175	连续技2-蓄力一击4	skill6_4	0	0		1	30	30	{-100,300}	2				200	200	1	[]	300	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001176	连续技2-蓄力一击5	skill6_5	0	0		1	30	30	{100,300}	2				200	200	1	[]	300	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001177	连续技2-蓄力一击6	skill6_6	0	0		1	30	30	{-100,300}	2				200	200	1	[]	400	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001178	连续技2-蓄力一击7	skill6_7	0	0		1	30	30	{100,300}	2				200	200	1	[]	400	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001179	连续技2-蓄力一击8	skill6_8	0	0		1	30	30	{-100,300}	2				200	200	1	[]	400	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001180	连续技2-蓄力一击9	skill6_9	0	0		1	30	30	{100,300}	2				200	200	1	[]	400	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001181	连续技2-蓄力一击10	skill6_10	0	0		1	30	30	{-100,500}	2				200	200	1	[]	400	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001182	连续技2-蓄力一击11	skill6_11	0	0		1	5	5	{200,1000}	2		{0,13,10,6}		200	200	1	[]	500	[{0,"sounds/sound85.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001183	连续技3-霸王回旋1	skill3_1	0	0		1	100	5	{200,500}	1				200	200	1	[]	100	[{260,"sounds/sound201.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001184	连续技3-霸王回旋2	skill3_2	0	0		1	150	50	{0,800}	1	200	{150,13,2,2}		200	200	1	[]	200	[{0,"sounds/sound149.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001185	连续技3-霸王回旋3	skill3_3	0	0		1	200	200	{1000,-1500}	1		{100,13,8,2}		250	300	1	[]	500	[{100,"sounds/sound167.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1001191	怒气技-释放动作	nuqi	0	0		0	250	5						200	200	1	[{0,9000003}]	0	[{0,"sounds/sound240.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1002011	普通攻击1	attack1	0	0		1	100	100	{100,0}	1				200	200	1	[]	1000	[{100,"sounds/f1.wav","sounds/1.wav"}]	0	1	effects/blow_point/02baodian.frames
+1002021	普通攻击2	attack2	0	0		1	50	50	{100,0}	1				200	200	1	[]	1000	[{100,"sounds/f2.wav","sounds/2.wav"}]	0	1	effects/blow_point/02baodian.frames
+1002031	普通攻击3	attack3	0	0		1	100	50	{200,400}	1				200	200	1	[]	1000	[{100,"sounds/f3.wav","sounds/sound124.wav"}]	0	1	effects/blow_point/02baodian.frames
+1002041	普通攻击4	attack4	0	0		1	100	150	{200,800}	2		{350,13,3,3}		200	200	1	[]	1000	[{100,"sounds/f4.wav","sounds/sound113.wav"}]	0	1	effects/blow_point/02baodian.frames
+1002051	闪避	kickfoot	0	1	[1002051]	0	250	5						200	200	1	[]	1000	[{0,"sounds/sound124.wav"}]	0	1	
+1002061	冲撞	runAttack	0	0		1	200	5	{800,500}	1		{250,13,2,2}		200	200	1	[]	1000	[{100,"sounds/sound113.wav"}]	0	1	effects/blow_point/02baodian.frames
+1002071	上挑	upattack	0	0		1	50	5	{0,1100}	1	200			200	200	1	[]	1000	[{100,"sounds/sound99.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1002081	跳打	jumpAttack	0	0		1	200	400		1				200	200	1	[]	1000	[{0,"sounds/sound170.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1002091	砸地1	fallDownAttack	0	0		1	100	500		2				200	200	1	[]	600	[]	0	1	effects/blow_point/blow_point_2.frames
+1002092	砸地2	fallLandAttack	0	0		1	200	5	{200,800}	2		{0,13,8,2}		200	200	1	[]	900	[{0,"sounds/sound64.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1002101	重击	powerattack	0	0		1	200	5	{500,500}	1		{800,13,3,2}		200	200	1	[]	1000	[{700,"sounds/sound149.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1002141	恶魔突袭	skill1	0	0		0	0	5	{600,0}	1				200	200	1	[{0,9000202}]	0	[{0,"sounds/sound240.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1002151	冰晶护体1	skill2_1	0	1	[1002121]	0	250	250						200	200	1	[]	0	[{200,"sounds/fs151.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1002152	冰晶护体2	skill2_2	0	0		0	250	250						200	200	1	[]	0	[]	0	1	effects/blow_point/blow_point_2.frames
+1002153	冰晶护体3	skill2_3	0	0		0	250	250						200	200	1	[]	0	[]	0	1	effects/blow_point/blow_point_2.frames
+1002154	冰晶护体4	skill2_4	0	0		0	250	250						200	200	1	[]	0	[]	0	1	effects/blow_point/blow_point_2.frames
+1002155	冰晶护体5	skill2_5	0	0		0	250	250						200	200	1	[]	0	[{0,"sounds/fs152.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1002111	暴风雪1	skill3	0	0		0	0	5	{400,0}	2	150	{50,10,2,3}	200	200	200	1	[{0,9000204}]	0	[{600,"sounds/fs111.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1002112	暴风雪2	skill3	0	0		0	0	5	{400,0}	2	150	{50,10,2,3}	200	200	200	1	[{0,9000204}]	0	[{600,"sounds/fs112.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1002113	暴风雪3	skill3	0	0		0	0	5	{400,0}	2	150	{50,10,2,3}	200	200	200	1	[{0,9000204}]	0	[{600,"sounds/fs113.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1002131	冰龙狂卷	skill4	0	0		1	150	150	{300,600}	1		{250,30,1,30}		200	200	1	[{0,9000201},{0,9000501}]	0	[{200,"sounds/sound167.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1002121	炎爆1	skill5_1	0	0		1	100	5	{200,800}	2				200	200	1	[]	800	[{650,"sounds/fs121.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1002122	炎爆2	skill5_2	0	0		1	100	5	{200,800}	2		{0,13,5,2}		200	200	1	[]	800	[{100,"sounds/fs122.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1002123	炎爆3	skill5_3	0	0		1	300	5	{200,800}	2		{100,13,5,3}		200	200	1	[]	800	[{50,"sounds/fs123.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1002161	抗拒火环1	0	0	1	[1002161,1002162]	0	150	500		1				200	200	1	[]	0	[]	0	1	effects/blow_point/blow_point_2.frames
+1002162	抗拒火环2	skill6	0	0	[1002162]	1	300	5	{500,1000}	1		{500,13,5,3}		200	200	1	[]	500	[{350,"sounds/sound93.wav"}]	1	1	effects/blow_point/blow_point_2.frames
+1002171	冰晶护体5	skill2_5	0	0		0	250	250						200	200	1	[]	0	[{0,"sounds/sound99.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1002181	连续技1-暴风雪	skill3	0	0		0	0	5	{400,0}	2	150	{50,10,2,3}	200	200	200	1	[{0,9000204}]	0	[{0,"sounds/sound240.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1002182	连续技2-炎爆	skill5_1	0	0		1	100	5	{200,800}	2				200	200	1	[]	1200	[{650,"sounds/sound85.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1002183	连续技2-炎爆	skill5_2	0	0		1	100	5	{200,800}	2		{0,13,5,2}		200	200	1	[]	1200	[{100,"sounds/sound85.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1002184	连续技2-炎爆	skill5_3	0	0		1	300	5	{200,800}	2		{100,13,5,3}		200	200	1	[]	1200	[{50,"sounds/sound85.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1002185	连续技3-冰龙狂卷	skill4	0	0		1	150	150		1		{250,30,1,30}		200	200	1	[]	0	[{200,"sounds/sound167.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1002191	怒气技-释放动作	nuqi	0	0		0	250	5						200	200	1	[{0,9000003}]	0	[{0,"sounds/sound240.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1003011	普通攻击1	attack1	0	0		1	50	50	{100,0}	1				100	250	1	[]	1000	[{0,"sounds/q1.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1003021	普通攻击2	attack2	0	0		1	50	50	{100,0}	1				100	250	1	[]	1000	[{0,"sounds/q2.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1003031	普通攻击3	attack3	0	0		1	100	50	{800,0}	1				100	400	1	[]	1000	[{0,"sounds/q3.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1003041	普通攻击4	attack4	0	0		1	200	150	{1000,600}	1		{300,13,5,5}		200	200	1	[]	1000	[{0,"sounds/q4.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1003051	后跳	kickfoot	0	1	[1001051]	0	250	5						200	200	1	[]	1000	[]	0	1	
+1003061	冲撞	runAttack	0	0		1	150	150	{800,600}	1		{200,13,2,2}		200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+1003071	上挑	upattack	0	0		1	50	50	{100,1100}	1	200			200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+1003081	跳打	jumpAttack	0	0		1	100	50	{0,400}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+1003091	砸地1	fallDownAttack	0	0		1	100	500		2				200	200	1	[]	600	[]	0	1	effects/blow_point/blow_point_2.frames
+1003092	砸地2	fallLandAttack2	0	0		1	200	100	{200,800}	2		{0,13,8,2}		200	200	2	[]	900	[]	0	1	effects/blow_point/blow_point_2.frames
+1003101	重击	powerattack	0	0		1	200	5	{600,0}	1		{700,13,3,2}		200	200	1	[]	1000	[{0,"sounds/sound351.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1003111	三段斩1	skill1_1	0	0		1	100	100	{400,0}	1				200	200	1	[]	300	[{100,"sounds/qs111.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1003112	三段斩2	skill1_2	0	0		1	100	5	{0,650}	1				200	200	1	[]	300	[{0,"sounds/qs112.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1003113	三段斩3	skill1_3	0	0		0	0	5	{-50,500}	1			200	200	200	1	[{0,9000303}]	0	[{0,"sounds/qs113.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1003114	三段斩4	attack4	0	0		1	200	150	{1000,600}	1		{300,13,5,5}		200	200	1	[]	500	[{0,"sounds/qs114.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1003121	幻影之舞	skill2	0	0		1	0	5		1			200	200	200	1	[{0,9000301}]	0	[{0,"sounds/sound353.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1003131	火焰之轮1	skill3_1	0	0	[1003131]	1	100	100	{0,900}	1				100	250	1	[]	600	[{0,"sounds/qs131.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1003132	火焰之轮1	skill3_2	0	0	[1003131]	1	100	100	{150,1100}	1				100	250	1	[]	800	[{0,"sounds/qs132.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1003141	十字审判1	skill4_1	0	0	[1003141,1003142]	0	5	5		2				200	200	2	[]	0	[{0,"sounds/qs141.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1003142	十字审判2	skill4_2	0	0	[1003142]	0	5	5		2				200	200	2	[]	0	[]	0	1	effects/blow_point/blow_point_2.frames
+1003143	十字审判3	skill4_3	0	0	[1003142]	0	5	5		2				200	200	2	[]	0	[]	0	1	effects/blow_point/blow_point_2.frames
+1003144	十字审判4	skill4_4	0	0	[1003142]	0	300	200	{200,800}	2		{500,13,5,3}		200	200	2	[]	1000	[{0,"sounds/qs142.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1003151	凤舞九天1	skill5_1	0	0	[1003151]	0	150	5	{0,900}	1				200	200	1	[]	300	[{100,"sounds/qs151.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1003152	凤舞九天2	skill5_2	0	0	[1003151]	1	150	5	{400,600}	1				200	200	1	[]	300	[{0,"sounds/qs152.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1003153	凤舞九天3	skill5_3	0	0	[1003151]	1	100	5	{-800,600}	1				200	200	1	[]	300	[{0,"sounds/qs153.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1003154	凤舞九天4	skill5_4	0	0	[1003151]	1	150	50	{800,600}	1	200			200	200	1	[]	400	[{0,"sounds/qs154.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1003155	凤舞九天5	skill5_5	0	0	[1003151]	1	200	200	{250,700}	1				250	300	1	[]	500	[{0,"sounds/qs155.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1003156	凤舞九天6	skill5_6	0	0	[1003151]	1	30	5		2				200	200	1	[]	0	[]	0	1	effects/blow_point/blow_point_2.frames
+1003161	混沌斩杀	skill6	0	0		0	0	5	{-200,300}	1			50	200	200	1	[{0,9000302}]	0	[{0,"sounds/sound352.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+1003171	连续技-幻影之舞	skill2	0	0		1	0	5		1			200	200	200	1	[{0,9000301}]	0	[]	0	1	effects/blow_point/blow_point_2.frames
+1003172	连续技-凤舞九天1	skill5_1	0	0		0	150	5	{0,900}	1				200	200	1	[]	300	[]	0	1	effects/blow_point/blow_point_2.frames
+1003173	连续技-凤舞九天2	skill5_2	0	0		1	150	5	{400,600}	1				200	200	1	[]	300	[]	0	1	effects/blow_point/blow_point_2.frames
+1003174	连续技-凤舞九天3	skill5_3	0	0		1	100	5	{-800,600}	1				200	200	1	[]	300	[]	0	1	effects/blow_point/blow_point_2.frames
+1003175	连续技-凤舞九天4	skill5_4	0	0		1	150	50	{800,600}	1	200			200	200	1	[]	400	[]	0	1	effects/blow_point/blow_point_2.frames
+1003176	连续技-凤舞九天5	skill5_5	0	0		1	200	200	{250,700}	1				250	300	1	[]	500	[]	0	1	effects/blow_point/blow_point_2.frames
+1003177	连续技-凤舞九天6	skill5_6	0	0		1	30	5		2				200	200	1	[]	0	[]	0	1	effects/blow_point/blow_point_2.frames
+1003178	连续技-混沌斩杀	skill6	0	0		0	0	5	{-200,300}	1			50	200	200	1	[{0,9000302}]	0	[]	0	1	effects/blow_point/blow_point_2.frames
+1003191	怒气技-释放动作	nuqi	0	0		0	250	5						200	200	1	[{0,9000003}]	0	[{0,"sounds/sound240.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2001011	爪击（吐蕃鼠-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[{700,"sounds/sound37.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2001111	爪击（吐蕃鼠-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[{700,"sounds/sound37.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2001211	爪击（吐蕃鼠-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{700,"sounds/sound37.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2002011	烈酒凶器（流氓兔-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[{500,"sounds/sound9.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2002111	烈酒凶器（流氓兔-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[{500,"sounds/sound9.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2002211	烈酒凶器（流氓兔-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{500,"sounds/sound9.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2003011	斧头下劈（男斗士-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[{700,"sounds/sound255.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2003111	斧头下劈（男斗士-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[{700,"sounds/sound255.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2003211	斧头下劈（男斗士-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{700,"sounds/sound255.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2004011	匕首前刺（女刺客-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[{1150,"sounds/sound22.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2004111	匕首前刺（女刺客-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[{1150,"sounds/sound22.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2004211	匕首前刺（女刺客-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{1150,"sounds/sound22.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2004021	飞镖(女刺客-困难)	attack2	0	0		1	50	250		1				200	200	1	[{0,9000702}]	500	[{1150,"sounds/sound22.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2004121	飞镖(女刺客-噩梦)	attack2	0	0		1	150	250		1				200	200	1	[{0,9000702}]	750	[{1150,"sounds/sound22.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2004221	飞镖(女刺客-噩梦)	attack2	0	0		1	250	250		1				200	200	1	[{0,9000702}]	1000	[{1150,"sounds/sound22.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2005011	上勾拳（雕像战士-普通）	attack1	0	0		1	50	5		1				200	200	1	[]	1000	[{700,"sounds/sound21.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2005111	上勾拳（雕像战士-困难）	attack1	0	0		1	150	5		1				200	200	1	[]	1000	[{700,"sounds/sound21.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2005211	上勾拳（雕像战士-噩梦）	attack1	0	0		1	250	5	{0,700}	1				200	200	1	[]	1000	[{700,"sounds/sound21.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2006011	长枪突刺（枪战士-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[{0,"sounds/sound85.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2006111	长枪突刺（枪战士-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[{0,"sounds/sound85.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2006211	长枪突刺（枪战士-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound85.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2007011	大刀砍击（地精战士-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2007111	大刀砍击（地精战士-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2007211	大刀砍击（地精战士-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2008011	射击（地精弓手-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[{0,"sounds/sound271.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2008111	射击（地精弓手-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[{0,"sounds/sound271.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2008211	射击（地精弓手-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound271.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2009011	天使普攻（堕落天使-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2009111	天使普攻（堕落天使-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2009211	天使普攻（堕落天使-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2010011	手斧下劈（嗜血斗士-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2010111	手斧下劈（嗜血斗士-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2010211	手斧下劈（嗜血斗士-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2011011	魔法光线（镜子怪-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[{500,"sounds/sound129.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2011111	魔法光线（镜子怪-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[{500,"sounds/sound129.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2011211	魔法光线（镜子怪-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{500,"sounds/sound129.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2012011	蛮力勾拳（蛮力战士-普通）	attack1	0	0		1	50	5		1				200	200	1	[]	1000	[{100,"sounds/z1.wav","sounds/63.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2012111	蛮力勾拳（蛮力战士-困难）	attack1	0	0		1	150	5		1				200	200	1	[]	1000	[{100,"sounds/z1.wav","sounds/63.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2012211	蛮力勾拳（蛮力战士-噩梦）	attack1	0	0		1	250	5	{0,700}	1				200	200	1	[]	1000	[{100,"sounds/z1.wav","sounds/63.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2013011	抓（闪电狼-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[{100,"sounds/z1.wav","sounds/3.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2013111	抓（闪电狼-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[{100,"sounds/z1.wav","sounds/3.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2013211	抓（闪电狼-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{100,"sounds/z1.wav","sounds/3.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2014011	滚动攻击（巨石怪-普通）	attack1	0	0		1	50	5	{300,0}	1				200	200	1	[]	1000	[{100,"sounds/f3.wav","sounds/sound125.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2014111	滚动攻击（巨石怪-困难）	attack1	0	0		1	150	5	{300,0}	1				200	200	1	[]	1000	[{100,"sounds/f3.wav","sounds/sound125.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2014211	滚动攻击（巨石怪-噩梦）	attack1	0	0		1	250	5	{300,0}	1				200	200	1	[]	1000	[{100,"sounds/f3.wav","sounds/sound125.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2015011	咬（雾兽-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[{100,"sounds/f4.wav","sounds/sound114.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2015111	咬（雾兽-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[{100,"sounds/f4.wav","sounds/sound114.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2015211	咬（雾兽-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{100,"sounds/f4.wav","sounds/sound114.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2016011	撞击（蘑菇怪-普通）	attack1	0	0		1	50	5	{300,0}	1				200	200	1	[]	1000	[{0,"sounds/sound125.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2016111	撞击（蘑菇怪-困难）	attack1	0	0		1	150	5	{300,0}	1				200	200	1	[]	1000	[{0,"sounds/sound125.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2016211	撞击（蘑菇怪-噩梦）	attack1	0	0		1	250	5	{300,0}	1				200	200	1	[]	1000	[{0,"sounds/sound125.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2017011	挥拳（苔藓怪-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[{100,"sounds/sound85.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2017111	挥拳（苔藓怪-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[{100,"sounds/sound85.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2017211	挥拳（苔藓怪-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{100,"sounds/sound85.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2018011	啃咬（骷髅兽-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[{100,"sounds/sound71.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2018111	啃咬（骷髅兽-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2018211	啃咬（骷髅兽-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{100,"sounds/sound71.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2019011	普攻（电鬼-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[{0,"sounds/sound171.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2019111	普攻（电鬼-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[{0,"sounds/sound171.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+2019211	普攻（电鬼-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2020011	嘴击（雷鸟-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2020111	嘴击（雷鸟-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2020211	嘴击（雷鸟-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2021011	普攻（精灵猎手-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2021111	普攻（精灵猎手-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2021211	普攻（精灵猎手-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2022011	普攻（暗夜精灵-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2022111	普攻（暗夜精灵-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2022211	普攻（暗夜精灵-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2022021	突刺（暗夜精灵-普通）	attack2	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2022121	突刺（暗夜精灵-困难）	attack2	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2022221	突刺（暗夜精灵-噩梦）	attack2	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2023011	普攻（丧尸-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2023111	普攻（丧尸-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2023211	普攻（丧尸-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2024011	普攻（黑暗蝙蝠-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2024111	普攻（黑暗蝙蝠-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2024211	普攻（黑暗蝙蝠-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2025011	普攻（剑齿豹-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2025111	普攻（剑齿豹-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2025211	普攻（剑齿豹-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2025021	飞扑（剑齿豹-普通）	attack2	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2025121	飞扑（剑齿豹-困难）	attack2	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2025221	飞扑（剑齿豹-噩梦）	attack2	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2026011	普攻（暗夜精灵-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2026111	普攻（暗夜精灵-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2026211	普攻（暗夜精灵-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2026021	突刺（暗夜精灵-普通）	attack2	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2026121	突刺（暗夜精灵-困难）	attack2	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2026221	突刺（暗夜精灵-噩梦）	attack2	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2027011	普攻（矿虫-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2027111	普攻（矿虫-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2027211	普攻（矿虫-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2028011	普攻（矿洞蜘蛛-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2028111	普攻（矿洞蜘蛛-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2028211	普攻（矿洞蜘蛛-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2029011	普攻（矿虫-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2029111	普攻（矿虫-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2029211	普攻（矿虫-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2030011	普攻（黑暗蝙蝠-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2030111	普攻（黑暗蝙蝠-困难）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2030211	普攻（黑暗蝙蝠-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2031011	普攻（流星机关怪-普通）	attack1	0	0		1	50	250		1				200	200	1	[{0,9000703}]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2031111	普攻（流星机关怪-困难）	attack1	0	0		1	150	250		1				200	200	1	[{0,9000703}]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2031211	普攻（流星机关怪-噩梦）	attack1	0	0		1	250	250		1				200	200	1	[{0,9000703}]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2032011	普攻(神庙祭司-普通)	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2032111	普攻(神庙祭司-困难)	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2032211	普攻(神庙祭司-噩梦)	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2033011	普攻(精灵猎手-困难)	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2033111	普攻(精灵猎手-困难)	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2033211	普攻(精灵猎手-噩梦)	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2034011	普攻(火焰蜥蜴人-普通)	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2034111	普攻(火焰蜥蜴人-困难)	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2034211	普攻(火焰蜥蜴人-噩梦)	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2035011	普攻(火鬼-普通)	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2035111	普攻(火鬼-困难)	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2035211	普攻(火鬼-噩梦)	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2036011	普攻(炎怪-普通)	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2036111	普攻(炎怪-困难)	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2036211	普攻(炎怪-噩梦)	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2037011	普攻(火妖-普通)	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2037111	普攻(火妖-困难)	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2037211	普攻(火妖-噩梦)	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2038011	普攻(鱼人战士-普通)	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2038111	普攻(鱼人战士-困难)	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2038211	普攻(鱼人战士-噩梦)	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2039011	普攻(蜥蜴人战士-普通)	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2039111	普攻(蜥蜴人战士-困难)	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2039211	普攻(蜥蜴人战士-噩梦)	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2040011	普攻(海族侍卫-普通)	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2040111	普攻(海族侍卫-困难)	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2040211	普攻(海族侍卫-噩梦)	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2041011	普攻(废墟鬼魂-普通)	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2041111	普攻(废墟鬼魂-困难)	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2041211	普攻(废墟鬼魂-噩梦)	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2042011	砸地(冰川熊怪-普通)	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2042111	砸地(冰川熊怪-困难)	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2042211	砸地(冰川熊怪-噩梦)	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2042021	冲撞1(冰川熊怪-普通)	attack2_1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2042022	冲撞2(冰川熊怪-普通)	attack2_2	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2042023	冲撞3(冰川熊怪-普通)	attack2_3	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2042024	冲撞4(冰川熊怪-普通)	attack2_4	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2042025	冲撞5(冰川熊怪-普通)	attack2_5	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2042026	冲撞6(冰川熊怪-普通)	attack2_6	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2042121	冲撞1(冰川熊怪-困难)	attack2_1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2042122	冲撞2(冰川熊怪-困难)	attack2_2	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2042123	冲撞3(冰川熊怪-困难)	attack2_3	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2042124	冲撞4(冰川熊怪-困难)	attack2_4	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2042125	冲撞5(冰川熊怪-困难)	attack2_5	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2042126	冲撞6(冰川熊怪-困难)	attack2_6	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2042221	冲撞1(冰川熊怪-噩梦)	attack2_1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2042222	冲撞2(冰川熊怪-噩梦)	attack2_2	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2042223	冲撞3(冰川熊怪-噩梦)	attack2_3	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2042224	冲撞4(冰川熊怪-噩梦)	attack2_4	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2042225	冲撞5(冰川熊怪-噩梦)	attack2_5	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2042226	冲撞6(冰川熊怪-噩梦)	attack2_6	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2043011	普攻(冰川龟人-普通)	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2043111	普攻(冰川龟人-困难)	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2043211	普攻(冰川龟人-噩梦)	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2044011	普攻(墓地守卫-普通)	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2044021	长砍(墓地守卫-普通)	attack2	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2044111	普攻(墓地守卫-困难)	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2044121	长砍(墓地守卫-困难)	attack2	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2044211	普攻(墓地守卫-噩梦)	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2044221	长砍(墓地守卫-噩梦)	attack2	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2045011	普攻(雾兽-普通)	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2045111	普攻(雾兽-困难)	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2045211	普攻(雾兽-噩梦)	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2046011	普攻(鲨鱼战士-普通)	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2046111	普攻(鲨鱼战士-困难)	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2046211	普攻(鲨鱼战士-噩梦)	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2047011	普攻(娜迦祭司-普通)	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2047111	普攻(娜迦祭司-困难)	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2047211	普攻(娜迦祭司-噩梦)	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2500011	普攻（鱼人虐杀者）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2510011	普攻（鱼人守卫）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2520011	普攻（水妖）	attack1	0	0		1	700	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2601011	普攻（深渊鬼魂-简单）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2601111	普攻（深渊鬼魂-普通）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2601211	普攻（深渊鬼魂-困难）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2602011	普攻（诅咒巫师-简单）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2602111	普攻（诅咒巫师-普通）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2602211	普攻（诅咒巫师-困难）	attack1	0	0	[2602011]	1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2603011	普攻（骷髅士兵-简单）	attack2	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2603021	长砍（骷髅士兵-简单）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2603111	普攻（骷髅士兵-普通）	attack2	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2603121	长砍（骷髅士兵-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2603211	普攻（骷髅士兵-困难）	attack2	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2603221	长砍（骷髅士兵-困难）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2613011	普攻（召唤-骷髅士兵-简单）	attack2	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2613021	长砍（召唤-骷髅士兵-简单）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2613111	普攻（召唤-骷髅士兵-普通）	attack2	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2613121	长砍（召唤-骷髅士兵-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2613211	普攻（召唤-骷髅士兵-困难）	attack2	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2613221	长砍（召唤-骷髅士兵-困难）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2623011	普攻（召唤-冰霜骷髅战士-简单）	attack2	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2623021	长砍（召唤-冰霜骷髅战士-简单）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2623111	普攻（召唤-冰霜骷髅战士-普通）	attack2	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2623121	长砍（召唤-冰霜骷髅战士-普通）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2623211	普攻（召唤-冰霜骷髅战士-困难）	attack2	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2623221	长砍（召唤-冰霜骷髅战士-困难）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2604011	普攻（蝙蝠女妖-简单）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2604111	普攻（蝙蝠女妖-普通）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2604211	普攻（蝙蝠女妖-困难）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2605011	普攻（熔岩怪-简单）	attack1	0	0		1	50	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2605111	普攻（熔岩怪-普通）	attack1	0	0		1	150	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+2605211	普攻（熔岩怪-困难）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3001011	抓(魔豹-简单）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3001021	扑(魔豹-简单）	attack2	0	0		0	250	5	{0,-500}	1				200	200	1	[]	1000	[{700,"sounds/sound150.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3001031	起身反击(魔豹-简单）	attack1	0	0		0	250	5		1				200	200	1	[{0,9000601}]	1000	[{700,"sounds/sound150.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3001041	获取霸体(魔豹-简单）	attack1	0	0		0	250	5		1				200	200	1	[]	1000	[{700,"sounds/sound150.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3001111	抓(魔豹-普通）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3001121	扑(魔豹-普通）	attack2	0	0		0	250	5	{0,-500}	1				200	200	1	[]	1000	[{700,"sounds/sound150.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3001131	起身反击(魔豹-普通）	attack1	0	0		0	250	5		1				200	200	1	[{0,9000601}]	1000	[{700,"sounds/sound150.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3001141	获取霸体(魔豹-普通）	attack1	0	1	[3001022]	0	250	5		1				200	200	1	[]	1000	[{700,"sounds/sound150.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3001211	抓(魔豹-困难）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3001221	扑(魔豹-困难）	attack2	0	0	[3001021]	0	250	5	{0,-500}	1				200	200	1	[]	1000	[{700,"sounds/sound150.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3001231	起身反击(魔豹-普通）	attack1	0	0		0	250	5		1				200	200	1	[{0,9000601}]	1000	[{700,"sounds/sound150.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3001241	获取霸体(魔豹-普通）	attack1	0	1	[3001022]	0	250	5		1				200	200	1	[]	1000	[{700,"sounds/sound150.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3002011	平挥(史考尔-简单）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound272.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3002021	刺(史考尔-简单）	attack2	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3002031	劈(史考尔-简单）	attack3	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound272.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3002041	冲锋(史考尔-简单）	attack4	0	0		0	250	5	{800,500}	1	200			200	200	1	[]	1000	[{700,"sounds/sound113.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3002111	平挥(史考尔-普通）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound272.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3002121	刺(史考尔-普通）	attack2	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3002131	劈(史考尔-普通）	attack3	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound272.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3002141	冲锋(史考尔-普通）	attack4	0	0		0	250	5	{800,500}	1	200			200	200	1	[]	1000	[{700,"sounds/sound113.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3002211	平挥(史考尔-困难）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound272.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3002221	刺(史考尔-困难）	attack2	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3002231	劈(史考尔-困难）	attack3	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound272.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3002241	冲锋(史考尔-困难）	attack4	0	0		0	250	5	{800,500}	1	200			200	200	1	[]	1000	[{700,"sounds/sound113.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3003011	下劈(雕像巨人-简单)	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{700,"sounds/sound272.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3003021	上挥(雕像巨人-简单)	attack2	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3003031	砸地(雕像巨人-简单)	attack3	0	0		0	250	5	{0,-500}	2	100			200	200	1	[]	1000	[{200,"sounds/sound128.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3003111	下劈(雕像巨人-普通)	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{700,"sounds/sound272.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3003121	上挥(雕像巨人-普通)	attack2	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound100.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3003131	砸地(雕像巨人-普通)	attack3	0	0		0	250	5	{0,-500}	2	100			200	200	1	[]	1000	[{200,"sounds/sound128.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3003211	下劈(雕像巨人-困难)	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{700,"sounds/sound272.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3003221	上挥(雕像巨人-困难)	attack2	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3003231	砸地(雕像巨人-困难)	attack3	0	0	[3003031]	0	250	5	{0,-500}	2	100			200	200	1	[]	1000	[{200,"sounds/sound128.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3004011	下劈(地精厨娘-简单)	attack1	0	0		1	250	250	{500,0}	1				500	200	1	[]	1000	[{200,"sounds/sound128.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3004021	腾空(地精厨娘-简单)	attack2	0	0		0	250	5	{0,-500}	2	100	{1460,13,10,8}		200	200	1	[]	1000	[{200,"sounds/sound221.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3004031	召唤(地精厨娘-简单)	attack3	0	1		0	250	250		1				200	200	1	[]	1000	[{200,"sounds/sound167.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3004111	下劈(地精厨娘-普通)	attack1	0	0		0	100	100	{850,700}	1				500	200	1	[{0,9000706}]	1000	[{200,"sounds/sound128.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3004121	腾空(地精厨娘-普通)	attack2_1	0	0		0	250	300	{400,900}	2	1000	{1100,13,5,10}		400	400	1	[]	1000	[{200,"sounds/sound221.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3004122	腾空(地精厨娘-普通)	attack2_2	0	0		0	400	300	{400,900}	2	1000	{760,13,8,10}		400	400	1	[]	1000	[{200,"sounds/sound221.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3004123	腾空(地精厨娘-普通)	attack2_3	0	0		0	250	200	{500,-500}	2	1000	{830,13,10,5}		400	400	1	[]	1000	[{200,"sounds/sound221.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3004131	召唤(地精厨娘-普通)	attack3	0	1	[3004031]	0	250	250		1				200	200	1	[]	1000	[{200,"sounds/sound167.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3004151	打嗝儿(地精厨娘-普通)	attack4	0	0		0	250	0		2				0	0	1	[{0,9000707}]	1000	[{200,"sounds/sound221.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3004211	下劈(地精厨娘-困难)	attack1	0	0		0	250	250	{850,700}	1				500	200	1	[{0,9000706}]	1000	[{200,"sounds/sound128.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3004221	腾空(地精厨娘-困难)	attack2_1	0	0		0	250	200	{0,-500}	2	100	{1100,13,5,10}		200	200	1	[]	1000	[{200,"sounds/sound221.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3004222	腾空(地精厨娘-困难)	attack2_2	0	0		0	250	200	{0,-500}	2	100	{760,13,8,10}		200	200	1	[]	1000	[{200,"sounds/sound221.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3004223	腾空(地精厨娘-困难)	attack2_3	0	0		0	250	200	{0,-500}	2	100	{830,13,10,5}		200	200	1	[]	1000	[{200,"sounds/sound221.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3004231	召唤(地精厨娘-困难)	attack3	0	1	[3004031]	0	250	250		1				200	200	1	[]	1000	[{200,"sounds/sound167.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3004251	打嗝儿(地精厨娘-噩梦)	attack4	0	0		0	250	250	{0,-500}	2				200	200	1	[{0,9000707}]	1000	[{200,"sounds/sound221.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3104011	下劈(地精厨娘-简单)	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{200,"sounds/sound128.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3104021	腾空(地精厨娘-简单)	attack2	0	0		0	250	5	{0,-500}	2	100	{400,13,10,8}		200	200	1	[]	1000	[{200,"sounds/sound221.wav"}]	0	1	effects/blow_point/02baodian.frames
+3104031	召唤(地精厨娘-简单)	attack3	0	1		0	250	250		1				200	200	1	[]	1000	[{200,"sounds/sound167.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3104111	下劈(地精厨娘-普通)	attack1	0	0		0	250	250		1				200	200	1	[{0,9000706}]	1000	[{200,"sounds/sound128.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3104121	腾空(地精厨娘-普通)	attack2_1	0	0		0	5	1000	{0,-500}	2	100	{1100,13,5,10}		200	200	1	[]	1000	[{200,"sounds/sound221.wav"}]	0	1	effects/blow_point/02baodian.frames
+3104122	腾空(地精厨娘-普通)	attack2_2	0	0		0	5	1000	{0,-500}	2	100	{760,13,8,10}		200	200	1	[]	1000	[{200,"sounds/sound221.wav"}]	0	1	effects/blow_point/02baodian.frames
+3104123	腾空(地精厨娘-普通)	attack2_3	0	0		0	5	1000	{0,-500}	2	100	{830,13,10,10}		200	200	1	[]	1000	[{200,"sounds/sound221.wav"}]	0	1	effects/blow_point/02baodian.frames
+3104131	召唤(地精厨娘-普通)	attack3	0	1	[3004031]	0	250	250		1				200	200	1	[]	1000	[{200,"sounds/sound167.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3104151	打嗝儿(地精厨娘-普通)	attack4	0	0		0	250	250		2				200	200	1	[{0,9000707}]	1000	[{200,"sounds/sound221.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3104211	下劈(地精厨娘-困难)	attack1	0	0		0	250	250		1				200	200	1	[{0,9000706}]	1000	[{200,"sounds/sound128.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3104221	腾空(地精厨娘-困难)	attack2_1	0	0		0	250	5	{0,-500}	2	100	{1100,13,5,10}		200	200	1	[]	1000	[{200,"sounds/sound221.wav"}]	0	1	effects/blow_point/02baodian.frames
+3104222	腾空(地精厨娘-困难)	attack2_2	0	0		0	250	5	{0,-500}	2	100	{760,13,8,10}		200	200	1	[]	1000	[{200,"sounds/sound221.wav"}]	0	1	effects/blow_point/02baodian.frames
+3104223	腾空(地精厨娘-困难)	attack2_3	0	0		0	250	5	{0,-500}	2	100	{830,13,10,10}		200	200	1	[]	1000	[{200,"sounds/sound221.wav"}]	0	1	effects/blow_point/02baodian.frames
+3104231	召唤(地精厨娘-困难)	attack3	0	1	[3004031]	0	250	250		1				200	200	1	[]	1000	[{200,"sounds/sound167.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3104251	打嗝儿(地精厨娘-噩梦)	attack4	0	0		0	250	250		2				200	200	1	[{0,9000707}]	1000	[{200,"sounds/sound221.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3005011	挥拳(丑陋巨兽-简单)	attack1	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3005021	刺击(丑陋巨兽-简单)	attack2	0	0		1	250	5	{300,0}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3005031	喷毒(丑陋巨兽-简单)	attack3	0	0	[3005031,3005032]	0	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3005111	挥拳(丑陋巨兽-普通)	attack1	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3005121	刺击(丑陋巨兽-普通)	attack2	0	0		1	250	5	{300,0}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3005131	喷毒(丑陋巨兽-普通)	attack3	0	0	[3005031,3005032]	0	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3005211	挥拳(丑陋巨兽-困难)	attack1	0	0	[3005011]	1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3005221	刺击(丑陋巨兽-困难)	attack2	0	0		1	250	5	{300,0}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3005231	喷毒(丑陋巨兽-困难)	attack3	0	0	[3005031,3005032]	0	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3006011	挥剑(大天使-简单)	attack1	0	0		1	250	5	{300,0}	1				200	200	1	[]	1000	[{0,"sounds/sound272.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3006021	十字斩(大天使-简单)	attack2_1	0	0		1	250	5	{600,600}	1				200	200	1	[]	1000	[{350,"sounds/sound226.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3006022	十字斩(大天使-简单)	attack2_2	0	0		1	250	5	{600,600}	1				200	200	1	[]	1000	[{350,"sounds/sound226.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3006031	能量拳(大天使-简单)	attack3	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[{700,"sounds/sound206.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3006111	挥剑(大天使-普通)	attack1	0	0		1	250	5	{300,0}	1				200	200	1	[]	1000	[{0,"sounds/sound272.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3006121	十字斩(大天使-普通)	attack2_1	0	0		1	250	5		1				0	200	1	[]	1000	[{350,"sounds/sound226.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3006122	十字斩(大天使-普通)	attack2_2	0	0		1	250	5		1				0	200	1	[]	1000	[{350,"sounds/sound226.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3006123	十字斩(大天使-普通)	attack2_3	0	0		1	250	5	{600,600}	1				200	200	1	[]	1000	[{350,"sounds/sound226.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3006131	能量拳(大天使-普通)	attack3	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[{700,"sounds/sound206.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3006151	光柱	attack4	0	0		0	250	5		1				200	200	1	[]	200	[{300,"sounds/sound122.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3006211	挥剑(大天使-困难)	attack1	0	0		1	250	5	{300,0}	1				200	200	1	[]	1000	[{0,"sounds/sound272.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3006221	十字斩(大天使-困难)	attack2_1	0	0		1	250	5	{600,600}	1				0	200	1	[]	1000	[{350,"sounds/sound226.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3006222	十字斩(大天使-困难)	attack2_2	0	0		1	250	5	{600,600}	1				0	200	1	[]	1000	[{350,"sounds/sound226.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3006223	十字斩(大天使-困难)	attack2_3	0	0		1	250	5	{600,600}	1				0	200	1	[]	1000	[{350,"sounds/sound226.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3006224	十字斩(大天使-困难)	attack2_4	0	0		1	250	5	{600,600}	1				200	200	1	[]	1000	[{350,"sounds/sound226.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3006231	能量拳(大天使-困难)	attack3	0	0	[3006031]	1	250	5	{0,-500}	1				200	200	1	[]	1000	[{700,"sounds/sound206.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3006251	光柱(大天使-困难)	attack4	0	0		0	250	5		1				200	200	1	[]	200	[{300,"sounds/sound122.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3106011	挥剑(大天使-简单)	attack1	0	0		1	250	5	{300,0}	1				200	200	1	[]	1000	[{0,"sounds/sound272.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3106021	十字斩(大天使-简单)	attack2_1	0	0		1	250	5	{600,600}	1				200	200	1	[]	1000	[{350,"sounds/sound226.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3106022	十字斩(大天使-简单)	attack2_2	0	0		1	250	5	{600,600}	1				200	200	1	[]	1000	[{350,"sounds/sound226.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3106031	能量拳(大天使-简单)	attack3	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[{700,"sounds/sound206.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3106051	光柱	attack4	0	0		0	250	5	{0,300}	1				200	200	1	[{0,9000705}]	500	[{700,"sounds/sound206.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3106111	挥剑(大天使-普通)	attack1	0	0		1	250	5	{800,0}	1				500	200	1	[]	1000	[{0,"sounds/sound272.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3106121	十字斩(大天使-普通)	attack2_1	0	0		1	250	500	{100,0}	1				200	200	2	[]	1000	[{350,"sounds/sound226.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3106122	十字斩(大天使-普通)	attack2_2	0	0		1	10	300	{100,0}	1				700	200	1	[]	1000	[{350,"sounds/sound226.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3106123	十字斩(大天使-普通)	attack2_3	0	0		1	250	5	{600,1000}	1				2000	200	1	[]	1000	[{350,"sounds/sound226.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3106131	能量拳(大天使-普通)	attack3	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[{700,"sounds/sound206.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3106151	光柱	attack4	0	0		0	250	5	{0,300}	1				200	200	1	[{0,9000705}]	1000	[{300,"sounds/sound122.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3106211	挥剑(大天使-困难)	attack1	0	0		1	250	5	{800,0}	1				500	200	1	[]	1000	[{0,"sounds/sound272.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3106221	十字斩(大天使-困难)	attack2_1	0	0		1	250	500	{100,0}	1				200	200	1	[]	1000	[{350,"sounds/sound226.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3106222	十字斩(大天使-困难)	attack2_2	0	0		1	10	300	{100,0}	1				700	200	1	[]	1000	[{350,"sounds/sound226.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3106223	十字斩(大天使-困难)	attack2_3	0	0		1	100	300	{400,1000}	1				1500	200	1	[]	1000	[{350,"sounds/sound226.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3106224	十字斩(大天使-困难)	attack2_4	0	0		1	100	300	{300,-300}	1				200	200	1	[]	1000	[{350,"sounds/sound226.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3106231	能量拳(大天使-困难)	attack3	0	0	[3006031]	1	250	5	{0,-500}	1				200	200	1	[]	1000	[{700,"sounds/sound206.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3106251	光柱(大天使-困难)	attack4	0	0		0	250	5	{0,300}	1				200	200	1	[{0,9000705}]	1000	[{300,"sounds/sound122.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3007011	挥抓(月光巨狼-简单)	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3007021	抓咬(月光巨狼-简单)	attack2	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3007031	冲锋(月光巨狼-简单)	attack3	0	0		1	250	5	{800,500}	1	200			200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3007111	挥抓(月光巨狼-普通)	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3007121	抓咬(月光巨狼-普通)	attack2	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3007131	冲锋(月光巨狼-普通)	attack3	0	0		1	250	5	{800,500}	1	200			200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3007211	挥抓(月光巨狼-困难)	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3007221	抓咬(月光巨狼-困难)	attack2	0	0	[3007021]	1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3007231	冲锋(月光巨狼-困难)	attack3	0	0		1	250	5	{800,500}	1	200			200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3008011	咬（吞云兽-简单）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{700,"sounds/sound22.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3008021	吐气（吞云兽-简单）	attack2	0	0	[3008021,3008022]	1	250	5	{400,0}	1				200	200	1	[]	1000	[{0,"sounds/sound85.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3008031	云雾（吞云兽-简单）	attack3	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3008111	咬（吞云兽-普通）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{700,"sounds/sound22.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3008121	吐气（吞云兽-普通）	attack2	0	0	[3008021,3008022]	1	250	5	{400,0}	1				200	200	1	[]	1000	[{0,"sounds/sound85.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3008131	云雾（吞云兽-普通）	attack3	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3008211	咬（吞云兽-困难）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{700,"sounds/sound22.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3008221	吐气（吞云兽-困难）	attack2	0	0	[3008021,3008022]	1	250	5	{400,0}	1				200	200	1	[]	1000	[{0,"sounds/sound85.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3008231	云雾（吞云兽-困难）	attack3	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011011	横扫1（骨龙-简单）	attack1_1	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011012	横扫2（骨龙-简单）	attack1_2	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011013	横扫3（骨龙-简单）	attack1_3	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011021	爪击（骨龙-简单）	attack2	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011031	喷火（骨龙-简单）	attack3	0	0	[3011031,3011032]	1	250	5	{800,500}	1	200			200	200	2	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011041	骨刺1（骨龙-简单）	attack4_1	0	0		0	250	0		1				200	200	2	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011042	骨刺2（骨龙-简单）	attack4_2	0	0		0	250	0		1				200	200	2	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011043	骨刺3（骨龙-简单）	attack4_3	0	0		0	250	0		1				200	200	2	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011111	横扫1（骨龙-简单）	attack1_1	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011112	横扫2（骨龙-简单）	attack1_2	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011113	横扫3（骨龙-简单）	attack1_3	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011121	爪击（骨龙-普通）	attack2	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011131	喷火（骨龙-普通）	attack3	0	0	[3011031,3011032]	1	250	5	{800,500}	1	200			200	200	2	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011141	骨刺1（骨龙-简单）	attack4_1	0	0		0	250	0		1				200	200	2	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011142	骨刺2（骨龙-简单）	attack4_2	0	0		0	250	0		1				200	200	2	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011143	骨刺3（骨龙-简单）	attack4_3	0	0		0	250	0		1				200	200	2	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011211	横扫1（骨龙-简单）	attack1_1	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011212	横扫2（骨龙-简单）	attack1_2	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011213	横扫3（骨龙-简单）	attack1_3	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011221	爪击（骨龙-困难）	attack2	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011231	喷火（骨龙-困难）	attack3	0	0	[3011031,3011032]	1	250	5	{800,500}	1	200			200	200	2	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011241	骨刺1（骨龙-简单）	attack4_1	0	0		0	250	0		1				200	200	2	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011242	骨刺2（骨龙-简单）	attack4_2	0	0		0	250	0		1				200	200	2	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3011243	骨刺3（骨龙-简单）	attack4_3	0	0		0	250	0		1				200	200	2	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3111011	横扫1（骨龙-简单）	attack1_1	0	0		1	250	250	{400,600}	1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3111012	横扫2（骨龙-简单）	attack1_2	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3111013	横扫3（骨龙-简单）	attack1_3	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3111021	爪击（骨龙-简单）	attack2	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3111031	喷火（骨龙-简单）	attack3	0	0	[3011031,3011032]	1	250	5	{800,500}	1	200			200	200	2	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3111041	骨刺1（骨龙-简单）	attack4_1	0	0		0	250	0		1				200	200	2	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/jidatx_1.frames
+3111042	骨刺2（骨龙-简单）	attack4_2	0	0		0	250	0		1				200	200	2	[{0,9000709}]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/jidatx_1.frames
+3111043	骨刺3（骨龙-简单）	attack4_3	0	0		0	250	0		1				200	200	2	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/jidatx_1.frames
+3111111	横扫1（骨龙-简单）	attack1_1	0	0		1	250	250	{1000,1000}	1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3111112	横扫2（骨龙-简单）	attack1_2	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3111113	横扫3（骨龙-简单）	attack1_3	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3111121	爪击（骨龙-普通）	attack2	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3111131	喷火（骨龙-普通）	attack3	0	0	[3011031,3011032]	1	250	5	{800,500}	1	200			200	200	2	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3111141	骨刺1（骨龙-简单）	attack4_1	0	0		0	250	0		1				200	200	2	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/jidatx_1.frames
+3111142	骨刺2（骨龙-简单）	attack4_2	0	0		0	250	0		1				200	200	2	[{0,9000710}]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/jidatx_1.frames
+3111143	骨刺3（骨龙-简单）	attack4_3	0	0		0	250	0		1				200	200	2	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/jidatx_1.frames
+3111211	横扫1（骨龙-简单）	attack1_1	0	0		1	250	250	{1000,1000}	1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3111212	横扫2（骨龙-简单）	attack1_2	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3111213	横扫3（骨龙-简单）	attack1_3	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3111221	爪击（骨龙-困难）	attack2	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3111231	喷火（骨龙-困难）	attack3	0	0	[3011031,3011032]	1	250	5	{800,500}	1	200			200	200	2	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3111241	骨刺1（骨龙-简单）	attack4_1	0	0		0	250	0		1				200	200	2	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/jidatx_1.frames
+3111242	骨刺2（骨龙-简单）	attack4_2	0	0		0	250	0		1				200	200	2	[{0,9000711}]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/jidatx_1.frames
+3111243	骨刺3（骨龙-简单）	attack4_3	0	0		0	250	0		1				200	200	2	[]	1000	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/jidatx_1.frames
+3012011	镰刀下劈（死神-简单）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound237.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3012021	三连射击（死神-简单）	attack2	0	0		1	250	5	{600,400}	1	200			200	200	1	[]	1000	[{100,"sounds/235.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3012031	跳跃一击（死神-简单）	attack3	0	0		1	250	5	{600,400}	1	200			200	200	1	[]	1000	[{100,"sounds/sound234.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3012111	镰刀下劈（死神-普通）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound237.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3012121	三连射击（死神-普通）	attack2	0	0		1	250	5	{600,400}	1	200			200	200	1	[]	1000	[{100,"sounds/235.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3012131	跳跃一击（死神-普通）	attack3	0	0		1	250	5	{600,400}	1	200			200	200	1	[]	1000	[{100,"sounds/sound234.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3012211	镰刀下劈（死神-困难）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[{0,"sounds/sound237.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3012221	三连射击（死神-困难）	attack2	0	0		1	250	5	{600,400}	1	200			200	200	1	[]	1000	[{100,"sounds/235.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3012231	跳跃一击（死神-困难）	attack3	0	0		1	250	5	{600,400}	1	200			200	200	1	[]	1000	[{100,"sounds/sound234.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3013011	千斤脚（雷神像-简单）	attack1	0	0		1	250	5	{0,-500}	1				200	200	2	[]	1000	[{100,"sounds/sound236.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3013021	巨力重击（雷神像-简单）	attack2	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[{100,"sounds/sound236.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3013031	重物砸地（雷神像-简单）	attack3	0	0		1	250	5	{0,-500}	1				200	200	2	[]	1000	[{100,"sounds/sound236.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3013041	雷神狂风（雷神像-简单）	attack4	0	0		1	250	5		1				200	200	1	[{0,9000701}]	1000	[{100,"sounds/sound236.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3013111	千斤脚（雷神像-普通）	attack1	0	0		1	250	5	{0,-500}	1				200	200	2	[]	1000	[{100,"sounds/sound236.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3013121	巨力重击（雷神像-普通）	attack2	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[{100,"sounds/sound236.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3013131	重物砸地（雷神像-普通）	attack3	0	0		1	250	5	{0,-500}	1				200	200	2	[]	1000	[{100,"sounds/sound236.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3013141	雷神狂风（雷神像-普通）	attack4	0	0		1	250	5		1				200	200	1	[{0,9000701}]	1000	[{100,"sounds/sound236.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3013211	千斤脚（雷神像-困难）	attack1	0	0	[3013011]	1	250	5		1				200	200	2	[]	1000	[{100,"sounds/sound236.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3013221	巨力重击（雷神像-困难）	attack2	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[{100,"sounds/sound236.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3013231	重物砸地（雷神像-困难）	attack3	0	0	[3013012]	1	250	5		1				200	200	2	[]	1000	[{100,"sounds/sound236.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3013241	雷神狂风（雷神像-困难）	attack4	0	0		1	250	5		1				200	200	1	[{0,9000701}]	1000	[{100,"sounds/sound236.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3014011	下劈(地精傀儡-简单)	attack1	0	0		1	250	5		1				200	200	1	[]	1000	[{100,"sounds/sound236.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3014021	上挥(地精傀儡-简单)	attack2	0	0		1	250	5		1				200	200	1	[]	1000	[{100,"sounds/sound236.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3014031	扔炸弹(地精傀儡-简单)	attack3	0	0		1	250	5	{600,400}	1				200	200	1	[]	1000	[{100,"sounds/sound236.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3014111	下劈(地精傀儡-普通)	attack1	0	0		1	250	5		1				200	200	1	[]	1000	[{100,"sounds/sound236.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3014121	上挥(地精傀儡-普通)	attack2	0	0		1	250	5		1				200	200	1	[]	1000	[{100,"sounds/sound236.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3014131	扔炸弹(地精傀儡-普通)	attack3	0	0		1	250	5	{600,400}	1				200	200	1	[]	1000	[{100,"sounds/sound236.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3014211	下劈(地精傀儡-困难)	attack1	0	0		1	250	5		1				200	200	1	[]	1000	[{100,"sounds/sound236.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3014221	上挥(地精傀儡-困难)	attack2	0	0		1	250	5		1				200	200	1	[]	1000	[{100,"sounds/sound236.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3014231	扔炸弹(地精傀儡-困难)	attack3	0	0		1	250	5	{600,400}	1				200	200	1	[]	1000	[{100,"sounds/sound236.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3015011	上钩爪（巨怪泰山-普通）	attack1	0	0		1	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3015021	砸地（巨怪泰山-普通）	attack2	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3015031	冲撞1（巨怪泰山-普通）	attack3_1	0	0		1	250	5	{600,200}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3015032	冲撞2（巨怪泰山-普通）	attack3_2	0	0		1	250	5	{600,200}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3015033	冲撞3（巨怪泰山-普通）	attack3_3	0	0		1	250	5	{600,200}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3015034	冲撞4（巨怪泰山-普通）	attack3_4	0	0		1	250	5	{600,200}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3015111	上钩爪（巨怪泰山-困难）	attack1	0	0		1	250	5	{0,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3015121	砸地（巨怪泰山-困难）	attack2	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3015131	冲撞1（巨怪泰山-困难）	attack3_1	0	0		1	250	5	{600,200}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3015132	冲撞2（巨怪泰山-困难）	attack3_2	0	0		1	250	5	{600,200}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3015133	冲撞3（巨怪泰山-困难）	attack3_3	0	0		1	250	5	{600,200}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3015134	冲撞4（巨怪泰山-困难）	attack3_4	0	0		1	250	5	{600,200}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3015211	上钩爪（巨怪泰山-噩梦）	attack1	0	0		1	250	5	{0,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3015221	砸地（巨怪泰山-噩梦）	attack2	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3015231	冲撞1（巨怪泰山-噩梦）	attack3_1	0	0		1	250	5	{600,200}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3015232	冲撞2（巨怪泰山-噩梦）	attack3_2	0	0		1	250	5	{600,200}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3015233	冲撞3（巨怪泰山-噩梦）	attack3_3	0	0		1	250	5	{600,200}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3015234	冲撞4（巨怪泰山-噩梦）	attack3_4	0	0		1	250	5	{600,200}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3015235	冲撞5（巨怪泰山-噩梦）	attack3_5	0	0		1	250	5	{600,200}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3015236	冲撞6（巨怪泰山-噩梦）	attack3_6	0	0		1	250	5	{600,200}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3016011	魔法弹（黑巫师-普通）	attack1	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3016021	聚气瞬移（黑巫师-普通）	attack2	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3016031	挥手（黑巫师-普通）	attack3	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3016041	抓（黑巫师-普通）	attack4	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3016111	魔法弹（黑巫师-困难）	attack1	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3016121	聚气瞬移（黑巫师-困难）	attack2	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3016131	挥手（黑巫师-困难）	attack3	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3016141	抓（黑巫师-困难）	attack4	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3016211	魔法弹（黑巫师-噩梦）	attack1	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3016221	召唤（黑巫师-噩梦）	attack2	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3016231	挥手（黑巫师-噩梦）	attack3	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3016241	抓（黑巫师-噩梦）	attack4	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3017011	刺击（守望者-普通）	attack1	0	0		1	250	5	{500,200}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3017021	半月斩（守望者-普通）	attack2	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3017031	召唤（守望者-普通）	attack3	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3017111	刺击（守望者-困难）	attack1	0	0		1	250	5	{500,200}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3017121	半月斩（守望者-困难）	attack2	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3017131	召唤（守望者-困难）	attack3	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3017211	刺击（守望者-噩梦）	attack1	0	0		1	250	5	{500,200}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3017221	半月斩（守望者-噩梦）	attack2	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3017231	召唤（守望者-噩梦）	attack3	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3018011	咬（深渊巨虫—普通）	attack1	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3018021	喷毒（深渊巨虫—普通）	attack2	0	0		1	250	5	{0,-100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3018031	恐吓（深渊巨虫—普通）	attack3	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3018111	咬（深渊巨虫—困难）	attack1	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3018121	喷毒（深渊巨虫—困难）	attack2	0	0		1	250	5	{0,-100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3018131	恐吓（深渊巨虫—困难）	attack3	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3018211	咬（深渊巨虫—噩梦）	attack1	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3018221	喷毒（深渊巨虫—噩梦）	attack2	0	0		1	250	5	{0,-100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3018231	恐吓（深渊巨虫—噩梦）	attack3	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019011	抓（圣光龙—普通）	attack1	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019021	砸地（圣光龙—普通）	attack2	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019031	咬（圣光龙—普通）	attack3	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019041	冲击波1（圣光龙—普通）	attack4_1	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019042	冲击波2（圣光龙—普通）	attack4_2	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019043	冲击波3（圣光龙—普通）	attack4_3	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019044	冲击波4（圣光龙—普通）	attack4_4	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019045	冲击波5（圣光龙—普通）	attack4_5	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019046	冲击波6（圣光龙—普通）	attack4_6	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019111	抓（圣光龙—困难）	attack1	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019121	砸地（圣光龙—困难）	attack2	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019131	咬（圣光龙—困难）	attack3	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019141	冲击波1（圣光龙—困难）	attack4_1	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019142	冲击波2（圣光龙—困难）	attack4_2	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019143	冲击波3（圣光龙—困难）	attack4_3	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019144	冲击波4（圣光龙—困难）	attack4_4	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019145	冲击波5（圣光龙—困难）	attack4_5	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019146	冲击波6（圣光龙—困难）	attack4_6	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019151	圣光道标	attack5	0	0		0	250	0	{200,0}	1				200	200	1	[{0,9000712}]	1000	[]	0	1	
+3019211	抓（圣光龙—噩梦）	attack1	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019221	砸地（圣光龙—噩梦）	attack2	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019231	咬（圣光龙—噩梦）	attack3	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019241	冲击波1(圣光龙—噩梦）	attack4_1	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019242	冲击波2(圣光龙—噩梦）	attack4_2	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019243	冲击波3(圣光龙—噩梦）	attack4_3	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019244	冲击波4(圣光龙—噩梦）	attack4_4	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019245	冲击波5(圣光龙—噩梦）	attack4_5	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019246	冲击波6(圣光龙—噩梦）	attack4_6	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3019251	圣光道标	attack5	0	0		0	250	0	{200,0}	1				200	200	1	[{0,9000713}]	1000	[]	0	1	
+3020011	砸地（熔岩巨兽-普通）	attack1	0	0		1	250	5	{0,200}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3020021	抓（熔岩巨兽-普通）	attack2	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3020111	砸地（熔岩巨兽-困难）	attack1	0	0		1	250	5	{0,200}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3020121	抓（熔岩巨兽-困难）	attack2	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3020211	砸地（熔岩巨兽-噩梦）	attack1	0	0		1	250	5	{0,200}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3020221	抓（熔岩巨兽-噩梦）	attack2	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3021011	劈（蜥蜴首领—普通）	attack1	0	0		1	250	5	{400,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3021021	跳击（蜥蜴首领—普通）	attack2	0	0		1	250	5	{0,-100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3021031	刺击1（蜥蜴首领—普通）	attack3_1	0	0		1	250	5	{500,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3021032	刺击2（蜥蜴首领—普通）	attack3_2	0	0		1	250	5	{500,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3021033	刺击3（蜥蜴首领—普通）	attack3_3	0	0		1	250	5	{500,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3021034	刺击4（蜥蜴首领—普通）	attack3_4	0	0		1	250	5	{500,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3021111	劈（蜥蜴首领—困难）	attack1	0	0		1	250	5	{400,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3021121	跳击（蜥蜴首领—困难）	attack2	0	0		1	250	5	{0,-100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3021131	刺击1（蜥蜴首领—困难）	attack3_1	0	0		1	250	5	{500,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3021132	刺击2（蜥蜴首领—困难）	attack3_2	0	0		1	250	5	{500,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3021133	刺击3（蜥蜴首领—困难）	attack3_3	0	0		1	250	5	{500,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3021134	刺击4（蜥蜴首领—困难）	attack3_4	0	0		1	250	5	{500,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3021211	劈（蜥蜴首领—噩梦）	attack1	0	0		1	250	5	{400,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3021221	跳击（蜥蜴首领—噩梦）	attack2	0	0		1	250	5	{0,-100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3021231	刺击1（蜥蜴首领—噩梦）	attack3_1	0	0		1	250	5	{500,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3021232	刺击2（蜥蜴首领—噩梦）	attack3_2	0	0		1	250	5	{500,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3021233	刺击3（蜥蜴首领—噩梦）	attack3_3	0	0		1	250	5	{500,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3021234	刺击4（蜥蜴首领—噩梦）	attack3_4	0	0		1	250	5	{500,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3022011	拳击1（神殿守卫-困难）	attack1_1	0	0		1	250	5	{500,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3022012	拳击2（神殿守卫-困难）	attack1_2	0	0		1	250	5	{500,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3022013	拳击3（神殿守卫-困难）	attack1_3	0	0		1	250	5	{500,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3022021	冲撞（神殿守卫-普通）	attack2	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3022111	拳击1（神殿守卫-困难）	attack1_1	0	0		1	250	5	{500,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3022112	拳击2（神殿守卫-困难）	attack1_2	0	0		1	250	5	{500,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3022113	拳击3（神殿守卫-困难）	attack1_3	0	0		1	250	5	{500,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3022121	冲撞（神殿守卫-困难）	attack2	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3022211	拳击1（神殿守卫-困难）	attack1_1	0	0		1	250	5	{500,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3022212	拳击2（神殿守卫-困难）	attack1_2	0	0		1	250	5	{500,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3022213	拳击3（神殿守卫-困难）	attack1_3	0	0		1	250	5	{500,100}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3022221	冲撞（神殿守卫-噩梦）	attack2	0	0		1	250	5	{800,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3023011	砸地（冰川雪怪-普通）	attack1	0	0		1	250	5	{200,0}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3023021	喷毒（冰川雪怪-普通）	attack2	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3023031	地波（冰川雪怪-普通）	attack3	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3023111	砸地（冰川雪怪-困难）	attack1	0	0		1	250	5	{200,0}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3023121	喷毒（冰川雪怪-困难）	attack2	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3023131	地波（冰川雪怪-困难）	attack3	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3023211	砸地（冰川雪怪-噩梦）	attack1	0	0		1	250	5	{200,0}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3023221	喷毒（冰川雪怪-噩梦）	attack2	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3023231	地波（冰川雪怪-噩梦）	attack3	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024011	抓（远古冰龙-普通）	attack1	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024021	咬（远古冰龙-普通）	attack2	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024031	龙息1（远古冰龙-普通）	attack3_1	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024032	龙息2（远古冰龙-普通）	attack3_2	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024033	龙息3（远古冰龙-普通）	attack3_3	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024034	龙息4（远古冰龙-普通）	attack3_4	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024035	龙息5（远古冰龙-普通）	attack3_5	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024041	上钩爪（远古冰龙-普通）	attack4	0	0		1	250	5	{0,800}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024111	抓（远古冰龙-困难）	attack1	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024121	咬（远古冰龙-困难）	attack2	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024131	龙息1（远古冰龙-普通）	attack3_1	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024132	龙息2（远古冰龙-普通）	attack3_2	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024133	龙息3（远古冰龙-普通）	attack3_3	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024134	龙息4（远古冰龙-普通）	attack3_4	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024135	龙息5（远古冰龙-普通）	attack3_5	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024141	上钩爪（远古冰龙-困难）	attack4	0	0		1	250	5	{0,800}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024211	抓（远古冰龙-噩梦）	attack1	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024221	咬（远古冰龙-噩梦）	attack2	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024231	龙息1（远古冰龙-普通）	attack3_1	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024232	龙息2（远古冰龙-普通）	attack3_2	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024233	龙息3（远古冰龙-普通）	attack3_3	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024234	龙息4（远古冰龙-普通）	attack3_4	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024235	龙息5（远古冰龙-普通）	attack3_5	0	0		1	250	5	{0,-500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3024241	上钩爪（远古冰龙-噩梦）	attack4	0	0		1	250	5	{0,800}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3025011	冰冻（邪魔-普通）	attack1	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3025021	上钩爪（邪魔-普通）	attack2	0	0		1	250	5	{0,800}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3025031	掏心（邪魔-普通）	attack3	0	0		1	250	5	{800,400}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3025041	寒冰（邪魔-普通）	attack4	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3025111	冰冻（邪魔-困难）	attack1	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3025121	上钩爪（邪魔-困难）	attack2	0	0		1	250	5	{0,800}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3025131	掏心（邪魔-困难）	attack3	0	0		1	250	5	{800,400}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3025141	寒冰（邪魔-困难）	attack4	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3025211	冰冻（邪魔-噩梦）	attack1	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3025221	上钩爪（邪魔-噩梦）	attack2	0	0		1	250	5	{0,800}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3025231	掏心（邪魔-噩梦）	attack3	0	0		1	250	5	{800,400}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3025241	寒冰（邪魔-噩梦）	attack4	0	0		1	250	5		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3300011	挥爪（火焰领主）	attack1	0	0		0	250	250	{500,0}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3300021	拍地（火焰领主）	attack2	0	0		0	250	250	{0,500}	1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3300031	蓄力击（火焰领主）	attack3	0	0		0	250	250		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+3900021	起身反击（释放物）	attack1	0	0		0	50	50	{400,600}	1			100	200	200	1	[]	1000	[{100,"sounds/sound238.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+4000011	冰冰冰释放动作	nuqi	0	0		0	250	5				{2000,18,10,10}		200	200	1	[{0,9000001}]	0	[{0,"sounds/sound239.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+4000021	冰冰火释放动作	nuqi	0	0		0	250	250						200	200	1	[{0,9000005}]	0	[{0,"sounds/sound239.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+4000031	冰冰雷释放动作	nuqi	0	0		0	250	250						200	200	1	[{0,9000006}]	0	[{0,"sounds/sound239.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+4000041	火火冰释放动作	nuqi	0	0		0	250	250						200	200	1	[{0,9000007}]	0	[{0,"sounds/sound240.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+4000051	火火火释放动作	nuqi	0	0		0	250	5						200	200	1	[{0,9000003}]	0	[{0,"sounds/sound240.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+4000061	火火雷释放动作	nuqi	0	0		0	250	250						200	200	1	[{0,9000008}]	0	[{0,"sounds/sound240.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+4000071	雷雷冰释放动作	nuqi	0	0		0	250	250						200	200	1	[{0,9000009}]	0	[{0,"sounds/sound241.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+4000081	雷雷火释放动作	nuqi	0	0		0	250	250						200	200	1	[{0,9000010}]	0	[{0,"sounds/sound241.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+4000091	雷雷雷释放动作	nuqi	0	0		0	250	5						200	200	1	[{0,9000004}]	0	[{0,"sounds/sound241.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+4000101	冰火雷释放动作	nuqi	0	0		0	250	5				{100,18,10,20}		200	200	1	[{0,9000002}]	0	[{0,"sounds/sound241.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000001	冰龙狂卷（释放物）	skill4	0	0	[1002131]	0	0	5	{300,600}	1		{250,30,1,30}		200	200	1	[]	200	[{200,"sounds/sound257.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000002	恶魔突袭（释放物）	skill1	0	0		0	0	5	{600,0}	1				200	200	1	[]	200	[{300,"sounds/sound122.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000003	暴风雪1（释放物）	skill3	0	0	[1002111]	0	0	5	{400,0}	2	150	{50,10,2,3}	200	200	200	1	[]	500	[{250,"sounds/sound256.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000004	暴风雪2（释放物）	skill3	0	0	[1002111]	0	0	5	{400,0}	2	150	{50,10,2,3}	200	200	200	1	[]	600	[{250,"sounds/sound256.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000005	暴风雪3（释放物）	skill3	0	0	[1002111]	0	0	5	{400,0}	2	150	{50,10,2,3}	100	200	200	1	[]	500	[{250,"sounds/sound256.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000006	暴风雪4（释放物）	skill3	0	0	[1002111]	0	0	5	{400,0}	2	150	{50,10,2,3}	100	200	200	1	[]	600	[{250,"sounds/sound256.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000007	暴风雪5（释放物）	skill3	0	0	[1002111]	0	0	5	{400,0}	2	150	{50,10,2,3}	200	200	200	1	[]	500	[{250,"sounds/sound256.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000008	暴风雪6（释放物）	skill3	0	0	[1002111]	0	0	5	{400,0}	2	150	{50,10,2,3}	200	200	200	1	[]	600	[{250,"sounds/sound256.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000009	暴风雪7（释放物）	skill3	0	0	[1002111]	0	0	5	{400,0}	2	150	{50,10,2,3}	350	200	200	1	[]	500	[{250,"sounds/sound256.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000010	冰冰冰1（释放物）	nuqi	0	0	[2001]	0	0	5		2		{530,10,2,3}	1000	200	200	1	[]	0	[{400,"sounds/sound243.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000011	冰冰冰2（释放物）	nuqi	0	0		0	0	5		2			1000	200	200	1	[]	0	[{200,"sounds/sound244.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000012	冰冰冰3（释放物）	nuqi	0	0		0	0	5	{200,800}	2		{470,10,5,3}	2200	200	200	1	[]	5000	[{500,"sounds/sound245.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000013	冰火雷1（释放物）	nuqi	0	0	[2002]	0	0	5		2		{300,13,2,4}	1000	200	200	1	[]	0	[{160,"sounds/sound246.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000014	冰火雷2（释放物）	nuqi	0	0		0	0	5	{500,800}	2		{750,13,6,4}	2100	200	200	1	[]	5000	[{600,"sounds/sound247.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000016	火火火1（释放物）	nuqi	0	0	[2003]	0	0	5	{400,0}	2		{50,10,5,3}	400	200	200	1	[]	3000	[{360,"sounds/sound248.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000017	火火火2（释放物）	nuqi	0	0	[2003]	0	0	5	{400,0}	2		{50,10,5,3}	200	200	200	1	[]	3000	[{360,"sounds/sound248.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000018	火火火3（释放物）	nuqi	0	0	[2003]	0	0	5	{400,0}	2		{50,10,5,3}	200	200	200	1	[]	3000	[{360,"sounds/sound248.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000019	火火火4（释放物）	nuqi	0	0	[2003]	0	0	5	{400,0}	2		{50,10,5,3}	700	200	200	1	[]	3000	[{360,"sounds/sound248.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000020	雷雷雷（释放物）	nuqi	0	0	[2004]	0	0	5		1				200	200	1	[]	2000	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000021	鬼哭神嚎1（释放物）	skill4_5	0	0		0	0	5	{650,800}	1		{200,13,8,6}	200	200	200	1	[]	200	[]	0	1	effects/blow_point/blow_point_2.frames
+5000022	鬼哭神嚎2（释放物）	skill4_5	0	0		0	0	5	{650,800}	1		{200,13,8,6}	550	200	200	1	[]	400	[]	0	1	effects/blow_point/blow_point_2.frames
+5000023	火焰冲锋2（释放物）	skill5	0	0	[1001151]	0	0	5	{80,1300}	1	200	{2000,13,5,4}	2100	200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+5000024	冰龙狂卷2（释放物）	skill4	0	0	[1002131]	0	0	5	{-100,600}	1		{250,30,1,30}		200	200	1	[]	100	[{200,"sounds/sound257.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000030	冰冰火1(释放物)	nuqi	0	0		0	0	5	{100,600}	1	200	{50,10,5,3}	300	200	200	4	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+5000040	冰冰雷1(释放物)	nuqi	0	0	[2005]	0	0	5		1		{750,13,6,4}	800	200	200	3	[]	0	[]	0	1	effects/blow_point/blow_point_2.frames
+5000041	冰冰雷2(释放物)	nuqi	0	0		0	0	500	{0,0}	1		{50,10,5,3}	500	200	200	5	[]	800	[]	0	1	effects/blow_point/blow_point_2.frames
+5000042	冰冰雷3(释放物)	nuqi	0	0		0	0	500	{0,0}	1		{50,10,5,3}	200	200	200	5	[]	800	[]	0	1	effects/blow_point/blow_point_2.frames
+5000043	冰冰雷4(释放物)	nuqi	0	0		0	0	500	{0,0}	1		{50,10,5,3}	200	200	200	5	[]	800	[]	0	1	effects/blow_point/blow_point_2.frames
+5000044	冰冰雷5(释放物)	nuqi	0	0		0	0	500	{0,0}	1		{50,10,5,3}	200	200	200	5	[]	800	[]	0	1	effects/blow_point/blow_point_2.frames
+5000045	冰冰雷6(释放物)	nuqi	0	0		0	0	500	{0,0}	1		{50,10,5,3}	200	200	200	5	[]	800	[]	0	1	effects/blow_point/blow_point_2.frames
+5000046	冰冰雷7(释放物)	nuqi	0	0		0	0	500	{0,0}	1		{50,10,5,3}	400	200	200	5	[]	800	[]	0	1	effects/blow_point/blow_point_2.frames
+5000047	冰冰雷8(释放物)	nuqi	0	0		0	0	500	{0,0}	1		{50,10,5,3}	1500	200	200	5	[]	800	[]	0	1	effects/blow_point/blow_point_2.frames
+5000050	火火冰1(释放物)	nuqi	0	0	[2006]	0	0	5	{400,0}	1		{50,10,5,3}	600	200	200	3	[]	0	[]	0	1	effects/blow_point/blow_point_2.frames
+5000051	火火冰2(释放物)	nuqi	0	0		0	0	5	{400,0}	1		{250,30,1,30}	400	200	200	3	[]	800	[]	0	1	effects/blow_point/blow_point_2.frames
+5000052	火火冰3(释放物)	nuqi	0	0		0	0	5	{400,0}	1		{250,30,1,30}	200	200	200	3	[]	800	[]	0	1	effects/blow_point/blow_point_2.frames
+5000053	火火冰4(释放物)	nuqi	0	0		0	0	5	{400,0}	1		{250,30,1,30}	100	200	200	3	[]	800	[]	0	1	effects/blow_point/blow_point_2.frames
+5000054	火火冰5(释放物)	nuqi	0	0		0	0	5	{400,0}	1		{250,30,1,30}	200	200	200	3	[]	800	[]	0	1	effects/blow_point/blow_point_2.frames
+5000055	火火冰6(释放物)	nuqi	0	0		0	0	5	{400,0}	1		{250,30,1,30}	100	200	200	3	[]	800	[]	0	1	effects/blow_point/blow_point_2.frames
+5000056	火火冰7(释放物)	nuqi	0	0		0	0	5	{400,0}	1		{250,30,1,30}	100	200	200	3	[]	800	[]	0	1	effects/blow_point/blow_point_2.frames
+5000057	火火冰8(释放物)	nuqi	0	0		0	0	5	{400,0}	1		{250,30,1,30}	500	200	200	3	[]	800	[]	0	1	effects/blow_point/blow_point_2.frames
+5000060	火火雷1(释放物)	nuqi	0	0	[2007]	0	0	5	{400,0}	1		{450,13,6,4}	200	200	200	4	[]	600	[]	0	1	effects/blow_point/blow_point_2.frames
+5000061	火火雷2(释放物)	nuqi	0	0		0	0	5	{400,0}	1		{450,13,6,4}	600	200	200	4	[]	600	[]	0	1	effects/blow_point/blow_point_2.frames
+5000062	火火雷3(释放物)	nuqi	0	0		0	0	5	{400,0}	1		{450,13,6,4}	300	200	200	4	[]	600	[]	0	1	effects/blow_point/blow_point_2.frames
+5000070	雷雷冰1(释放物)	nuqi	0	0	[2008]	0	0	5		1		{50,10,5,3}	300	200	200	3	[]	600	[]	0	1	effects/blow_point/blow_point_2.frames
+5000071	雷雷冰2(释放物)	nuqi	0	0		0	0	5		1		{50,10,5,3}	300	200	200	3	[]	600	[]	0	1	effects/blow_point/blow_point_2.frames
+5000072	雷雷冰3(释放物)	nuqi	0	0		0	0	5	{400,0}	1		{750,13,6,4}	1000	200	200	3	[]	600	[]	0	1	effects/blow_point/blow_point_2.frames
+5000080	雷雷火1(释放物)	nuqi	0	0		0	0	5	{800,500}	1		{50,10,5,3}	200	200	200	3	[]	800	[]	0	1	effects/blow_point/blow_point_2.frames
+5000081	雷雷火2(释放物)	nuqi	0	0		0	0	5	{800,500}	1		{50,10,5,3}	200	200	200	3	[]	800	[]	0	1	effects/blow_point/blow_point_2.frames
+5000082	雷雷火3(释放物)	nuqi	0	0		0	0	5	{800,500}	1		{50,10,5,3}	300	200	200	3	[]	800	[]	0	1	effects/blow_point/blow_point_2.frames
+5000083	雷雷火4(释放物)	nuqi	0	0		0	0	5	{800,500}	1		{50,10,5,3}	300	200	200	3	[]	800	[]	0	1	effects/blow_point/blow_point_2.frames
+5000084	雷雷火5(释放物)	nuqi	0	0		0	0	5	{800,500}	1		{50,10,5,3}	300	200	200	3	[]	800	[]	0	1	effects/blow_point/blow_point_2.frames
+5000085	雷雷火6(释放物)	nuqi	0	0		0	0	5	{800,500}	1		{50,10,5,3}	300	200	200	3	[]	800	[]	0	1	effects/blow_point/blow_point_2.frames
+5000086	雷雷火7(释放物)	nuqi	0	0		0	0	5	{800,500}	1		{50,10,5,3}	300	200	200	3	[]	800	[]	0	1	effects/blow_point/blow_point_2.frames
+5000087	雷雷火8(释放物)	nuqi	0	0		0	0	5	{800,500}	1		{750,13,6,4}	1000	200	200	3	[]	800	[]	0	1	effects/blow_point/blow_point_2.frames
+5000111	幻影之舞1(释放物）		0	0		0	0	5		1			400	200	200	1	[]	300	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000112	幻影之舞2(释放物）		0	0		0	0	5		1			200	200	200	1	[]	300	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000113	幻影之舞3(释放物）		0	0		0	0	5		1			200	200	200	1	[]	400	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000114	幻影之舞4(释放物）		0	0		0	0	5		1			200	200	200	1	[]	400	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000115	幻影之舞5(释放物）		0	0		0	0	5		1			200	200	200	1	[]	500	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000116	幻影之舞6(释放物）		0	0		0	0	5	{100,1100}	1			910	200	200	1	[]	500	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000120	混沌斩杀1（释放物）		0	0		0	0	200	{200,800}	1			750	200	200	1	[]	300	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000121	混沌斩杀2（释放物）		0	0		0	0	5	{-200,300}	1			50	200	200	1	[]	300	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000122	混沌斩杀3（释放物）		0	0		0	0	5	{200,300}	1			200	200	200	1	[]	400	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000123	混沌斩杀4（释放物）		0	0		0	0	5	{-200,300}	1			200	200	200	1	[]	300	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000124	混沌斩杀5（释放物）		0	0		0	0	5	{200,300}	1			200	200	200	1	[]	300	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000125	混沌斩杀6（释放物）		0	0		0	0	5	{-200,300}	1			200	200	200	1	[]	400	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000126	混沌斩杀7（释放物）		0	0		0	0	5	{200,300}	1			200	200	200	1	[]	300	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000127	混沌斩杀8（释放物）		0	0		0	0	5	{-200,300}	1			100	200	200	1	[]	300	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000128	混沌斩杀9（释放物）		0	0		0	0	5	{200,300}	1			200	200	200	1	[]	400	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000129	混沌斩杀10（释放物）		0	0		0	0	5	{-200,500}	1			1110	200	200	1	[]	300	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000131	三段斩杀1（释放物）		0	0		0	0	5	{-50,500}	1			200	200	200	1	[]	100	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000132	三段斩杀2（释放物）		0	0		0	0	5	{100,500}	1			200	200	200	1	[]	200	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000133	三段斩杀3（释放物）		0	0		0	0	5	{-50,500}	1			100	200	200	1	[]	100	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000134	三段斩杀4（释放物）		0	0		0	0	5	{100,500}	1			200	200	200	1	[]	200	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000135	三段斩杀5（释放物）		0	0		0	0	5	{-50,500}	1			210	200	200	1	[]	100	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000141	雷神狂风1（释放物）		0	0		0	0	5	{300,600}	1			1700	200	200	1	[]	200	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000142	雷神狂风2（释放物）		0	0		0	0	5	{-100,600}	1			200	200	200	1	[]	200	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000143	雷神狂风3（释放物）		0	0		0	0	5	{100,600}	1			100	200	200	1	[]	200	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000144	雷神狂风4（释放物）		0	0		0	0	5	{-100,600}	1			300	200	200	1	[]	200	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000151	流星释放物（释放物）		0	0		0	0	5	{200,800}	1			2000	200	200	1	[]	100	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000161	冰龙狂卷（机器人-释放物）	skill4	0	0		0	0	5	{300,600}	1		{250,30,1,30}		200	200	1	[]	70	[{200,"sounds/sound257.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000171	恶魔突袭（机器人-释放物）	skill1	0	0		0	0	5	{600,0}	1				200	200	1	[]	110	[{300,"sounds/sound122.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000181	暴风雪1（机器人-释放物）	skill3	0	0		0	0	5	{400,0}	2	150	{50,10,2,3}	600	200	200	1	[]	50	[{250,"sounds/sound256.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000182	暴风雪2（机器人-释放物）	skill3	0	0		0	0	5	{400,0}	2	150	{50,10,2,3}	200	200	200	1	[]	100	[{250,"sounds/sound256.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000183	暴风雪3（机器人-释放物）	skill3	0	0		0	0	5	{400,0}	2	150	{50,10,2,3}	100	200	200	1	[]	50	[{250,"sounds/sound256.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000184	暴风雪4（机器人-释放物）	skill3	0	0		0	0	5	{400,0}	2	150	{50,10,2,3}	100	200	200	1	[]	100	[{250,"sounds/sound256.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000185	暴风雪5（机器人-释放物）	skill3	0	0		0	0	5	{400,0}	2	150	{50,10,2,3}	200	200	200	1	[]	50	[{250,"sounds/sound256.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000186	暴风雪6（机器人-释放物）	skill3	0	0		0	0	5	{400,0}	2	150	{50,10,2,3}	200	200	200	1	[]	100	[{250,"sounds/sound256.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000187	暴风雪7（机器人-释放物）	skill3	0	0		0	0	5	{400,0}	2	150	{50,10,2,3}	350	200	200	1	[]	50	[{250,"sounds/sound256.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000191	鬼哭神嚎1（机器人-释放物）	skill4_5	0	0		0	0	5	{650,800}	1		{200,13,8,6}	200	200	200	1	[]	200	[]	0	1	effects/blow_point/blow_point_2.frames
+5000192	鬼哭神嚎2（机器人-释放物）	skill4_5	0	0		0	0	5	{650,800}	1		{200,13,8,6}	550	200	200	1	[]	400	[]	0	1	effects/blow_point/blow_point_2.frames
+5000201	火焰冲锋2（机器人-释放物）	skill5	0	0		0	0	5	{80,1300}	1	200	{2000,13,5,4}	2100	200	200	1	[]	900	[]	0	1	effects/blow_point/blow_point_2.frames
+5000211	幻影之舞1(机器人-释放物）		0	0		0	0	5		1			400	200	200	1	[]	100	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000212	幻影之舞2(机器人-释放物）		0	0		0	0	5		1			200	200	200	1	[]	100	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000213	幻影之舞3(机器人-释放物）		0	0		0	0	5		1			200	200	200	1	[]	200	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000214	幻影之舞4(机器人-释放物）		0	0		0	0	5		1			200	200	200	1	[]	200	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000215	幻影之舞5(机器人-释放物）		0	0		0	0	5		1			200	200	200	1	[]	300	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000216	幻影之舞6(机器人-释放物）		0	0		0	0	5	{100,1100}	1			910	200	200	1	[]	300	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000221	混沌斩杀1（机器人-释放物）		0	0		0	0	200	{200,800}	1			750	200	200	1	[]	300	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000222	混沌斩杀2（机器人-释放物）		0	0		0	0	5	{-200,300}	1			50	200	200	1	[]	300	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000223	混沌斩杀3（机器人-释放物）		0	0		0	0	5	{200,300}	1			200	200	200	1	[]	400	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000224	混沌斩杀4（机器人-释放物）		0	0		0	0	5	{-200,300}	1			200	200	200	1	[]	300	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000225	混沌斩杀5（机器人-释放物）		0	0		0	0	5	{200,300}	1			200	200	200	1	[]	300	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000226	混沌斩杀6（机器人-释放物）		0	0		0	0	5	{-200,300}	1			200	200	200	1	[]	400	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000227	混沌斩杀7（机器人-释放物）		0	0		0	0	5	{200,300}	1			200	200	200	1	[]	300	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000228	混沌斩杀8（机器人-释放物）		0	0		0	0	5	{-200,300}	1			100	200	200	1	[]	300	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000229	混沌斩杀9（机器人-释放物）		0	0		0	0	5	{200,300}	1			200	200	200	1	[]	400	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000230	混沌斩杀10（机器人-释放物）		0	0		0	0	5	{-200,500}	1			1110	200	200	1	[]	300	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000241	三段斩杀1（机器人-释放物）		0	0		0	0	5	{-50,500}	1			200	200	200	1	[]	100	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000242	三段斩杀2（机器人-释放物）		0	0		0	0	5	{100,500}	1			200	200	200	1	[]	100	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000243	三段斩杀3（机器人-释放物）		0	0		0	0	5	{-50,500}	1			100	200	200	1	[]	100	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000244	三段斩杀4（机器人-释放物）		0	0		0	0	5	{100,500}	1			200	200	200	1	[]	100	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5000245	三段斩杀5（机器人-释放物）		0	0		0	0	5	{-50,500}	1			210	200	200	1	[]	100	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5100010	飞镖(女刺客-释放物)		0	0		0	0	5		1				200	200	1	[]	100	[]	0	1	effects/blow_point/blow_point_2.frames
+5200010	机关-电击（释放物）		0	0		0	0	5	{200,800}	1			3200	200	200	1	[]	100	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+5300010	光柱1（释放物）		0	0		0	0	5		1			1200	200	200	1	[]	1000	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/02baodian.frames
+5300011	光柱2（释放物）		0	0		0	0	5		1			200	200	200	1	[]	1000	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/02baodian.frames
+5300012	光柱3（释放物）		0	0		0	0	5		1			800	200	200	1	[]	1000	[{0,"sounds/sound249.wav"}]	0	1	effects/blow_point/02baodian.frames
+5400010	刀光(地精厨娘-释放物)		0	0		0	0	5		1			2000	200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+5500010	毒气1（释放物）	attack1	0	0		0	0	0		1			800	0	0	1	[]	1000	[{0,"sounds/sound249.wav"}]	0	1	
+5500011	毒气2（释放物）	attack2	0	0		0	0	0		1			500	0	0	1	[]	1000	[{0,"sounds/sound249.wav"}]	0	1	
+5500012	毒气3（释放物）	attack3	0	0		0	0	0		1			500	0	0	1	[]	1000	[{0,"sounds/sound249.wav"}]	0	1	
+5500013	毒气4（释放物）	attack4	0	0		0	0	0		1			500	0	0	1	[]	1000	[{0,"sounds/sound249.wav"}]	0	1	
+5500014	毒气5（释放物）	attack5	0	0		0	0	0		1			500	0	0	1	[]	1000	[{0,"sounds/sound249.wav"}]	0	1	
+5500015	毒气6（释放物）	attack6	0	0		0	0	0		1			500	0	0	1	[]	1000	[{0,"sounds/sound249.wav"}]	0	1	
+5500016	毒气7（释放物）	attack7	0	0		0	0	0		1			500	0	0	1	[]	1000	[{0,"sounds/sound249.wav"}]	0	1	
+5500017	毒气8（释放物）	attack8	0	0		0	0	0		1			500	0	0	1	[]	1000	[{0,"sounds/sound249.wav"}]	0	1	
+5500018	毒气9（释放物）	attack9	0	0		0	0	0		1			500	0	0	1	[]	1000	[{0,"sounds/sound249.wav"}]	0	1	
+5500019	毒气10（释放物）	attack10	0	0		0	0	0		1			600	0	0	1	[]	1000	[{0,"sounds/sound249.wav"}]	0	1	
+5600010	地刺1(树精-释放物)	attack1	0	0		0	0	5	{0,-500}	1			1400	200	200	2	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+5600011	地刺2(树精-释放物)	attack2	0	0		0	0	5	{0,-500}	1			300	200	200	2	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+5600012	地刺3(树精-释放物)	attack3	0	0		0	0	5	{0,-500}	1			300	200	200	2	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+5600013	地刺4(树精-释放物)	attack4	0	0		0	0	5	{0,-500}	1			300	200	200	2	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+5600014	地刺5(树精-释放物)	attack5	0	0		0	0	5	{0,-500}	1			300	200	200	2	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+5600015	地刺6(树精-释放物)	attack6	0	0		0	0	5	{0,-500}	1			300	200	200	2	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+5600016	地刺7(树精-释放物)	attack7	0	0		0	0	5	{0,-500}	1			300	200	200	2	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+5600017	地刺8(树精-释放物)	attack8	0	0		0	0	5	{0,-500}	1			300	200	200	2	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+5600018	地刺9(树精-释放物)	attack9	0	0		0	0	5	{0,-500}	1			900	200	200	2	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+5700010	骨刺-简单(释放物)		0	0		0	250	0		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+5700020	骨刺-困难(释放物)		0	0		0	250	0		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+5700030	骨刺-噩梦(释放物)		0	0		0	250	0		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+5800010	圣光道标-困难(释放物)		0	0		0	250	0		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/02baodian.frames
+5800020	圣光道标-噩梦(释放物)		0	0		0	250	0		1				200	200	1	[]	1000	[]	0	1	effects/blow_point/02baodian.frames
+6000011	宠物地刺	attack1	0	0		0	50	50		1			1950	200	200	1	[{0,9000401}]	1000	[]	0	1	effects/blow_point/blow_point_2.frames
+6000021	宠物保护罩	attack1	0	1	[5]	0	50	50		1				200	200	1	[]	1000	[{0,"sounds/sound252.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+6000031	宠物地刺(释放物）	attack1	0	0		0	50	50		1			650	200	200	1	[]	1000	[{950,"sounds/sound251.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+6000032	宠物地刺(释放物）	attack1	0	0		0	50	50		1			650	200	200	1	[]	1000	[{950,"sounds/sound251.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+6000033	宠物地刺(释放物）	attack1	0	0		0	50	50		1			650	200	200	1	[]	1000	[{950,"sounds/sound251.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+6000041	冲击波	attack1	0	1	[5]	0	50	50		1				200	200	1	[{0,9000701}]	1000	[{0,"sounds/sound252.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001011	普通攻击1	attack1	0	0		1	50	50	{100,0}	1				10	10	1	[]	100	[{100,"sounds/z1.wav"},{100,"sounds/1.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001021	普通攻击2	attack2	0	0		1	50	50	{100,0}	1				30	250	1	[]	100	[{100,"sounds/z1.wav"},{100,"sounds/2.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001031	普通攻击3	attack3	0	0		1	100	100	{800,0}	1				100	250	1	[]	100	[{100,"sounds/z2.wav"},{100,"sounds/3.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001041	普通攻击4	attack4	0	0		1	200	150	{1000,600}	1		{300,13,5,5}		200	200	1	[]	100	[{100,"sounds/z3.wav"},{100,"sounds/4.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001051	后跳	kickfoot	0	1	[1001051]	0	250	5						200	200	1	[]	100	[{0,"sounds/tiao.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001061	冲撞	runAttack	0	0		1	150	150	{800,600}	1		{200,13,2,2}		200	200	1	[]	100	[{0,"sounds/sound113.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001071	上挑	upattack	0	0		1	50	50	{100,1100}	1	200			200	200	1	[]	100	[{0,"sounds/sound33.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001081	跳打	jumpAttack	0	0		1	100	50	{0,400}	1				200	200	1	[]	100	[{0,"sounds/sound37.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001091	砸地1	fallDownAttack	0	0		1	100	500		2				200	200	1	[]	100	[]	0	1	effects/blow_point/blow_point_2.frames
+9001092	砸地2	fallLandAttack	0	0		1	200	100	{200,800}	2		{0,13,8,2}		200	200	1	[]	100	[{0,"sounds/sound64.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001101	重击	powerattack	0	0	[1001101]	1	200	5	{600,0}	1		{700,13,3,2}		200	200	1	[]	100	[{0,"sounds/sound113.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001141	冲锋斩杀	skill1_1	0	0		1	200	200	{800,1000}	1		{800,13,2,2}		200	200	1	[]	100	[{700,"sounds/sound113.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001142	冲锋斩杀2	skill1_2	0	0		1	150	5	{400,1000}	1	200	{600,13,5,2}		200	200	1	[]	100	[{400,"sounds/sound129.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001111	剑刃风暴	skill2	6	0		1	50	50		2				200	200	1	[]	100	[{0,"sounds/sound204.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001112	剑刃风暴最后一击	attack3	0	0		1	100	100	{800,0}	1				100	250	1	[]	100	[{100,"sounds/z2.wav"},{100,"sounds/3.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001151	火焰冲锋1	0	0	1		1	300	5		1				200	200	1	[]	10	[{200,"sounds/sound252.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001152	火焰冲锋2	skill5	0	0		1	150	5		1				200	200	1	[{0,9000901}]	10	[{0,"sounds/sound167.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001131	霸王回旋1	skill3_1	0	0		1	100	5	{200,500}	1				200	200	1	[]	100	[{260,"sounds/sound201.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001132	霸王回旋2	skill3_2	0	0		1	150	50	{0,800}	1	200	{150,13,2,2}		200	200	1	[]	200	[{0,"sounds/sound149.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001133	霸王回旋3	skill3_3	0	0		1	200	200	{1000,-1500}	1		{100,13,8,2}		250	300	1	[]	500	[{100,"sounds/sound167.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001121	蓄力一击1	0	0	1	[1001141]	0	30	5		2		{800,13,5,2}		200	200	1	[]	100	[]	0	1	effects/blow_point/blow_point_2.frames
+9001122	蓄力一击1	skill6_1	0	0		1	30	30	{50,600}	2				200	200	1	[]	100	[{800,"sounds/sound252.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001123	蓄力一击2	skill6_2	0	0		1	30	30	{-100,300}	2				200	200	1	[]	100	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001124	蓄力一击3	skill6_3	0	0		1	30	30	{100,300}	2				200	200	1	[]	100	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001125	蓄力一击4	skill6_4	0	0		1	30	30	{-100,300}	2				200	200	1	[]	100	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001126	蓄力一击5	skill6_5	0	0		1	30	30	{100,300}	2				200	200	1	[]	100	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001127	蓄力一击6	skill6_6	0	0		1	30	30	{-100,300}	2				200	200	1	[]	100	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001128	蓄力一击7	skill6_7	0	0		1	30	30	{100,300}	2				200	200	1	[]	100	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001129	蓄力一击8	skill6_8	0	0		1	30	30	{-100,300}	2				200	200	1	[]	100	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001130	蓄力一击9	skill6_9	0	0		1	30	30	{100,300}	2				200	200	1	[]	100	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001155	蓄力一击10	skill6_10	0	0		1	30	30	{-100,500}	2				200	200	1	[]	100	[{0,"sounds/sound250.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001156	蓄力一击11	skill6_11	0	0		1	300	5	{200,1000}	2		{0,13,10,6}		200	200	1	[]	100	[{0,"sounds/sound85.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001161	鬼哭神嚎1	skill4_1	0	0		1	50	50		1		{100,13,2,2}		200	200	1	[]	100	[{0,"sounds/sound128.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001162	鬼哭神嚎2	skill4_2	0	0		1	50	50		1		{0,13,2,2}		200	200	1	[]	100	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001163	鬼哭神嚎3	skill4_3	0	0		1	50	50		1		{100,13,2,2}		200	200	1	[]	100	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001164	鬼哭神嚎4	skill4_4	0	0		1	50	250	{800,0}	1		{0,13,2,2}		80	200	1	[]	100	[{0,"sounds/sound255.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9001165	鬼哭神嚎5	skill4_5	0	0		0	0	5	{650,800}	1		{200,13,8,6}	200	200	200	1	[{0,9000102}]	0	[{0,"sounds/sound129.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9002011	普通攻击1	attack1	0	0		1	100	100	{100,0}	1				200	200	1	[]	100	[{100,"sounds/f1.wav","sounds/1.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9002021	普通攻击2	attack2	0	0		1	50	50	{100,0}	1				200	200	1	[]	100	[{100,"sounds/f2.wav","sounds/2.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9002031	普通攻击3	attack3	0	0		1	100	50	{200,400}	1				200	200	1	[]	100	[{100,"sounds/f3.wav","sounds/sound124.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9002041	普通攻击4	attack4	0	0		1	100	150	{200,800}	2		{350,13,3,3}		200	200	1	[]	100	[{100,"sounds/f4.wav","sounds/sound113.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9002051	闪避	kickfoot	0	1	[1002051]	0	250	5						200	200	1	[]	100	[{0,"sounds/sound124.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9002061	冲撞	runAttack	0	0		1	200	5	{800,500}	1		{250,13,2,2}		200	200	1	[]	100	[{100,"sounds/sound113.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9002071	上挑	upattack	0	0		1	50	5	{0,1100}	1	200			200	200	1	[]	100	[{100,"sounds/sound99.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9002081	跳打	jumpAttack	0	0		1	200	400		1				200	200	1	[]	100	[{0,"sounds/sound170.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9002091	砸地1	fallDownAttack	0	0		1	100	500		2				200	200	1	[]	100	[]	0	1	effects/blow_point/blow_point_2.frames
+9002092	砸地2	fallLandAttack	0	0		1	200	5	{200,800}	2		{0,13,8,2}		200	200	1	[]	100	[{0,"sounds/sound64.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9002101	重击	powerattack	0	0		1	200	5	{500,500}	1		{800,13,3,2}		200	200	1	[]	100	[{700,"sounds/sound149.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9002141	恶魔突袭	skill1	0	0		1	250	5	{300,0}	1				200	200	1	[{0,9001002}]	0	[{0,"sounds/sound240.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9002151	冰晶护体1	skill2_1	0	1	[1002121]	0	250	250						200	200	1	[]	0	[{200,"sounds/sound107.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9002152	冰晶护体2	skill2_2	0	0		0	250	250						200	200	1	[]	0	[]	0	1	effects/blow_point/blow_point_2.frames
+9002153	冰晶护体3	skill2_3	0	0		0	250	250						200	200	1	[]	0	[]	0	1	effects/blow_point/blow_point_2.frames
+9002154	冰晶护体4	skill2_4	0	0		0	250	250						200	200	1	[]	0	[]	0	1	effects/blow_point/blow_point_2.frames
+9002155	冰晶护体5	skill2_5	0	0		0	250	250						200	200	1	[]	0	[{0,"sounds/sound99.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9002111	暴风雪1	skill3	0	0		1	150	500		2				200	200	1	[{0,9001004}]	10	[{0,"sounds/sound240.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9002112	暴风雪2	skill3	0	0		1	150	500		2				200	200	1	[{0,9001004}]	10	[{0,"sounds/sound240.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9002113	暴风雪3	skill3	0	0		1	150	500		2				200	200	1	[{0,9001004}]	10	[{0,"sounds/sound240.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9002131	冰龙狂卷	skill4	0	0		0	0	5	{300,600}	1		{250,30,1,30}		200	200	1	[]	100	[{200,"sounds/sound167.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9002121	炎爆1	skill5_1	0	0		1	100	5	{200,800}	2				200	200	1	[]	1200	[{650,"sounds/sound85.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9002122	炎爆2	skill5_2	0	0		1	100	5	{200,800}	2		{0,13,5,2}		200	200	1	[]	1200	[{100,"sounds/sound85.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9002123	炎爆3	skill5_3	0	0		1	300	5	{200,800}	2		{100,13,5,3}		200	200	1	[]	1200	[{50,"sounds/sound85.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9002161	抗拒火环1	0	0	1	[1002161]	0	150	500		1				200	200	1	[]	0	[]	0	1	effects/blow_point/blow_point_2.frames
+9002162	抗拒火环2	skill6	0	0		1	300	5	{500,1000}	1		{500,13,5,3}		200	200	1	[]	1000	[{350,"sounds/sound93.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9002171	冰晶护体5	skill2_5	0	0		0	250	250						200	200	1	[]	0	[{0,"sounds/sound99.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+9003011	普通攻击1	attack1	0	0		1	50	50	{100,0}	1				100	250	1	[]	100	[]	0	1	effects/blow_point/blow_point_2.frames
+9003021	普通攻击2	attack2	0	0		1	50	50	{100,0}	1				100	250	1	[]	100	[]	0	1	effects/blow_point/blow_point_2.frames
+9003031	普通攻击3	attack3	0	0		1	100	50	{800,0}	1				100	400	1	[]	100	[]	0	1	effects/blow_point/blow_point_2.frames
+9003041	普通攻击4	attack4	0	0		1	200	150	{1000,600}	1		{300,13,5,5}		200	200	1	[]	100	[]	0	1	effects/blow_point/blow_point_2.frames
+9003051	后跳	kickfoot	0	1	[1001051]	0	250	5						200	200	1	[]	100	[]	0	1	effects/blow_point/blow_point_2.frames
+9003061	冲撞	runAttack	0	0		1	150	150	{800,600}	1		{200,13,2,2}		200	200	1	[]	100	[]	0	1	effects/blow_point/blow_point_2.frames
+9003071	上挑	upattack	0	0		1	50	50	{100,1100}	1	200			200	200	1	[]	100	[]	0	1	effects/blow_point/blow_point_2.frames
+9003081	跳打	jumpAttack	0	0		1	100	50	{0,400}	1				200	200	1	[]	100	[]	0	1	effects/blow_point/blow_point_2.frames
+9003091	砸地1	fallDownAttack	0	0		1	100	500		2				200	200	1	[]	100	[]	0	1	effects/blow_point/blow_point_2.frames
+9003092	砸地2	fallLandAttack2	0	0		1	200	100	{200,800}	2		{0,13,8,2}		200	200	2	[]	100	[]	0	1	effects/blow_point/blow_point_2.frames
+9003101	重击	powerattack	0	0	[1001101]	1	200	5	{600,0}	1		{700,13,3,2}		200	200	1	[]	100	[]	0	1	effects/blow_point/blow_point_2.frames
+9003111	三段斩1	skill1_1	0	0		1	100	100	{400,0}	1				200	200	1	[]	150	[]	0	1	effects/blow_point/blow_point_2.frames
+9003112	三段斩2	skill1_2	0	0		1	100	5	{0,650}	1				200	200	1	[]	150	[]	0	1	effects/blow_point/blow_point_2.frames
+9003113	三段斩3	skill1_3	0	0		1	150	5		1				200	200	1	[{0,9001103}]	0	[]	0	1	effects/blow_point/blow_point_2.frames
+9003114	三段斩4	attack4	0	0		1	200	150	{1000,600}	1		{300,13,5,5}		200	200	1	[]	200	[]	0	1	effects/blow_point/blow_point_2.frames
+9003121	幻影之舞	skill2	0	0		1	0	5		1			200	200	200	1	[{0,9001101}]	100	[]	0	1	effects/blow_point/blow_point_2.frames
+9003131	火焰之轮2	skill3_1	0	0		1	100	100	{0,900}	1				100	250	1	[]	600	[]	0	1	effects/blow_point/blow_point_2.frames
+9003132	火焰之轮2	skill3_2	0	0		1	100	100	{150,1100}	1				100	250	1	[]	800	[]	0	1	effects/blow_point/blow_point_2.frames
+9003141	十字审判1	skill4_1	0	0		0	5	5		2				200	200	2	[]	0	[]	0	1	effects/blow_point/blow_point_2.frames
+9003142	十字审判2	skill4_2	0	0		0	5	5		2				200	200	2	[]	0	[]	0	1	effects/blow_point/blow_point_2.frames
+9003143	十字审判3	skill4_3	0	0		0	5	5		2				200	200	2	[]	0	[]	0	1	effects/blow_point/blow_point_2.frames
+9003144	十字审判4	skill4_4	0	0		0	300	200	{200,800}	2		{500,13,5,3}		200	200	2	[]	1200	[]	0	1	effects/blow_point/blow_point_2.frames
+9003151	凤舞九天1	skill5_1	0	0		0	150	5	{0,900}	1				200	200	1	[]	100	[]	0	1	effects/blow_point/blow_point_2.frames
+9003152	凤舞九天2	skill5_2	0	0		1	150	5	{400,600}	1				200	200	1	[]	1	[]	0	1	effects/blow_point/blow_point_2.frames
+9003153	凤舞九天3	skill5_3	0	0		1	100	5	{-800,600}	1				200	200	1	[]	100	[]	0	1	effects/blow_point/blow_point_2.frames
+9003154	凤舞九天4	skill5_4	0	0		1	150	50	{800,600}	1	200			200	200	1	[]	100	[]	0	1	effects/blow_point/blow_point_2.frames
+9003155	凤舞九天5	skill5_5	0	0		1	200	200	{250,700}	1				250	300	1	[]	200	[]	0	1	effects/blow_point/blow_point_2.frames
+9003156	凤舞九天6	skill5_6	0	0		1	30	5		2				200	200	1	[]	300	[]	0	1	effects/blow_point/blow_point_2.frames
+9003161	混沌斩杀	skill6	0	0		0	30	30		2				200	200	1	[{0,9001102}]	0	[]	0	1	effects/blow_point/blow_point_2.frames
+3109011	普攻（树精-简单）	attack1	0	0		1	250	250	{200,0}	1				200	200	3	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3109021	近身穿刺（树精-简单）	attack2	0	0		1	250	250	{300,600}	1				200	200	2	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3109041	穿刺（树精-简单）	attack4	0	0		1	250	250	{300,600}	1				200	200	2	[{0,9000708}]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3109051	远程穿刺（树精-简单）	attack5	0	0		1	250	250	{300,600}	1				200	200	2	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3109111	普攻（树精-困难）	attack1	0	0		1	250	250	{200,0}	1				200	200	3	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3109121	近身穿刺（树精-困难）	attack2	0	0		1	250	250	{300,600}	1				200	200	2	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3109141	穿刺（树精-困难）	attack4	0	0		1	250	250	{300,600}	1				200	200	2	[{0,9000708}]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3109151	远程穿刺（树精-困难）	attack5	0	0		1	250	250	{300,600}	1				200	200	2	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3109211	普攻（树精-噩梦）	attack1	0	0		1	250	250	{200,0}	1				200	200	3	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3109221	近身穿刺（树精-噩梦）	attack2	0	0		1	250	250	{300,600}	1				200	200	2	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3109241	穿刺（树精-噩梦）	attack4	0	0		1	250	250	{300,600}	1				200	200	2	[{0,9000708}]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames
+3109251	远程穿刺（树精-噩梦）	attack5	0	0		1	250	250	{300,600}	1				200	200	2	[]	1000	[{0,"sounds/sound254.wav"}]	0	1	effects/blow_point/blow_point_2.frames

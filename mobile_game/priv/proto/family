@@ -1,0 +1,121 @@
+
+# 创建家族
+#
+# 参数：
+# << CostType, Name/binary >>
+#
+# CostType    - 消耗方式：
+#               1 = 消耗200,000铜钱 CREATE_FAMILY_COST_TYPE_200000_MONEY
+#               2 = 消耗50元宝      CREATE_FAMILY_COST_TYPE_50_GOLD_BAR
+#               3 = 消耗20家族令    CREATE_FAMILY_COST_TYPE_20_JIAZULING
+#
+# Name/binary - 家族名称（UTF8）
+MSG_C2S_FAMILY_CREATE=1
+
+# 创建家族成功
+MSG_S2C_FAMILY_CREATE_RESULT_OK=2
+
+# 创建家族失败
+#
+# 参数：<< Reason >>
+#
+# Reason - 失败原因，可以是下面几个数字中的一个：
+#
+# CREATE_FAMILY_FAIL_WITH_MONEY=1
+#       铜钱不够
+#
+# CREATE_FAMILY_FAIL_WITH_GOLD_BAR=2
+#       元宝不够
+#
+# CREATE_FAMILY_FAIL_WITH_JIA_ZU_LING=3
+#       家族令不够
+#
+# CREATE_FAMILY_FAIL_WITH_LEVEL=4
+#       角色等级不够
+#
+# CREATE_FAMILY_FAIL_WITH_NAME=5
+#       名称长度不对
+#
+# CREATE_FAMILY_FAIL_WITH_EXISTS_NAME=6
+#       该名称的公会已存在
+#
+# CREATE_FAMILY_FAIL_WITH_ERROR_ALREADY_JOINED_FAMILY=7
+#       该用户已加入其它公会
+#
+MSG_S2C_FAMILY_CREATE_RESULT_FAIL=3
+
+
+
+
+# 查询家族信息（返回家族列表）
+#
+# 参数（查询条件）：
+# << MasterOnline, AutoAccept, Nation >>
+#
+# MasterOnline      - 族长是否在线
+#                     0 = 否
+#                     1 = 是
+#                     2 = 随意，都可以
+#
+# AutoAccept        - 家族是否自动同意
+#                     0 = 否
+#                     1 = 是
+#                     2 = 随意，都可以
+#
+# Nation            - 国籍，一个字节，同玩家国籍。
+#
+MSG_C2S_FAMILY_QUERY=4
+
+# 查询家族信息（查询结果）
+#
+# 参数（家族列表）：
+#   << SizeOfFamilyName, FamilyName/binary, FamilyLevel, CombatPower:32, CurrentMembers, MaxMembers, CapitalCaptured >>, might repeated, might empty
+#
+# SizeOfFamilyName          - FamilyName的长度（字节）
+# FamilyName                - 家族名称（UTF8）
+# FamilyLevel               - 家族等级（1-10）
+# CombatPower               - 成员战斗力之和（4 bytes integer，big endian）
+# CurrentMembers            - 当前成员总数
+# MaxMembers                - 当前可容纳的最多成员
+# CapitalCaptured           - 为1则表示该家族已经占领皇城
+MSG_S2C_FAMILY_QUERY_RESULT=5
+
+
+
+
+# 获取家族信息
+#
+# 参数：
+# << FamilyName/binary >>
+#
+# FamilyName                - 家族名称（UTF8）
+#
+MSG_C2S_FAMILY_INFO_GET=6
+
+# 获取家族信息（查询结果）
+#
+# 参数（单一家族信息）：
+#   << CreateTime/binary, Announcement/binary, Master0/binary, Master1/binary, Master2/binary, Master3/binary >>
+#
+# CreateTime                - 创建时间，格式为 << YYYY:16, MM:8, DD: 8 >>
+#                             YYYY - 年，MM - 月，DD - 日
+#
+# Announcement              - 公告信息，格式为 << Len, Text >>
+#                             Len - 公共信息长度
+#                             Text - 公告信息
+#
+# Master0为族长，Master1 - Master3为3个副族长，都遵循相同的格式。
+# 对于每一个Master，
+#       如果职位空缺，那么格式为 << 0 >>
+#       如果职位没有空缺，那么格式为 << 1, MemberNameLen, MemberName/binary, Level, CombatPower, Online >>
+#
+# MemberName                - 玩家名称（UTF8）
+# MemberNameLen             - MemberName的长度（字节）
+# Level                     - 玩家等级
+# CombatPower               - 玩家战斗力
+# Online                    - 玩家在线状态
+#                             在线：1，离线：0
+MSG_S2C_FAMILY_INFO_GET_RESULT_OK=7
+
+# 获取家族信息：家族不存在。
+MSG_S2C_FAMILY_INFO_GET_RESULT_NOT_FOUND=8

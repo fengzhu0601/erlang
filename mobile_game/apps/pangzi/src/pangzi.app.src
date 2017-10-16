@@ -1,0 +1,12 @@
+{application, pangzi,
+ [
+  {description, ""},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, {pangzi_app, []}},
+  {env, [{gen_mod, dbcache}]}
+ ]}.

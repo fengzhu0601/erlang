@@ -1,0 +1,289 @@
+## 神魔系统
+
+@include "game.sproto"
+
+typedef instance_id=u32
+typedef camp_point=u32
+##==服务器主动推送=============================================
+#有玩家完成神魔系统开启人物，使用chat_mng模块广播该信息.
+
+
+# 推送敌方玩家入侵信息（1.打开面板推送两条 ，2.在打开面板期间主动推送一条信息）
+proto MSG_ENEMY_PLAYERS_DATA=1
+{
+     client{
+         message{
+             instance_id:instance_id,#副本ID
+             event:u8                #1表示打开， 0表示关闭
+         }
+     }
+     server{
+         message{
+             player_list:list<{
+                 player_id:player_id, #角色ID
+                 player_name:sstr,    #角色名称
+                 player_power:player_power,  #角色战斗力
+                 camp_id:u8,                 #该玩家种族ID
+                 exploit:u32,                #玩家功勋值，换算成称号
+                 instance_id:instance_id     #副本ID
+             }>
+
+         }
+     }
+}
+
+# 推送敌方玩家入侵信息（1.打开面板推送两条 ，2.在打开面板期间主动推送一条信息）
+proto PUSH_ENEMY_PLAYER_DATA=2
+{
+     client{}
+     server{
+         message{
+             player_id:player_id, #角色ID
+             player_name:sstr,    #角色名称
+             player_power:player_power,  #角色战斗力
+             camp_id:u8,                 #该玩家种族ID
+             exploit:u32,                #玩家功勋值，换算成称号
+             instance_id:instance_id     #副本ID
+
+         }
+     }
+}
+
+# 倒计时结束推送该信息给客户端
+proto PUSH_TIME_TICK=3
+{
+    client{}
+     server{
+         message=empty
+     }
+
+}
+
+#奖励
+proto PUSH_CAMP_PRIZE=4
+{
+     client{
+     }
+     server{
+         message{
+            instance_id:instance_id,
+            prizeInfo:list<{itemId:item_bid, itemCount:u32}>
+         }
+     }
+}
+
+#阵营变化推送给客户端
+proto PUSH_CAMP_ID=5
+{
+    client{}
+     server{
+         message{
+            camp_id:u8
+         }
+     }
+}
+
+##==客户端拉取数据=======================================
+
+#拉取个人信息
+proto GET_CAMP_PLAYER_DATA=11
+{
+     client{
+         message=empty
+     }
+     server{
+         message{
+             self_camp:u8,          #自己种族, 玩家种族 1神族, 2魔族 3人族
+             self_enter_count:u8,   #神族进入次数
+             enemy_enter_count:u8,  #魔族进入次数
+             exploit:u32,           #功勋
+             camp_value_level:u8,   #神魔勋章当前级数
+             camp_value:u32,        #神魔值
+             player_career:u8,      #玩家职业
+             god_instance:list<{    #神族副本是否解锁
+                 instance_id:instance_id,    #副本ID
+                 state:u8           #是否解锁 0未解锁 1解锁
+             }>,
+             magic_instance:list<{  #魔族副本是否解锁
+                 instance_id:instance_id,    #副本ID
+                 state:u8           #是否解锁
+             }>,
+             refresh_time:list<{   # 玩家刷新进入副本次数的时间
+                hour:u8,
+                minute:u8,
+                second:u8
+             }>
+         }
+     }
+}
+
+# 拉取神魔系统公共信息
+proto GET_CAMP_DATA=12
+{
+     client{
+         message=empty
+     }
+     server{
+         message{
+             camp_type:u8,             #0备战, 1开战
+             camp_timestamp:timestamp, #备战结束时间戳||战斗结束时间戳
+             god_camp_point:camp_point,       #神族目前战绩值
+             magic_camp_point:camp_point,     #魔族目前战绩值
+             instance_state:list<{
+                 instance_id:instance_id,#副本ID
+                 state:u8             #0表示该副本未入侵，1表示该副本入侵
+             }>
+         }
+     }
+}
+
+# 拉取处于该副本的敌人玩家
+proto GET_ENEMY_LIST=13
+{
+     client{
+         message{
+             instance_id:instance_id          #副本ID
+         }
+     }
+     server{
+         message{
+             role:list<{
+                 player_id:player_id,         #玩家ID
+                 player_name:sstr,            #玩家名称
+                 player_level:player_level,   #玩家等级
+                 player_power:player_power,   #玩家战斗力
+                 player_carrer:player_carrer  #玩家职业
+             }>
+         }
+     }
+}
+
+# 拉取排行榜信息
+proto GET_RANKING_LIST=14
+{
+     client{
+         message{
+             ranking_type:u8,                 #1表示总榜, 2表示神榜, 3表示魔榜, 4表示人族榜
+             start_pos:u8,                    #从该值开始11
+             num:u8                           #取num条数 10
+         }
+     }
+     server{
+         message{
+             myindex:u8,                  #自己排名
+             player_id:player_id,         #自己ID
+             player_name:sstr,            #自己名称
+             player_level:player_level,   #自己等级
+             self_camp:u8,                #自己种族
+             exploit:u32,                 #自己功勋值
+             player_career:u8,            #自己职业
+             size:u8,                     #服务端存储的总个数
+             role:list<{
+                 rank_id:u8,                  #排名
+                 player_id:player_id,         #玩家ID
+                 player_name:sstr,            #玩家名称
+                 player_level:player_level,   #玩家等级
+                 self_camp:u8,                #玩家种族
+                 exploit:u32,                 #玩家功勋值
+                 player_career:u8             #玩家职业
+             }>
+         }
+     }
+}
+
+# 拉取事件信息
+proto GET_EVENT_LIST=15
+{
+    client{
+        message{
+            start_pos:u8,                    #从该值开始
+            num:u8                           #取num条数
+        }
+    }
+    server{
+        message{
+            god_camp_point:camp_point,       #神族目前战绩值
+            magic_camp_point:camp_point,     #魔族目前战绩值
+            player_money:player_money,       #金币
+            player_diamond:player_diamond,   #钻石
+            size:u8,                         #服务端存储的总个数
+            role:list<{
+                event_type:u8,               #事件类型：1通关副本 2战胜玩家
+                player_id:player_id,         #玩家ID
+                player_name:sstr,            #玩家名称
+                camp_id:u8,                  #该玩家种族ID
+                instance_id:instance_id,     #副本ID
+                camp_point:u32,              #获得战绩点
+                to_player_id:player_id,      #被打败玩家ID
+                to_player_name:sstr          #被打败玩家名称
+            }>
+        }
+    }
+}
+
+##==客户端服务端交互====================================
+#选择人神魔
+proto MSG_SELECT_CAMP=21
+{
+     client{
+         message{
+             camp_id:u8
+         }
+     }
+     server{
+         message=empty
+     }
+}
+
+#每次活动人族选择阵营
+proto MSG_HUMAN_SELECT_CAMP=22
+{
+     client{
+         message{
+             camp_id:u8
+         }
+     }
+     server{
+         message=empty
+     }
+}
+
+# 个人试炼
+proto MSG_PLAYER_ENTER_INSTANCE=23
+{
+     client{
+         message{
+             instance_id:instance_id
+         }
+     }
+     server{
+         message=empty
+     }
+}
+
+# 入侵
+proto MSG_PLAYER_ENTER_ENEMY_INSTANCE=24
+{
+     client{
+         message{
+             instance_id:instance_id
+         }
+     }
+     server{
+         message=empty
+     }
+}
+
+# 确认支援
+proto MSG_PLAYER_ENTER_INSTANCE_FIGHT_ENEMY_PLAYER=25
+{
+     client{
+         message{
+             instance_id:instance_id,
+             enemy_player_id:player_id
+         }
+     }
+     server{
+         message=empty
+     }
+}

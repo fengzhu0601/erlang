@@ -1,0 +1,49 @@
+@include "game.sproto"
+
+proto MSG_PHASE_ACHIEVEMENT_LIST = 1
+{
+	client{
+		message=empty
+	}
+
+	server{
+		message{
+			# size:8
+			# while
+			#    goaltype:u8
+			#    count:u8
+			pc:list<{goaltype:u8, count:u8}>,
+			pc:binary,
+			# size:8
+			# while
+			#   jieduan:u8
+			#   isget:u8(0 bukeling, 1keling, 2yiling)
+			info:list<{jieduan:u8, isget:u8}>
+		}
+	}
+}
+
+proto MSG_PHASE_ACHIEVEMENT_PROGRESS = 2
+{
+	client{}
+
+	server{
+		message{
+			goaltype:u8,
+			count:u8
+		}
+	}
+}
+
+proto MSG_PHASE_ACHIEVEMENT_GET_PRIZE = 3
+{
+	client{
+		message{
+			jieduan:u8
+		}
+	}
+
+	server{
+		message=empty
+	}
+}

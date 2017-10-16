@@ -1,0 +1,461 @@
+﻿id（城镇ID（1-20）*100+num，由策划确定）	所在场景	坐标x（格子）	坐标y（格子）	名字	任务追踪的头像ICON	骨骼动画资源(xx/xx.skel)	普通对话[TalkId]	NPC图标	NPC挂接系统（[event,...])	挑战副本ID
+id	scene_id	x	y	client_name	client_task_image	client_skel	client_normalChat	client_icon	client_event	can_challenge
+101	105	9	12	苏菲	banshenxiang/head_npc_30001/head_npc_30001.png	avatars/npc_30001.skel	[{101,40001}]		[open_depot_ui]
+102	103	23	13	管家 诺顿	banshenxiang/head_npc_30002/head_npc_30002.png	avatars/npc_30002.skel	[{102,40002}]		[]
+103	104	26	14	官员 卡萨罗	banshenxiang/head_npc_30003/head_npc_30003.png	avatars/npc_30003.skel	[{103,40003}]		[]
+104	105	49	12	画家 温莎	banshenxiang/head_npc_30014/head_npc_30014.png	avatars/npc_30014.skel	[{104,40004}]		[]
+106	105	27	13	老板 法卡斯	banshenxiang/head_npc_30006/head_npc_30006.png	avatars/npc_30006.skel	[{106,40006}]	banshenxiang/shop.png	[open_shop_ui]
+107	102	30	14	安格莉亚	banshenxiang/head_npc_30007/head_npc_30007.png	avatars/npc_30007.skel	[{107,40007}]		[]
+108	103	57	14	公爵 洛萨	banshenxiang/head_npc_30008/head_npc_30008.png	avatars/npc_30008.skel	[{108,40008}]		[]
+109	103	35	13	审判骑士 史考尔	banshenxiang/head_npc_30009/head_npc_30009.png	avatars/npc_30009.skel	[{109,40009}]	banshenxiang/course.png	[open_war_course_ui]
+110	101	34	14	盗贼 罗格	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40010}]		[]
+111	103	68	13	机械师 普朗克	banshenxiang/head_npc_30011/head_npc_30011.png	avatars/npc_300111.skel	[{111,40011}]		[]
+112	103	76	13	邮差	banshenxiang/head_npc_10002/head_npc_10002.png	avatars/npc_10002.skel	[{112,40012}]		[open_mail_ui]
+201	201	22	13	兵团长 海姆	banshenxiang/head_npc_20002/head_npc_20002.png	avatars/npc_20002.skel	[{201,40101}]		[]
+202	202	27	16	拍卖师 莉莎	banshenxiang/head_npc_30004/head_npc_30004.png	avatars/npc_30004.skel	[{202,40102}]	banshenxiang/auction.png	[open_auction_ui]
+203	201	36	13	探险家 穆拉丁	banshenxiang/head_npc_20001/head_npc_20001.png	avatars/npc_20001.skel	[{203,40103}]	banshenxiang/seller.png	[]
+204	201	46	13	凯西猫 胡地	banshenxiang/head_npc_20003/head_npc_20003.png	avatars/npc_20003.skel	[{308,40104}]		[]
+205	203	28	13	奥多姆守卫 山姆	banshenxiang/head_npc_50000/head_npc_50000.png	avatars/npc_50000.skel	[{205,40105}]		[]
+206	203	15	13	萨满 莫林	banshenxiang/head_npc_20004/head_npc_20004.png	avatars/npc_20004.skel	[{206,40106}]		[]
+301	301	35	13	女王 艾希	banshenxiang/head_npc_30031/head_npc_30031.png	avatars/npc_30031.skel	[{301,40201}]		[]
+302	301	24	13	护卫队长 卡恩	banshenxiang/head_npc_30032/head_npc_30032.png	avatars/npc_30032.skel	[{302,40202}]		[]
+303	301	45	13	精灵王 莱斯塔	banshenxiang/head_npc_30033/head_npc_30033.png	avatars/npc_30033.skel	[{303,40203}]		[]
+304	302	25	12	术士 摩尔	banshenxiang/head_npc_40004/head_npc_40004.png	avatars/npc_40004.skel	[{304,40204}]		[]
+305	303	33	14	精灵村民 山德鲁	banshenxiang/head_npc_40006/head_npc_40006.png	avatars/npc_40006.skel	[{305,40205}]		[]
+306	303	16	14	精灵女孩 洛丽塔	banshenxiang/head_npc_40007/head_npc_40007.png	avatars/npc_40007.skel	[{306,40206}]		[]
+307	301	64	14	穆雷	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{307,40207}]	banshenxiang/seller.png	[]
+401	402	36	14	冰川守护者 凯尔	banshenxiang/head_npc_40011/head_npc_40011.png	avatars/npc_40011.skel	[{401,40301}]		[]
+402	401	32	15	公主 安娜	banshenxiang/head_npc_40002/head_npc_40002.png	avatars/npc_40002.skel	[{402,40302}]		[]
+403	401	57	14	女祭司 米莱娜	banshenxiang/head_npc_40010/head_npc_40010.png	avatars/npc_40010.skel	[{403,40303}]		[]
+404	401	23	14	皇家骑士长 费雷罗	banshenxiang/head_npc_40009/head_npc_40009.png	avatars/npc_40009.skel	[{404,40304}]		[]
+406	403	17	14	梦境使者 弗洛伊德	banshenxiang/head_npc_40008/head_npc_40008.png	avatars/npc_40008.skel	[{406,40305}]		[]
+408	402	21	14	穆雷	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{408,40306}]	banshenxiang/seller.png	[]
+409	403	36	14	雪人 巴罗	banshenxiang/head_npc_40001/head_npc_40001.png	avatars/npc_40001.skel	[{409,40307}]		[]
+501	501	50	13	潮汐使者 西壬	banshenxiang/head_npc_40005/head_npc_40005.png	avatars/npc_40005.skel	[{409,40401}]		[]
+502	501	36	14	精灵 露丝	banshenxiang/head_npc_40003/head_npc_40003.png	avatars/npc_40003.skel	[{409,40402}]		[]
+503	501	18	14	精灵游侠 伊莉丝翠	banshenxiang/head_npc_80001/head_npc_80001.png	avatars/npc_80001.skel	[{409,40403}]		[]
+504	502	7	14	诡术师 弗洛茨	banshenxiang/head_npc_80002/head_npc_80002.png	avatars/npc_80002.skel	[{409,40404}]		[]
+505	502	27	13	酒吧女郎 海伦	banshenxiang/head_npc_80003/head_npc_80003.png	avatars/npc_80003.skel	[{409,40405}]		[]
+601	601	43	13	龙女 亚沙	banshenxiang/head_npc_90002/head_npc_90002.png	avatars/npc_90002.skel	[{409,40501}]		[]
+602	601	21	16	龙人长老 甘道夫	banshenxiang/head_npc_90001/head_npc_90001.png	avatars/npc_90001.skel	[{409,40502}]		[]
+1001	1001	22	15	穆雷	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40305}]		[]
+10001				流氓兔	banshenxiang/head_npc_30001/head_npc_30001.png	avatars/npc_30001.skel	[{101,40001}]			50111
+10002				土拨鼠	banshenxiang/head_npc_30002/head_npc_30002.png	avatars/npc_30002.skel	[{102,40002}]			50111
+10003				骷髅兽	banshenxiang/head_npc_30003/head_npc_30003.png	avatars/npc_30003.skel	[{103,40003}]			50111
+10004				骷髅战士	banshenxiang/head_npc_30014/head_npc_30014.png	avatars/npc_30014.skel	[{104,40004}]			50111
+10005				男斗士	banshenxiang/head_npc_30006/head_npc_30006.png	avatars/npc_30006.skel	[{106,40006}]			50111
+10006				女刺客	banshenxiang/head_npc_30007/head_npc_30007.png	avatars/npc_30007.skel	[{107,40007}]			50111
+10007				嗜血斗士	banshenxiang/head_npc_30008/head_npc_30008.png	avatars/npc_30008.skel	[{108,40008}]			50111
+10008				剑齿豹 精英	banshenxiang/head_npc_30009/head_npc_30009.png	avatars/npc_30009.skel	[{109,40009}]			50111
+10009				蝙蝠女妖	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40010}]			50111
+10010				地精战士	banshenxiang/head_npc_30011/head_npc_30011.png	avatars/npc_300111.skel	[{111,40011}]			50111
+10011				地精弓箭手	banshenxiang/head_npc_10002/head_npc_10002.png	avatars/npc_10002.skel	[{112,40012}]			50111
+10012				堕落天使	banshenxiang/head_npc_20002/head_npc_20002.png	avatars/npc_20002.skel	[{201,40101}]			50111
+10013				地精傀儡 精英	banshenxiang/head_npc_30004/head_npc_30004.png	avatars/npc_30004.skel	[{202,40102}]			50111
+10014				雷鸟	banshenxiang/head_npc_20001/head_npc_20001.png	avatars/npc_20001.skel	[{203,40103}]			50111
+10015				镜子怪	banshenxiang/head_npc_20003/head_npc_20003.png	avatars/npc_20003.skel	[{308,40104}]			50111
+10016				镜子怪	banshenxiang/head_npc_50000/head_npc_50000.png	avatars/npc_50000.skel	[{205,40105}]			50111
+10017				镜子怪	banshenxiang/head_npc_20004/head_npc_20004.png	avatars/npc_20004.skel	[{206,40106}]			50111
+10018				镜子怪	banshenxiang/head_npc_30031/head_npc_30031.png	avatars/npc_30031.skel	[{301,40201}]			50111
+10019				地精傀儡	banshenxiang/head_npc_30032/head_npc_30032.png	avatars/npc_30032.skel	[{302,40202}]			50120
+10020				大天使 泰勒	banshenxiang/head_npc_30033/head_npc_30033.png	avatars/npc_30033.skel	[{303,40203}]			50120
+10021				流氓兔	banshenxiang/head_npc_30001/head_npc_30001.png	avatars/npc_30001.skel	[{101,40001}]			50111
+10022				土拨鼠	banshenxiang/head_npc_30002/head_npc_30002.png	avatars/npc_30002.skel	[{102,40002}]			50111
+10023				骷髅兽	banshenxiang/head_npc_30003/head_npc_30003.png	avatars/npc_30003.skel	[{103,40003}]			50111
+10024				骷髅战士	banshenxiang/head_npc_30014/head_npc_30014.png	avatars/npc_30014.skel	[{104,40004}]			50111
+10025				男斗士	banshenxiang/head_npc_30006/head_npc_30006.png	avatars/npc_30006.skel	[{106,40006}]			50111
+10026				女刺客	banshenxiang/head_npc_30007/head_npc_30007.png	avatars/npc_30007.skel	[{107,40007}]			50111
+10027				嗜血斗士	banshenxiang/head_npc_30008/head_npc_30008.png	avatars/npc_30008.skel	[{108,40008}]			50111
+10028				剑齿豹 精英	banshenxiang/head_npc_30009/head_npc_30009.png	avatars/npc_30009.skel	[{109,40009}]			50111
+10029				蝙蝠女妖	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40010}]			50111
+10030				地精战士	banshenxiang/head_npc_30011/head_npc_30011.png	avatars/npc_300111.skel	[{111,40011}]			50111
+10031				地精弓箭手	banshenxiang/head_npc_10002/head_npc_10002.png	avatars/npc_10002.skel	[{112,40012}]			50111
+10032				堕落天使	banshenxiang/head_npc_20002/head_npc_20002.png	avatars/npc_20002.skel	[{201,40101}]			50111
+10033				地精傀儡 精英	banshenxiang/head_npc_30004/head_npc_30004.png	avatars/npc_30004.skel	[{202,40102}]			50111
+10034				雷鸟	banshenxiang/head_npc_20001/head_npc_20001.png	avatars/npc_20001.skel	[{203,40103}]			50111
+10035				镜子怪	banshenxiang/head_npc_20003/head_npc_20003.png	avatars/npc_20003.skel	[{308,40104}]			50111
+10036				镜子怪	banshenxiang/head_npc_50000/head_npc_50000.png	avatars/npc_50000.skel	[{205,40105}]			50111
+10037				镜子怪	banshenxiang/head_npc_20004/head_npc_20004.png	avatars/npc_20004.skel	[{206,40106}]			50111
+10038				镜子怪	banshenxiang/head_npc_30031/head_npc_30031.png	avatars/npc_30031.skel	[{301,40201}]			50111
+10039				地精傀儡	banshenxiang/head_npc_30032/head_npc_30032.png	avatars/npc_30032.skel	[{302,40202}]			50120
+10040				大天使 泰勒	banshenxiang/head_npc_30033/head_npc_30033.png	avatars/npc_30033.skel	[{303,40203}]			50120
+10041				流氓兔	banshenxiang/head_npc_30001/head_npc_30001.png	avatars/npc_30001.skel	[{101,40001}]			50111
+10042				土拨鼠	banshenxiang/head_npc_30002/head_npc_30002.png	avatars/npc_30002.skel	[{102,40002}]			50111
+10043				骷髅兽	banshenxiang/head_npc_30003/head_npc_30003.png	avatars/npc_30003.skel	[{103,40003}]			50111
+10044				骷髅战士	banshenxiang/head_npc_30014/head_npc_30014.png	avatars/npc_30014.skel	[{104,40004}]			50111
+10045				男斗士	banshenxiang/head_npc_30006/head_npc_30006.png	avatars/npc_30006.skel	[{106,40006}]			50111
+10046				女刺客	banshenxiang/head_npc_30007/head_npc_30007.png	avatars/npc_30007.skel	[{107,40007}]			50111
+10047				嗜血斗士	banshenxiang/head_npc_30008/head_npc_30008.png	avatars/npc_30008.skel	[{108,40008}]			50111
+10048				剑齿豹 精英	banshenxiang/head_npc_30009/head_npc_30009.png	avatars/npc_30009.skel	[{109,40009}]			50111
+10049				蝙蝠女妖	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40010}]			50111
+10050				地精战士	banshenxiang/head_npc_30011/head_npc_30011.png	avatars/npc_300111.skel	[{111,40011}]			50111
+10051				地精弓箭手	banshenxiang/head_npc_10002/head_npc_10002.png	avatars/npc_10002.skel	[{112,40012}]			50111
+10052				堕落天使	banshenxiang/head_npc_20002/head_npc_20002.png	avatars/npc_20002.skel	[{201,40101}]			50111
+10053				地精傀儡 精英	banshenxiang/head_npc_30004/head_npc_30004.png	avatars/npc_30004.skel	[{202,40102}]			50111
+10054				雷鸟	banshenxiang/head_npc_20001/head_npc_20001.png	avatars/npc_20001.skel	[{203,40103}]			50111
+10055				镜子怪	banshenxiang/head_npc_20003/head_npc_20003.png	avatars/npc_20003.skel	[{308,40104}]			50111
+10056				镜子怪	banshenxiang/head_npc_50000/head_npc_50000.png	avatars/npc_50000.skel	[{205,40105}]			50111
+10057				镜子怪	banshenxiang/head_npc_20004/head_npc_20004.png	avatars/npc_20004.skel	[{206,40106}]			50111
+10058				镜子怪	banshenxiang/head_npc_30031/head_npc_30031.png	avatars/npc_30031.skel	[{301,40201}]			50111
+10059				地精傀儡	banshenxiang/head_npc_30032/head_npc_30032.png	avatars/npc_30032.skel	[{302,40202}]			50120
+10060				大天使 泰勒	banshenxiang/head_npc_30033/head_npc_30033.png	avatars/npc_30033.skel	[{303,40203}]			50120
+10061				流氓兔	banshenxiang/head_npc_30001/head_npc_30001.png	avatars/npc_30001.skel	[{101,40001}]			50111
+10062				土拨鼠	banshenxiang/head_npc_30002/head_npc_30002.png	avatars/npc_30002.skel	[{102,40002}]			50111
+10063				骷髅兽	banshenxiang/head_npc_30003/head_npc_30003.png	avatars/npc_30003.skel	[{103,40003}]			50111
+10064				骷髅战士	banshenxiang/head_npc_30014/head_npc_30014.png	avatars/npc_30014.skel	[{104,40004}]			50111
+10065				男斗士	banshenxiang/head_npc_30006/head_npc_30006.png	avatars/npc_30006.skel	[{106,40006}]			50111
+10066				女刺客	banshenxiang/head_npc_30007/head_npc_30007.png	avatars/npc_30007.skel	[{107,40007}]			50111
+10067				嗜血斗士	banshenxiang/head_npc_30008/head_npc_30008.png	avatars/npc_30008.skel	[{108,40008}]			50111
+10068				剑齿豹 精英	banshenxiang/head_npc_30009/head_npc_30009.png	avatars/npc_30009.skel	[{109,40009}]			50111
+10069				蝙蝠女妖	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40010}]			50111
+10070				地精战士	banshenxiang/head_npc_30011/head_npc_30011.png	avatars/npc_300111.skel	[{111,40011}]			50111
+10071				地精弓箭手	banshenxiang/head_npc_10002/head_npc_10002.png	avatars/npc_10002.skel	[{112,40012}]			50111
+10072				堕落天使	banshenxiang/head_npc_20002/head_npc_20002.png	avatars/npc_20002.skel	[{201,40101}]			50111
+10073				地精傀儡 精英	banshenxiang/head_npc_30004/head_npc_30004.png	avatars/npc_30004.skel	[{202,40102}]			50111
+10074				雷鸟	banshenxiang/head_npc_20001/head_npc_20001.png	avatars/npc_20001.skel	[{203,40103}]			50111
+10075				镜子怪	banshenxiang/head_npc_20003/head_npc_20003.png	avatars/npc_20003.skel	[{308,40104}]			50111
+10076				镜子怪	banshenxiang/head_npc_50000/head_npc_50000.png	avatars/npc_50000.skel	[{205,40105}]			50111
+10077				镜子怪	banshenxiang/head_npc_20004/head_npc_20004.png	avatars/npc_20004.skel	[{206,40106}]			50111
+10078				镜子怪	banshenxiang/head_npc_30031/head_npc_30031.png	avatars/npc_30031.skel	[{301,40201}]			50111
+10079				地精傀儡	banshenxiang/head_npc_30032/head_npc_30032.png	avatars/npc_30032.skel	[{302,40202}]			50120
+10080				大天使 泰勒	banshenxiang/head_npc_30033/head_npc_30033.png	avatars/npc_30033.skel	[{303,40203}]			50120
+10081				流氓兔	banshenxiang/head_npc_30001/head_npc_30001.png	avatars/npc_30001.skel	[{101,40001}]			50111
+10082				土拨鼠	banshenxiang/head_npc_30002/head_npc_30002.png	avatars/npc_30002.skel	[{102,40002}]			50111
+10083				骷髅兽	banshenxiang/head_npc_30003/head_npc_30003.png	avatars/npc_30003.skel	[{103,40003}]			50111
+10084				骷髅战士	banshenxiang/head_npc_30014/head_npc_30014.png	avatars/npc_30014.skel	[{104,40004}]			50111
+10085				男斗士	banshenxiang/head_npc_30006/head_npc_30006.png	avatars/npc_30006.skel	[{106,40006}]			50111
+10086				女刺客	banshenxiang/head_npc_30007/head_npc_30007.png	avatars/npc_30007.skel	[{107,40007}]			50111
+10087				嗜血斗士	banshenxiang/head_npc_30008/head_npc_30008.png	avatars/npc_30008.skel	[{108,40008}]			50111
+10088				剑齿豹 精英	banshenxiang/head_npc_30009/head_npc_30009.png	avatars/npc_30009.skel	[{109,40009}]			50111
+10089				蝙蝠女妖	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40010}]			50111
+10090				地精战士	banshenxiang/head_npc_30011/head_npc_30011.png	avatars/npc_300111.skel	[{111,40011}]			50111
+10091				地精弓箭手	banshenxiang/head_npc_10002/head_npc_10002.png	avatars/npc_10002.skel	[{112,40012}]			50111
+10092				堕落天使	banshenxiang/head_npc_20002/head_npc_20002.png	avatars/npc_20002.skel	[{201,40101}]			50111
+10093				地精傀儡 精英	banshenxiang/head_npc_30004/head_npc_30004.png	avatars/npc_30004.skel	[{202,40102}]			50111
+10094				雷鸟	banshenxiang/head_npc_20001/head_npc_20001.png	avatars/npc_20001.skel	[{203,40103}]			50111
+10095				镜子怪	banshenxiang/head_npc_20003/head_npc_20003.png	avatars/npc_20003.skel	[{308,40104}]			50111
+10096				镜子怪	banshenxiang/head_npc_50000/head_npc_50000.png	avatars/npc_50000.skel	[{205,40105}]			50111
+10097				镜子怪	banshenxiang/head_npc_20004/head_npc_20004.png	avatars/npc_20004.skel	[{206,40106}]			50111
+10098				镜子怪	banshenxiang/head_npc_30031/head_npc_30031.png	avatars/npc_30031.skel	[{301,40201}]			50111
+10099				地精傀儡	banshenxiang/head_npc_30032/head_npc_30032.png	avatars/npc_30032.skel	[{302,40202}]			50120
+10100				大天使 泰勒	banshenxiang/head_npc_30033/head_npc_30033.png	avatars/npc_30033.skel	[{303,40203}]			50120
+10101				流氓兔	banshenxiang/head_npc_30001/head_npc_30001.png	avatars/npc_30001.skel	[{101,40001}]			50111
+10102				土拨鼠	banshenxiang/head_npc_30002/head_npc_30002.png	avatars/npc_30002.skel	[{102,40002}]			50111
+10103				骷髅兽	banshenxiang/head_npc_30003/head_npc_30003.png	avatars/npc_30003.skel	[{103,40003}]			50111
+10104				骷髅战士	banshenxiang/head_npc_30014/head_npc_30014.png	avatars/npc_30014.skel	[{104,40004}]			50111
+10105				男斗士	banshenxiang/head_npc_30006/head_npc_30006.png	avatars/npc_30006.skel	[{106,40006}]			50111
+10106				女刺客	banshenxiang/head_npc_30007/head_npc_30007.png	avatars/npc_30007.skel	[{107,40007}]			50111
+10107				嗜血斗士	banshenxiang/head_npc_30008/head_npc_30008.png	avatars/npc_30008.skel	[{108,40008}]			50111
+10108				剑齿豹 精英	banshenxiang/head_npc_30009/head_npc_30009.png	avatars/npc_30009.skel	[{109,40009}]			50111
+10109				蝙蝠女妖	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40010}]			50111
+10110				地精战士	banshenxiang/head_npc_30011/head_npc_30011.png	avatars/npc_300111.skel	[{111,40011}]			50111
+10111				地精弓箭手	banshenxiang/head_npc_10002/head_npc_10002.png	avatars/npc_10002.skel	[{112,40012}]			50111
+10112				堕落天使	banshenxiang/head_npc_20002/head_npc_20002.png	avatars/npc_20002.skel	[{201,40101}]			50111
+10113				地精傀儡 精英	banshenxiang/head_npc_30004/head_npc_30004.png	avatars/npc_30004.skel	[{202,40102}]			50111
+10114				雷鸟	banshenxiang/head_npc_20001/head_npc_20001.png	avatars/npc_20001.skel	[{203,40103}]			50111
+10115				镜子怪	banshenxiang/head_npc_20003/head_npc_20003.png	avatars/npc_20003.skel	[{308,40104}]			50111
+10116				镜子怪	banshenxiang/head_npc_50000/head_npc_50000.png	avatars/npc_50000.skel	[{205,40105}]			50111
+10117				镜子怪	banshenxiang/head_npc_20004/head_npc_20004.png	avatars/npc_20004.skel	[{206,40106}]			50111
+10118				镜子怪	banshenxiang/head_npc_30031/head_npc_30031.png	avatars/npc_30031.skel	[{301,40201}]			50111
+10119				地精傀儡	banshenxiang/head_npc_30032/head_npc_30032.png	avatars/npc_30032.skel	[{302,40202}]			50120
+10120				大天使 泰勒	banshenxiang/head_npc_30033/head_npc_30033.png	avatars/npc_30033.skel	[{303,40203}]			50120
+10121				流氓兔	banshenxiang/head_npc_30001/head_npc_30001.png	avatars/npc_30001.skel	[{101,40001}]			50111
+10122				土拨鼠	banshenxiang/head_npc_30002/head_npc_30002.png	avatars/npc_30002.skel	[{102,40002}]			50111
+10123				骷髅兽	banshenxiang/head_npc_30003/head_npc_30003.png	avatars/npc_30003.skel	[{103,40003}]			50111
+10124				骷髅战士	banshenxiang/head_npc_30014/head_npc_30014.png	avatars/npc_30014.skel	[{104,40004}]			50111
+10125				男斗士	banshenxiang/head_npc_30006/head_npc_30006.png	avatars/npc_30006.skel	[{106,40006}]			50111
+10126				女刺客	banshenxiang/head_npc_30007/head_npc_30007.png	avatars/npc_30007.skel	[{107,40007}]			50111
+10127				嗜血斗士	banshenxiang/head_npc_30008/head_npc_30008.png	avatars/npc_30008.skel	[{108,40008}]			50111
+10128				剑齿豹 精英	banshenxiang/head_npc_30009/head_npc_30009.png	avatars/npc_30009.skel	[{109,40009}]			50111
+10129				蝙蝠女妖	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40010}]			50111
+10130				地精战士	banshenxiang/head_npc_30011/head_npc_30011.png	avatars/npc_300111.skel	[{111,40011}]			50111
+10131				地精弓箭手	banshenxiang/head_npc_10002/head_npc_10002.png	avatars/npc_10002.skel	[{112,40012}]			50111
+10132				堕落天使	banshenxiang/head_npc_20002/head_npc_20002.png	avatars/npc_20002.skel	[{201,40101}]			50111
+10133				地精傀儡 精英	banshenxiang/head_npc_30004/head_npc_30004.png	avatars/npc_30004.skel	[{202,40102}]			50111
+10134				雷鸟	banshenxiang/head_npc_20001/head_npc_20001.png	avatars/npc_20001.skel	[{203,40103}]			50111
+10135				镜子怪	banshenxiang/head_npc_20003/head_npc_20003.png	avatars/npc_20003.skel	[{308,40104}]			50111
+10136				镜子怪	banshenxiang/head_npc_50000/head_npc_50000.png	avatars/npc_50000.skel	[{205,40105}]			50111
+10137				镜子怪	banshenxiang/head_npc_20004/head_npc_20004.png	avatars/npc_20004.skel	[{206,40106}]			50111
+10138				镜子怪	banshenxiang/head_npc_30031/head_npc_30031.png	avatars/npc_30031.skel	[{301,40201}]			50111
+10139				地精傀儡	banshenxiang/head_npc_30032/head_npc_30032.png	avatars/npc_30032.skel	[{302,40202}]			50120
+10140				大天使 泰勒	banshenxiang/head_npc_30033/head_npc_30033.png	avatars/npc_30033.skel	[{303,40203}]			50120
+10141				流氓兔	banshenxiang/head_npc_30001/head_npc_30001.png	avatars/npc_30001.skel	[{101,40001}]			50111
+10142				土拨鼠	banshenxiang/head_npc_30002/head_npc_30002.png	avatars/npc_30002.skel	[{102,40002}]			50111
+10143				骷髅兽	banshenxiang/head_npc_30003/head_npc_30003.png	avatars/npc_30003.skel	[{103,40003}]			50111
+10144				骷髅战士	banshenxiang/head_npc_30014/head_npc_30014.png	avatars/npc_30014.skel	[{104,40004}]			50111
+10145				男斗士	banshenxiang/head_npc_30006/head_npc_30006.png	avatars/npc_30006.skel	[{106,40006}]			50111
+10146				女刺客	banshenxiang/head_npc_30007/head_npc_30007.png	avatars/npc_30007.skel	[{107,40007}]			50111
+10147				嗜血斗士	banshenxiang/head_npc_30008/head_npc_30008.png	avatars/npc_30008.skel	[{108,40008}]			50111
+10148				剑齿豹 精英	banshenxiang/head_npc_30009/head_npc_30009.png	avatars/npc_30009.skel	[{109,40009}]			50111
+10149				蝙蝠女妖	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40010}]			50111
+10150				地精战士	banshenxiang/head_npc_30011/head_npc_30011.png	avatars/npc_300111.skel	[{111,40011}]			50111
+10151				地精弓箭手	banshenxiang/head_npc_10002/head_npc_10002.png	avatars/npc_10002.skel	[{112,40012}]			50111
+10152				堕落天使	banshenxiang/head_npc_20002/head_npc_20002.png	avatars/npc_20002.skel	[{201,40101}]			50111
+10153				地精傀儡 精英	banshenxiang/head_npc_30004/head_npc_30004.png	avatars/npc_30004.skel	[{202,40102}]			50111
+10154				雷鸟	banshenxiang/head_npc_20001/head_npc_20001.png	avatars/npc_20001.skel	[{203,40103}]			50111
+10155				镜子怪	banshenxiang/head_npc_20003/head_npc_20003.png	avatars/npc_20003.skel	[{308,40104}]			50111
+10156				镜子怪	banshenxiang/head_npc_50000/head_npc_50000.png	avatars/npc_50000.skel	[{205,40105}]			50111
+10157				镜子怪	banshenxiang/head_npc_20004/head_npc_20004.png	avatars/npc_20004.skel	[{206,40106}]			50111
+10158				镜子怪	banshenxiang/head_npc_30031/head_npc_30031.png	avatars/npc_30031.skel	[{301,40201}]			50111
+10159				地精傀儡	banshenxiang/head_npc_30032/head_npc_30032.png	avatars/npc_30032.skel	[{302,40202}]			50120
+10160				大天使 泰勒	banshenxiang/head_npc_30033/head_npc_30033.png	avatars/npc_30033.skel	[{303,40203}]			50120
+10161				流氓兔	banshenxiang/head_npc_30001/head_npc_30001.png	avatars/npc_30001.skel	[{101,40001}]			50111
+10162				土拨鼠	banshenxiang/head_npc_30002/head_npc_30002.png	avatars/npc_30002.skel	[{102,40002}]			50111
+10163				骷髅兽	banshenxiang/head_npc_30003/head_npc_30003.png	avatars/npc_30003.skel	[{103,40003}]			50111
+10164				骷髅战士	banshenxiang/head_npc_30014/head_npc_30014.png	avatars/npc_30014.skel	[{104,40004}]			50111
+10165				男斗士	banshenxiang/head_npc_30006/head_npc_30006.png	avatars/npc_30006.skel	[{106,40006}]			50111
+10166				女刺客	banshenxiang/head_npc_30007/head_npc_30007.png	avatars/npc_30007.skel	[{107,40007}]			50111
+10167				嗜血斗士	banshenxiang/head_npc_30008/head_npc_30008.png	avatars/npc_30008.skel	[{108,40008}]			50111
+10168				剑齿豹 精英	banshenxiang/head_npc_30009/head_npc_30009.png	avatars/npc_30009.skel	[{109,40009}]			50111
+10169				蝙蝠女妖	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40010}]			50111
+10170				地精战士	banshenxiang/head_npc_30011/head_npc_30011.png	avatars/npc_300111.skel	[{111,40011}]			50111
+10171				地精弓箭手	banshenxiang/head_npc_10002/head_npc_10002.png	avatars/npc_10002.skel	[{112,40012}]			50111
+10172				堕落天使	banshenxiang/head_npc_20002/head_npc_20002.png	avatars/npc_20002.skel	[{201,40101}]			50111
+10173				地精傀儡 精英	banshenxiang/head_npc_30004/head_npc_30004.png	avatars/npc_30004.skel	[{202,40102}]			50111
+10174				雷鸟	banshenxiang/head_npc_20001/head_npc_20001.png	avatars/npc_20001.skel	[{203,40103}]			50111
+10175				镜子怪	banshenxiang/head_npc_20003/head_npc_20003.png	avatars/npc_20003.skel	[{308,40104}]			50111
+10176				镜子怪	banshenxiang/head_npc_50000/head_npc_50000.png	avatars/npc_50000.skel	[{205,40105}]			50111
+10177				镜子怪	banshenxiang/head_npc_20004/head_npc_20004.png	avatars/npc_20004.skel	[{206,40106}]			50111
+10178				镜子怪	banshenxiang/head_npc_30031/head_npc_30031.png	avatars/npc_30031.skel	[{301,40201}]			50111
+10179				地精傀儡	banshenxiang/head_npc_30032/head_npc_30032.png	avatars/npc_30032.skel	[{302,40202}]			50120
+10180				大天使 泰勒	banshenxiang/head_npc_30033/head_npc_30033.png	avatars/npc_30033.skel	[{303,40203}]			50120
+10181				流氓兔	banshenxiang/head_npc_30001/head_npc_30001.png	avatars/npc_30001.skel	[{101,40001}]			50111
+10182				土拨鼠	banshenxiang/head_npc_30002/head_npc_30002.png	avatars/npc_30002.skel	[{102,40002}]			50111
+10183				骷髅兽	banshenxiang/head_npc_30003/head_npc_30003.png	avatars/npc_30003.skel	[{103,40003}]			50111
+10184				骷髅战士	banshenxiang/head_npc_30014/head_npc_30014.png	avatars/npc_30014.skel	[{104,40004}]			50111
+10185				男斗士	banshenxiang/head_npc_30006/head_npc_30006.png	avatars/npc_30006.skel	[{106,40006}]			50111
+10186				女刺客	banshenxiang/head_npc_30007/head_npc_30007.png	avatars/npc_30007.skel	[{107,40007}]			50111
+10187				嗜血斗士	banshenxiang/head_npc_30008/head_npc_30008.png	avatars/npc_30008.skel	[{108,40008}]			50111
+10188				剑齿豹 精英	banshenxiang/head_npc_30009/head_npc_30009.png	avatars/npc_30009.skel	[{109,40009}]			50111
+10189				蝙蝠女妖	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40010}]			50111
+10190				地精战士	banshenxiang/head_npc_30011/head_npc_30011.png	avatars/npc_300111.skel	[{111,40011}]			50111
+10191				地精弓箭手	banshenxiang/head_npc_10002/head_npc_10002.png	avatars/npc_10002.skel	[{112,40012}]			50111
+10192				堕落天使	banshenxiang/head_npc_20002/head_npc_20002.png	avatars/npc_20002.skel	[{201,40101}]			50111
+10193				地精傀儡 精英	banshenxiang/head_npc_30004/head_npc_30004.png	avatars/npc_30004.skel	[{202,40102}]			50111
+10194				雷鸟	banshenxiang/head_npc_20001/head_npc_20001.png	avatars/npc_20001.skel	[{203,40103}]			50111
+10195				镜子怪	banshenxiang/head_npc_20003/head_npc_20003.png	avatars/npc_20003.skel	[{308,40104}]			50111
+10196				镜子怪	banshenxiang/head_npc_50000/head_npc_50000.png	avatars/npc_50000.skel	[{205,40105}]			50111
+10197				镜子怪	banshenxiang/head_npc_20004/head_npc_20004.png	avatars/npc_20004.skel	[{206,40106}]			50111
+10198				镜子怪	banshenxiang/head_npc_30031/head_npc_30031.png	avatars/npc_30031.skel	[{301,40201}]			50111
+10199				地精傀儡	banshenxiang/head_npc_30032/head_npc_30032.png	avatars/npc_30032.skel	[{302,40202}]			50120
+10200				大天使 泰勒	banshenxiang/head_npc_30033/head_npc_30033.png	avatars/npc_30033.skel	[{303,40203}]			50120
+10201				流氓兔	banshenxiang/head_npc_30001/head_npc_30001.png	avatars/npc_30001.skel	[{101,40001}]			50111
+10202				土拨鼠	banshenxiang/head_npc_30002/head_npc_30002.png	avatars/npc_30002.skel	[{102,40002}]			50111
+10203				骷髅兽	banshenxiang/head_npc_30003/head_npc_30003.png	avatars/npc_30003.skel	[{103,40003}]			50111
+10204				骷髅战士	banshenxiang/head_npc_30014/head_npc_30014.png	avatars/npc_30014.skel	[{104,40004}]			50111
+10205				男斗士	banshenxiang/head_npc_30006/head_npc_30006.png	avatars/npc_30006.skel	[{106,40006}]			50111
+10206				女刺客	banshenxiang/head_npc_30007/head_npc_30007.png	avatars/npc_30007.skel	[{107,40007}]			50111
+10207				嗜血斗士	banshenxiang/head_npc_30008/head_npc_30008.png	avatars/npc_30008.skel	[{108,40008}]			50111
+10208				剑齿豹 精英	banshenxiang/head_npc_30009/head_npc_30009.png	avatars/npc_30009.skel	[{109,40009}]			50111
+10209				蝙蝠女妖	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40010}]			50111
+10210				地精战士	banshenxiang/head_npc_30011/head_npc_30011.png	avatars/npc_300111.skel	[{111,40011}]			50111
+10211				地精弓箭手	banshenxiang/head_npc_10002/head_npc_10002.png	avatars/npc_10002.skel	[{112,40012}]			50111
+10212				堕落天使	banshenxiang/head_npc_20002/head_npc_20002.png	avatars/npc_20002.skel	[{201,40101}]			50111
+10213				地精傀儡 精英	banshenxiang/head_npc_30004/head_npc_30004.png	avatars/npc_30004.skel	[{202,40102}]			50111
+10214				雷鸟	banshenxiang/head_npc_20001/head_npc_20001.png	avatars/npc_20001.skel	[{203,40103}]			50111
+10215				镜子怪	banshenxiang/head_npc_20003/head_npc_20003.png	avatars/npc_20003.skel	[{308,40104}]			50111
+10216				镜子怪	banshenxiang/head_npc_50000/head_npc_50000.png	avatars/npc_50000.skel	[{205,40105}]			50111
+10217				镜子怪	banshenxiang/head_npc_20004/head_npc_20004.png	avatars/npc_20004.skel	[{206,40106}]			50111
+10218				镜子怪	banshenxiang/head_npc_30031/head_npc_30031.png	avatars/npc_30031.skel	[{301,40201}]			50111
+10219				地精傀儡	banshenxiang/head_npc_30032/head_npc_30032.png	avatars/npc_30032.skel	[{302,40202}]			50120
+10220				大天使 泰勒	banshenxiang/head_npc_30033/head_npc_30033.png	avatars/npc_30033.skel	[{303,40203}]			50120
+10221				流氓兔	banshenxiang/head_npc_30001/head_npc_30001.png	avatars/npc_30001.skel	[{101,40001}]			50111
+10222				土拨鼠	banshenxiang/head_npc_30002/head_npc_30002.png	avatars/npc_30002.skel	[{102,40002}]			50111
+10223				骷髅兽	banshenxiang/head_npc_30003/head_npc_30003.png	avatars/npc_30003.skel	[{103,40003}]			50111
+10224				骷髅战士	banshenxiang/head_npc_30014/head_npc_30014.png	avatars/npc_30014.skel	[{104,40004}]			50111
+10225				男斗士	banshenxiang/head_npc_30006/head_npc_30006.png	avatars/npc_30006.skel	[{106,40006}]			50111
+10226				女刺客	banshenxiang/head_npc_30007/head_npc_30007.png	avatars/npc_30007.skel	[{107,40007}]			50111
+10227				嗜血斗士	banshenxiang/head_npc_30008/head_npc_30008.png	avatars/npc_30008.skel	[{108,40008}]			50111
+10228				剑齿豹 精英	banshenxiang/head_npc_30009/head_npc_30009.png	avatars/npc_30009.skel	[{109,40009}]			50111
+10229				蝙蝠女妖	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40010}]			50111
+10230				地精战士	banshenxiang/head_npc_30011/head_npc_30011.png	avatars/npc_300111.skel	[{111,40011}]			50111
+10231				地精弓箭手	banshenxiang/head_npc_10002/head_npc_10002.png	avatars/npc_10002.skel	[{112,40012}]			50111
+10232				堕落天使	banshenxiang/head_npc_20002/head_npc_20002.png	avatars/npc_20002.skel	[{201,40101}]			50111
+10233				地精傀儡 精英	banshenxiang/head_npc_30004/head_npc_30004.png	avatars/npc_30004.skel	[{202,40102}]			50111
+10234				雷鸟	banshenxiang/head_npc_20001/head_npc_20001.png	avatars/npc_20001.skel	[{203,40103}]			50111
+10235				镜子怪	banshenxiang/head_npc_20003/head_npc_20003.png	avatars/npc_20003.skel	[{308,40104}]			50111
+10236				镜子怪	banshenxiang/head_npc_50000/head_npc_50000.png	avatars/npc_50000.skel	[{205,40105}]			50111
+10237				镜子怪	banshenxiang/head_npc_20004/head_npc_20004.png	avatars/npc_20004.skel	[{206,40106}]			50111
+10238				镜子怪	banshenxiang/head_npc_30031/head_npc_30031.png	avatars/npc_30031.skel	[{301,40201}]			50111
+10239				地精傀儡	banshenxiang/head_npc_30032/head_npc_30032.png	avatars/npc_30032.skel	[{302,40202}]			50120
+10240				大天使 泰勒	banshenxiang/head_npc_30033/head_npc_30033.png	avatars/npc_30033.skel	[{303,40203}]			50120
+10241				流氓兔	banshenxiang/head_npc_30001/head_npc_30001.png	avatars/npc_30001.skel	[{101,40001}]			50111
+10242				土拨鼠	banshenxiang/head_npc_30002/head_npc_30002.png	avatars/npc_30002.skel	[{102,40002}]			50111
+10243				骷髅兽	banshenxiang/head_npc_30003/head_npc_30003.png	avatars/npc_30003.skel	[{103,40003}]			50111
+10244				骷髅战士	banshenxiang/head_npc_30014/head_npc_30014.png	avatars/npc_30014.skel	[{104,40004}]			50111
+10245				男斗士	banshenxiang/head_npc_30006/head_npc_30006.png	avatars/npc_30006.skel	[{106,40006}]			50111
+10246				女刺客	banshenxiang/head_npc_30007/head_npc_30007.png	avatars/npc_30007.skel	[{107,40007}]			50111
+10247				嗜血斗士	banshenxiang/head_npc_30008/head_npc_30008.png	avatars/npc_30008.skel	[{108,40008}]			50111
+10248				剑齿豹 精英	banshenxiang/head_npc_30009/head_npc_30009.png	avatars/npc_30009.skel	[{109,40009}]			50111
+10249				蝙蝠女妖	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40010}]			50111
+10250				地精战士	banshenxiang/head_npc_30011/head_npc_30011.png	avatars/npc_300111.skel	[{111,40011}]			50111
+10251				地精弓箭手	banshenxiang/head_npc_10002/head_npc_10002.png	avatars/npc_10002.skel	[{112,40012}]			50111
+10252				堕落天使	banshenxiang/head_npc_20002/head_npc_20002.png	avatars/npc_20002.skel	[{201,40101}]			50111
+10253				地精傀儡 精英	banshenxiang/head_npc_30004/head_npc_30004.png	avatars/npc_30004.skel	[{202,40102}]			50111
+10254				雷鸟	banshenxiang/head_npc_20001/head_npc_20001.png	avatars/npc_20001.skel	[{203,40103}]			50111
+10255				镜子怪	banshenxiang/head_npc_20003/head_npc_20003.png	avatars/npc_20003.skel	[{308,40104}]			50111
+10256				镜子怪	banshenxiang/head_npc_50000/head_npc_50000.png	avatars/npc_50000.skel	[{205,40105}]			50111
+10257				镜子怪	banshenxiang/head_npc_20004/head_npc_20004.png	avatars/npc_20004.skel	[{206,40106}]			50111
+10258				镜子怪	banshenxiang/head_npc_30031/head_npc_30031.png	avatars/npc_30031.skel	[{301,40201}]			50111
+10259				地精傀儡	banshenxiang/head_npc_30032/head_npc_30032.png	avatars/npc_30032.skel	[{302,40202}]			50120
+10260				大天使 泰勒	banshenxiang/head_npc_30033/head_npc_30033.png	avatars/npc_30033.skel	[{303,40203}]			50120
+10261				流氓兔	banshenxiang/head_npc_30001/head_npc_30001.png	avatars/npc_30001.skel	[{101,40001}]			50111
+10262				土拨鼠	banshenxiang/head_npc_30002/head_npc_30002.png	avatars/npc_30002.skel	[{102,40002}]			50111
+10263				骷髅兽	banshenxiang/head_npc_30003/head_npc_30003.png	avatars/npc_30003.skel	[{103,40003}]			50111
+10264				骷髅战士	banshenxiang/head_npc_30014/head_npc_30014.png	avatars/npc_30014.skel	[{104,40004}]			50111
+10265				男斗士	banshenxiang/head_npc_30006/head_npc_30006.png	avatars/npc_30006.skel	[{106,40006}]			50111
+10266				女刺客	banshenxiang/head_npc_30007/head_npc_30007.png	avatars/npc_30007.skel	[{107,40007}]			50111
+10267				嗜血斗士	banshenxiang/head_npc_30008/head_npc_30008.png	avatars/npc_30008.skel	[{108,40008}]			50111
+10268				剑齿豹 精英	banshenxiang/head_npc_30009/head_npc_30009.png	avatars/npc_30009.skel	[{109,40009}]			50111
+10269				蝙蝠女妖	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40010}]			50111
+10270				地精战士	banshenxiang/head_npc_30011/head_npc_30011.png	avatars/npc_300111.skel	[{111,40011}]			50111
+10271				地精弓箭手	banshenxiang/head_npc_10002/head_npc_10002.png	avatars/npc_10002.skel	[{112,40012}]			50111
+10272				堕落天使	banshenxiang/head_npc_20002/head_npc_20002.png	avatars/npc_20002.skel	[{201,40101}]			50111
+10273				地精傀儡 精英	banshenxiang/head_npc_30004/head_npc_30004.png	avatars/npc_30004.skel	[{202,40102}]			50111
+10274				雷鸟	banshenxiang/head_npc_20001/head_npc_20001.png	avatars/npc_20001.skel	[{203,40103}]			50111
+10275				镜子怪	banshenxiang/head_npc_20003/head_npc_20003.png	avatars/npc_20003.skel	[{308,40104}]			50111
+10276				镜子怪	banshenxiang/head_npc_50000/head_npc_50000.png	avatars/npc_50000.skel	[{205,40105}]			50111
+10277				镜子怪	banshenxiang/head_npc_20004/head_npc_20004.png	avatars/npc_20004.skel	[{206,40106}]			50111
+10278				镜子怪	banshenxiang/head_npc_30031/head_npc_30031.png	avatars/npc_30031.skel	[{301,40201}]			50111
+10279				地精傀儡	banshenxiang/head_npc_30032/head_npc_30032.png	avatars/npc_30032.skel	[{302,40202}]			50120
+10280				大天使 泰勒	banshenxiang/head_npc_30033/head_npc_30033.png	avatars/npc_30033.skel	[{303,40203}]			50120
+10281				流氓兔	banshenxiang/head_npc_30001/head_npc_30001.png	avatars/npc_30001.skel	[{101,40001}]			50111
+10282				土拨鼠	banshenxiang/head_npc_30002/head_npc_30002.png	avatars/npc_30002.skel	[{102,40002}]			50111
+10283				骷髅兽	banshenxiang/head_npc_30003/head_npc_30003.png	avatars/npc_30003.skel	[{103,40003}]			50111
+10284				骷髅战士	banshenxiang/head_npc_30014/head_npc_30014.png	avatars/npc_30014.skel	[{104,40004}]			50111
+10285				男斗士	banshenxiang/head_npc_30006/head_npc_30006.png	avatars/npc_30006.skel	[{106,40006}]			50111
+10286				女刺客	banshenxiang/head_npc_30007/head_npc_30007.png	avatars/npc_30007.skel	[{107,40007}]			50111
+10287				嗜血斗士	banshenxiang/head_npc_30008/head_npc_30008.png	avatars/npc_30008.skel	[{108,40008}]			50111
+10288				剑齿豹 精英	banshenxiang/head_npc_30009/head_npc_30009.png	avatars/npc_30009.skel	[{109,40009}]			50111
+10289				蝙蝠女妖	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40010}]			50111
+10290				地精战士	banshenxiang/head_npc_30011/head_npc_30011.png	avatars/npc_300111.skel	[{111,40011}]			50111
+10291				地精弓箭手	banshenxiang/head_npc_10002/head_npc_10002.png	avatars/npc_10002.skel	[{112,40012}]			50111
+10292				堕落天使	banshenxiang/head_npc_20002/head_npc_20002.png	avatars/npc_20002.skel	[{201,40101}]			50111
+10293				地精傀儡 精英	banshenxiang/head_npc_30004/head_npc_30004.png	avatars/npc_30004.skel	[{202,40102}]			50111
+10294				雷鸟	banshenxiang/head_npc_20001/head_npc_20001.png	avatars/npc_20001.skel	[{203,40103}]			50111
+10295				镜子怪	banshenxiang/head_npc_20003/head_npc_20003.png	avatars/npc_20003.skel	[{308,40104}]			50111
+10296				镜子怪	banshenxiang/head_npc_50000/head_npc_50000.png	avatars/npc_50000.skel	[{205,40105}]			50111
+10297				镜子怪	banshenxiang/head_npc_20004/head_npc_20004.png	avatars/npc_20004.skel	[{206,40106}]			50111
+10298				镜子怪	banshenxiang/head_npc_30031/head_npc_30031.png	avatars/npc_30031.skel	[{301,40201}]			50111
+10299				地精傀儡	banshenxiang/head_npc_30032/head_npc_30032.png	avatars/npc_30032.skel	[{302,40202}]			50120
+10300				大天使 泰勒	banshenxiang/head_npc_30033/head_npc_30033.png	avatars/npc_30033.skel	[{303,40203}]			50120
+10301				流氓兔	banshenxiang/head_npc_30001/head_npc_30001.png	avatars/npc_30001.skel	[{101,40001}]			50111
+10302				土拨鼠	banshenxiang/head_npc_30002/head_npc_30002.png	avatars/npc_30002.skel	[{102,40002}]			50111
+10303				骷髅兽	banshenxiang/head_npc_30003/head_npc_30003.png	avatars/npc_30003.skel	[{103,40003}]			50111
+10304				骷髅战士	banshenxiang/head_npc_30014/head_npc_30014.png	avatars/npc_30014.skel	[{104,40004}]			50111
+10305				男斗士	banshenxiang/head_npc_30006/head_npc_30006.png	avatars/npc_30006.skel	[{106,40006}]			50111
+10306				女刺客	banshenxiang/head_npc_30007/head_npc_30007.png	avatars/npc_30007.skel	[{107,40007}]			50111
+10307				嗜血斗士	banshenxiang/head_npc_30008/head_npc_30008.png	avatars/npc_30008.skel	[{108,40008}]			50111
+10308				剑齿豹 精英	banshenxiang/head_npc_30009/head_npc_30009.png	avatars/npc_30009.skel	[{109,40009}]			50111
+10309				蝙蝠女妖	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40010}]			50111
+10310				地精战士	banshenxiang/head_npc_30011/head_npc_30011.png	avatars/npc_300111.skel	[{111,40011}]			50111
+10311				地精弓箭手	banshenxiang/head_npc_10002/head_npc_10002.png	avatars/npc_10002.skel	[{112,40012}]			50111
+10312				堕落天使	banshenxiang/head_npc_20002/head_npc_20002.png	avatars/npc_20002.skel	[{201,40101}]			50111
+10313				地精傀儡 精英	banshenxiang/head_npc_30004/head_npc_30004.png	avatars/npc_30004.skel	[{202,40102}]			50111
+10314				雷鸟	banshenxiang/head_npc_20001/head_npc_20001.png	avatars/npc_20001.skel	[{203,40103}]			50111
+10315				镜子怪	banshenxiang/head_npc_20003/head_npc_20003.png	avatars/npc_20003.skel	[{308,40104}]			50111
+10316				镜子怪	banshenxiang/head_npc_50000/head_npc_50000.png	avatars/npc_50000.skel	[{205,40105}]			50111
+10317				镜子怪	banshenxiang/head_npc_20004/head_npc_20004.png	avatars/npc_20004.skel	[{206,40106}]			50111
+10318				镜子怪	banshenxiang/head_npc_30031/head_npc_30031.png	avatars/npc_30031.skel	[{301,40201}]			50111
+10319				地精傀儡	banshenxiang/head_npc_30032/head_npc_30032.png	avatars/npc_30032.skel	[{302,40202}]			50120
+10320				大天使 泰勒	banshenxiang/head_npc_30033/head_npc_30033.png	avatars/npc_30033.skel	[{303,40203}]			50120
+10321				流氓兔	banshenxiang/head_npc_30001/head_npc_30001.png	avatars/npc_30001.skel	[{101,40001}]			50111
+10322				土拨鼠	banshenxiang/head_npc_30002/head_npc_30002.png	avatars/npc_30002.skel	[{102,40002}]			50111
+10323				骷髅兽	banshenxiang/head_npc_30003/head_npc_30003.png	avatars/npc_30003.skel	[{103,40003}]			50111
+10324				骷髅战士	banshenxiang/head_npc_30014/head_npc_30014.png	avatars/npc_30014.skel	[{104,40004}]			50111
+10325				男斗士	banshenxiang/head_npc_30006/head_npc_30006.png	avatars/npc_30006.skel	[{106,40006}]			50111
+10326				女刺客	banshenxiang/head_npc_30007/head_npc_30007.png	avatars/npc_30007.skel	[{107,40007}]			50111
+10327				嗜血斗士	banshenxiang/head_npc_30008/head_npc_30008.png	avatars/npc_30008.skel	[{108,40008}]			50111
+10328				剑齿豹 精英	banshenxiang/head_npc_30009/head_npc_30009.png	avatars/npc_30009.skel	[{109,40009}]			50111
+10329				蝙蝠女妖	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40010}]			50111
+10330				地精战士	banshenxiang/head_npc_30011/head_npc_30011.png	avatars/npc_300111.skel	[{111,40011}]			50111
+10331				地精弓箭手	banshenxiang/head_npc_10002/head_npc_10002.png	avatars/npc_10002.skel	[{112,40012}]			50111
+10332				堕落天使	banshenxiang/head_npc_20002/head_npc_20002.png	avatars/npc_20002.skel	[{201,40101}]			50111
+10333				地精傀儡 精英	banshenxiang/head_npc_30004/head_npc_30004.png	avatars/npc_30004.skel	[{202,40102}]			50111
+10334				雷鸟	banshenxiang/head_npc_20001/head_npc_20001.png	avatars/npc_20001.skel	[{203,40103}]			50111
+10335				镜子怪	banshenxiang/head_npc_20003/head_npc_20003.png	avatars/npc_20003.skel	[{308,40104}]			50111
+10336				镜子怪	banshenxiang/head_npc_50000/head_npc_50000.png	avatars/npc_50000.skel	[{205,40105}]			50111
+10337				镜子怪	banshenxiang/head_npc_20004/head_npc_20004.png	avatars/npc_20004.skel	[{206,40106}]			50111
+10338				镜子怪	banshenxiang/head_npc_30031/head_npc_30031.png	avatars/npc_30031.skel	[{301,40201}]			50111
+10339				地精傀儡	banshenxiang/head_npc_30032/head_npc_30032.png	avatars/npc_30032.skel	[{302,40202}]			50120
+10340				大天使 泰勒	banshenxiang/head_npc_30033/head_npc_30033.png	avatars/npc_30033.skel	[{303,40203}]			50120
+10341				流氓兔	banshenxiang/head_npc_30001/head_npc_30001.png	avatars/npc_30001.skel	[{101,40001}]			50111
+10342				土拨鼠	banshenxiang/head_npc_30002/head_npc_30002.png	avatars/npc_30002.skel	[{102,40002}]			50111
+10343				骷髅兽	banshenxiang/head_npc_30003/head_npc_30003.png	avatars/npc_30003.skel	[{103,40003}]			50111
+10344				骷髅战士	banshenxiang/head_npc_30014/head_npc_30014.png	avatars/npc_30014.skel	[{104,40004}]			50111
+10345				男斗士	banshenxiang/head_npc_30006/head_npc_30006.png	avatars/npc_30006.skel	[{106,40006}]			50111
+10346				女刺客	banshenxiang/head_npc_30007/head_npc_30007.png	avatars/npc_30007.skel	[{107,40007}]			50111
+10347				嗜血斗士	banshenxiang/head_npc_30008/head_npc_30008.png	avatars/npc_30008.skel	[{108,40008}]			50111
+10348				剑齿豹 精英	banshenxiang/head_npc_30009/head_npc_30009.png	avatars/npc_30009.skel	[{109,40009}]			50111
+10349				蝙蝠女妖	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40010}]			50111
+10350				地精战士	banshenxiang/head_npc_30011/head_npc_30011.png	avatars/npc_300111.skel	[{111,40011}]			50111
+10351				地精弓箭手	banshenxiang/head_npc_10002/head_npc_10002.png	avatars/npc_10002.skel	[{112,40012}]			50111
+10352				堕落天使	banshenxiang/head_npc_20002/head_npc_20002.png	avatars/npc_20002.skel	[{201,40101}]			50111
+10353				地精傀儡 精英	banshenxiang/head_npc_30004/head_npc_30004.png	avatars/npc_30004.skel	[{202,40102}]			50111
+10354				雷鸟	banshenxiang/head_npc_20001/head_npc_20001.png	avatars/npc_20001.skel	[{203,40103}]			50111
+10355				镜子怪	banshenxiang/head_npc_20003/head_npc_20003.png	avatars/npc_20003.skel	[{308,40104}]			50111
+10356				镜子怪	banshenxiang/head_npc_50000/head_npc_50000.png	avatars/npc_50000.skel	[{205,40105}]			50111
+10357				镜子怪	banshenxiang/head_npc_20004/head_npc_20004.png	avatars/npc_20004.skel	[{206,40106}]			50111
+10358				镜子怪	banshenxiang/head_npc_30031/head_npc_30031.png	avatars/npc_30031.skel	[{301,40201}]			50111
+10359				地精傀儡	banshenxiang/head_npc_30032/head_npc_30032.png	avatars/npc_30032.skel	[{302,40202}]			50120
+10360				大天使 泰勒	banshenxiang/head_npc_30033/head_npc_30033.png	avatars/npc_30033.skel	[{303,40203}]			50120
+10361				流氓兔	banshenxiang/head_npc_30001/head_npc_30001.png	avatars/npc_30001.skel	[{101,40001}]			50111
+10362				土拨鼠	banshenxiang/head_npc_30002/head_npc_30002.png	avatars/npc_30002.skel	[{102,40002}]			50111
+10363				骷髅兽	banshenxiang/head_npc_30003/head_npc_30003.png	avatars/npc_30003.skel	[{103,40003}]			50111
+10364				骷髅战士	banshenxiang/head_npc_30014/head_npc_30014.png	avatars/npc_30014.skel	[{104,40004}]			50111
+10365				男斗士	banshenxiang/head_npc_30006/head_npc_30006.png	avatars/npc_30006.skel	[{106,40006}]			50111
+10366				女刺客	banshenxiang/head_npc_30007/head_npc_30007.png	avatars/npc_30007.skel	[{107,40007}]			50111
+10367				嗜血斗士	banshenxiang/head_npc_30008/head_npc_30008.png	avatars/npc_30008.skel	[{108,40008}]			50111
+10368				剑齿豹 精英	banshenxiang/head_npc_30009/head_npc_30009.png	avatars/npc_30009.skel	[{109,40009}]			50111
+10369				蝙蝠女妖	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40010}]			50111
+10370				地精战士	banshenxiang/head_npc_30011/head_npc_30011.png	avatars/npc_300111.skel	[{111,40011}]			50111
+10371				地精弓箭手	banshenxiang/head_npc_10002/head_npc_10002.png	avatars/npc_10002.skel	[{112,40012}]			50111
+10372				堕落天使	banshenxiang/head_npc_20002/head_npc_20002.png	avatars/npc_20002.skel	[{201,40101}]			50111
+10373				地精傀儡 精英	banshenxiang/head_npc_30004/head_npc_30004.png	avatars/npc_30004.skel	[{202,40102}]			50111
+10374				雷鸟	banshenxiang/head_npc_20001/head_npc_20001.png	avatars/npc_20001.skel	[{203,40103}]			50111
+10375				镜子怪	banshenxiang/head_npc_20003/head_npc_20003.png	avatars/npc_20003.skel	[{308,40104}]			50111
+10376				镜子怪	banshenxiang/head_npc_50000/head_npc_50000.png	avatars/npc_50000.skel	[{205,40105}]			50111
+10377				镜子怪	banshenxiang/head_npc_20004/head_npc_20004.png	avatars/npc_20004.skel	[{206,40106}]			50111
+10378				镜子怪	banshenxiang/head_npc_30031/head_npc_30031.png	avatars/npc_30031.skel	[{301,40201}]			50111
+10379				地精傀儡	banshenxiang/head_npc_30032/head_npc_30032.png	avatars/npc_30032.skel	[{302,40202}]			50120
+10380				大天使 泰勒	banshenxiang/head_npc_30033/head_npc_30033.png	avatars/npc_30033.skel	[{303,40203}]			50120
+10381				流氓兔	banshenxiang/head_npc_30001/head_npc_30001.png	avatars/npc_30001.skel	[{101,40001}]			50111
+10382				土拨鼠	banshenxiang/head_npc_30002/head_npc_30002.png	avatars/npc_30002.skel	[{102,40002}]			50111
+10383				骷髅兽	banshenxiang/head_npc_30003/head_npc_30003.png	avatars/npc_30003.skel	[{103,40003}]			50111
+10384				骷髅战士	banshenxiang/head_npc_30014/head_npc_30014.png	avatars/npc_30014.skel	[{104,40004}]			50111
+10385				男斗士	banshenxiang/head_npc_30006/head_npc_30006.png	avatars/npc_30006.skel	[{106,40006}]			50111
+10386				女刺客	banshenxiang/head_npc_30007/head_npc_30007.png	avatars/npc_30007.skel	[{107,40007}]			50111
+10387				嗜血斗士	banshenxiang/head_npc_30008/head_npc_30008.png	avatars/npc_30008.skel	[{108,40008}]			50111
+10388				剑齿豹 精英	banshenxiang/head_npc_30009/head_npc_30009.png	avatars/npc_30009.skel	[{109,40009}]			50111
+10389				蝙蝠女妖	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40010}]			50111
+10390				地精战士	banshenxiang/head_npc_30011/head_npc_30011.png	avatars/npc_300111.skel	[{111,40011}]			50111
+10391				地精弓箭手	banshenxiang/head_npc_10002/head_npc_10002.png	avatars/npc_10002.skel	[{112,40012}]			50111
+10392				堕落天使	banshenxiang/head_npc_20002/head_npc_20002.png	avatars/npc_20002.skel	[{201,40101}]			50111
+10393				地精傀儡 精英	banshenxiang/head_npc_30004/head_npc_30004.png	avatars/npc_30004.skel	[{202,40102}]			50111
+10394				雷鸟	banshenxiang/head_npc_20001/head_npc_20001.png	avatars/npc_20001.skel	[{203,40103}]			50111
+10395				镜子怪	banshenxiang/head_npc_20003/head_npc_20003.png	avatars/npc_20003.skel	[{308,40104}]			50111
+10396				镜子怪	banshenxiang/head_npc_50000/head_npc_50000.png	avatars/npc_50000.skel	[{205,40105}]			50111
+10397				镜子怪	banshenxiang/head_npc_20004/head_npc_20004.png	avatars/npc_20004.skel	[{206,40106}]			50111
+10398				镜子怪	banshenxiang/head_npc_30031/head_npc_30031.png	avatars/npc_30031.skel	[{301,40201}]			50111
+10399				地精傀儡	banshenxiang/head_npc_30032/head_npc_30032.png	avatars/npc_30032.skel	[{302,40202}]			50120
+10400				大天使 泰勒	banshenxiang/head_npc_30033/head_npc_30033.png	avatars/npc_30033.skel	[{303,40203}]			50120
+10401				流氓兔	banshenxiang/head_npc_30001/head_npc_30001.png	avatars/npc_30001.skel	[{101,40001}]			50111
+10402				土拨鼠	banshenxiang/head_npc_30002/head_npc_30002.png	avatars/npc_30002.skel	[{102,40002}]			50111
+10403				骷髅兽	banshenxiang/head_npc_30003/head_npc_30003.png	avatars/npc_30003.skel	[{103,40003}]			50111
+10404				骷髅战士	banshenxiang/head_npc_30014/head_npc_30014.png	avatars/npc_30014.skel	[{104,40004}]			50111
+10405				男斗士	banshenxiang/head_npc_30006/head_npc_30006.png	avatars/npc_30006.skel	[{106,40006}]			50111
+10406				女刺客	banshenxiang/head_npc_30007/head_npc_30007.png	avatars/npc_30007.skel	[{107,40007}]			50111
+10407				嗜血斗士	banshenxiang/head_npc_30008/head_npc_30008.png	avatars/npc_30008.skel	[{108,40008}]			50111
+10408				剑齿豹 精英	banshenxiang/head_npc_30009/head_npc_30009.png	avatars/npc_30009.skel	[{109,40009}]			50111
+10409				蝙蝠女妖	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40010}]			50111
+10410				地精战士	banshenxiang/head_npc_30011/head_npc_30011.png	avatars/npc_300111.skel	[{111,40011}]			50111
+10411				地精弓箭手	banshenxiang/head_npc_10002/head_npc_10002.png	avatars/npc_10002.skel	[{112,40012}]			50111
+10412				堕落天使	banshenxiang/head_npc_20002/head_npc_20002.png	avatars/npc_20002.skel	[{201,40101}]			50111
+10413				地精傀儡 精英	banshenxiang/head_npc_30004/head_npc_30004.png	avatars/npc_30004.skel	[{202,40102}]			50111
+10414				雷鸟	banshenxiang/head_npc_20001/head_npc_20001.png	avatars/npc_20001.skel	[{203,40103}]			50111
+10415				镜子怪	banshenxiang/head_npc_20003/head_npc_20003.png	avatars/npc_20003.skel	[{308,40104}]			50111
+10416				镜子怪	banshenxiang/head_npc_50000/head_npc_50000.png	avatars/npc_50000.skel	[{205,40105}]			50111
+10417				镜子怪	banshenxiang/head_npc_20004/head_npc_20004.png	avatars/npc_20004.skel	[{206,40106}]			50111
+10418				镜子怪	banshenxiang/head_npc_30031/head_npc_30031.png	avatars/npc_30031.skel	[{301,40201}]			50111
+10419				地精傀儡	banshenxiang/head_npc_30032/head_npc_30032.png	avatars/npc_30032.skel	[{302,40202}]			50120
+10420				大天使 泰勒	banshenxiang/head_npc_30033/head_npc_30033.png	avatars/npc_30033.skel	[{303,40203}]			50120

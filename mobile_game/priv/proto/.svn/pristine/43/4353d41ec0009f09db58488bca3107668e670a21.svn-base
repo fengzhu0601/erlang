@@ -1,0 +1,1110 @@
+@include "game.sproto"
+
+
+# 请求进入场景,
+# SceneId:16
+proto MSG_SCENE_PLAYER_ENTER_REQUEST=1
+{
+    client{
+        message{
+            sceneId:scene_id
+        }
+    }
+
+    server {
+        message{
+            sceneId:scene_id
+            ,posX:u16 #进入点x
+            ,posY:u16 #进入点y
+            ,dir:u8
+            ,flag:u8
+        }
+    }
+}
+
+# 进入场景
+proto MSG_SCENE_PLAYER_ENTER=2
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message{
+            idx:agent_id, ##
+            party:u16
+       }
+    }
+}
+
+# 请求最后一个城镇场景
+proto MSG_SCENE_GOTO_LAST_CITY=54
+{
+    client
+    {
+        message=empty
+    }
+    server
+    {}
+}
+
+# 怪或玩家进入我的视野
+proto MSG_SCENE_ENTER_VIEW=3
+{
+    client{}
+
+    server{
+        # TODO 改为binary
+        message{
+            playerAgents:list<p:player_agent>
+            ,monAgents:list<m:monster_agent>
+       }
+    }
+}
+
+# 离开视野
+proto MSG_SCENE_LEAVE_VIEW=4
+{
+    client{}
+
+    server{
+        message{
+            #while idx:agent_id
+            idxList:binary
+       }
+    }
+}
+
+## player move send to server
+proto MSG_SCENE_PLAYER_MOVE=22
+{
+    client{
+        message{
+            idx:agent_id,
+            posX:u16,
+            posY:u16,
+            posZ:u16,
+            moveVector:move_vector
+        }
+    }
+
+    server{}
+}
+
+proto MSG_SCENE_PLAYER_SWITCH_MOVE_MODE=24
+{
+#enum move_mode
+#{
+#    move =1,
+#    run =2
+#}
+    client{
+        message{
+            idx:agent_id,
+            Mode:u8
+        }
+    }
+
+    server{
+        message{
+            idx:agent_id
+            ,Mode:u8
+        }
+    }
+}
+
+proto MSG_SCENE_MOVE=5
+{
+    client{}
+
+    server{
+        message{
+            idx:agent_id
+            ,posX:u16
+            ,posY:u16
+            ,posH:u16
+            ,moveVector:move_vector
+            ,speedVector:speed_vector
+       }
+    }
+}
+
+proto MSG_SCENE_PLAYER_MOVE_STOP=23
+{
+    client{
+        message{
+            idx:agent_id,
+            posX:u16,
+            posY:u16,
+            posH:u16
+        }
+    }
+
+    server{}
+}
+
+proto MSG_SCENE_MOVE_STOP=6
+{
+    client{}
+
+    server{
+        message{
+            idx:agent_id
+            ,posX:u16
+            ,posY:u16
+            ,posH:u16
+       }
+    }
+}
+
+proto MSG_SCENE_JUMP=7
+{
+    client{
+        message{
+            idx:agent_id
+            ,dir:direct
+            ,posX:u16
+            ,posY:u16
+            ,posZ:u16
+       }
+    }
+
+    server{
+        message{
+             idx:agent_id
+            ,dir:direct
+            ,posX:u16
+            ,posY:u16
+            ,posZ:u16
+        }
+    }
+}
+
+# 释放技能
+proto MSG_SCENE_RELEASE_SKILL=8
+{
+    client{
+        message{
+            idx:agent_id
+            ,skillId:skill_id
+            ,spellId:skill_id
+            ,dir:direct
+            ,posX:u16
+            ,posY:u16
+            ,posZ:u16
+        }
+    }
+    server{
+        message{
+            idx:agent_id
+            ,skillId:skill_id
+            ,spellId:skill_id
+            ,dir:direct
+            ,posX:u16
+            ,posY:u16
+            ,posZ:u16
+        }
+   }
+}
+
+# 技能Hit（掉血）
+# for循环（读伤害列表）
+#	idx:16,
+#	type:8
+#
+#	if type != 1
+proto MSG_SCENE_RELEASE_SKILL_JUDGE=9
+{
+    client{}
+    server{
+        message{
+        #    idx:agent_id
+        #    ,skillId:skill_id
+        #    ,spellId:skill_id
+        #    ,releaseX:u16
+        #    ,releaseY:u16
+        #    ,releaseZ:u16
+        #    ,timeMsec:u64
+        #    ,hit_agents:list<m:{oidx:agent_id #被攻击者的idx
+        #                       ,posX:u16 #击退后x值
+        #                       ,posY:u16 #击退后y值
+        #                       ,posZ:u16 #当前高度
+        #                       ,isBaTi:bool #是否是霸体
+        #                       ,isBreaked:bool # 是否自己正在释放的技能被打断
+        #                       ,attType:u8 # 0普通攻击 # 1格挡攻击 # 2攻击暴击
+        #                          if attType != 1
+        #                                 ,hitHp:u32  #攻击伤害
+        #                                 ,hp:u32     #当前生命
+        #                                 ,sock_blood:u32 # 吸血
+        #                                 ,Reverse:u32    #反伤
+        #                       ,打击Box
+        #                       , xl:16, xr:16, ht:8, hd:8
+        #    }>
+            Info:binary
+        }
+   }
+}
+
+##
+proto MSG_SCENE_RELIVE=10
+{
+    client{
+        message {
+            ## type, 1是当前点复活，2是复活点复活
+            type:u8,
+            agentIdx:agent_id
+        }
+    }
+
+    server{
+        message{
+            idx:agent_id
+            ,posX:u16
+            ,posY:u16
+        }
+    }
+}
+
+## 单机副本复活
+proto MSG_SCENE_CLIENT_RELIVE=36
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message{
+            replyNum:reply_num  #0:复活成功 205:次数不足, 203:钻石不足
+        }
+    }
+}
+
+## 单机副本加hp/mp
+proto MSG_SCENE_CLIENT_ADD_HP_MP=37
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message{
+            replyNum:reply_num  #0:加血成功 205:次数不足, 203:钻石不足
+        }
+    }
+}
+
+## 掉落物品
+proto MSG_SCENE_DROP_ITEMS=11
+{
+    client{}
+    server{
+        message{
+            items:list<info:{
+                dropId:drop_id
+                ,posX:u16
+                ,posY:u16
+                ,itemId:u32
+            }>
+        }
+    }
+}
+
+
+# 掉落移除
+proto MSG_SCENE_DROP_ITEMS_REMOVE=12
+{
+    client{}
+    server{
+        message{
+            dropId:drop_id
+        }
+    }
+}
+
+proto MSG_SCENE_AGENT_DATA_CHANGE=13
+{
+    client{}
+    server{
+        message{
+            idx:agent_id
+            #     HP = 22
+            #     MaxHp=23
+            #     Mp = 27
+            #     MaxMp = 28
+            #     SkillCDRset = 106 buff使用
+            #     MoveSpeed = 107
+            ,dataType:u8
+            ,value:u32
+        }
+    }
+}
+
+## 添加buff,
+proto MSG_SCENE_ADD_BUFF=14
+{
+    client{}
+    server{
+        message{
+            idx:agent_id
+            ,buffId:buff_id
+            ,timetampMsec:u32
+        }
+    }
+}
+
+## 删除BUFF
+proto MSG_SCENE_DEL_BUFF=15
+{
+    client{}
+    server{
+        message{
+            idx:agent_id
+            ,buffId:buff_id
+        }
+    }
+}
+
+# 静态传送们传送
+proto MSG_SCENE_DOOR_TRANSPORT=16
+{
+    client{
+        message{
+            doorId:u16
+        }
+    }
+    server{ }
+}
+
+proto MSG_SCENE_DYNAMIC_TRANSPORT=17 disable
+{
+    client{}
+    server{
+        message{
+            sceneId:scene_id
+            ,posX:u16
+            ,posY:u16
+        }
+    }
+}
+
+## 拾取掉落物品
+proto MSG_SCENE_PICKUP_DROP_ITEMS=19
+{
+    client{
+        message{
+            id:drop_id
+        }
+    }
+    server{ }
+}
+
+## 大范围移动
+proto MSG_SCENE_LARGE_MOVE =27
+{
+    client{}
+    server{
+        message{
+            sceneId:scene_id
+            ,posX:u16
+            ,posY:u16
+        }
+    }
+}
+
+## 加hp/mp按钮
+proto MSG_SCENE_ADD_HP_MP=30
+{
+    client{
+        message{
+            buttonId:u8              ## 按钮id
+        }
+    }
+
+    server{
+        message=empty
+    }
+
+    errnos{
+        ERR_CD_LIMIT
+        ,ERR_COST_NOT_ENOUGH
+        ,ERR_NOT_EXIST_CFG
+        ,ERR_NOT_IN_INS
+    }
+}
+
+# 改变视野
+proto MSG_SCENE_RESIZE_VIEW=31
+{
+    client{
+        message {
+            wxr:u8,
+            wyr:u8
+        }
+    }
+
+    server{}
+}
+
+## 场景机关释放
+proto MSG_SCENE_DEVICE_RELEASE_SKILL=32
+{
+    client{}
+
+    server{
+        message {
+            deviceId:device_id
+        }
+    }
+}
+
+## 场景机关伤害
+proto MSG_SCENE_DEVICE_RELEASE_SKILL_JUDGE=33
+{
+    client{}
+
+    server{
+        message {
+        #    deviceIdx:u16
+        #    ,spellId:skill_id
+        #    ,hit_agents:list<m:{oidx:agent_id #被攻击者的idx
+        #                       ,posX:u16 #击退后x值
+        #                       ,posY:u16 #击退后y值
+        #                       ,posZ:u16 #当前高度
+        #                       ,isBaTi:bool #是否是霸体
+        #                       ,isBreaked:bool # 是否自己正在释放的技能被打断
+        #                       ,hitHp:u32  #攻击伤害
+        #                       ,hp:u32     #当前生命
+        #    }>
+        info:binary
+
+        }
+    }
+}
+
+## 场景机关销毁
+proto MSG_SCENE_DEVICE_DESTROY=34
+{
+    client{}
+
+    server{
+        message{
+            deviceId:device_id
+        }
+    }
+}
+
+## 怪物出生动画
+proto MSG_SCENE_MONSTER_ENTER_SHOW=35
+{
+    client{
+        message{
+            id:u16 ## show id
+        }
+    }
+
+    server{ }
+}
+
+##=client===============================================================================================================
+## 单机副本复活
+#proto MSG_SCENE_CLIENT_RELIVE=36
+## 单机副本加hp/mp
+#proto MSG_SCENE_CLIENT_ADD_HP_MP=37
+
+## 单机副本角色死亡
+#proto MSG_SCENE_CLIENT_PLAYER_DIE=39
+
+## 单机副本放怒气技能
+#proto MSG_SCENE_CLIENT_RELEASE_ANGER_SKILL=40
+
+## 单机副本角色死亡
+proto MSG_SCENE_CLIENT_PLAYER_DIE=39
+{
+    client
+    {
+        message=empty
+    }
+    server
+    {
+    }
+}
+
+## 单机副本放怒气技能
+proto MSG_SCENE_CLIENT_RELEASE_ANGER_SKILL=40
+{
+    client
+    {
+        message=empty
+    }
+    server
+    {
+    }
+}
+
+## 杀死一个怪物
+proto MSG_SCENE_CLIENT_KILL_MONSTER=41
+{
+    client
+    {
+        message
+        {
+            monster_id:u32,
+            is_kill_self:u8
+        }
+    }
+    server
+    {}
+}
+
+## 掉落
+proto MSG_SCENE_CLIENT_DROP_BY_MONSTER=42
+{
+    client
+    {
+        message
+        {
+            client_id:u16,
+            tag_id:u8
+        }
+    }
+    server
+    {
+        message
+        {
+            client_id:u16,
+            drop_list:list<{
+                drop_id:u8,
+                item_bid:item_bid,
+                item_quality:u8,
+                item_num:u32
+            }>
+        }
+    }
+}
+
+## 拾取掉落
+proto MSG_SCENE_CLIENT_PICKUP_DROP=43
+{
+    client
+    {
+        message
+        {
+            drop_id:u8
+        }
+    }
+    server
+    {
+        message = empty
+    }
+}
+
+## 客户端汇报杀怪情况(单机副本
+proto MSG_SCENE_INSTANCE_CLIENT_KILL_MON=51
+{
+    client{
+        message{
+            is_ins_complete:u8,       #是否正常退出副本   0中途退出, 1正常退出
+            wave_num:u16,             #防守类型，怪物波数
+            max_double_hit:u16,        #最大连击次数
+            shoujicount:u16,
+            passtime:u16,
+            relive_num:u16,
+            abyssPercent:u8,                 #奖励百分百
+            abyssScore:u32,                   #当前层得到的积分
+            MonsterBin:binary
+        }
+    }
+    server{}
+}
+
+## 播放场景特效
+proto MSG_SCENE_PLAY_EFFECTS=60
+{
+    client{
+            message=empty
+        }
+        server
+        {
+            message
+            {
+                effects_id:u8,   #播放特效ID
+                msg:sstr         #广播内容,目前内容未空 等待后续策划需求
+            }
+        }
+}
+
+
+# 创建采集资源
+proto MSG_CREATE_DIG_RES_SC = 61
+{
+    client
+    {
+    }
+    server
+    {
+        message
+        {
+            res:list<{bid:dig_bid}>
+        }
+    }
+}
+
+
+# 删除采集资源
+proto MSG_DELETE_DIG_RES_SC = 62
+{
+    client
+    {
+    }
+    server
+    {
+        message
+        {
+            res:list<{uid:dig_id}>
+        }
+    }
+}
+
+# 同步换装数据
+proto MSG_SCENE_AGENT_UPDATE_EQU = 63
+{
+    client
+    {
+    }
+    server
+    {
+        message
+        {
+            agent_id:agent_id,
+            career:u8,
+            equ_1_bid:u32,
+            equ_2_bid:u32,
+            equ_3_bid:u32,
+            equ_4_bid:u32,
+            equ_5_bid:u32,
+            equ_6_bid:u32,
+            equ_7_bid:u32,
+            equ_8_bid:u32,
+            equ_9_bid:u32,
+            equ_10_bid:u32
+        }
+    }
+}
+
+# 同步称号
+proto MSG_SCENE_AGENT_UPDATE_TITLE = 64
+{
+    client
+    {
+    }
+    server
+    {
+        message
+        {
+            agent_id:agent_id,
+            title_id:u16
+        }
+    }
+}
+
+# 同步公会信息
+proto MSG_SCENE_AGENT_UPDATE_GUILD = 65
+{
+    client
+    {
+    }
+    server
+    {
+        message
+        {
+            agent_id:agent_id,
+            guild_name:sstr,  #离开公会 发送0
+            boder_id:u8,
+            totem_id:u8
+        }
+    }
+}
+
+# 同步别人的特效
+proto MSG_SCENE_EFFECT_UPDATE = 66
+{
+    client
+    {
+    }
+
+    server
+    {
+        message
+        {
+            agent_id:agent_id,
+            effect:list<ids:u16>
+        }
+    }
+}
+
+proto MSG_SCENE_INS_RESET_HP_CD=67
+{
+    client
+    {
+        message=empty
+    }
+
+    server
+    {
+        message=empty
+    }
+}
+
+proto MSG_SCENE_INS_RESET_USE_COUNT=68
+{
+    client
+    {
+        message=empty    
+    }
+
+    server
+    {
+        message
+        {
+            Count:u8
+        }
+    }
+}
+
+##同步其他玩家的变身效果
+proto MSG_SCENE_SHAPESHIFT_UPDATE=69
+{
+    client{
+    }
+
+    server{
+        message{
+            agent_id:agent_id,
+            career:u8,
+            cardId:u32                 ## 卡牌ID
+        }
+    }
+}
+
+## 玩家可行走区域
+proto MSG_SCENE_AREA_STATE = 70
+{
+    client
+    {
+        message=empty
+    }
+
+    server
+    {
+        message
+        {
+            scene_id:u32,
+            x:u32,
+            y:u32,
+            z:u32,
+            w:u32,
+            h:u32,
+            can_walk:u8 #0不可行走 1可行走
+        }
+    }
+}
+
+# 适用buff触发 技能释放完毕
+proto MSG_SCENE_RELEASE_SKILL_END=71
+{
+    client{
+        message{
+            idx:agent_id
+            ,skillId:skill_id
+            ,spellId:skill_id
+            ,posX:u16
+            ,posY:u16
+            ,posZ:u16
+        }
+    }
+    server{
+        message=empty
+   }
+}
+
+# 适用buff触发 技能打断协议
+proto MSG_SCENE_BREAK_SKILL=72
+{
+    client{
+        message{
+            idx:agent_id
+            ,breakerId:agent_id
+            ,skillId:skill_id
+            ,spellId:skill_id
+            ,posX:u16
+            ,posY:u16
+            ,posZ:u16
+        }
+    }
+    server{
+        message=empty
+   }
+}
+
+## 发送锁屏区域
+proto MSG_SCENE_SEND_LOCK_AREA = 73
+{
+    client{
+    }
+
+    server
+    {
+        message
+        {
+            x1:u16,
+            x2:u16
+        }
+    }
+}
+
+## 发送对白id
+proto MSG_SCENE_SEND_TALKS_ID = 74
+{
+    client{
+    }
+
+    server
+    {
+        message
+        {
+            agent_id:agent_id,
+            TalksId:u32
+        }
+    }
+}
+
+## 同步其他玩家的坐骑效果
+proto MSG_SCENE_RIDE_UPDATE = 75
+{
+    client{
+    }
+
+    server{
+        message{
+            agent_id:agent_id,
+            rideId:u16                  ## 坐骑ID
+        }
+    }
+}
+
+## 死亡消息
+proto MSG_SCENE_AGENT_DIE = 76
+{
+    client{    
+    }
+
+    server{
+        message{
+            agent_id:agent_id
+        }
+    }
+}
+
+## 同步消息
+proto MSG_SCENE_MONSTER_AGENT_SYNC = 77
+{
+    client{
+        message{
+            monsterId:s16
+            ,posX:u16
+            ,posY:u16
+            ,posZ:u16
+        }
+    }
+
+    server{
+        message=empty
+    }
+}
+
+## 受击协议
+proto MSG_SCENE_AGENT_BE_HIT = 78
+{
+    client{
+        message{
+            agentHitId:s16,             ## 攻击者id
+            skillId:skill_id,
+            skillDuanId:skill_id,
+            dir:u8,
+            releaseX:u16,
+            releaseY:u16,
+            releaseZ:u16,
+            agents:list<{
+                agentBeHitId:s16,
+                x:u16,
+                y:u16,
+                z:u16,
+                xl:u16,
+                xr:u16,
+                ht:u8,
+                hd:u8
+            }>
+        }
+    }
+
+    server{}
+}
+
+## 释放释放物
+proto MSG_SCENE_RELEASE_EMITS = 79
+{
+    client{
+        message{
+            agentId:s16,
+            emitsId:u32,
+            x:u16,
+            y:u16,
+            z:u16,
+            dir:u8,
+            delayTime:u32,
+            skillId:skill_id,
+            skillDuanId:skill_id
+        }
+    }
+
+    server{}
+}
+
+## 释放物死亡通知
+proto MSG_SCENE_EMITS_DIE = 80
+{
+    client{
+        message{
+            agentId:s16
+        }
+    }
+    server{}
+}
+
+# 重置我的视野范围
+proto MSG_SCENE_RESET_VIEW=81
+{
+    client{}
+
+    server{
+        # TODO 改为binary
+        message{
+            playerAgents:list<p:player_agent>
+            ,monAgents:list<m:monster_agent>
+       }
+    }
+}
+
+
+## buff受击表现协议
+proto MSG_SCENE_BUFF_DAMAGE = 82
+{
+    client{}
+
+    server{
+        message{
+            agentId:s16,
+            hitHp:u32,  # 攻击伤害
+            resHp:u32   # 剩余血量
+        }
+    }
+}
+
+proto MSG_SCENE_MONSTER_GONGCHENG_LIST=83
+{
+    client{}
+    server{
+        message{
+            #Size:u16,
+            #while
+                #NpcId:u16
+                #X:u16
+                #Y:u16
+                #Staus:u8
+            Info:list<{npcid:u16,x:u16,y:u16,staus:u8}>
+        }
+    }
+}
+
+proto MSG_SCENE_MONSTER_GONGCHENG_DELETE=84
+{
+    client{}
+    server{
+        message{
+            NpcId:u16
+        }
+    }
+}
+
+proto MSG_SCENE_MONSTER_GONGCHENG_DELETE_CHANGE_STATUS=85
+{
+    client{}
+    server{
+        message{
+            NpcId:u16,
+            staus:u8
+        }
+    }
+}
+
+proto MSG_SCENE_BROADCAST_ACTIVITY=86
+{
+    client{}
+    server{
+        message{
+            IsStart:u8, ## 1是预告开始，2是预告结束，3是活动开始，4是活动结束
+            ActivityId:u8,
+            BroadcastId:u16
+        }
+    }
+}
+
+## 机器人导航协议
+proto MSG_SCENE_NAVIGATION = 87
+{
+    client{
+        message{
+            agentId:s16,
+            playerId:u64,
+            type:u8,    ## (0:异常 1:寻找npc 2:...)
+            npc_id1:u32,    ## 前端找到的
+            npc_id2:u32,    ## 服务器要找的
+            point:list<{
+                x:u16,
+                y:u16,
+                z:u16
+            }>
+        }
+    }
+
+    server{
+        message{
+            agentId:s16,
+            playerId:u64,
+            type:u8,    ## (0:异常 1:寻找npc 2:...)
+            npc_id:u32      ## 服务器要找的
+        }
+    }
+}
+
+proto MSG_SCENE_DOUBLE_PRIZE_ACTIVITY=88
+{
+    client{}
+    server{
+       message{
+            #ActivityInfo:list<{Activity:u16, StarTime:u64, EndTime:u64}>
+            ActivityInfo:binary
+       }
+    }
+}
+
+proto MSG_SCENE_AGENT_STATE_CHANGE = 89
+{
+    client{
+        message{
+            agentId:s16,
+            state:u8
+        }
+    }
+    server{}
+}

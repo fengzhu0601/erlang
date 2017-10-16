@@ -1,0 +1,120 @@
+@include "game.sproto"
+
+# 服务器推送
+proto MSG_VIP_INFO_SC = 1
+{
+    client
+    {
+        message=empty
+    }
+    server
+    {
+        message
+        {
+            vipLevel:u8,            # 永久vip等级
+            cardvipLevel:u8,        # card vip 等级
+            diamondNum:u32,         # 钻石数
+            bindDiamondNum:u32,     # 绑定钻石
+            deadlineTime:u32        # vip到期时间戳
+        }
+    }
+}
+
+# 客户端请求
+# 请求领取奖励
+proto MSG_VIP_REWARD_CS = 2
+{
+    client
+    {
+        message
+        {
+            vipLevel:u8 #vip等级奖励
+        }
+    }
+    server
+    {
+        message=empty
+    }
+}
+
+# 请求订单记录
+proto MSG_GET_RECORDS_CS = 3
+{
+    client
+    {
+        message=empty
+    }
+    server
+    {
+        message
+        {
+            recordData:list<{id:u32, money:u32, timestamp:u32, state:u8}>    # 订单记录
+        }
+    }
+}
+
+# 请求删除订单
+proto MSG_DELETE_RECORD_CS = 4
+{
+    client
+    {
+        message
+        {
+            orderId:u32
+        }
+    }
+    server
+    {
+        message=empty
+    }
+}
+
+# 购买充值
+proto MSG_PAY_CS = 5
+{
+    client
+    {
+        message
+        {
+            id:u32
+        }
+    }
+    server
+    {
+        message=empty
+    }
+}
+
+# 购买QQ充值
+proto MSG_QQ_PAY_CS = 6
+{
+    client
+    {
+        message
+        {
+            id:u32,  # 充值VIP类型
+            openid:sstr,
+            token:sstr,
+            payToken:sstr,   # 微信这个为""
+            appkey:sstr,
+            appid:sstr,
+            pf:sstr,
+            pfKey:sstr,
+            zoneid:sstr,
+            account:u8    # 1 = "qq" or 2 = "wx"
+        }
+    }
+    server
+    {
+        message=empty
+    }
+    errnos{
+        ERR_PAY_NOT_ENOUGH,
+        ERR_ERROR_ORDER_ID,
+        ERR_QQ_PAY_HAS_ORDER,
+        ERR_QQ_PAY_TOKEN,
+        ERR_QQ_PAY_FAILURE,
+        ERR_PAY_LIMIT
+    }
+}
+

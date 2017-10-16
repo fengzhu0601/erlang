@@ -1,0 +1,35 @@
+@include "game.sproto"
+
+# 请求界面奖励信息
+proto MSG_HONEST_USER_GET_INFO=1
+{
+	client{
+		message=empty
+	}
+
+	server{
+		message
+		{
+			state1:u8,		# 等级奖励状态
+			state2:u8		# 套装奖励状态
+		}
+	}
+}
+
+proto MSG_HONEST_USER_GET_PRIZE=2
+{
+	client{
+		message
+		{
+			activity_index:u8	# 领取奖励索引
+		}
+	}
+
+	server{
+		message
+		{
+			activity_index:u8, # 领取奖励索引
+			result:u8		# 领取结果
+		}
+	}
+}

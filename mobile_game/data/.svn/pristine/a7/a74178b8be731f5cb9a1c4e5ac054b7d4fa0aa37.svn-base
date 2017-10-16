@@ -1,0 +1,8 @@
+﻿掉落id（资产类型*1000（10金币，11钻石）+编号）	资产id	名字	"掉落数量(采用小于区间判断例如x>=2000;2000<y<=10000,z>10000;-1代表正无穷)"	掉落图标
+id	item_id	name	num	icon
+10001	10	金币	2000	items/assets_drop_icon/coin_1.png
+10002	10	金堆	10000	items/assets_drop_icon/coin_2.png
+10003	10	金包	-1	items/assets_drop_icon/coin_3.png
+11001	11	钻石	50	items/assets_drop_icon/diamond_1.png
+11002	11	钻堆	500	items/assets_drop_icon/diamond_2.png
+11003	11	钻包	-1	items/assets_drop_icon/diamond_3.png

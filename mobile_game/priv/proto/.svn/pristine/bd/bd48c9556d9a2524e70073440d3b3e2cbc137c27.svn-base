@@ -1,0 +1,167 @@
+
+@include "game.sproto"
+#拍卖行竞拍界面
+proto MSG_AUCTION_PANEL=1
+{
+    client{
+        message{
+            endLev:u8,                  #结束结束等级 1为全部 其他个位数均为9
+            isMy:bool,                  #是否包含自己
+            itemType:u8,                #物品类型 0全部 1装备 2宝石 3其他
+            startIndex:u8,              #数据开始序号
+            len:u8                      #数据长度
+        }
+    }
+
+    server{
+        message{
+            size:u16                   #数据总长度
+            ,auctionInfoL:list<{
+                auctionId:u32,        #拍卖id
+                ownId:u64,            #拥有者id
+                ownName:sstr,         #拥有者名字
+                biderId:u64,          #最高竞价者id
+                itemInfo:item_info,   #物品信息
+                timeOut:u64,          #超时时间（s
+                curPrice:u32,         #当前价格
+                highPrice:u32         #一口价
+            }>
+        }
+    }
+}
+
+
+#初始化我的竞拍物品
+proto MSG_AUCTION_MY_PANEL=2
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message{
+            auctionInfoL:list<{
+                auctionId:u32,        #拍卖id
+# auctionState:u8,      #拍卖状态 0拍卖中 1流拍
+                itemInfo:item_info,   #物品信息
+                timeOut:u64,          #超时时间（s
+                startPrice:u32,       #起拍价格
+                curPrice:u32,         #当前价格
+                highPrice:u32         #一口价
+            }>
+            
+        }
+    }
+}
+
+
+#创建竞拍
+proto MSG_AUCTION_CREATE=3
+{
+    client{
+        message{
+            bagType:u8,      #背包类型（1背包 2竞拍仓库
+            pos:u32,         #物品位置（当背包类型是背包时，该参数是物品id。当背包类型是竞拍仓库时，该参数是拍卖id
+            startPrice:u32,       #起拍价格
+            highPrice:u32         #一口价
+
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+        }
+    }
+}
+
+#竞拍
+proto MSG_AUCTION_PRICE=4
+{
+    client{
+        message{
+            auctionId:u32,       #拍卖id
+            price:u32            #一口价
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+            ,auctionId:u32       #拍卖id
+        }
+    }
+}
+
+
+
+
+#下架
+proto MSG_AUCTION_BACK_BAG=5
+{
+    client{
+        message{
+            auctionId:u32       #拍卖id
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+        }
+    }
+}
+
+
+#通知创建竞拍人删除我的竞拍物品
+proto MSG_AUCTION_NOTICE_OWNER_DEL=6
+{
+    client{}
+
+    server{
+        message{
+            auctionId:u32       #所要删除的拍卖id
+        }
+    }
+}
+
+
+#通知创建竞拍人添加/更新我的竞拍物品
+proto MSG_AUCTION_NOTICE_OWNER_UP=7
+{
+    client{}
+
+    server{
+        message{
+            type:u8,            #更新类型 1添加 2更新
+            auctionId:u32,        #拍卖id
+#            auctionState:u8,      #拍卖状态 0拍卖中 1流拍
+            itemInfo:item_info,   #物品信息
+            timeOut:u64,          #超时时间（s
+            startPrice:u32,       #起拍价格
+            curPrice:u32,         #当前价格
+            highPrice:u32         #一口价
+        }
+    }
+}
+
+
+
+#查询最新拍卖信息
+proto MSG_AUCTION_LOOKUP_INFO=8
+{
+    client{
+        message{
+            auctionId:u32        #拍卖id
+        }
+    }
+
+    server{
+        message{
+            auctionId:u32,        #拍卖id
+            isValid:bool,         #时候有效(这个数据是否还存在)
+            biderId:u64,          #最高竞价者id
+            curPrice:u32         #当前价格
+        }
+    }
+}

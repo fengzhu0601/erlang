@@ -1,0 +1,11 @@
+-include_lib("common/include/inc.hrl").
+-include_lib("common/include/com_log.hrl").
+-include("../../auto/proto/inc.hrl").
+-include("game.hrl").
+-include("event_def.hrl").
+-include("type.hrl").
+-include("err_info_def.hrl").
+-include("msg_def.hrl").
+-include("sys_debug_log.hrl").
+-include("language.hrl").
+

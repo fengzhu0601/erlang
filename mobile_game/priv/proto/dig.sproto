@@ -1,0 +1,51 @@
+@include "game.sproto"
+
+
+
+
+# 采集
+proto MSG_DIG_RES_CS = 1
+{
+    client
+    {
+        message
+        {
+            #1 场景资源采集1
+            #2 藏宝图采集
+            dig_type:u8,
+            uid:dig_id
+        }
+    }
+    server
+    {
+        message
+        {
+            #1 成功
+            #2 未鉴定
+            #3 无相关物品
+            #4 无奖励ID
+            succ:u8
+        }
+    }
+}
+
+# 使用
+proto MSG_USE_DIG_RES_CS = 2
+{
+    client
+    {
+        message
+        {
+            itemId:item_id
+        }
+    }
+    server
+    {
+        message
+        {
+            #1 成功
+            #2 失败
+            succ:u8
+        }
+    }
+}

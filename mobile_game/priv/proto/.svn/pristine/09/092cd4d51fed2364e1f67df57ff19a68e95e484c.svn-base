@@ -1,0 +1,29 @@
+@include "game.sproto"
+
+proto MSG_ALCHEMY_INIT_DATA=1
+{
+	client{}
+
+	server{
+		message
+		{
+			count:u8
+		}
+	}
+}
+
+proto MSG_ALCHEMY_ROCK=2
+{
+	client
+	{
+		message=empty
+	}
+
+	server
+	{
+		message
+		{
+			count:u8
+		}
+	}
+}

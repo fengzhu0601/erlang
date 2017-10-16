@@ -1,0 +1,155 @@
+﻿id（城镇ID（1-20）*100+num，由策划确定）	所在场景	坐标x（格子）	坐标y（格子）	名字	任务追踪的头像ICON	骨骼动画资源(xx/xx.skel)	普通对话[TalkId]	NPC图标	NPC挂接系统（[event,...])	挑战副本ID
+id	scene_id	x	y	client_name	client_task_image	client_skel	client_normalChat	client_icon	client_event	can_challenge
+101	105	9	12	苏菲	banshenxiang/head_npc_30001/head_npc_30001.png	avatars/npc_30001.skel	[{101,40001}]		[open_depot_ui]	
+102	103	23	13	管家 诺顿	banshenxiang/head_npc_30002/head_npc_30002.png	avatars/npc_30002.skel	[{102,40002}]		[]	
+103	104	26	14	官员 卡萨罗	banshenxiang/head_npc_30003/head_npc_30003.png	avatars/npc_30003.skel	[{103,40003}]		[]	
+104	105	49	12	画家 温莎	banshenxiang/head_npc_30014/head_npc_30014.png	avatars/npc_30014.skel	[{104,40004}]		[]	
+106	105	27	13	老板 法卡斯	banshenxiang/head_npc_30006/head_npc_30006.png	avatars/npc_30006.skel	[{106,40006}]	banshenxiang/shop.png	[open_shop_ui]	
+107	102	30	14	安格莉亚	banshenxiang/head_npc_30007/head_npc_30007.png	avatars/npc_30007.skel	[{107,40007}]		[]	
+108	102	11	15	公爵 洛萨	banshenxiang/head_npc_30008/head_npc_30008.png	avatars/npc_30008.skel	[{108,40008}]		[]	
+109	103	35	13	审判骑士 史考尔	banshenxiang/head_npc_30009/head_npc_30009.png	avatars/npc_30009.skel	[{109,40009}]	banshenxiang/course.png	[open_war_course_ui]	
+110	101	34	14	盗贼 罗格	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{110,40010}]		[]	
+111	103	68	13	机械师 普朗克	banshenxiang/head_npc_30011/head_npc_30011.png	avatars/npc_300111.skel	[{111,40011}]		[]	
+112	103	76	13	邮差	banshenxiang/head_npc_10002/head_npc_10002.png	avatars/npc_10002.skel	[{112,40012}]		[open_mail_ui]	
+201	201	22	13	兵团长 海姆	banshenxiang/head_npc_20002/head_npc_20002.png	avatars/npc_20002.skel	[{201,40101}]		[]	
+202	202	27	16	拍卖师 莉莎	banshenxiang/head_npc_30004/head_npc_30004.png	avatars/npc_30004.skel	[{202,40102}]	banshenxiang/auction.png	[open_auction_ui]	
+203	201	36	13	探险家 穆拉丁	banshenxiang/head_npc_20001/head_npc_20001.png	avatars/npc_20001.skel	[{203,40103}]		[]	
+204	201	46	13	凯西猫 胡地	banshenxiang/head_npc_20003/head_npc_20003.png	avatars/npc_20003.skel	[{308,40104}]		[]	
+205	203	28	13	奥多姆守卫 山姆	banshenxiang/head_npc_50000/head_npc_50000.png	avatars/npc_50000.skel	[{205,40105}]		[]	
+206	203	15	13	萨满 莫林	banshenxiang/head_npc_20004/head_npc_20004.png	avatars/npc_20004.skel	[{206,40106}]		[]	
+301	301	35	13	女王 艾希	banshenxiang/head_npc_30031/head_npc_30031.png	avatars/npc_30031.skel	[{301,40201}]		[]	
+302	301	24	13	护卫队长 卡恩	banshenxiang/head_npc_30032/head_npc_30032.png	avatars/npc_30032.skel	[{302,40202}]		[]	
+303	301	45	13	精灵王 莱斯塔	banshenxiang/head_npc_30033/head_npc_30033.png	avatars/npc_30033.skel	[{303,40203}]		[]	
+304	302	25	12	术士 摩尔	banshenxiang/head_npc_40004/head_npc_40004.png	avatars/npc_40004.skel	[{304,40204}]		[]	
+305	303	33	14	精灵村民 山德鲁	banshenxiang/head_npc_40006/head_npc_40006.png	avatars/npc_40006.skel	[{305,40205}]		[]	
+306	303	16	14	精灵女孩 洛丽塔	banshenxiang/head_npc_40007/head_npc_40007.png	avatars/npc_40007.skel	[{306,40206}]		[]	
+307	301	64	14	穆雷	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{307,40207}]		[]	
+401	402	36	14	冰川守护者 凯尔	banshenxiang/head_npc_40011/head_npc_40011.png	avatars/npc_40011.skel	[{401,40301}]		[]	
+402	401	32	15	公主 安娜	banshenxiang/head_npc_40002/head_npc_40002.png	avatars/npc_40002.skel	[{402,40302}]		[]	
+403	401	57	14	女祭司 米莱娜	banshenxiang/head_npc_40010/head_npc_40010.png	avatars/npc_40010.skel	[{403,40303}]		[]	
+404	401	23	14	皇家骑士长 费雷罗	banshenxiang/head_npc_40009/head_npc_40009.png	avatars/npc_40009.skel	[{404,40304}]		[]	
+406	403	17	14	梦境使者 弗洛伊德	banshenxiang/head_npc_40008/head_npc_40008.png	avatars/npc_40008.skel	[{406,40305}]		[]	
+408	402	21	14	穆雷	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{408,40306}]		[]	
+409	403	36	14	雪人 巴罗	banshenxiang/head_npc_40001/head_npc_40001.png	avatars/npc_40001.skel	[{409,40307}]		[]	
+501	501	50	13	潮汐使者 西壬	banshenxiang/head_npc_40005/head_npc_40005.png	avatars/npc_40005.skel	[{501,40401}]		[]	
+502	501	36	14	精灵 露丝	banshenxiang/head_npc_40003/head_npc_40003.png	avatars/npc_40003.skel	[{502,40402}]		[]	
+503	501	18	14	精灵游侠 伊莉丝翠	banshenxiang/head_npc_80001/head_npc_80001.png	avatars/npc_80001.skel	[{503,40403}]		[]	
+504	502	7	14	诡术师 弗洛茨	banshenxiang/head_npc_80002/head_npc_80002.png	avatars/npc_80002.skel	[{504,40404}]		[]	
+505	502	27	13	酒吧女郎 海伦	banshenxiang/head_npc_80003/head_npc_80003.png	avatars/npc_80003.skel	[{505,40405}]		[]	
+601	601	43	11	龙女 亚沙	banshenxiang/head_npc_90002/head_npc_90002.png	avatars/npc_90002.skel	[{601,40501}]		[]	
+602	601	29	12	龙人长老 甘道夫	banshenxiang/head_npc_90001/head_npc_90001.png	avatars/npc_90001.skel	[{602,40502}]		[]	
+1001	1001	22	15	穆雷	banshenxiang/head_npc_30010/head_npc_30010.png	avatars/npc_30010.skel	[{1001,40305}]		[]	
+10001				流氓兔		avatars/monster_10001.skel	[{101,2000}]		[]	50113
+10002				土拨鼠		avatars/monster_10002.skel	[{101,2000}]		[]	50113
+10003				男斗士		avatars/monster_10003.skel	[{101,2000}]		[]	50113
+10004				女刺客		avatars/monster_10004.skel	[{101,2000}]		[]	50113
+10005				蛮力战士		avatars/monster_10005.skel	[{101,2000}]		[]	50113
+10006				枪战士		avatars/monster_10006.skel	[{101,2000}]		[]	50113
+10007				骷髅战士		avatars/monster_60003.skel	[{101,2000}]		[]	50113
+10008				蝙蝠女妖		avatars/monster_60004.skel	[{101,2000}]		[]	50113
+10009				地精战士		avatars/monster_10007.skel	[{101,2000}]		[]	50113
+10010				地精弓箭手		avatars/monster_10008.skel	[{101,2000}]		[]	50113
+10011				堕落天使		avatars/monster_10009.skel	[{101,2000}]		[]	50113
+10012				巨石怪		avatars/monster_10014.skel	[{101,2000}]		[]	50113
+10013				骷髅兽		avatars/monster_10018.skel	[{101,2000}]		[]	50113
+10014				雷鸟		avatars/monster_10020.skel	[{101,2000}]		[]	50113
+10015				镜子怪		avatars/monster_10011.skel	[{101,2000}]		[]	50113
+10016				诅咒巫师		avatars/monster_60002.skel	[{101,2000}]		[]	50113
+10017				女鬼魂		avatars/monster_60001.skel	[{101,2000}]		[]	50113
+10018				暗影魔豹 精英		avatars/boss_20001_jy.skel	[{101,2000}]		[]	50113
+10019				剑齿豹 精英		avatars/monster_20006.skel	[{101,2000}]		[]	50113
+10020				暗影魔豹 卡斯		avatars/boss_20001.skel	[{101,2000}]		[]	50113
+10021				审判骑士 史考尔		avatars/boss_20002.skel	[{101,2000}]		[]	50113
+10022				地精傀儡 博古斯		avatars/boss_10011.skel	[{101,2000}]		[]	50113
+10023				地精厨娘 赫拉丝   		avatars/boss_20004.skel	[{101,2000}]		[]	50113
+10024				丑陋巨兽 巴基尔		avatars/boss_20005.skel	[{101,2000}]		[]	50113
+10025				大天使 泰勒		avatars/boss_20006.skel	[{101,2000}]		[]	50113
+10036				雷电狼		avatars/monster_10013.skel	[{101,2000}]		[]	50111
+10037				巨石怪		avatars/monster_10014.skel	[{101,2000}]		[]	50111
+10038				蘑菇怪		avatars/monster_10016.skel	[{101,2000}]		[]	50111
+10039				苔藓怪		avatars/monster_10017.skel	[{101,2000}]		[]	50111
+10040				骷髅兽		avatars/monster_10018.skel	[{101,2000}]		[]	50111
+10041				电鬼		avatars/monster_10019.skel	[{101,2000}]		[]	50111
+10042				巨石怪		avatars/monster_10014.skel	[{101,2000}]		[]	50111
+10043				雾兽		avatars/monster_10015.skel	[{101,2000}]		[]	50111
+10044				堕落天使		avatars/monster_10009.skel	[{101,2000}]		[]	50111
+10045				骷髅兽		avatars/monster_10018.skel	[{101,2000}]		[]	50111
+10046				雷电狼		avatars/monster_10013.skel	[{101,2000}]		[]	50111
+10047				雷鸟		avatars/monster_10020.skel	[{101,2000}]		[]	50111
+10048				月光巨狼 艾伦诺克		avatars/boss_20007.skel	[{101,2000}]		[]	50120
+10049				树精 洛古斯		avatars/boss_20009.skel	[{101,2000}]		[]	50120
+10050				死神 凯萨		avatars/boss_20012.skel	[{101,2000}]		[]	50120
+10051				吞云兽 塞瓦 		avatars/boss_20008.skel	[{101,2000}]		[]	50120
+10052				骨龙 奎尼斯		avatars/boss_20011.skel	[{101,2000}]		[]	50120
+10053				雷神像 斯科恩		avatars/boss_20013.skel	[{101,2000}]		[]	50120
+10054				月光巨狼 艾伦诺克		avatars/boss_20007_jy.skel	[{101,2000}]		[]	50120
+10055				树精 洛古斯		avatars/boss_20009_jy.skel	[{101,2000}]		[]	50120
+10056				树精 洛古斯		avatars/boss_20009_jy.skel	[{101,2000}]		[]	50120
+10057				吞云兽 塞瓦		avatars/boss_20008_jy.skel	[{101,2000}]		[]	50120
+10058				月光巨狼 艾伦诺克		avatars/boss_20007_zj.skel	[{101,2000}]		[]	50120
+10059				骨龙 奎尼斯		avatars/boss_20011_jy.skel	[{101,2000}]		[]	50120
+10060				树精 洛古斯		avatars/boss_20009_zj.skel	[{101,2000}]		[]	50120
+10061				树精 洛古斯		avatars/boss_20009_zj.skel	[{101,2000}]		[]	50120
+10062				吞云兽 塞瓦 		avatars/boss_20008_zj.skel	[{101,2000}]		[]	50120
+10063				骨龙 奎尼斯		avatars/boss_20011_zj.skel	[{101,2000}]		[]	50120
+10064				精灵猎手		avatars/monster_20001.skel	[{101,2000}]		[]	50111
+10065				暗夜精灵		avatars/monster_20002.skel	[{101,2000}]		[]	50111
+10066				丧尸		avatars/monster_20004.skel	[{101,2000}]		[]	50111
+10067				剑齿豹		avatars/monster_20006.skel	[{101,2000}]		[]	50111
+10068				黑暗蝙蝠		avatars/monster_20005.skel	[{101,2000}]		[]	50111
+10069				神庙祭司		avatars/monster_60002.skel	[{101,2000}]		[]	50111
+10070				矿虫		avatars/monster_20003.skel	[{101,2000}]		[]	50111
+10071				矿洞蜘蛛		avatars/monster_20008.skel	[{101,2000}]		[]	50111
+10072				精灵猎手		avatars/monster_20001.skel	[{101,2000}]		[]	50111
+10073				暗夜精灵		avatars/monster_20002.skel	[{101,2000}]		[]	50111
+10074				火焰蜥蜴人		avatars/monster_30003.skel	[{101,2000}]		[]	50111
+10075				火鬼		avatars/monster_60005.skel	[{101,2000}]		[]	50111
+10076				炎怪		avatars/monster_30001.skel	[{101,2000}]		[]	50111
+10077				火妖		avatars/monster_30002.skel	[{101,2000}]		[]	50111
+10078				火焰蜥蜴人		avatars/monster_30003.skel	[{101,2000}]		[]	50111
+10079				巨怪 泰山		avatars/boss_10001.skel	[{101,2000}]		[]	50111
+10080				黑巫师 尼古拉		avatars/boss_10002.skel	[{101,2000}]		[]	50120
+10081				守望者 伊阿宋		avatars/boss_10003.skel	[{101,2000}]		[]	50120
+10082				深渊巨虫 可多		avatars/boss_10004.skel	[{101,2000}]		[]	50120
+10083				守望者 伊阿宋		avatars/boss_10003.skel	[{101,2000}]		[]	50120
+10084				圣光龙 德拉贡		avatars/boss_10005.skel	[{101,2000}]		[]	50120
+10085				巨怪 泰山		avatars/boss_10001_jy.skel	[{101,2000}]		[]	50120
+10086				守望者 伊阿宋		avatars/boss_10003_jy.skel	[{101,2000}]		[]	50120
+10087				圣光龙 德拉贡		avatars/boss_10005_jy.skel	[{101,2000}]		[]	50120
+10088				巨怪 泰山		avatars/boss_10001_zj.skel	[{101,2000}]		[]	50120
+10089				守望者 伊阿宋		avatars/boss_10003_zj.skel	[{101,2000}]		[]	50120
+10090				圣光龙 德拉贡		avatars/boss_10005_zj.skel	[{101,2000}]		[]	50120
+10091				雷电狼		avatars/monster_10013.skel	[{101,2000}]		[]	50111
+10092				精灵猎手		avatars/monster_20001.skel	[{101,2000}]		[]	50111
+10093				蜥蜴人战士		avatars/monster_30004.skel	[{101,2000}]		[]	50111
+10094				鱼人战士		avatars/monster_40002.skel	[{101,2000}]		[]	50111
+10095				羽蛇		avatars/monster_80001.skel	[{101,2000}]		[]	50111
+10096				小偷		avatars/monster_80003.skel	[{101,2000}]		[]	50111
+10097				海族侍卫		avatars/monster_40001.skel	[{101,2000}]		[]	50111
+10098				废墟鬼魂		avatars/monster_60001.skel	[{101,2000}]		[]	50111
+10099				冰川龟人		avatars/monster_30007.skel	[{101,2000}]		[]	50111
+10100				冰川熊怪		avatars/monster_30009.skel	[{101,2000}]		[]	50111
+10101				雾兽		avatars/monster_10015.skel	[{101,2000}]		[]	50111
+10102				墓地守卫		avatars/monster_90001.skel	[{101,2000}]		[]	50111
+10103				羽蛇王 碧姆		avatars/boss_80003.skel	[{101,2000}]		[]	50111
+10104				鲨鱼战士		avatars/monster_30008.skel	[{101,2000}]		[]	50111
+10105				娜迦祭司		avatars/monster_40003.skel	[{101,2000}]		[]	50111
+10106				羽蛇守卫		avatars/monster_80002.skel	[{101,2000}]		[]	50111
+10107				打手		avatars/monster_80004.skel	[{101,2000}]		[]	50111
+10108				熔岩巨兽 摩尼		avatars/boss_30001.skel	[{101,2000}]		[]	50120
+10109				蜥蜴首领 赫歇		avatars/boss_30002.skel	[{101,2000}]		[]	50120
+10110				神殿守卫 巨神兵		avatars/boss_30003.skel	[{101,2000}]		[]	50120
+10111				冰川雪怪 拉萨		avatars/boss_30004.skel	[{101,2000}]		[]	50120
+10112				远古冰龙 德古拉		avatars/boss_30006.skel	[{101,2000}]		[]	50120
+10113				邪魔 门玛		avatars/boss_30005.skel	[{101,2000}]		[]	50120
+10114				精灵游侠·伊莉丝翠		avatars/boss_80001.skel	[{101,2000}]		[]	50120
+10115				水元素王子 阿撒托斯		avatars/boss_80002.skel	[{101,2000}]		[]	50120
+10116				羽蛇幻影		avatars/boss_80003_huanying.skel	[{101,2000}]		[]	50120
+10117				诡术师 弗洛茨		avatars/boss_80004.skel	[{101,2000}]		[]	50120
+10118				人鱼公主 爱丽儿		avatars/boss_80005.skel	[{101,2000}]		[]	50120
+10119				深海魔怪 克拉肯		avatars/boss_80006.skel	[{101,2000}]		[]	50120
+10120				神殿守卫 巨神兵		avatars/boss_30003_jy.skel	[{101,2000}]		[]	50120
+10121				冰川雪怪 拉萨		avatars/boss_30004_jy.skel	[{101,2000}]		[]	50120
+10122				冰川雪怪 拉萨		avatars/boss_30004_zj.skel	[{101,2000}]		[]	50120
+10123				远古冰龙 德古拉		avatars/boss_30006_jy.skel	[{101,2000}]		[]	50120
+10124				远古冰龙 德古拉		avatars/boss_30006_zj.skel	[{101,2000}]		[]	50120

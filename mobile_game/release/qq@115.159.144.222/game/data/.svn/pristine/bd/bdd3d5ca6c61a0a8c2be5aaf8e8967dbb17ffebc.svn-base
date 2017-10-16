@@ -1,0 +1,27 @@
+﻿功能开放	功能名称	开关ID[Id大于100, 不能大于400]	任务触发(任务ID）	限制等级	主线任务ID	限制章节
+id	client_name	sinks	task_trigger	limit_level	limit_main_task	limit_chapter
+1	bag_ui	101		1		
+2	depot_ui	102		1		
+3	shop_ui	103		1		
+4	mall_ui	104		1		
+5	login_reward_ui	105		1		
+6	charge_ui	106		1		
+7	ranking_ui	107		1		
+8	achievement_ui	108		1		
+9	friend_ui	109		4		
+10	crown_ui	110		5		
+11	card_ui	111		6		
+12	guild_ui	112		1		
+14	pet_ui	114		1		
+15	vip_ui	115		1		
+16	auction_ui	116		9		
+17	arena_ui	117		5		
+18	skill_ui	118		9		
+19	activity_ui	119		1		
+20	世界boss	120		1		
+21	决斗场	121		1		
+22	abyss_ui	122		100		
+23	camp_ui	123	90001	1		
+24	seller_ui	124		9		
+25	war_course_ui	225		9		
+26	daily_task_ui	125		17		

@@ -1,0 +1,12 @@
+﻿id	槽名	装备特效
+id	slot	effect
+1	wuqi_baosi	"effects/01fazhang_add/01fazhang.avatar.frames"
+2	wuqi_baosi	"effects/01jian_add/01jian.avatar.frames"
+3	wuqi_baosi	"effects/01qiang_add/01qiang.avatar.frames"
+4	wuqi_baosi	"effects/02fazhang_add/02fazhang.avatar.frames"
+5	wuqi_baosi	"effects/02jian_add/02jian.avatar.frames"
+6	wuqi_baosi	"effects/02qiang_add/02qiang.avatar.frames"
+7	wuqi_qianghua	"effects/01qianghua_add/01qianghua.avatar.frames"
+8	wuqi_qianghua	"effects/02qianghua_add/02qianghua.avatar.frames"
+9	wuqi_qianghua	"effects/03qianghua_add/03qianghua.avatar.frames"
+10	wuqi_qianghua	"effects/04qianghua_add/04qianghua.avatar.frames"

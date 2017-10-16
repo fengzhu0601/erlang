@@ -1,0 +1,116 @@
+%%%-------------------------------------------------------------------
+%%% @author clark
+%%% @copyright (C) 2015, <COMPANY>
+%%% @doc
+%%%
+%%% @end
+%%% Created : 08. 九月 2015 下午2:46
+%%%-------------------------------------------------------------------
+-module(scene_agent_factory).
+-author("clark").
+
+%% API
+-export(
+[
+    build_agent/1
+    , build_player/10
+    , try_build_bullet/2
+    , try_build_bullet/3
+]).
+
+-include("inc.hrl").
+-include("scene_agent.hrl").
+-include("skill_struct.hrl").
+-include("load_spirit_attr.hrl").
+-include("load_scene_monster.hrl").
+
+build_agent(Agent) ->
+    %% 老版游戏架构都是以玩家对象为所有对象通用的， 优化成各个对象有各个对象的结构改动太多， 目前先不动这块并且把玩家对象定位为地图对象。
+    %% 日后地图对象会做为地图上各种实体的基类
+    map_agent:create(Agent).
+
+build_player
+(
+    PlayerId,
+    FromPid,
+    {X, Y},
+    {Rx, Ry},
+    Lvl,
+    Hp,
+    Mp,
+    Attr,
+    ViewInfo,
+    Efts
+) ->
+    Idx = scene_agent:take_player_idx(),
+    put(?player_idx(PlayerId), Idx),
+
+    [PkMode | _] = get(?pd_cfg_pk_modes),
+    PkInfo = ?make_player_pk_info(PkMode, PlayerId, 0, 0),
+
+    Agent = #agent
+    {
+        idx = Idx,
+        pk_info = PkInfo,
+        pid = FromPid,
+        id = PlayerId,
+        type = ?agent_player,
+        x = X,
+        y = Y,
+        h = 0,
+        d = ?D_D,
+        rx = Rx,
+        ry = Ry,
+        level = Lvl,
+        hp = Hp,
+        mp = Mp,
+        attr = Attr,
+        max_hp = Attr#attr.hp,
+        max_mp = Attr#attr.mp,
+        enter_view_info = ViewInfo,
+        move_vec = move_util:create_move_vector(erlang:make_tuple(4, Attr#attr.move_speed)),
+        eft_list = Efts
+    },
+    map_agent:create(Agent).
+
+
+%% try_build_bullet(#agent{d = Dir}=A, #skill_cfg{release_objs = []} = SkillCfg) ->
+%%     try_build_bullet(A, SkillCfg, Dir).
+try_build_bullet(#agent{d = Dir}=A, #skill_cfg{} = SkillCfg) ->
+    try_build_bullet(A, SkillCfg, Dir).
+try_build_bullet(#agent{attr = AAttr} = Agent, #skill_cfg{id = FromSkillId, release_objs = Objs} = _SkillCfg, Dir) ->
+%%     Objs1 = [9000201],
+    Objs1 =
+        if
+            [] =/= Objs -> Objs;
+            true -> load_segments:get_emits(FromSkillId)
+        end,
+    lists:foreach
+    (
+        fun
+            (ObjId) ->
+                Box = load_cfg_skill:get_bullet_box(ObjId),
+                BulletAttr =
+                    case load_scene_monster:lookup_monster_new_cfg(ObjId) of
+                        ?none ->
+                            AAttr;
+                        #monster_new_cfg{attr = MonsterAttr} ->
+                            MonsterAttr
+                    end,
+                case load_cfg_emits:get_skill(ObjId) of
+                    ?none ->
+                        ?ERROR_LOG("error in monster_bid11 ~p",[ObjId]);
+                    EmitsCfg ->
+%%                         ?INFO_LOG("bullet_agent ~p",[EmitsCfg]),
+                        BulletAgent = bullet_agent:build(Agent, BulletAttr, EmitsCfg, Dir, Box, FromSkillId),
+                        pl_util:play_bullet_skill(BulletAgent, {EmitsCfg})
+                end
+        end,
+        Objs1
+    ).
+
+
+
+
+
+

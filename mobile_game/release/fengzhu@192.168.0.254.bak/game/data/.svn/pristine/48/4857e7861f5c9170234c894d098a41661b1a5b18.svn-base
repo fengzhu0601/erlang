@@ -1,0 +1,53 @@
+﻿ID(与monster表ID一致）	名称	动画文件(骨骼路径emits文件夹下）	移动前延时，单位毫秒（移动类需配置，定点不需配置，不配则填0）	偏移，Vector3，单位为地图格，用于移动攻击类（针对玩家基点的偏移）{x,y,z}	初始速度,Vector3,单位每十秒多少格,用于移动攻击类({x,y,z},暂时只用到x（格式[{x,x_a,time},{y,y_a,time},{z,z_a,time}],{初速度,加速度,时间}）	消亡时间，用于移动攻击类（毫秒）	触发类型（0代表没有，1代表技能）	触发深度（触发的深度，与技能段配置一致）	攻击间隔（毫秒）（移动释放物特有）	攻击技能（skill表ID）	定点类型，用于定点攻击类（1代表释放者偏移，2代表屏幕中央偏移，3.队友（server），4，敌方随机一个偏移）	复数性攻击，用于定点攻击类，[{攻击骨骼名，攻击技能段}]	是否跟踪玩家（1跟踪；0不跟踪）	随机分布(0代表不随机，1代表根据释放者随机，2代表根据根据屏幕中央随机释放)	缩放[x,y]	角度（0-360）	是否跟踪(0代表不跟踪，1代表跟踪)	触发条件（1代表生成的时候触发，2代表消失的时候触发）	触发的数据（目前只支持技能，格式[skillID]）	半径（随机释放物可配置，以释放者为中心，按格子数计算，随机释放物不配置偏移）
+id	client_name	client_skel	delay	offset	speed	time	trigger_type	trigger_depth	attack_interval	attack_skill	client_anchor_type	client_attacks	client_is_follow_palyer	client_rand	client_scale	client_ratotion	client_isfollow	trigger_condition	trigger_datas	radius
+9000101	火焰冲锋释放物	emits/soldier_skill5.skel								500009	1	[attack1]	0		[1,1]					
+9000102	鬼哭神嚎释放物	emits/soldier_skill4_5.skel								500008	1	[attack1,attack2]	0							
+9000201	冰龙狂卷	emits/magican_skill4.skel	300	{4, 0,5}	[{85,0,0},{0,0,0},{0,0,0}]	3000	0	1	500	500001			0							
+9000202	恶魔突袭	emits/magican_skill1.skel	100	{4, 0,5}	[{150,0,0},{0,0,0},{0,0,0}]	3000	0	1	250	500002			0							
+9000204	暴风雪	emits/magican_skill3.skel								500003	1	[attack1,attack2,attack3,attack4,attack5,attack6,attack7]	0							
+9000301	幻影之舞	emits/paladin_skill2.skel								500011	1	[attack1,attack2,attack3,attack4,attack5,attack6]	0							
+9000302	混沌斩杀	emits/paladin_skill6.skel								500012	1	[attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8,attack9,attack10]	0							
+9000303	三段斩	emits/paladin_skill1_3.skel								500013	1	[attack1,attack2,attack3,attack4,attack5]	0							
+9000001	怒气技-冰冰冰	emits/nuqiji_b.skel								500004	1	[attack1,attack2,attack3]	0							
+9000002	怒气技-冰火雷	emits/nuqiji_bhl.skel								500005	1	[attack1,attack2]	0							
+9000003	怒气技-火火火	emits/nuqiji_h.skel								500006	1	[attack1,attack2,attack3,attack4]	0							
+9000004	怒气技-雷雷雷	emits/nuqiji_l.skel	300	{4, 0,4}	[{85,0,0},{0,0,0},{0,0,0}]	2500	0	1	100	500007			0							
+9000005	怒气技-冰冰火	emits/nuqiji_bbh.skel	300	{10, 0,4}	[{0,0,0},{0,0,0},{0,0,0}]	5000	0	1	500	500026			0							
+9000006	怒气技-冰冰雷	emits/nuqiji_bbl.skel								500027	1	[attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8]	0							
+9000007	怒气技-火火冰	emits/nuqiji_hhb.skel								500028	1	[attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8]	0							
+9000008	怒气技-火火雷	emits/nuqiji_hhl.skel	300	{4, 0,4}	[{85,0,0},{0,0,0},{0,0,0}]	2500	0	1	100	500029			0							
+9000009	怒气技-雷雷冰	emits/nuqiji_llb.skel	300	{4, 0,4}	[{85,0,0},{0,0,0},{0,0,0}]	2500	0	1	500	500030			0							
+9000010	怒气技-雷雷火	emits/nuqiji_llh.skel								500031	1	[attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8]	0							
+9000601	起身反击	emits/souseng.skel								390002	1	[attack1]	0							
+9000401	宠物地刺	emits/dici.skel								600003	1	[attack1,attack2,attack3]	0							
+9000501	冰龙狂卷2	emits/magican_skill4_1.skel	300	{8, 0,5}	[{85,0,0},{0,0,0},{0,0,0}]	3000	0	1	500	500010			0							
+9000701	雷神狂风	emits/boss_20013_fen.skel								500014	1	[attack1,attack2,attack3,attack4]	0							
+9000702	飞镖	emits/feibiao.skel	300	{2, 0,3}	[{300,0,0},{0,0,0},{0,0,0}]	1500	0	1	1500	510001			0							
+9000703	流星释放物	emits/yanbao.skel								500015	1	[attack1]	0							
+9000704	机关—电击释放物	emits/dianji.skel								520001	1	[attack1]	1							
+9000705	光柱	emits/boss_20006_guangzhu.skel								530001	1	[attack1,attack2,attack3]	0							
+9000706	刀光	emits/boss_20004_daoguang.skel								540001	1	[attack1]	0							
+9000707	毒气	emits/duqi.skel								550001	1	[attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8,attack9,attack10]	0							
+9000708	地刺	emits/boss_20009_dici.skel								560001	2	[attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8,attack9]	0							
+9000709	骨刺-简单	emits/boss_20011_dici.skel	300	{0,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	6000	0	2	1000	570001			0							
+9000710	骨刺-困难	emits/boss_20011_jy_dici.skel	300	{0,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	7000	0	2	1000	570002			0							
+9000711	骨刺-噩梦	emits/boss_20011_zj_dici.skel	300	{0,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	8000	0	2	1000	570003			0							
+9000712	圣光道标	emits/boss_10005_jy_qiu.skel	800	{6, 0,3}	[{300,0,0},{0,0,0},{0,0,0}]	3600000	0	1	1000	580001			0							
+9000713	圣光道标	emits/boss_10005_zj_qiu.skel	800	{6, 0,3}	[{300,0,0},{0,0,0},{0,0,0}]	3600000	0	1	1000	580002			0							
+9000714	冰刃	emits/boss_30006_bingren.skel	800	{0,0,0}	[{0,0,0},{0,0,0},{10,100,1}]	2000	0	1	900	590001		[attack1]	1	1	[2,2]	0	1			5
+9000715	冰刃	emits/boss_30006_bingren.skel	800	{12,-3,-6}	[{0,0,0},{0,0,0},{10,100,1}]	2000	0	1	900	610001		[attack1]	0	1	[1,1]	0	0			5
+9000716	冰面	emits/boss_30006_bingmian.skel								620001	1	[attack1]	0							
+9000717	冰刃	emits/boss_30006_bingren.skel	800	{12,0,6}	[{0,0,0},{0,0,0},{10,100,1}]	2000	0	1	900	630001		[attack1]	0	1	[1,1]	0	0			5
+9000718	冰刃	emits/boss_30006_bingren.skel	800	{5,-3,-4}	[{0,0,0},{0,0,0},{10,100,1}]	2000	0	1	900	640001		[attack1]	0	1	[1,1]	0	0			5
+9000719	冰刃	emits/boss_30006_bingren.skel	800	{5,0,4}	[{0,0,0},{0,0,0},{10,100,1}]	2000	0	1	900	650001		[attack1]	0	1	[1,1]	0	0			5
+9000720	冰刃	emits/boss_30006_bingren.skel	800	{8,0,0}	[{0,0,0},{0,0,0},{10,100,1}]	2000	0	1	900	660001		[attack1]	0	1	[1,1]	0	0			5
+9000721	冰刃	emits/boss_30006_bingren.skel	800	{-5,-3,-5}	[{0,0,0},{0,0,0},{10,100,1}]	2000	0	1	900	670001		[attack1]	0	1	[1,1]	0	0			5
+9000722	冰刃	emits/boss_30006_bingren.skel	800	{-7,0,5}	[{0,0,0},{0,0,0},{10,100,1}]	2000	0	1	900	680001		[attack1]	0	1	[1,1]	0	0			5
+9000901	火焰冲锋释放物-机器人	emits/soldier_skill5.skel								500020	1	[attack1]	0							
+9000902	鬼哭神嚎释放物-机器人	emits/soldier_skill4_5.skel								500019	1	[attack1,attack2]	0							
+9001001	冰龙狂卷-机器人	emits/magican_skill4.skel	300	{4, 0,5}	[{85,0,0},{0,0,0},{0,0,0}]	3000	0	1	500	500016			0							
+9001002	恶魔突袭-机器人	emits/magican_skill1.skel	100	{4, 0,5}	[{150,0,0},{0,0,0},{0,0,0}]	1500	0	1	100	500017			0							
+9001004	暴风雪-机器人	emits/magican_skill3.skel								500018	1	[attack1,attack2,attack3,attack4,attack5,attack6,attack7]	0							
+9001101	幻影之舞-机器人	emits/paladin_skill2.skel								500022	1	[attack1,attack2,attack3,attack4,attack5,attack6]	0							
+9001102	混沌斩杀-机器人	emits/paladin_skill6.skel								500023	1	[attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8,attack9,attack10]	0							
+9001103	三段斩-机器人	emits/paladin_skill1_3.skel								500024	1	[attack1,attack2,attack3,attack4,attack5]	0							

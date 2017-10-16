@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<!-- edited with XMLSpy v2011 (http://www.altova.com) by aaa (dd) -->
+<scene_11531>
+	<!--副本事件流程-->
+	<State StateId="1" Desc="副本状态1">
+		<Event EventId="10001" Times="1" Desc="玩家进入场景">
+			<True Func="set_event" Par="{500, 9001}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+		<Event EventId="9001" Times="1" Desc="监听自定义事件">
+			<True Func="lock_area" Par="{1,{0, 50}}" Desc="锁屏区域{序号,{X1, X2}}"/>
+			<True Func="create_monsters" Par="[{1153110, 23, 17, 0, 7, 1}, {1153111, 25, 15, 0, 7, 2}, {1153111, 25, 19, 0, 7, 3}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+		</Event>
+		<Event EventId="10002" Times="1" Desc="玩家移动">
+			<Can Func="is_player_in_x" Par="25" Desc="是否超过x坐标"/>
+			<True Func="create_monsters" Par="[{1153110, 25, 16, 0, 3, 10}, {1153111, 20, 17, 0, 3, 11}, {1153110, 20, 18, 0, 3, 12}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{1153110, 45, 15, 0, 7, 13}, {1153110, 45, 19, 0, 7, 14}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="set_state" Par="{0, 2}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+	</State>
+	<State StateId="2" Desc="副本状态2">
+		<Event EventId="10003" Times="1" Desc="怪物死亡">
+			<Can Func="is_all_monster_die" Par="" Desc="是否杀死当前所有怪物"/>
+			<True Func="create_monsters" Par="[{1153110, 38, 16, 0, 7, 7}, {1153111, 43, 17, 0, 7, 8}, {1153110, 38, 18, 0, 7, 9}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+		</Event>
+		<Event EventId="10002" Times="1" Desc="玩家移动">
+			<Can Func="is_player_in_x" Par="45" Desc="是否超过x坐标"/>
+			<Can Func="is_all_monster_die" Par="" Desc="是否杀死当前所有怪物"/>
+			<True Func="lock_area" Par="{2,{0, 105}}" Desc="锁屏区域{序号,{X1, X2}}"/>
+			<True Func="set_state" Par="{0, 3}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+	</State>
+	<State StateId="3" Desc="副本状态3">
+		<Event EventId="10002" Times="1" Desc="玩家移动">
+			<Can Func="is_player_in_x" Par="55" Desc="是否有玩家超过x坐标"/>
+			<True Func="lock_area" Par="{3,{50, 105}}" Desc="锁屏区域{序号,{X1, X2}}"/>
+			<True Func="create_monsters" Par="[{1153110, 65, 15, 0, 7, 15}, {1153110, 65, 19, 0, 7, 16}, {1153111, 70, 17, 0, 7, 17}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{1153111, 75, 15, 0, 7, 18}, {1153111, 75, 19, 0, 7, 19}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+		</Event>
+		<Event EventId="10002" Times="1" Desc="玩家移动">
+			<Can Func="is_player_in_x" Par="70" Desc="是否超过x坐标"/>
+			<Can Func="is_all_monster_die" Par="" Desc="是否杀死当前所有怪物"/>
+			<True Func="create_monsters" Par="[{1153111, 98, 15, 0, 7, 20}, {1153110, 90, 17, 0, 7, 21}, {1153111, 98, 19, 0, 7, 22}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{1153110, 58, 15, 0, 3, 23}, {1153110, 58, 19, 0, 3, 24}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="monsters_flush_ok" Par="" Desc="已经刷完所有怪物"/>
+		</Event>
+		<Event EventId="10003" Times="1" Desc="击杀怪物">
+			<Can Func="is_monsters_flush_ok" Par="" Desc="是否已经刷完所有怪物"/>
+			<Can Func="is_all_monster_die" Par="" Desc="是否杀死当前所有怪物"/>
+			<True Func="active_transport_door" Par="3022" Desc="激活传送门,par=传送门id"/>
+		</Event>
+	</State>
+</scene_11531>

@@ -1,0 +1,2 @@
+﻿Id	名称	资源	方向	场景id	采集产出物品(程序写死，未在表里体现)	位置坐标	位置坐标	读条时间(S为单位)	读条要显示的文字	不能被打断，像移动打断之类	采集类型1任务采集2物品采集
+id	client_name	client_image	direction	scene_id	item	x	y	client_times	client_desc	client_cannot_break	type

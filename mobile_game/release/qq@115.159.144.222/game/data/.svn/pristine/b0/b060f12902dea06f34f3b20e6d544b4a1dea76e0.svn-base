@@ -1,0 +1,23 @@
+﻿唯一编号（1-100预留充值活动，101-199等级达成，201-299装备强化）	条件	奖励	任务说明	指引链接
+id	condition	prize	client_des	link
+111	level_10	281111	达到10级	open_helper_ui
+112	level_16	281112	达到16级	open_helper_ui
+113	level_22	281113	达到22级	open_helper_ui
+121		281121	全身装备达到紫色	open_helper_ui
+122		281122	全身装备强化+5	open_equip_op_ui
+123		281123	全身装备强化+10	open_equip_op_ui
+211		281211	通关第一章节剧情副本	open_instance_ui
+221		281221	兽魂升级	open_
+311		281311	宠物进阶	open_pet_ui
+321		281321	合成装备	open_equip_op_ui
+411		281411	公会捐献	open_guild_ui
+421		281421	竞技场排名	open_ranking_ui
+511		281511	达成赏金任务	
+512		281512	完成5个5星以上每日任务	open_daily_task_ui
+513		281513	完成10个5星以上每日任务	
+514		281514	完成15个5星以上每日任务	
+521		281521	黑市拍卖行购买	open_auction_ui
+611		281611	战力突破	open_helper_ui
+621		281621	宝石合成	open_equip_op_ui
+711		281711	套装收集	open_helper_ui
+721		281721	皇冠技能使用	open_crown_ui

@@ -1,0 +1,15 @@
+﻿id	道具id	类型(1.所有副本，2城镇副本，3.单副本，4.窗口名字比如“bag_ui”)	标题	描述	图标路径	城市Id(城市id都存放在city.txt中)	副本id(副本id都存放在scene.txt中)	窗口名称（名称都存放open_fun.txt表中）
+id	item_id	type	title	desc	icon	city_id	ins_id	win_name
+1	2004	4	竞技场	竞技场摇奖有一定几率获得	daily_task/1.png			arena_ui
+2	2005	4	竞技场	竞技场摇奖有一定几率获得	daily_task/1.png			arena_ui
+3	2209	4	星商店	星商店刷新后有一定几率出售	daily_task/4.png			instance_ui
+4	2210	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+5	2211	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+6	2212	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+7	2213	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+8	2201	2	副本	极光大陆困难副本一定几率获得	daily_task/30.png	1	10021	
+9	2202	2	副本	雷霆之巅困难副本一定几率获得	daily_task/30.png	9	10621	
+10	2204	2	副本	暮光森林困难副本一定几率获得	daily_task/30.png	2	11221	
+11	2205	2	副本	远古冰川困难副本一定几率获得	daily_task/30.png	7	11721	
+12	2203	2	副本	耳语海岸困难副本一定几率获得	daily_task/30.png	3	12421	
+13	2207	2	副本	龙骨荒野困难副本一定几率获得	daily_task/30.png	8	13021	

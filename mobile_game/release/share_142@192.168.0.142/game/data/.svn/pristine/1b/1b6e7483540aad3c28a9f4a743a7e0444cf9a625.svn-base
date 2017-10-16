@@ -1,0 +1,6 @@
+﻿ID	职业（英文）	战斗骨骼（"音效文件路径"）	跳跃{delay（毫秒）,"音效文件路径"}	落地{delay,"音效文件路径"}	倒地{delay,"音效文件路径"}	击中受伤{delay,"音效文件路径"}	死亡{delay,"音效文件路径"}	角色移动{delay,"音效文件路径"}	复活{delay,"音效文件路径"}	胜利-随机播放音效{delay,"音效文件路径,音效文件路径"}
+id	career	skel	jump_sound	land_sound	down_sound	hurt_sound	die_sound	moving_sound	relive_sound	victory_sound
+1	soldier	avatars/soldier.skel	{0,"sounds/z_h_tiao.wav"}	{0,"sounds/luodi.wav"}	{0,"sounds/daodi.wav"}	{0,"sounds/z_sosa.wav"}	{0,"sounds/zs_sw_1.m4a"}	{0,"sounds/z_run.wav"}	{0,"sounds/fuhou.mp3"}	{800,"sounds/zs_sl_1.m4a,sounds/zs_sl_2.m4a,sounds/zs_sl_3.m4a,sounds/zs_sl_4.m4a"}
+2	magican	avatars/magican.skel	{0,"sounds/z_h_tiao.wav"}	{0,"sounds/luodi.wav"}	{0,"sounds/daodi.wav"}	{0,"sounds/fs_ss.m4a"}	{0,"sounds/fs_sw.m4a"}	{1,"sounds/f_run.wav"}	{0,"sounds/fuhou.mp3"}	{800,"sounds/fs_sl_1.m4a,sounds/fs_sl_2.m4a"}
+3	amazon	avatars/paladin.skel	{0,"sounds/z_h_tiao.wav"}	{0,"sounds/luodi.wav"}	{0,"sounds/daodi.wav"}	{0,"sounds/z_sosa.wav"}	{0,"sounds/z_sw.wav"}	{2,"sounds/z_run.wav"}	{0,"sounds/fuhou.mp3"}	{800,"sounds/tiao.wav,sounds/luodi.wav"}
+4	paladin	avatars/paladin.skel	{0,"sounds/z_h_tiao.wav"}	{0,"sounds/luodi.wav"}	{0,"sounds/daodi.wav"}	{0,"sounds/f_sosa.wav"}	{0,"sounds/f_sw.wav"}	{3,"sounds/z_run.wav"}	{0,"sounds/fuhou.mp3"}	{800,"sounds/tiao.wav,sounds/luodi.wav"}

@@ -1,0 +1,6 @@
+﻿ID（由策划确定）	称号名称	称号类型（待定）	全局称号服务器端名称	称号等级	称号属性(最终属性,spirit_attr表ID）	
+id	client_name	type	title_server_name	level	attr_id	client_desc
+10	王者降临	0	player_max_power	2	91006	俯瞰天下的战力！世界之巅，等您君临天下！
+11	最强战士	0	player_max_power_by_career_1	2	91007	飙升吧，热血之光！战士战力巅峰！
+12	最强法师	0	player_max_power_by_career_2	2	91007	吟唱吧，巫法之力！法师战力巅峰！
+14	最强骑士	0	player_max_power_by_career_4	2	91007	闪耀吧，杀戮之枪！骑士战力巅峰！

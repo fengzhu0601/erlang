@@ -1,0 +1,240 @@
+@include "game.sproto"
+
+## 坐骑信息
+struct ride_info
+{
+    ride_id:ride_id,              ## 坐骑配置Id
+    level:u8                      ## 坐骑等级
+}
+
+## 兽魂信息
+struct ride_soul_info
+{
+    id:ride_id,         ## 兽魂配置id
+    exp:u16,            ## 兽魂当前经验
+    happy:u16,          ## 兽魂当前愉悦度
+    grade:u16,          ## 突破等级
+    out_cd:u32,         ## 兽魂吐出奖励的cd
+    out_num:u8          ## 每天喷吐剩余次数
+}
+
+## 坐骑列表
+proto MSG_RIDE_LIST=1
+{
+    client{
+    	message=empty
+    }
+
+    server{
+        message {
+            ride_list:list<ride:ride_info>
+        }
+    }
+}
+
+## 根据坐骑ID获取坐骑信息
+proto MSG_RIDE_DATA = 2
+{
+    client{
+        message{
+            ride_id:ride_id
+        }
+    }
+
+    server{
+        message{
+            ride:ride_info
+        }
+    }
+}
+
+## 获取兽魂信息
+proto MSG_RIDE_SOUL_DATA = 3
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message{
+            ride_soul:ride_soul_info
+        }
+    }
+}
+
+#### 坐骑功能开放
+##proto MSG_RIDE_OPEN = 3
+##{
+##    client{
+##    	message=empty
+##    }
+##
+##    server{
+##        message=empty
+##    }
+##}
+
+## 坐骑激活
+proto MSG_RIDE_ACTIVATE = 4
+{
+    client{
+        message{
+            ride_id:ride_id
+        }
+    }
+
+    server{
+        message{
+            ride_id:ride_id
+        }
+    }
+
+    errnos{
+    	ERR_RIDE_NO_THIS_RIDE,
+    	ERR_RIDE_NO_ENOUGH
+	}
+}
+
+## 坐骑进化
+proto MSG_RIDE_EVOLVE = 5
+{
+    client{
+        message{
+            ride_id:ride_id
+        }
+    }
+    server{
+        message{
+            ride_id:ride_id, ##坐骑id
+            level:u8         ##等级
+        }
+    }
+
+    errnos{
+    	ERR_RIDE_NO_ENOUGH
+	}
+}
+
+## 兽魂升级
+proto MSG_RIDE_UPLEVEL = 6
+{
+    client{
+        message=empty
+    }
+    server{
+        message{
+            exp:u16,    ##经验
+            level:u8   ##等级
+        }
+    }
+}
+
+## 兽魂突破
+proto MSG_RIDE_ADVANCE = 7
+{
+    client{
+        message=empty
+    }
+    server{
+        message{
+            grade:u16   ##突破等级
+        }
+    }
+}
+
+
+## 兽魂转化
+proto MSG_RIDE_CHANGE = 8
+{
+    client{
+        message=empty
+    }
+    server{
+        message{
+            prizeInfo:list<{itemId:u32, itemCount:u32}>, ## 兽魂吃撑吐出奖励
+            out_cd:u32,             ## 兽魂吐出奖励的cd
+            out_num:u8              ## 每天喷吐剩余次数
+        }
+    }
+}
+
+## 兽魂喂养
+proto MSG_RIDE_FEED = 9
+{
+    client{
+        message=empty
+    }
+    server{
+        message{
+            happy:u16   ##愉悦值
+        }
+
+   }
+
+}
+
+## 坐骑乘骑
+proto MSG_RIDE_TORIDE = 10
+{
+    client{
+        message{
+            rideId:u16                  ## 坐骑ID
+        }
+    }
+
+    server{
+        message{
+            rideId:u16                  ## 坐骑ID
+        }
+    }
+
+}
+
+## 兽魂愉悦度衰减推送
+proto MSG_RIDE_HAPPY = 11
+{
+    client{
+        message=empty
+    }
+    server{
+        message{
+            happy:u16   ##愉悦值
+        }
+   }
+}
+
+## 新兽魂升级
+proto MSG_RIDE_UPLEVEL_NEW = 12
+{
+    client{
+        message{
+            ItemCount:u16   ##道具使用个数
+        }
+    }
+    server{
+        message{
+            exp:u16,            ##经验
+            level:u8,           ##等级
+            double_count:u16,   ##暴击次数
+            use_item_count:u16  ##使用次数
+        }
+    }
+}
+
+## 新兽魂喂养
+proto MSG_RIDE_FEED_NEW = 13
+{
+    client{
+        message{
+            ItemCount:u16       ##道具使用个数
+        }
+    }
+    server{
+        message{
+            happy:u16,          ##愉悦值
+            use_item_count:u16  ##使用次数
+        }
+
+   }
+
+}

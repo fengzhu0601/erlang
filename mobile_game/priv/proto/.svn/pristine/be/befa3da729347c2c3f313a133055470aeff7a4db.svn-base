@@ -1,0 +1,168 @@
+@include "game.sproto"
+
+# VIP主页信息
+proto MSG_VIP_NEW_INFO=1
+{
+    client{}
+    server
+    {
+        message
+        {
+            VipLevel:u8,                                        #永久vip等级
+            YongJiuCard:u8,                                     # 永久卡
+            TotalCount:u32,                                     #总共充值的数量
+            CardEndTime:u32,                                    #卡到期时间戳  
+            VipBuyStatus:list<{id:u32, IsBuy:u8}>,              # vip商品列表状态，{PayId, IsBuy} pay.txt表中的id，和是否可购买        
+            VipGiftOne:list<{viplevel:u8, Status:u8}>,          # 每个vip等级对应可领取的奖励，只限一次,{VipLevel, Status} 0不可领取，1可领取，2已领取
+            VipBuyGiftOne:list<{viplevel:u8, Status:u8}>,       # 每个vip等级对应购买一次，只限一次，{VipLevel，Status} 0未购买，1已购买
+            PrizeStatusList:list<{PayPrizeId:u16, Status:u8}>,  # 每日消费，累积消费，成长基金对应的奖励状态
+            VipGiftEveryDay:u8,                                  # 对应当前VIP等级奖励，每天只可领取一次，日重置，0未领取，1已领取
+            IsGetMonthCard:u8,
+            IsGetYongJiu:u8
+        }
+    }
+}
+# 每个vip等级对应购买一次，只限一次
+proto MSG_VIP_NEW_ONE_BUY=2
+{
+    client{
+        message{
+            VipLevel:u8
+        }
+    }
+    server{
+        message=empty
+    }
+    errnos{
+        ERR_VIP_BUYED,              #已购买
+        ERR_LOOKUP_LVL_PRIZE_CFG    #ERR_LOOKUP_LVL_PRIZE_CFG
+    }
+}
+
+# VIP 每个vip等级对应可领取的奖励
+proto MSG_VIP_NEW_GET_PRIZE=3
+{
+    client{
+        message{
+            Type:u8,   # 1表示领取特权奖励，2表示每日奖励
+            VipLevel:u8
+        }
+    }
+    server{
+        message=empty
+    }
+    errnos{
+        ERR_ERROR_GIVE,
+        ERR_LOOKUP_LVL_PRIZE_CFG    #ERR_LOOKUP_LVL_PRIZE_CFG
+    }
+}
+
+# 购买充值，内网用 -> pay.txt
+proto MSG_VIP_NEW_LOCAL_BUY=4
+{
+    client{
+        message{
+            id:u32
+        }
+    }
+
+    server{
+        message{
+            VipLevel:u8,
+            IsBuy:u8      # 是否可购买 1可已购买，0不可以购买
+        }  
+    }
+    errnos{
+        ERR_LOOKUP_LVL_PRIZE_CFG,    #ERR_LOOKUP_LVL_PRIZE_CFG
+        ERR_ERROR_GIVE
+    }
+}
+
+# 领取pay_prize.txt表中的奖励
+proto MSG_VIP_NEW_GET_PAY_PRIZE=5
+{
+    client{
+        message{
+            PayPrizeId:u16
+        }
+    }
+
+    server{
+        message=empty
+    }
+
+    errnos{
+        ERR_LOOKUP_LVL_PRIZE_CFG,    #ERR_LOOKUP_LVL_PRIZE_CFG
+        ERR_ERROR_GIVE
+    }
+}
+
+# 每日消耗，累计消耗
+proto MSG_VIP_NEW_SEND_COST=6
+{
+    client{}
+    server{
+        message{
+            DayCost:u32,
+            SumCost:u32
+        }
+    }
+}
+
+proto MSG_VIP_NEW_SEND_PRIZE_MONTH_YONGJIU_CARD=7
+{
+    client{
+        message{
+            PayId:u32
+        }
+    }
+    server{
+        message=empty
+    }
+}
+
+# 购买QQ充值
+proto MSG_VIP_NEW_QQ_PAY_CS=8
+{
+    client
+    {
+        message
+        {
+            id:u32,  # 充值VIP类型
+            openid:sstr,
+            token:sstr,
+            payToken:sstr,   # 微信这个为""
+            appkey:sstr,
+            appid:sstr,
+            pf:sstr,
+            pfKey:sstr,
+            zoneid:sstr,
+            account:u8,    # 1 = "qq" or 2 = "wx"
+            record:u8      # 0 第一次, 1第二次提交,代表成功充值 ## 0查询余额是否足够，不足就返回一个错误码，让前端去充值，1充值成功，第二次请求是否余额足够
+        }
+    }
+    server{
+        message{
+            VipLevel:u8,
+            IsBuy:u8      # 是否可购买 1可已购买，0不可以购买
+        }  
+    }
+    errnos{
+        ERR_PAY_NOT_ENOUGH,
+        ERR_ERROR_ORDER_ID,
+        ERR_QQ_PAY_HAS_ORDER,
+        ERR_QQ_PAY_TOKEN,
+        ERR_QQ_PAY_FAILURE,
+        ERR_PAY_LIMIT
+    }
+}
+
+proto MSG_VIP_NEW_PAY_PRIZE_STATUS=9
+{
+    client{}
+    server{
+        message{
+            PayPrizeId:u32
+        }
+    }
+}

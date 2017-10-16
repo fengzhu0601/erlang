@@ -1,0 +1,26 @@
+﻿id(填写技能第一段的ID）	技能名字	职业   1战士 2法师 3弓箭手 4骑士	icon顺序｛1、2、3、4、5、6、｝	等级限制	icon路径[激活状态icon路径,未激活icon路径]	描述	
+id	name	job	slot	level	icon	desc	
+100111	剑刃风暴	1	1	1	{"skill/spell_icon_100112.png","skill/spell_nact_icon_100112.png"}	舞起剑刃风暴，对周围的敌方单位造成伤害，持续5秒。	
+100112	蓄力一击	1	2	1	{"skill/spell_icon_100115.png","skill/spell_nact_icon_100115.png"}	短暂蓄力后手握重剑砸向地面，震裂地面并击飞敌人。【职业霸体技】	
+100113	霸王回转	1	3	1	{"skill/spell_icon_100114.png","skill/spell_nact_icon_100114.png"}	挥舞巨剑将前方敌人拉至空中进行斩杀。	
+100114	冲锋斩杀	1	4	1	{"skill/spell_icon_100111.png","skill/spell_nact_icon_100111.png"}	冲锋一段距离对沿途造成伤害。	
+100115	火焰冲锋	1	5	1	{"skill/spell_icon_100113.png","skill/spell_nact_icon_100113.png"}	蓄力后对前方扇形区域释放三道火焰斩，可浮空敌人。	
+100116	鬼哭神嚎	1	6	1	{"skill/spell_icon_100116.png","skill/spell_nact_icon_100116.png"}	如鬼哭神嚎般对前方进行疯狂斩击。	
+100117	连续技	1	7	1	{"skill/spell_icon_100116.png","skill/spell_nact_icon_100116.png"}	连续技	
+100119	怒气技	1	8	1	{"skill/spell_icon_100116.png","skill/spell_nact_icon_100116.png"}	怒气技	
+100211	暴风雪	2	1	1	{"skill/spell_icon_100212.png","skill/spell_nact_icon_100212.png"}	召唤多次暴风雪砸向地面。	
+100216	抗拒火环	2	6	1	{"skill/spell_icon_100216.png","skill/spell_nact_icon_100216.png"}	在自己周身释放可击飞敌人的火焰环。【职业霸体技】	
+100213	冰龙狂卷	2	3	1	{"skill/spell_icon_100214.png","skill/spell_nact_icon_100214.png"}	向前方释放一道龙卷风，可浮空沿途敌人。	
+100214	恶魔突袭	2	4	1	{"skill/spell_icon_100211.png","skill/spell_nact_icon_100211.png"}	召唤远古恶魔突袭前方敌人。	
+100215	冰晶护体	2	5	1	{"skill/spell_icon_100213.png","skill/spell_nact_icon_100213.png"}	将自身冰冻并保护自己，冰冻期间为无敌状态。	
+100212	炎爆	2	2	1	{"skill/spell_icon_100215.png","skill/spell_nact_icon_100215.png"}	召唤多颗火球坠落地面。	
+100218	连续技	2	7	1	{"skill/spell_icon_100216.png","skill/spell_nact_icon_100216.png"}	连续技	
+100219	怒气技	1	8	1	{"skill/spell_icon_100116.png","skill/spell_nact_icon_100116.png"}	怒气技	
+100311	三段斩杀	4	1	1	{"skill/spell_icon_100311.png","skill/spell_nact_icon_100311.png"}	连续释放三段斩击，可击退并浮空敌人。	
+100314	十字审判	4	4	1	{"skill/spell_icon_100314.png","skill/spell_nact_icon_100314.png"}	化身为神圣十字架，重击前方区域。【职业霸体技】	
+100313	火焰之轮	4	3	1	{"skill/spell_icon_100313.png","skill/spell_nact_icon_100313.png"}	腾空旋转而起，可将敌人多次浮空。	
+100312	幻影之舞	4	2	1	{"skill/spell_icon_100312.png","skill/spell_nact_icon_100312.png"}	原地舞动幻影般的斩击，对周身敌人持续造成伤害。	
+100315	凤舞九天	4	5	1	{"skill/spell_icon_100315.png","skill/spell_nact_icon_100315.png"}	跃至空中，左右腾挪自己的身姿，对沿途敌人造成多次斩击。	
+100316	混沌斩杀	4	6	1	{"skill/spell_icon_100316.png","skill/spell_nact_icon_100316.png"}	如闪电般的速度，斩杀前方一定范围内的所有敌人。	
+100317	连续技	4	7	1	{"skill/spell_icon_100316.png","skill/spell_nact_icon_100316.png"}	连续技	
+100319	怒气技	1	8	1	{"skill/spell_icon_100116.png","skill/spell_nact_icon_100116.png"}	怒气技	s

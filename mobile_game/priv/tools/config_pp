@@ -1,0 +1,11 @@
+#! /bin/sh
+
+# 配置文件预处理
+# 拼接一些配置文件
+
+
+cd ./data
+\rm -f item_all.txt
+OUT_FILE=item_all.txt
+tail -q -n +1 item.txt >> $OUT_FILE
+tail -n +3 equip.txt >> $OUT_FILE

@@ -1,0 +1,7 @@
+
+## gm 设置命令
+enum set_gm
+{
+    GM_SET_DAILY_COUNT      = 1,    ##重置日常活动次数
+    GM_SET_GUILD_COUNT      = 2,    ##重置公会次数
+}

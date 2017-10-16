@@ -1,0 +1,225 @@
+
+typedef player_id           = u64
+typedef player_carrer       = u8
+typedef player_level        = u8
+typedef player_exp          = u32
+typedef player_pearl        = u32
+typedef player_fragment     = u32
+typedef player_longwen      = u32
+typedef player_money        = u32
+typedef player_diamond      = u32
+typedef player_honour       = u32
+typedef player_hp           = u32
+typedef player_mp           = u32
+typedef player_power        = u32
+typedef skill_id            = u32
+typedef timestamp           = u32
+
+typedef pet_id              = u32   ##
+typedef pet_bid             = u32
+typedef pet_level           = u32
+typedef pet_status          = u8
+typedef pet_quality         = u8
+typedef pet_facade          = u32
+typedef treasure_id         = u32
+
+typedef bucket_type         = u8
+typedef item_id             = u32   ##
+typedef item_bid            = u32
+typedef item_count          = u16
+typedef item_pos            = u8
+typedef reply_num           = u8
+typedef dig_id              = u32   ##
+typedef dig_bid             = u32
+
+typedef guild_id            = u32
+typedef scene_id            = u16
+typedef agent_id            = s16
+typedef direct              = u8
+typedef buff_id             = u32
+typedef drop_id             = u16
+typedef device_id           = u8
+typedef jd_attr_id          = u8    ## 装备鉴定属性id
+
+typedef ride_id             = u16   ##坐骑ID
+
+## 属性
+struct attr 
+{
+    attId          : u8, ## non-used
+    attHp          : u32,
+    attMp          : u32,
+    attSp          : u32, ## 废弃可以删除
+    attNp          : u32, ## 能量
+    attStrength    : u32, ## 力量
+    attIntellect   : u32, ## 智力
+    attNimble      : u32, ## 敏捷
+    attStrong      : u32, ## 体质
+    attAtk         : u32, ## 攻击
+    attDef         : u32, ## 防御
+    attCrit        : u32, ## 暴击等级
+    attBlock       : u32, ## 格挡
+    attPliable     : u32, ## 柔韧
+    attPure_atk    : u32, ## 无视防御伤害
+    attBreak_def   : u32, ## 破甲
+    attAtk_deep    : u32, ## 伤害加深
+    attAtk_free    : u32, ## 伤害减免
+    attAtk_speed   : u32, ## 攻击速度
+    attPrecise     : u32, ## 精确
+    attThunder_atk : u32, ## 雷攻
+    attThunder_def : u32, ## 雷防
+    attFire_atk    : u32, ## 火
+    attFire_def    : u32,
+    attIce_atk     : u32, # 冰
+    attIce_def     : u32,
+    attMove_speed  : u32, # 移动速度
+    attRun_speed   : u32,  # 跑步速度
+	attSuckBlood   : u32, #吸血
+	attReverse	   : u32, #反伤
+	attBati		   : u32  #霸体
+}
+
+struct item_info
+{
+    Id:item_id,       #物品id
+    Bid:item_bid,     #物品bid
+    Pos:item_pos,     #物品位置
+    Qly:u8,           #物品品质
+    Qua:item_count,   #物品数量
+    Bind:bool,        #物品绑定状态 0非绑 1绑定
+
+    IsJd:bool,        #是否鉴定
+    SuitId:u32,       #套装id
+    QhLev:u8,         #强化等级
+    Power:u32,        #装备评分
+    
+    ExtraAttr:list<{
+        ExtraModId:u8,   #属性所属模块 1鉴定属性
+        Attr:list<{
+            AttrCode:u8, #属性代号
+            AttrVal:u32, #属性值
+            AttrPer:u8   #随机属性值对于满属性的百分比1-100
+        } >
+    }>,
+    GemInfo:list<GemId:item_bid>,
+    ItemEx:list<{Key:u8,Val:u32}>,
+    SkillChanges:list<Id:u32>,   #技能修改集
+    JDListMax:list<Max:u32>,
+    JDListMin:list<Min:u32>,
+    fumo:u16,                         # 附魔公式id
+    fumoAttrList:list<{TypeId:u8,AttrId:u8,AttrVal:u32}>  # 附魔属性列表[{type:1,AttrId:属性id,AttrVal:属性值},{type:2, AttrId:属性id,AttrVal:属性千分比},
+}                                                         # {type:3,AttrId:0,AttrVal:buffId}]
+
+struct move_vector
+{
+    xOffset:s8,
+    yOffset:s8, 
+    hOffset:s8
+}
+
+struct speed_vector
+{
+    xSpeed:u16,
+    ySpeed:u16, 
+    hSpeed:u16
+}
+
+struct player_agent
+{
+    idx:agent_id
+    ,dic:direct
+    ,posX:u16
+    ,posY:u16
+    ,posH:u16
+    ,moveSpeed:speed_vector
+    ,moveVector:move_vector
+    ,hp:u32
+    ,max_hp:u32
+    ,mp:u32
+    ,max_mp:u32
+    ,other:binary
+    //,other:{id:u64,
+    //        name:sstr,
+    //        career:player_carrer,
+    //        level:u8，
+    //        title_id:u16 #穿戴的称号ID
+    //        guild_name:sstr
+    //        boder_id:u8
+    //        totem_id:u8,
+    //        item_1_bid:u32 -- item_10_bid:u32, #按照装备位排列装备的bid, 没装备发0
+    //}
+    ,efts:list<Id:u16>   #技能修改集
+    ,cardId:u32                  ## 卡牌ID
+    ,rideId:u16                  ## 坐骑ID
+    ,party:u16
+    ,ai_flag:u8
+}
+
+struct monster_agent
+{
+    idx:agent_id
+    ,dic:direct
+    ,posX:u16
+    ,posY:u16
+    ,posH:u16
+    ,moveSpeed:speed_vector
+    ,moveVector:move_vector
+    ,level:u16
+    ,hp:u32
+    ,max_hp:u32
+    ,other:binary
+    ,party:u16
+    ,ai_flag:u8
+    //,other:{type:u8,monsterId:u32} ## 怪物
+    //,other:{type:u8,id:u32,player_name:sstr##隶属哪个玩家的
+    //        ,pet_name:sstr,advance:u8,facade:u32
+    //,other:{type:u8,id:u32,host:u16}
+}
+
+// 00 =
+//     MONEY           =   1,      %% 金钱
+//     DIAMOND         =   2,      %% 钻石
+//     DRAGON_SOULS    =   3,      %% unknown
+//     LEVEL           =   4,      %% 等级
+//     EXP             =   5,      %% 经验
+//     HP              =   6,      %% 当前血量
+//     DRAGON_SPIRITS  =   7,      %% unknown
+//     HONOUR          =   8,      %% 荣耀
+//     COMBAT_POWER    =   9,      %% 战斗力
+//     HEAL_COUNT      =   10,     %% 已加血次数
+//     HEAL_TIME       =   11,     %% 最近一次加血时间
+//     DEAD_COUNT      =   12,     %% 已复活次数
+//     FRAGMENT        =   13,     %% 碎片
+//     SP              =   14,     %% 当前体力
+//     SP_COUNT        =   15      %% 每天体力已购买次数
+// 01
+//     MAX_HP          =   1,      %% max_hp
+//     MAX_MP          =   2,      %% max_mp
+//     MAX_SP          =   3,      %% max_体力
+//     MAX_NP          =   4,      %% max_能量
+//     STRENGTH        =   5,      %% 力量
+//     INTELLECT       =   6,      %% 智力
+//     NIMBLE          =   7,      %% 敏捷
+//     STRONG          =   8,      %% 体质
+//     ATK             =   9,      %% 攻击
+//     DEF             =   10,     %% 防御
+//     CRIT            =   11,     %% 暴击等级
+//     BLOCK           =   12,     %% 格挡
+//     PLIABLE         =   13,     %% 柔韧
+//     PURE_ATK        =   14,     %% 无视防御伤害
+//     BREAK_DEF       =   15,     %% 破甲
+//     ATK_DEEP        =   16,     %% 伤害加深
+//     ATK_FREE        =   17,     %% 伤害减免
+//     ATK_SPEED       =   18,     %% 攻击速度
+//     PRECISE         =   19,     %% 精确
+//     THUNDER_ATK     =   20,     %% 雷攻
+//     THUNDER_DEF     =   21,     %% 雷防
+//     FIRE_ATK        =   22,     %% 火攻
+//     FIRE_DEF        =   23,     %% 火防
+//     ICE_ATK         =   24,     %% 冰攻
+//     ICE_DEF         =   25,     %% 冰防
+//     MOVE_SPEED      =   26,     %% 移动速度
+//     RUN_SPEED       =   27,     %% 跑步速度
+//     SUCK_BLOOD      =   28,     %% 吸血
+//     REVERSE         =   29,     %% 反伤
+//     BATI            =   30,     %% 霸体

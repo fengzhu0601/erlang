@@ -1,0 +1,158 @@
+
+@include "game.sproto"
+
+## 登录时由客户端请求发送，并且在进入新手引导副本时，由服务器主动推送
+proto MSG_SKILL_INIT_CLIENT=1
+{
+    client{
+        message=empty
+        }
+
+    server{
+        message {
+            ## 已经装备的技能
+            dressedInfo:list<{index:u8,
+                              id:skill_id
+                             }>
+                             ,
+            skill_group_select:u8
+        }
+    }
+}
+
+## 装上龙纹(没有卸下,只有更替,也用这个协议), 只能在客户端请求时发送改协议
+proto MSG_SKILL_DRESS_LONG_WEN=2
+{
+	client{
+		message{
+			longWenId:u32
+		}
+	}
+
+	server{
+		message{
+			oldLongWenId:u32,
+			newLongWenId:u32
+		}
+	 }
+}
+
+## 獲取龍紋列表信息
+proto MSG_SKILL_GET_LONG_WEN=3
+{
+    client{
+        message = empty
+    }
+
+    server{
+        message {
+            longWenIds:list<{longWenId:u32,
+            				 level:u8,
+            				 isUse:u8}>
+        }
+    }
+}
+
+## 装备技能
+proto MSG_SKILL_DRESS_SKILL=4
+{
+    client
+    {
+        message
+        {
+            skillId:skill_id,   ## 技能ID
+            index:u8            ## 槽位
+        }
+    }
+
+    server{
+        message{
+            skillId:skill_id,
+            index:u8
+        }
+    }
+}
+
+## 卸载技能,目前只有离开新手引导副本卸载特殊技能时使用
+proto MSG_SKILL_UNDRESS_SKILL=5
+{
+    client{
+    }
+    server{
+        message{
+            group_id:u8,
+            skill_index:list<{
+                index:u8
+            }>
+        }
+     }
+}
+
+##龙纹升级
+proto MSG_SKILL_UPGRADE_LONG_WEN=6
+{
+	client{
+		message{
+			longWenId:u32,
+			level:u8
+		}
+	}
+
+	server{
+		message{
+			longWenId:u32,
+			level:u8
+		}
+	 }
+}
+
+## 目前选择的技能组
+proto MSG_SKILL_CHANGE_USE_SKILL_GROUP=7
+{
+    client
+    {
+        message
+        {
+    			skill_group:u8
+    	}
+    }
+
+    server
+    {
+    	message=empty
+    }
+}
+
+##龙纹重置
+proto MSG_SKILL_RESET_LONG_WEN=8
+{
+	client{
+		message{
+			skillId:skill_id   ## 技能ID
+		}
+	}
+
+	server{
+		message{
+		    skillId:skill_id,
+		    resetNum:u16,
+		    longWenIds:list<longWenId:u32>
+		}
+	 }
+}
+
+
+##技能龙纹重置状态
+proto MSG_SKILL_RESET_LONG_WEN_STATUS=9
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message {
+            skill_resets:list<{id:skill_id,
+                        	num:u16}>
+        }
+    }
+}

@@ -1,0 +1,2 @@
+-define(START_MINING_TIME, 15 * 60).
+-define(player_guild_member, player_guild_member).

@@ -1,0 +1,85 @@
+## 赏金任务
+
+@include "game.sproto"
+
+proto MSG_BOUNTY_TASK_LIST=1
+{
+    client{
+        message
+        {
+            type:u8     ## 0表示获取赏金任务列表 1表示刷新赏金任务列表
+        }
+    }
+
+    server{
+        message
+        {
+            RefreshTimestamp:u32,   ## 刷新时间戳
+            RefreshNum:u8,          ## 当天已刷新次数
+            BountyTask:list<{
+                taskId:u16,         ## 任务ID
+                curNum:u8,          ## 当前条件
+                totalNum:u8,        ## 目标条件
+                taskStatus:u8       ## 任务状态 0未领取， 1已领取
+            }>
+        }
+    }
+}
+
+## 推送活跃度奖励列表
+proto MSG_BOUNTY_PUSH_LIVENESS_PRIZE_LIST=2
+{
+    client{}
+
+    server{
+        message
+        {
+            Liveness:u16,
+            LivenessPirze:list<{
+                id:u8,              ## 奖励序号
+                status:u8           ## 奖励状态 0不可领取 1可领取 2已领取
+            }>
+        }
+    }
+}
+
+
+##完成赏金任务
+proto MSG_BOUNTY_COMPLETE=3
+{
+    client{
+        message
+        {
+            taskId:u16               ##任务id
+        }
+    }
+
+    server{
+        message
+        {
+            replynum:u8         ##返回码
+        }
+    }
+}
+
+## 领取活跃度奖励
+proto MSG_BOUNTY_LIVENESS_GET_PRIZE=4
+{
+    client{
+        message
+        {
+            index:u8
+        }
+    }
+
+    server{
+        message
+        {
+            replynum:u8         ##返回码
+        }
+    }
+
+    errnos{
+        ERR_ERROR_BOUNTY_LIVENESS_PRIZE
+    }
+}

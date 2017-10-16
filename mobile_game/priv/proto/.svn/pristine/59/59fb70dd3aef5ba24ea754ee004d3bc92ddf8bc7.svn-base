@@ -1,0 +1,25 @@
+## 打开商店
+## MSG_SHOP_OPEN
+## S-C type:8 商店类型
+
+## 商店购买
+## C-S 
+# ShopId:32
+# Count:8
+# type:8 商品类型
+MSG_SHOP_BUY=1
+## S-C 
+# 1:购买成功
+# 0:购买失败
+
+
+## 购买商店回购列表中的物品
+## C-S 
+# Index:8
+MSG_SHOP_BUY_BACK=2
+## S-C 
+# 1:回购成功
+# 0:回购失败
+
+
+

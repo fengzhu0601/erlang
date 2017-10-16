@@ -1,0 +1,33 @@
+@include "game.sproto"
+
+#初始化系统开关数据
+proto MSG_INIT_SINK_DATA_SC = 1
+{
+    client
+    {
+        message=empty
+    }
+    server
+    {
+        message
+        {
+            bits:binary # 开关内容(目前约定50个字节)
+        }
+    }
+}
+
+#同步开关数据
+proto MSG_SYNC_SINK_ITEM_SC = 2
+{
+    client
+    {
+    }
+    server
+    {
+        message
+        {
+            sink:list<{item:u16}> # <<1:true/false 15:Key>>
+        }
+    }
+}
+

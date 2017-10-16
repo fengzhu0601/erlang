@@ -1,0 +1,42 @@
+@include "game.sproto"
+
+#协议 物品获取以及立即刷新
+proto MSG_MAIN_STAR_SHOP_DATA=1
+{
+    client{
+        message{
+            type:u8         #type=1 拉取数据， type=2 立即刷新
+        }
+    }
+    server{
+        message{
+            next_time_refresh:timestamp,  #下次刷新时间戳
+            count:u8,                     # USE次数
+            ItemList:list<{
+                id:u16,                   # 配置id
+                IsBuy:u8
+            }>
+        }
+    }
+
+    errnos{
+        ERR_MAIN_STAR_SHOP_NOT_OPEN,
+        ERR_COST_DIAMOND_FAIL,       ##您的钻石不足
+        ERR_MAX_COUNT                ##次数不足
+    }
+}
+
+
+#协议 购买物品
+proto MSG_MAIN_STAR_SHOP_BUY=2
+{
+    client{
+        message{
+            id:u16
+        }
+    }
+    server
+    {
+        message=empty
+    }
+}

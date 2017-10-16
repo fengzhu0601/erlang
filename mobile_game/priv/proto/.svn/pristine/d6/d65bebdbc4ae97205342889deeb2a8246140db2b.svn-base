@@ -1,0 +1,370 @@
+# 物品模块
+
+@include "game.sproto"
+//@debug
+
+#推送删除物品
+proto MSG_ITEM_BUCKET_PUSH_DEL_IDS=1
+{
+    client{}
+
+    server{
+        message{
+            bucketType:bucket_type,         #背包类型
+            delItemL:list<ItemId:item_id>   #删除物品id
+        }
+    }
+}
+
+#推送物品属性变化
+proto MSG_ITEM_BUCKET_PUSH_CHG=2
+{
+    client{}
+
+    server{
+        message{
+            pushType:u8,
+//        -define(ITEM_CHG_QTY,     1).  %% 数量
+//        -define(ITEM_CHG_POS,     2).  %% 位置
+            bucketType:bucket_type,                          #背包类型
+            itemChangeL:list<{itemId:item_id, itemVal:u8}>   #物品变化信息
+        }
+    }
+}
+
+#资产信息/资产变化推送
+proto MSG_ITEM_BUCKET_ASSETS=3
+{
+    client{
+        message{
+            bucketType:bucket_type  #背包类型
+        }
+    }
+
+    server{
+        message{
+            bucketType:bucket_type,                              #背包类型
+            assetsInfoL:list<{assetsId:item_bid, assetsVal:u8}>   #资产信息
+        }
+    }
+}
+
+#添加/更新物品
+proto MSG_ITEM_BUCKET_ADD_ITEMS=4
+{
+    client{}
+
+    server{
+        message{
+            addType:u8,                                          #添加类型 1添加 2更新
+            bucketType:bucket_type,                              #背包类型
+            itemL:list<item:item_info>                        #物品信息列表
+        }
+    }
+}
+
+#请求完整的背包信息
+proto MSG_ITEM_BUCKET_ALL_INFO=5
+{
+    client{
+        message{
+            bucketType:bucket_type   #背包类型
+        }
+    }
+
+    server{
+        message{
+            bucketType:bucket_type,       # 背包类型
+            unlockSize:u32,               # 已经解锁的容量大小
+            uT:u32,                       # 解锁时间
+            itemL:list<item:item_info> # 物品信息列表
+        }
+    }
+}
+
+#删除物品
+proto MSG_ITEM_BUCKET_DEL=6
+{
+    client{
+        message{
+            bucketType:bucket_type,   #背包类型
+            itemId:item_id            #物品id
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+#-define(REPLY_MSG_ITEM_BUCKET_DEL_OK,   0).  %% 删除成功
+#%-define(REPLY_MSG_ITEM_BUCKET_DEL_1,    1).  %% 未找到所要删除的物品
+#-define(REPLY_MSG_ITEM_BUCKET_DEL_1,    1).  %% 该物品不可丢弃
+#-define(REPLY_MSG_ITEM_BUCKET_DEL_255,  255).  %% 删除失败，请重试。重试失败请联系GM
+        }
+    }
+}
+
+
+#整理背包
+proto MSG_ITEM_BUCKET_SORT=7
+{
+    client{
+        message{
+            bucketType:bucket_type   #背包类型
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+#-define(REPLY_MSG_ITEM_BUCKET_SORT_OK,    0).  %% 整理成功
+#-define(REPLY_MSG_ITEM_BUCKET_SORT_255,   255).  %% 整理失败，请重试。重试失败请联系GM
+        }
+    }
+}
+
+#移动物品（同一背包内
+proto MSG_ITEM_BUCKET_MOVE=8
+{
+    client{
+        message{
+            bucketType:bucket_type, # 背包类型
+            id:item_id,             # 物品id
+            Pos:item_pos            # 物品位置
+        }
+    }
+
+    server
+    {
+        message
+        {
+            replyNum:reply_num
+#-define(REPLY_MSG_ITEM_BUCKET_MOVE_OK,    0).  %% 移动成功
+#-define(REPLY_MSG_ITEM_BUCKET_MOVE_1,     1).  %% 新位置未解锁 
+#-define(REPLY_MSG_ITEM_BUCKET_MOVE_2,     2).  %% 位置未发生变化，无需移动
+#-define(REPLY_MSG_ITEM_BUCKET_MOVE_255,   255).  %% 移动失败，请重试。重试失败请联系GM
+        }
+    }
+}
+
+#拆分物品
+proto MSG_ITEM_BUCKET_SPLIT=9
+{
+    client{
+        message{
+            bucketType:bucket_type, # 背包类型
+            Id:item_id,             # 物品id
+            Count:item_count        # 物品数量
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+#-define(REPLY_MSG_ITEM_BUCKET_SPLIT_OK,    0).  %% 拆分成功
+#-define(REPLY_MSG_ITEM_BUCKET_SPLIT_1,     1).  %% 拆分数量大于实际数量
+#-define(REPLY_MSG_ITEM_BUCKET_SPLIT_255,   255).  %% 拆分失败，请重试。重试失败请联系GM
+        }
+    }
+}
+
+#移动物品（不同背包的移动
+proto MSG_ITEM_BUCKET_MOVE_CROSS=10
+{
+    client{
+        message{
+            sBucketType:bucket_type, # 背包类型(源头
+            id:item_id,              # 物品id
+            dBucketType:bucket_type, # 背包类型(目的
+            pos:item_pos             # 物品位置
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+#-define(REPLY_MSG_ITEM_BUCKET_MOVE_CROSS_OK,    0).  %% 移动成功
+#-define(REPLY_MSG_ITEM_BUCKET_MOVE_CROSS_1,     1).  %% 新位置不可用
+#-define(REPLY_MSG_ITEM_BUCKET_MOVE_CROSS_2,     2).  %% 该物品不能存入仓库 
+#-define(REPLY_MSG_ITEM_BUCKET_MOVE_CROSS_255,   255).  %% 移动失败，请重试。重试失败请联系GM
+        }
+    }
+}
+
+#一键移动物品（不同背包的移动
+proto MSG_ITEM_BUCKET_ONE_KEY_MOVE_CROSS=11 disable
+{
+    client{
+        message{
+            sBucketType:bucket_type,   # 背包类型(源头
+            idL:list<Id:item_id>,      # 物品id
+            dBucketType:bucket_type    # 背包类型(目的
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+#-define(REPLY_MSG_ITEM_BUCKET_MOVE_CROSS_OK,    0).  %% 移动成功
+#-define(REPLY_MSG_ITEM_BUCKET_MOVE_CROSS_1,     1).  %% 新位置不可用
+#-define(REPLY_MSG_ITEM_BUCKET_MOVE_CROSS_2,     2).  %% 该物品不能存入仓库 
+#-define(REPLY_MSG_ITEM_BUCKET_MOVE_CROSS_255,   255).  %% 移动失败，请重试。重试失败请联系GM
+        }
+    }
+}
+
+#解锁格子
+proto MSG_ITEM_BUCKET_UNLOCK=12
+{
+    client{
+        message{
+            bucketType:bucket_type,    #背包类型
+            unlockType:u8              #解锁类型 1钻石解锁 2时间解锁
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num,
+#-define(REPLY_MSG_ITEM_BUCKET_UNLOCK_OK,    0).  %% 解锁成功
+#-define(REPLY_MSG_ITEM_BUCKET_UNLOCK_1,     1).  %% 已经解锁过了，无需解锁
+#-define(REPLY_MSG_ITEM_BUCKET_UNLOCK_2,     2).  %% 解锁需要一步一步来哟
+#-define(REPLY_MSG_ITEM_BUCKET_UNLOCK_3,     3).  %% 钻石不足
+#-define(REPLY_MSG_ITEM_BUCKET_UNLOCK_4,     4).  %% 正在解锁中
+#-define(REPLY_MSG_ITEM_BUCKET_UNLOCK_255,     255).  %% 解锁失败，请重试。重试失败请联系GM
+            bucketType:bucket_type,    #背包类型
+            unlockType:u8,             #解锁类型 1钻石解锁 2时间解锁
+            uT:u32                     #解锁时间
+        }
+    }
+}
+
+#合并物品
+proto MSG_ITEM_BUCKET_MERGE=13
+{
+    client{
+        message{
+            bucketType:bucket_type,    #背包类型
+            SItemId:item_id,           #源物品id
+            DItemId:item_id            #目标物品id
+
+
+        }
+    }
+    server{
+        message{
+            replyNum:reply_num
+#-define(REPLY_MSG_ITEM_BUCKET_MERGE_OK,    0).  %% 合并物品成功
+#-define(REPLY_MSG_ITEM_BUCKET_MERGE_1,     1).  %% 被合并的物品数量超过最大对叠数
+#-define(REPLY_MSG_ITEM_BUCKET_MERGE_2,     2).  %% 不同的物品无法合并 
+#-define(REPLY_MSG_ITEM_BUCKET_MERGE_255,     255).  %% 合并失败，请重试。重试失败请联系GM
+        }
+    }
+}
+
+
+
+# 使用物品
+proto MSG_ITEM_USE=14
+{
+    client{
+        message{
+            ItemId:item_id,           #所要使用的物品id
+            ItemCount:item_count      #所要使用的物品数量
+        }
+    }
+    server{
+        message{
+            replyNum:reply_num
+#-define(REPLY_MSG_ITEM_USE_OK,    0).  %% 使用物品成功
+#-define(REPLY_MSG_ITEM_USE_1,     1).  %% 物品不能使用
+#-define(REPLY_MSG_ITEM_USE_2,     2).  %% 物品没有找到
+#-define(REPLY_MSG_ITEM_USE_3,     3).  %% 物品数量不足
+#-define(REPLY_MSG_ITEM_USE_4,     4).  %% 好友礼包品质与所使用的物品不同
+#-define(REPLY_MSG_ITEM_USE_5,     5).  %% 孵化宠物蛋消耗不足
+#-define(REPLY_MSG_ITEM_USE_255,   255).%% 使用异常
+        }
+    }
+}
+
+
+# 使用礼包获得物品
+proto MSG_GIFT_ITEM_USE=16
+{
+    client{
+        message{
+            ItemId:item_id,           #所要使用的物品id
+            ItemCount:item_count      #所要使用的物品数量
+        }
+    }
+    server{
+        message{
+            item_list:list<{
+                ItemId:item_id,       #获得的物品ID
+                ItemCount:u32         #获得的物品数量
+            }>
+        }
+    }
+}
+
+
+# 通知客户端新物品进入背包的数量
+proto MSG_ITEM_NEW_ADD_NUM=15
+{
+    client{
+    }
+    server{
+        message{
+            AddNum:u32
+        }
+    }
+}
+
+#解绑道具
+proto MSG_ITEM_UNBIND=17
+{
+    client{
+        message{
+            ItemId:item_id      #物品id
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num,
+            ItemId:u32
+        }
+    }
+}
+
+# 通知获得新物品标识
+proto MSG_ITEM_NEW_ITEM=18
+{
+    client{
+    }
+
+    server{
+        message{
+            ItemList:list<ItemId:u64>
+        }
+    }
+}
+
+## 通过道具合成物品
+proto MSG_GOODS_COMPOUND=19
+{
+    client
+    {
+        message
+        {
+            ItemBid:item_bid,               ## 生成物品的id
+            ItemCount:u16                   ## 生成物品的数量
+        }
+    }
+    server
+    {
+        message
+        {
+            replyNum:reply_num              ## 回复码（0 表示成功）
+        }
+    }
+}

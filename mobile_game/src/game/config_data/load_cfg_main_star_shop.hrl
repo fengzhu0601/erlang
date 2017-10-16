@@ -1,0 +1,10 @@
+-record(main_ins_star_shop_cfg,
+{
+  	id,
+  	level,
+   	item,
+   	%money_type,
+   	price,
+   	weight,
+   	choose_num
+}).

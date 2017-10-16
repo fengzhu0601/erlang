@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<!-- edited with XMLSpy v2011 (http://www.altova.com) by clk (clk) -->
+<npc_10011>
+	<!--AI事件流程-->
+	<State StateId="1" Desc="初始状态">
+		<Event EventId="10006" Times="1" Desc="">
+			<True Func="set_state" Par="{0,2}" Desc=""/>
+		</Event>
+	</State>
+	<State StateId="2" Desc="">
+		<Event EventId="10006" Times="1" Desc="">
+			<True Func="send_evt" Par="{0,2001}" Desc=""/>
+			<True Func="send_evt" Par="{0,2002}" Desc=""/>
+		</Event>
+		<Event EventId="2001" Times="-1" Desc="">
+			<Can Func="is_move_over" Par="" Desc=""/>
+			<Can Func="is_near_player" Par="{6,99999}" Desc=""/>
+			<True Func="turn_to_near_player" Par="" Desc=""/>
+			<True Func="send_evt" Par="{200,2001}" Desc=""/>
+			<False Func="send_evt" Par="{200,2001}" Desc=""/>
+		</Event>
+		<Event EventId="2002" Times="-1" Desc="">
+			<Can Func="is_move_over" Par="" Desc=""/>
+			<Can Func="is_near_player" Par="{0,3}" Desc=""/>
+			<True Func="skill" Par="2002011" Desc=""/>
+			<True Func="set_state" Par="{3000,3}" Desc=""/>
+			<False Func="send_evt" Par="{100,2002}" Desc=""/>
+		</Event>
+	</State>
+	<State StateId="3" Desc="">
+		<Event EventId="10006" Times="1" Desc="">
+			<True Func="back_ai" Par="" Desc=""/>
+		</Event>
+	</State>
+</npc_10011>
+
+
+

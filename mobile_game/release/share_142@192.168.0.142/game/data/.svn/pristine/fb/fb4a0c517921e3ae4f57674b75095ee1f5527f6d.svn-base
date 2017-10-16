@@ -1,0 +1,11 @@
+﻿id	优先级	名称	图标	标题	描述	执行代码
+id	priority	 name	icon	title	desc	code
+1	1	装备	helper/icon/1.png		强化、镶嵌、合成和继承，更快的提升自己的战力	{ui,open_bag_ui}
+2	2	副本	helper/icon/2.png		前往副本可获得大量装备、金币、材料与道具。	{ins_gate,auto}
+9	4	竞技场	helper/icon/9.png	当前剩余次数:%count%	前往竞技场可挑战其他玩家，提高自己的游戏排名。	{ui,open_arena_ui}
+11	5	皇冠	helper/icon/7.png		前往皇冠升级技能可获得更好的技能效果。	{ui,open_crown_ui}
+12	6	技能	helper/icon/8.png		升级技能龙纹可使技能威力更强大。	{ui,open_skill_ui}
+13	7	拍卖行	helper/icon/10.png		前往拍卖行可与其他玩家实现物品交易。	{ui,open_auction_ui}
+14	8	成就	helper/icon/6.png		完成成就任务，可获得大量钻石奖励。	{ui,open_achievement_ui}
+15	9	登陆奖励	helper/icon/11.png		每日上线可获得登陆奖励。	{ui,open_login_reward_ui}
+16	10	每日任务	helper/icon/16.png		完成每日任务可获得大量奖励。	{ui,open_daily_task_ui}

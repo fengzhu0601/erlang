@@ -1,0 +1,28 @@
+#!/bin/bash -
+
+
+echo "---------------------------------- begin gen_defs ---------------------------------"
+DEFSC=priv/tools/defsc
+SOURCE_DEFS_DIR=priv/defs
+DEST_DEFS_DIR=src/auto/defs
+
+
+## defs
+rm -rf $DEST_DEFS_DIR/*
+
+
+ALL_DEFS=$(find -L $SOURCE_DEFS_DIR -name '*.def')
+for f in $ALL_DEFS
+do
+    echo "gen $f -> $DEST_DEFS_DIR "
+    $DEFSC -d $DEST_DEFS_DIR $f
+    if [ $? != 0 ]
+    then
+        echo "About"
+        exit 1
+    fi
+done
+
+
+
+echo "---------------------------------- end gen_defs ---------------------------------"

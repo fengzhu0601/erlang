@@ -1,0 +1,53 @@
+
+
+## 怪物类型
+enum mon_type
+{
+    MT_NORMAL = 1,
+    MT_CONVOY = 2,
+    MT_BOOS   = 3,
+    MT_SKILL_OBJ= 4,
+    MT_PET  =5,
+
+}
+
+## 怪物子类型
+enum mon_mtype
+{
+    MT_QUALITY_1 = 1, #日常活动桑尼号怪物白色品质
+    MT_QUALITY_2 = 2, #日常活动桑尼号怪物绿色品质
+    MT_QUALITY_3 = 3, #日常活动桑尼号怪物蓝色品质
+    MT_QUALITY_4 = 4, #日常活动桑尼号怪物紫色品质
+}
+
+
+## ai 事件
+eatom m_event
+{
+    ## 每个状态都要处理 event_start event_leave 事件
+    event_start,  %% 开始状态
+    event_leave,  %% 离开一个状态
+
+    event_stroll_wait_timeout,
+    event_reaction_timeout,
+    event_move_over, %% 移动结束
+    event_move_step, %% 移动了一步
+    event_release_skill,    %%释放技能
+    event_release_skill_over,  %% 技能释放完成，可以做出下一个动作
+    event_ba_ti_end,
+    event_stiff_end, %% 僵直状态取消
+    event_beat_back_stiff_end,
+    event_has_enemy,  %% 有敌人
+
+    ## skill_obj
+    event_start_move, %% 开始移动
+}
+
+
+atom skill_release_finished
+
+enum monster_default_set
+{
+    monster_min_level  = 1,
+    monster_max_level  = 100
+}

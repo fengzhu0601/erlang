@@ -1,0 +1,26 @@
+﻿ID	副本类型（1击杀通关副本，2计时通关副本，3生存副本，4其他类型）	副本id	boss名称	美术资源	结算条件{连击1 受击2 时间3 怪物4（类型,怪物ID,击杀数量）}	奖励	客户端显示奖励（item表ID）	通关倒计时	是否显示在面板上（0不显示，1显示）
+id	type	ins_id	client_name	client_boss_img	complete_conditions	prize_list	client_prize	client_limit_time	client_is_display
+1	1	40002	暗影魔豹	["course/boss/normal_1001100.png", "course/boss/dis_1001100.png"]	[{3,0,60}]	[210011]	[210101]	180	0
+2	2	40003	审判骑士	["course/boss/normal_1011100.png", "course/boss/dis_1011100.png"]	[{3,0,60}]	[210012]	[210102]	60	1
+3	3	40004	地精傀儡	["course/boss/normal_1021101.png", "course/boss/dis_1021101.png"]	[{2,0,5}]	[210013]	[210103]	180	0
+4	4	40005	地精厨娘	["course/boss/normal_1031100.png", "course/boss/dis_1031100.png"]	[{2,0,5},{3,0,60}]	[210014]	[210104]	60	1
+5	1	40006	丑陋巨兽	["course/boss/normal_1041100.png", "course/boss/dis_1041100.png"]	[]	[210015]	[210105]	180	0
+6	2	40007	大天使 泰勒	["course/boss/normal_1051100.png", "course/boss/dis_1051100.png"]	[{1,0,30},{2,0,5},{3,0,120}]	[210016]	[210106]	120	1
+7	3	40008	月光巨狼	["course/boss/normal_1061100.png", "course/boss/dis_1061100.png"]	[]	[210017]	[210107]	180	0
+8	4	40009	树精 洛古斯	["course/boss/normal_1081100.png", "course/boss/dis_1081100.png"]	[{1,0,30},{3,0,120}]	[210018]	[210109]	120	1
+9	1	40010	死神 凯萨	["course/boss/normal_1071100.png", "course/boss/dis_1071100.png"]	[]	[210019]	[210108]	180	0
+10	2	40011	吞云兽 塞瓦 	["course/boss/normal_1091100.png", "course/boss/dis_1091100.png"]	[{3,0,60},{4,4001101,1}]	[210020]	[210110]	180	0
+11	3	40012	骨龙 奎尼斯	["course/boss/normal_1101100.png", "course/boss/dis_1101100.png"]	[]	[210021]	[210111]	180	0
+12	4	40013	雷神像 斯科恩	["course/boss/normal_1111100.png", "course/boss/dis_1111100.png"]	[{2,0,3},{3,0,60}]	[210028]	[210112]	60	1
+13	1	40014	巨怪 泰山	["course/boss/normal_1121100.png", "course/boss/dis_1121100.png"]	[]	[210023]	[210113]	180	0
+14	2	40015	黑巫师 尼古拉	["course/boss/normal_1131100.png", "course/boss/dis_1131100.png"]	[]	[210024]	[210114]	180	0
+15	3	40016	守望者 伊阿宋	["course/boss/normal_1141100.png", "course/boss/dis_1141100.png"]	[]	[210025]	[210115]	180	0
+16	4	40017	深渊巨虫 可多	["course/boss/normal_1151100.png", "course/boss/dis_1151100.png"]	[{2,0,3},{3,0,120}]	[210026]	[210116]	120	1
+17	1	40018	守望者 伊阿宋	["course/boss/normal_1161100.png", "course/boss/dis_1161100.png"]	[]	[210027]	[210117]	180	0
+18	2	40019	圣龙 德拉贡	["course/boss/normal_1231100.png", "course/boss/dis_1231100.png"]	[]	[210028]	[210118]	180	0
+19	3	40020	熔岩巨兽 摩尼	["course/boss/normal_1171100.png", "course/boss/dis_1171100.png"]	[{1,0,30},{2,0,3},{3,0,120}]	[210029]	[210119]	120	1
+20	4	40021	蜥蜴首领 赫歇	["course/boss/normal_1181100.png", "course/boss/dis_1181100.png"]	[]	[210030]	[210120]	180	0
+21	1	40022	神殿守卫 巨神兵	["course/boss/normal_1191100.png", "course/boss/dis_1191100.png"]	[]	[210031]	[210121]	180	0
+22	2	40023	冰川雪怪 拉萨	["course/boss/normal_1201100.png", "course/boss/dis_1201100.png"]	[]	[210032]	[210122]	180	0
+23	3	40024	远古冰龙 德古拉	["course/boss/normal_1211100.png", "course/boss/dis_1211100.png"]	[]	[210033]	[210123]	180	0
+24	4	40025	邪魔 门玛	["course/boss/normal_1221100.png", "course/boss/dis_1221100.png"]	[{1,0,30},{2,0,3},{3,0,180}]	[210034]	[210124]	180	1

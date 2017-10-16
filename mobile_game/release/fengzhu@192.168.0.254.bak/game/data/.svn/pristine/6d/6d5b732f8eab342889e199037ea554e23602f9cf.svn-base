@@ -1,0 +1,9 @@
+本文件定义常用类型以及其格式
+
+1. Vector2  ---- {x,z}, 用于表示2维平面点
+2. Vector3  ---- {x,y,z}, 用于表示3维空间点
+3. Size2    ---- {width, height}, 用于表示2维平面大小
+4. Size3    ---- {width, depth, height}, 用于表示3维空间大小
+5. Rect     ---- {Vector2, Size2}, 用于表示2维平面上的矩形
+6. Cube     ---- {Vector3, Size3}, 用于表示3维空间上的立方体
+7. Ani4     ---- {type,path,name,is_loop}, type为动画类型，0代表骨骼动画，path代表动画路径，name代表动画名称，is_loop代表是否循环，0为不循环，1为循环

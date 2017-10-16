@@ -1,0 +1,67 @@
+@include "game.sproto"
+## 私聊
+proto MSG_CHAT_P2P=1
+{
+    client{
+        message{
+            playerId : player_id,   #私聊对象id，当id为零判断name
+            channel  : u8,           #频道
+#-define(CHAT_P2P_NORMAL,  1).   %世界频道
+#-define(CHAT_P2P_FERIEND, 2).   %好友频道
+            msg      : lstr          #发送的信息
+        }
+    }
+    server{
+        message{
+            channel  : u8,           #频道
+            playerId : player_id,    #发送信息的玩家id
+            name     : sstr,         #发送信息的玩家name
+            career   : player_carrer,    #发送信息的玩家career
+#level    : player_level, #发送信息的玩家level
+            msg      : lstr          #发送的信息
+        }
+    }
+}
+## 群聊
+proto MSG_CHAT_GROUP=2
+{
+    client{
+        message{
+            channel  : u8,           #频道
+#-define(CHAT_WORLD, 1).   %世界频道
+#-define(CHAT_SCENE, 2).   %场景频道
+#-define(CHAT_GUILD, 3).   %帮会频道
+#-define(CHAT_TEAM,  4).   %队伍频道
+#-define(CHAT_HORN,  5).   %喇叭频道
+
+            msg      : lstr          #发送的信息
+        }
+    }
+    server{
+        message{
+            channel  : u8,            #频道
+            playerId : player_id,    #发送信息的玩家id
+            name     : sstr,         #发送信息的玩家name
+            career   : player_carrer,    #发送信息的玩家career
+#            level    : player_level, #发送信息的玩家level
+            msg      : lstr          #发送的信息
+        }
+    }
+}
+
+## 系统发布聊天消息
+proto MSG_CHAT_SYSTEM=3
+{
+    client{
+        message{
+            msg      : lstr          #发送的信息
+        }
+    }
+    server{
+        message{
+            msg      : lstr          #发送的信息
+        }
+    }
+}
+
+

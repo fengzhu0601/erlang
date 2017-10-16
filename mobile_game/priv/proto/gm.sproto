@@ -1,0 +1,123 @@
+
+proto MSG_GM_CMD=1 disable
+{
+    client{
+        message{
+            cmd:u8,    # GM编号
+            param:binary #GM参数(自已要去解析)
+        }
+    }
+    server{ }
+
+}
+#添加金币/钻石
+proto MSG_GM_ADD=2
+{
+    client{
+        message{
+            moneyType:u8,    # 1金币2钻石
+            money:u64
+        }
+    }
+
+    server{
+        message{
+            replyNum:u8
+        }
+    }
+}
+
+
+#修改等级
+proto MSG_GM_LEV=3
+{
+    client{
+        message{
+            lev:u8
+        }
+    }
+    server{
+        message{
+            replyNum:u8
+        }
+    }
+}
+
+#添加物品
+proto MSG_GM_ADD_ITEM=4
+{
+    client{
+        message{
+            itemBid:u32     # 物品bid
+            ,itemCount:u16  # 物品数量
+            ,bind:u8        # 绑定属性
+        }
+    }
+    server{
+        message{
+            replyNum:u8
+        }
+    }
+}
+
+#发送邮件
+proto MSG_GM_MAIL=5
+{
+    client{
+        message{
+            itemNum:u8     #附件物品数量
+            ,assetsNum:u8  #附件资产数量
+        }
+    }
+    server{ }
+}
+
+
+#字符串命令
+proto MSG_GM_STRING_CMD = 6
+{
+    client
+        {
+            message
+            {
+                string:sstr #字符串命令
+            }
+        }
+        server
+        {
+            message
+            {
+                replyNum:u8,
+                string:sstr
+            }
+        }
+
+        # add_assets type count                             ->加资产
+        # add_items itemId count isBind                     ->加物品
+        # add_level count                                   ->加等级
+        # add_sp count                                      ->加体力
+        # clean_bag                                         ->清空背包
+        # reset_activity_count                              ->重置日常活动挑战次数
+        # reset_abyss_count                                 ->重置虚空深渊挑战次数
+        # reset_login_lottery_count                         ->重置每日登陆抽奖次数
+        # reset_camp_invade_count                           ->重置神魔入侵次数
+        # reset_daily_task_count                            ->重置日常任务次数
+        # reset_daily_task_refresh_count                    ->重置日常任务刷新次数
+        # reset_guild_building_upgrade_count                ->重置公会建筑升级次数
+        # enter_ins insId                                   ->进入副本
+}
+
+#增加接受任务
+proto MSG_GM_TASK=7
+{
+    client{
+        message{
+            task:u8
+        }
+    }
+    server{
+        message{
+            replyNum:u8
+        }
+    }
+}

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<!-- edited with XMLSpy v2011 (http://www.altova.com) by aaa (dd) -->
+<scene_10011>
+	<!--副本事件流程-->
+	<State StateId="1" Desc="初始化房间">
+		<Event EventId="10005" Times="1" Desc="build_room">
+			<True Func="create_monsters" Par="[{1001110, 20, 16, 0, 3, 1}]" Desc="[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{1001110, 24, 15, 0, 7, 2}]" Desc="[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{1001110, 25, 17, 0, 7, 3}]" Desc="[{id, x, y, z, dir, flag}]"/>
+			<True Func="change_ai" Par="{1, talking}" Desc="[{id, x, y, z, dir, flag}]"/>
+			<True Func="change_ai" Par="{2, talking}" Desc="[{id, x, y, z, dir, flag}]"/>
+			<True Func="change_ai" Par="{3, talking}" Desc="[{id, x, y, z, dir, flag}]"/>
+		</Event>
+		<Event EventId="10001" Times="1" Desc="player_enter">
+			<True Func="lock_area" Par="{1,{0, 50}}" Desc="锁屏区域{序号,{X1, X2}}"/>
+		</Event>
+		<Event EventId="10001" Times="1" Desc="player_enter">
+			<True Func="set_state" Par="{0, 2}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+	</State>
+	<State StateId="2" Desc="小头目对话">
+		<Event EventId="10001" Times="1" Desc="player_enter 后进玩家锁屏">
+			<True Func="lock_area" Par="{1,{0, 50}}" Desc="锁屏区域{序号,{X1, X2}}"/>
+		</Event>
+		<Event EventId="10006" Times="1" Desc="enter_state">
+			<True Func="set_timer" Par="{0, 1091}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+		<Event EventId="1091" Times="-1" Desc="">
+			<True Func="monster_speaking" Par="{1, 10000}" Desc="怪物说话{怪物序号，talksid}"/>
+			<True Func="set_timer" Par="{5000, 1092}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+		<Event EventId="1092" Times="-1" Desc="">
+			<True Func="monster_speaking" Par="{2, 10000}" Desc="怪物说话{怪物序号，talksid}"/>
+			<True Func="set_timer" Par="{5000, 1091}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+		<Event EventId="10002" Times="-1" Desc="player_move 等待玩家进入埋伏点">
+			<Can Func="is_player_in_x" Par="8" Desc=""/>
+			<True Func="set_state" Par="{0, 3}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+	</State>
+	<State StateId="3" Desc="战斗 反抢截">
+		<Event EventId="10001" Times="1" Desc="player_enter">
+			<True Func="lock_area" Par="{1,{0, 50}}" Desc="锁屏区域{序号,{X1, X2}}"/>
+		</Event>
+		<Event EventId="10006" Times="1" Desc="enter_state">
+			<True Func="create_monsters" Par="[{1001110, 7, 15, 0, 3, 4}]" Desc="[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{1001110, 5, 16, 0, 3, 5}]" Desc="[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{1001110, 7, 17, 0, 3, 6}]" Desc="[{id, x, y, z, dir, flag}]"/>
+			<True Func="monster_speaking" Par="{5, 10000}" Desc="怪物说话{怪物序号，talksid}"/>
+			<True Func="change_ai" Par="{1, 1001110}" Desc="[{id, x, y, z, dir, flag}]"/>
+			<True Func="change_ai" Par="{2, 1001110}" Desc="[{id, x, y, z, dir, flag}]"/>
+			<True Func="change_ai" Par="{3, 1001110}" Desc="[{id, x, y, z, dir, flag}]"/>
+			<True Func="set_timer" Par="{2000, 3091}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+		<Event EventId="3091" Times="-1" Desc="enter_state">
+			<Can Func="is_all_monster_die" Par="" Desc=""/>
+			<Can Func="is_player_in_x" Par="8" Desc=""/>
+			<True Func="set_state" Par="{0, 4}" Desc="定时抛出事件，{毫秒，事件id}"/>
+			<True Func="must_send_evt" Par="{1000, 3091}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+	</State>
+	<State StateId="4" Desc="战斗 追击">
+		<Event EventId="10006" Times="1" Desc="enter_state">
+			<True Func="trace" Par="state_4" Desc=""/>
+			<True Func="lock_area" Par="{2,{0, 107}}" Desc="锁屏区域{序号,{X1, X2}}"/>
+		</Event>
+		<Event EventId="10002" Times="-1" Desc="玩家移动">
+			<Can Func="is_all_player_in_x" Par="55" Desc="是否超过x坐标"/>
+			<True Func="lock_area" Par="{3,{50, 107}}" Desc="锁屏区域{序号,{X1, X2}}"/>
+			<True Func="set_state" Par="{0, 5}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+	</State>
+	<State StateId="5" Desc="战斗 遭遇战1">
+		<Event EventId="10006" Times="1" Desc="enter_state">
+			<True Func="trace" Par="state_5" Desc=""/>
+			<True Func="create_monsters" Par="[{1001110, 70, 16, 0, 7, 7}]" Desc=""/>
+			<True Func="set_timer" Par="{2000, 5091}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+		<Event EventId="5091" Times="-1" Desc="玩家移动">
+			<Can Func="is_all_monster_die" Par="" Desc=""/>
+			<True Func="set_state" Par="{0, 6}" Desc="定时抛出事件，{毫秒，事件id}"/>
+			<True Func="must_send_evt" Par="{1000, 5091}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+	</State>
+	<State StateId="6" Desc="战斗 遭遇战2">
+		<Event EventId="10006" Times="1" Desc="enter_state">
+			<True Func="trace" Par="state_6" Desc=""/>
+			<True Func="create_monsters" Par="[{1001110, 70, 16, 0, 7, 7}]" Desc=""/>
+			<True Func="create_monsters" Par="[{1001110, 75, 17, 0, 7, 8}]" Desc=""/>
+			<True Func="set_timer" Par="{2000, 6091}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+		<Event EventId="6091" Times="-1" Desc="玩家移动">
+			<Can Func="is_all_monster_die" Par="" Desc=""/>
+			<True Func="set_state" Par="{0, 7}" Desc="定时抛出事件，{毫秒，事件id}"/>
+			<True Func="must_send_evt" Par="{1000, 6091}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+	</State>
+	<State StateId="7" Desc="战斗 遭遇战3">
+		<Event EventId="10006" Times="1" Desc="enter_state">
+			<True Func="trace" Par="state_7" Desc=""/>
+			<True Func="create_monsters" Par="[{1001110, 70, 16, 0, 7, 7}]" Desc=""/>
+			<True Func="create_monsters" Par="[{1001110, 75, 17, 0, 7, 8}]" Desc=""/>
+			<True Func="create_monsters" Par="[{1001110, 80, 16, 0, 7, 9}]" Desc=""/>
+			<True Func="set_timer" Par="{2000, 7091}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+		<Event EventId="7091" Times="-1" Desc="玩家移动">
+			<Can Func="is_all_monster_die" Par="" Desc=""/>
+			<True Func="set_state" Par="{0, 8}" Desc="定时抛出事件，{毫秒，事件id}"/>
+			<True Func="must_send_evt" Par="{1000, 7091}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+	</State>
+	<State StateId="8" Desc="战斗 遭遇战4">
+		<Event EventId="10006" Times="1" Desc="enter_state">
+			<True Func="trace" Par="state_8" Desc=""/>
+			<True Func="create_monsters" Par="[{1001110, 70, 16, 0, 7, 7}]" Desc=""/>
+			<True Func="create_monsters" Par="[{1001110, 75, 17, 0, 7, 8}]" Desc=""/>
+			<True Func="create_monsters" Par="[{1001110, 80, 16, 0, 7, 9}]" Desc=""/>
+			<True Func="create_monsters" Par="[{1001110, 85, 17, 0, 7, 10}]" Desc=""/>
+			<True Func="set_timer" Par="{2000, 8091}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+		<Event EventId="8091" Times="-1" Desc="玩家移动">
+			<Can Func="is_all_monster_die" Par="" Desc=""/>
+			<True Func="set_state" Par="{0, 9}" Desc="定时抛出事件，{毫秒，事件id}"/>
+			<True Func="must_send_evt" Par="{1000, 8091}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+	</State>
+	<State StateId="9" Desc="战斗 传送">
+		<Event EventId="10006" Times="1" Desc="enter_state">
+			<True Func="active_transport_door" Par="1011" Desc="激活传送门,par=传送门id"/>
+		</Event>
+	</State>
+</scene_10011>

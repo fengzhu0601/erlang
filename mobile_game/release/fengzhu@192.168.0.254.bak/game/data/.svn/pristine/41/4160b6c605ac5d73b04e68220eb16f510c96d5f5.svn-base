@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<!-- edited with XMLSpy v2011 (http://www.altova.com) by aaa (dd) -->
+<scene_10732>
+	<!--副本事件流程-->
+	<State StateId="1" Desc="副本状态1">
+		<Event EventId="10001" Times="1" Desc="玩家进入场景">
+			<True Func="set_event" Par="{500, 9001}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+		<Event EventId="9001" Times="1" Desc="监听自定义事件">
+			<True Func="lock_area" Par="{1,{0, 52}}" Desc="锁屏区域{序号,{X1, X2}}"/>
+			<True Func="create_monsters" Par="[{1083101, 48, 13, 0, 7, 1}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{1073110, 30, 14, 0, 7, 2}, {1073110, 35, 15, 0, 7, 2}, {1073110, 30, 17, 0, 7, 2}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{1073111, 25, 14, 0, 7, 2}, {1073110, 26, 15, 0, 7, 2}, {1073111, 25, 17, 0, 7, 2}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="monster_speaking" Par="{1,10001}" Desc="怪物说话{怪物序号，talksid}"/>
+			<True Func="set_event" Par="{10000, 9002}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+		<Event EventId="9002" Times="1" Desc="监听自定义事件">
+			<Can Func="is_monster_die" Par="1" Desc="是否杀死某个标志的怪物"/>
+			<False Func="set_event" Par="{0, 9003}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+		<Event EventId="9003" Times="-1" Desc="监听自定义事件">
+			<Can Func="is_monster_die" Par="2" Desc="是否杀死某个标志的怪物"/>
+			<True Func="create_monsters" Par="[{1073111, 15, 14, 0, 7, 2}, {1073111, 22, 14, 0, 7, 2}, {1073111, 35, 14, 0, 7, 2}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="set_event" Par="{10000, 9002}" Desc="定时抛出事件，{毫秒，事件id}"/>
+			<False Func="set_event" Par="{10000, 9002}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+		<Event EventId="10003" Times="1" Desc="击杀怪物">
+			<Can Func="is_monster_die" Par="1" Desc="是否杀死某个标志的怪物"/>
+			<True Func="kill_all_monsters" Par="" Desc="杀死所有怪物"/>
+			<True Func="fuben_complete" Par="" Desc="副本结束"/>
+		</Event>
+	</State>
+</scene_10732>

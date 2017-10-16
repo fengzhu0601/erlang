@@ -1,0 +1,6 @@
+﻿id(由策划确定）	名称	UI展示形象(资源路径）pet文件下	宠物头像	战斗形象(资源路径）在avatar
+id	client_name	client_ui_facade	client_head	client_game_facade
+1	天使精灵	pet/pet_1/pet_10001_ui.json	pet/pet_head_01.png	avatars/pet_10001.skel
+2	恶魔幻灵	pet/pet_2/pet_10002_ui.json	pet/pet_head_02.png	avatars/pet_10002.skel
+3	精灵仙子	pet/pet_3/chonwu_1.json	pet/pet_head_03.png	avatars/pet_10001.skel
+4	魔幻鼠	pet/pet_4/chonwu_2.json	pet/pet_head_04.png	avatars/pet_10002.skel

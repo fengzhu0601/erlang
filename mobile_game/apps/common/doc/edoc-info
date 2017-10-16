@@ -1,0 +1,8 @@
+%% encoding: UTF-8
+{application,common}.
+{packages,[]}.
+{modules,[aoe_sector,com_ets,com_file,com_inet,com_listen,com_md5,com_mnesia,
+          com_ordsets,com_proc_timer,com_process,com_prog,com_string,
+          com_system,com_tt,common_app,common_sup,dirty_astar,lib_clock_tests,
+          map_reduce,os_util,pd_gb_sets,pd_gb_tree,pd_ordset,pd_set,
+          run_option,smerl]}.

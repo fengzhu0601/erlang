@@ -1,0 +1,102 @@
+@include "game.sproto"
+
+## 坐骑信息
+struct ride_info
+{
+    id:ride_id
+}
+
+
+## 坐骑列表
+proto MSG_RIDE_LIST=1
+{
+    client{
+    	message=empty
+    }
+
+    server{
+        message {
+            ride_list:list<ride:ride_info>
+        }
+    }
+}
+
+## 根据坐骑ID获取坐骑信息
+proto MSG_RIDE_DATA = 2
+{
+    client{
+        message{
+            ride_id:ride_id
+        }
+    }
+
+    server{
+        message{
+            ride:ride_info  #一个宠物信息
+        }
+    }
+}
+
+## 坐骑功能开放
+proto MSG_RIDE_OPEN = 3
+{
+    client{
+    	message=empty
+    }
+
+    server{
+        message=empty
+    }
+}
+
+## 坐骑激活
+proto MSG_RIDE_ACTIVATE = 4
+{
+    client{
+        message{
+            ride_id:ride_id
+        }
+    }
+    server{
+        message=empty
+    }
+}
+
+## 坐骑进化
+proto MSG_RIDE_EVOLVE = 5
+{
+    client{
+        message{
+            ride_id:ride_id
+        }
+    }
+    server{
+        message=empty
+    }
+}
+
+## 兽魂升级
+proto MSG_RIDE_UPLEVEL = 6
+{
+    client{
+        message{
+            beast_soul_id:u16
+        }
+    }
+    server{
+        message=empty
+    }
+}
+
+## 兽魂突破
+proto MSG_RIDE_ADVANCE = 7
+{
+    client{
+        message{
+            beast_soul_id:u16
+        }
+    }
+    server{
+        message=empty
+    }
+}

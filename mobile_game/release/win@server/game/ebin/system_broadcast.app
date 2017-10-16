@@ -1,0 +1,9 @@
+{application,system_broadcast,
+             [{description,[]},
+              {vsn,"1"},
+              {registered,[]},
+              {applications,[kernel,stdlib]},
+              {mod,{system_broadcast_app,[]}},
+              {env,[]},
+              {modules,[system_broadcast_app,system_broadcast_sup,
+                        system_broadcast_worker]}]}.

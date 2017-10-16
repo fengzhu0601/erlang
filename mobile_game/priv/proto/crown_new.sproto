@@ -1,0 +1,145 @@
+@include "game.sproto"
+
+typedef  skill_level            = u8
+
+struct skill_info
+{
+    skillId:skill_id,
+    skillLvl:skill_level
+}
+
+## 初始化到客户端
+proto MSG_CROWN_NEW_INIT_CLIENT=1
+{
+    client{
+    }
+    server{
+        message{
+            anger:u16,
+            skillList:list<skillMes:skill_info>,
+            IsUseSkill:list<UseSkill:skill_id>
+        }
+    }
+}
+
+##  请求激活技能
+proto MSG_CROWN_SKILL_ACTIVATE=2
+{
+    client{
+        message{
+            skillId:skill_id
+        }
+    }
+    server{
+        message{
+            returnRet:u8,       ## 激活回复码(0表示激活成功)
+            skillId:skill_id
+        }
+    }
+
+}
+
+## 技能升级
+proto MSG_CROWN_SKILL_LEVELUP=3
+{
+    client{
+        message{
+            skillId:skill_id
+        }
+    }
+    server{
+        message{
+            returnRet:u8,       ## 激活回复码(0表示激活成功)
+            skillInfo:skill_info
+        }
+    }
+}
+
+## 装备皇冠技能
+proto MSG_CROWN_DRESS_SKILL=4
+{
+    client{
+        message{
+            skillId:skill_id
+        }
+    }
+    server{
+        message{
+            returnRet:u8,       ## 激活回复码(0表示激活成功)
+            skillId:skill_id
+        }
+    }
+}
+
+## 脱掉皇冠技能
+proto MSG_CROWN_UNDRESS_SKILL=5
+{
+    client{
+        message{
+            skillId:skill_id
+        }
+    }
+    server{
+        message{
+            returnRet:u8        ## 回复0表示脱掉技能成功
+        }
+    }
+}
+
+## 装备皇冠之星
+proto MSG_CROWN_DRESS_CROWN_STAR=6
+{
+    client{
+        message{
+            skillId:skill_id
+        }
+    }
+    server{
+        message{
+            returnRet:u8,       ## 激活回复码(0表示激活成功)
+            skillId:skill_id
+        }
+    }
+}
+
+## 脱掉皇冠之星技能
+proto MSG_CROWN_UNDRESS_CROWN_STAR=7
+{
+    client{
+        message{
+            skillId:skill_id
+        }
+    }
+    server{
+        message{
+            returnRet:u8            ## 回复0表示脱掉技能成功
+        }
+    }
+}
+
+## 更新怒气值
+proto MSG_CROWN_NEW_ANGER_CHANGE=8
+{
+    client{
+    }
+
+    server{
+        message{
+            anger_point:u16
+        }
+    }
+}
+
+## 推送皇冠技能增加的属性
+proto MSG_CROWN_SKILL_ADD_ATTR = 9
+{
+    client{
+         message=empty
+    }
+
+    server{
+        message{
+            attr:attr
+        }
+    }
+}

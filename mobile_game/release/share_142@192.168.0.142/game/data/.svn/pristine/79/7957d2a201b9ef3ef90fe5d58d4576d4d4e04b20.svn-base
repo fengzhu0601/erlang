@@ -1,0 +1,97 @@
+﻿id	道具id	类型(1.所有副本，2城镇副本，3.单副本，4.窗口名字比如“bag_ui”)	标题	描述	图标路径	城市Id(城市id都存放在city.txt中)	副本id(副本id都存放在scene.txt中)	窗口名称（名称都存放open_fun.txt表中）
+id	item_id	type	title	desc	icon	city_id	ins_id	win_name
+1	2002	4	商店	商店可以购买	daily_task/4.png			shop_ui
+2	2007	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+3	2036	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+4	2040	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+5	2210	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+6	2211	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+7	6022	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+8	6023	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+9	6024	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+10	2041	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+11	2042	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+12	2043	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+13	2008	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+14	2009	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+15	101	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+16	20103	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+17	20203	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+18	20303	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+19	20403	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+20	20503	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+21	20603	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+22	20703	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+23	20803	4	黑市拍卖行	黑市拍卖行有一定几率出售	daily_task/30.png			auction_ui
+24	2201	2	副本	极光大陆困难副本一定几率获得	daily_task/8.png	1	10021	
+25	2202	2	副本	雷霆之巅困难副本一定几率获得	daily_task/8.png	9	10621	
+26	2204	2	副本	暮光森林困难副本一定几率获得	daily_task/8.png	2	11221	
+27	2205	2	副本	远古冰川困难副本一定几率获得	daily_task/8.png	7	11721	
+28	2203	2	副本	耳语海岸困难副本一定几率获得	daily_task/8.png	3	12421	
+29	2207	2	副本	龙骨荒野困难副本一定几率获得	daily_task/8.png	8	13021	
+30	2208	4	竞技场	竞技场荣誉兑换获得	daily_task/1.png			arena_ui
+31	2041	4	竞技场	竞技场荣誉兑换获得	daily_task/1.png			arena_ui
+32	2042	4	竞技场	竞技场荣誉兑换获得	daily_task/1.png			arena_ui
+33	2043	4	竞技场	竞技场荣誉兑换获得	daily_task/1.png			arena_ui
+34	2003	4	公会boss	击杀公会boss有一定几率获得	daily_task/14.png			guild_ui
+35	2042	4	公会boss	击杀公会boss有一定几率获得	daily_task/14.png			guild_ui
+36	2002	4	副本	通关普通难度副本一定几率获得	daily_task/8.png			instance_ui
+37	2003	4	副本	通关普通难度副本一定几率获得	daily_task/8.png			instance_ui
+38	2041	4	副本	通关困难难度副本一定几率获得	daily_task/8.png			instance_ui
+39	2043	4	怪物攻城	参加怪物攻城活动有几率获得	daily_task/8.png			monstersiege_ui
+40	2036	4	怪物攻城	怪物攻城活动每周排行榜奖励	daily_task/8.png			monstersiege_ui
+41	2040	4	怪物攻城	怪物攻城活动每周排行榜奖励	daily_task/8.png			monstersiege_ui
+42	213	4	怪物攻城	怪物攻城活动每周排行榜奖励	daily_task/8.png			monstersiege_ui
+43	214	4	怪物攻城	怪物攻城活动每周排行榜奖励	daily_task/8.png			monstersiege_ui
+44	213	4	装备分解	分解装备有一定几率获得	daily_task/3.png			equip_op_ui
+45	214	4	装备分解	分解装备有一定几率获得	daily_task/3.png			equip_op_ui
+46	2007	4	虚空深渊	虚空深渊简单模式产出	daily_task/1.png			abyss_ui
+47	2008	4	虚空深渊	虚空深渊噩梦模式产出	daily_task/1.png			abyss_ui
+101	101	4	星商店	星商店有一定几率出售	daily_task/4.png			instance_star_shop_ui
+102	2007	4	星商店	星商店有一定几率出售	daily_task/4.png			instance_star_shop_ui
+103	2008	4	星商店	星商店有一定几率出售	daily_task/4.png			instance_star_shop_ui
+104	2009	4	星商店	星商店有一定几率出售	daily_task/4.png			instance_star_shop_ui
+105	2010	4	星商店	星商店有一定几率出售	daily_task/4.png			instance_star_shop_ui
+106	2036	4	星商店	星商店有一定几率出售	daily_task/4.png			instance_star_shop_ui
+107	2040	4	星商店	星商店有一定几率出售	daily_task/4.png			instance_star_shop_ui
+108	2041	4	星商店	星商店有一定几率出售	daily_task/4.png			instance_star_shop_ui
+109	2042	4	星商店	星商店有一定几率出售	daily_task/4.png			instance_star_shop_ui
+110	2043	4	星商店	星商店有一定几率出售	daily_task/4.png			instance_star_shop_ui
+111	2209	4	星商店	星商店有一定几率出售	daily_task/4.png			instance_star_shop_ui
+112	6043	4	星商店	星商店有一定几率出售	daily_task/4.png			instance_star_shop_ui
+113	6044	4	星商店	星商店有一定几率出售	daily_task/4.png			instance_star_shop_ui
+114	6045	4	星商店	星商店有一定几率出售	daily_task/4.png			instance_star_shop_ui
+115	6049	4	星商店	星商店有一定几率出售	daily_task/4.png			instance_star_shop_ui
+116	6050	4	星商店	星商店有一定几率出售	daily_task/4.png			instance_star_shop_ui
+117	6051	4	星商店	星商店有一定几率出售	daily_task/4.png			instance_star_shop_ui
+1001	17001	2	副本	极光大陆多人副本一定几率获得	daily_task/8.png	1	10031	
+1002	17002	2	副本	雷霆之巅多人副本一定几率获得	daily_task/8.png	9	10631	
+1003	17003	2	副本	暮光森林多人副本一定几率获得	daily_task/8.png	2	11231	
+1004	17004	2	副本	远古冰川多人副本一定几率获得	daily_task/8.png	7	11731	
+1005	17005	2	副本	耳语海岸多人副本一定几率获得	daily_task/8.png	3	12431	
+1006	17006	2	副本	龙骨荒野多人副本一定几率获得	daily_task/8.png	8	13031	
+1010	17010	4	竞技场	竞技场荣誉兑换获得	daily_task/1.png			arena_ui
+100101	911003011	2	副本	极光大陆多人副本一定几率获得	daily_task/8.png	1	10531	
+100102	910103011	2	副本	极光大陆多人副本一定几率获得	daily_task/8.png	1	10031	
+100103	910203011	2	副本	极光大陆多人副本一定几率获得	daily_task/8.png	1	10131	
+100104	910303011	2	副本	极光大陆多人副本一定几率获得	daily_task/8.png	1	10231	
+100105	910403011	2	副本	极光大陆多人副本一定几率获得	daily_task/8.png	1	10331	
+100106	910503011	2	副本	极光大陆多人副本一定几率获得	daily_task/8.png	1	10431	
+100201	911003012	2	副本	雷霆之巅多人副本一定几率获得	daily_task/8.png	9	11131	
+100202	910103012	2	副本	雷霆之巅多人副本一定几率获得	daily_task/8.png	9	10631	
+100203	910203012	2	副本	雷霆之巅多人副本一定几率获得	daily_task/8.png	9	10731	
+100204	910303012	2	副本	雷霆之巅多人副本一定几率获得	daily_task/8.png	9	10831	
+100205	910403012	2	副本	雷霆之巅多人副本一定几率获得	daily_task/8.png	9	10931	
+100206	910503012	2	副本	雷霆之巅多人副本一定几率获得	daily_task/8.png	9	11031	
+100301	911003013	2	副本	暮光森林多人副本一定几率获得	daily_task/8.png	2	11731	
+100302	910103013	2	副本	暮光森林多人副本一定几率获得	daily_task/8.png	2	11231	
+100303	910203013	2	副本	暮光森林多人副本一定几率获得	daily_task/8.png	2	11331	
+100304	910303013	2	副本	暮光森林多人副本一定几率获得	daily_task/8.png	2	11431	
+100305	910403013	2	副本	暮光森林多人副本一定几率获得	daily_task/8.png	2	11531	
+100306	910503013	2	副本	暮光森林多人副本一定几率获得	daily_task/8.png	2	11631	
+100401	911003014	2	副本	远古冰川多人副本一定几率获得	daily_task/8.png	7	12331	
+100402	910103014	2	副本	远古冰川多人副本一定几率获得	daily_task/8.png	7	11831	
+100403	910203014	2	副本	远古冰川多人副本一定几率获得	daily_task/8.png	7	11931	
+100404	910303014	2	副本	远古冰川多人副本一定几率获得	daily_task/8.png	7	12031	
+100405	910403014	2	副本	远古冰川多人副本一定几率获得	daily_task/8.png	7	12131	
+100406	910503014	2	副本	远古冰川多人副本一定几率获得	daily_task/8.png	7	12231	

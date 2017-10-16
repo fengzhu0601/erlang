@@ -1,0 +1,259 @@
+
+@include "game.sproto"
+@debug
+#穿戴装备
+proto MSG_EQUIP_DRESS=1
+{
+    client{
+        message{
+            eqmPos:item_pos,     #装备位
+#  {1, ?ITEM_TYPE_HELMET}  %头盔
+# ,{2,?ITEM_TYPE_CLOTHES}  %衣服
+# ,{3,?ITEM_TYPE_SASH}     %腰带
+# ,{4,?ITEM_TYPE_PANTS}    %裤子
+# ,{5,?ITEM_TYPE_SHOES}    %鞋子
+# ,{6,?ITEM_TYPE_FASHION}  %时装
+# ,{7,?ITEM_TYPE_RING}     %戒指
+# ,{8,?ITEM_TYPE_BADGE}    %徽章
+# ,{9,?ITEM_TYPE_HORCRUX}  %魂器
+# ,{10,?ITEM_TYPE_WEAPON}  %武器           
+            itemId:item_id       #物品id（背包里面的
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+        }
+    }
+}
+
+#脱下装备
+proto MSG_EQUIP_UNDRESS=2
+{
+    client{
+        message{
+            eqmId:item_id      #装备id
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+        }
+    }
+}
+
+#鉴定装备
+proto MSG_EQUIP_JIANDING=3
+{
+    client{
+        message{
+            eqmId:item_id      #装备id
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+        }
+    }
+}
+
+#镶嵌宝石给装备的物品镶嵌
+proto MSG_EQUIP_EMBED_GEM=4
+{
+    client{
+        message{
+            bucketType:bucket_type,   #装备背包类型
+            eqmId:item_id,     #装备id
+            slotIndex:u8,      #镶嵌宝石的孔位 如果直接镶嵌发0,替换镶嵌的话发对应要替换的位置。
+            gemId:item_id      #宝石id（背包里面的
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+        }
+    }
+}
+
+#卸下宝石
+proto MSG_EQUIP_UNEMBED_GEM=5
+{
+    client{
+        message{
+            bucketType:bucket_type,   #装备背包类型
+            eqmId:item_id,     #装备id
+            slotIndex:u8       #宝石槽位--从1开始
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+        }
+    }
+}
+
+#强化
+proto MSG_EQUIP_QIANG_HUA=6
+{
+    client{
+        message{
+            bucketType:bucket_type,   #装备背包类型
+            eqmId:item_id,            #装备id
+            isDownLevelFree:bool      #是否下降免疫
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+        }
+    }
+}
+
+#合成
+proto MSG_EQUIP_HE_CHENG=7
+{
+    client{
+        message{
+            hechengType:u8,   #合成类型 1直接合成2预览合成3再次合成
+            bucketType:bucket_type,   #装备背包类型
+            eqmId:item_id,    #装备id
+            itemId1:item_id,  #背包物品id
+            itemId2:item_id,   #背包物品id
+            attrList:list<{jdAttrId:jd_attr_id, jdAttrVal:u32}>  # 合成时锁定的属性列表
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+
+        }
+    }
+}
+
+
+#继承
+proto MSG_EQUIP_JI_CHENG=9
+{
+    client{
+        message{
+            bucketType:bucket_type,   #装备背包类型
+            eqmId:item_id,              #继承的装备id--装备里面的
+            itemId:item_id              #物品id--背包里面
+        }
+    }
+    server{
+        message{
+            replyNum:reply_num
+        }
+    }
+}
+
+
+#卸下所有宝石
+proto MSG_EQUIP_UNEMBED_ALL_GEM=10
+{
+    client{
+        message{
+            bucketType:bucket_type,   #装备背包类型
+            eqmId:item_id     #装备id
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+        }
+    }
+}
+
+#鉴定装备
+proto MSG_EQUIP_JIANDING_ALL=11
+{
+    client
+    {
+        message=empty
+    }
+    server
+    {
+        message
+        {
+            replyNum:reply_num
+        }
+    }
+}
+
+##装备打孔
+proto MSG_EQUIP_SLOT=12
+{
+    client
+    {
+        message
+        {
+            bucketType:bucket_type,  ## 背包类型
+            eqmId:item_id,           ## 被打孔的装备id
+            slotNum:u8,              ## 打孔的个数
+            costId:item_id           ## 消耗的物品的id
+        }
+    }
+    server
+    {
+        message
+        {
+            replyNum:reply_num
+        }
+    }
+}
+
+## 装备提炼
+proto MSG_EQUIP_EXCHANGE=13
+{
+    client
+    {
+        message
+        {
+            itemId:item_id
+        }
+    }
+    server
+    {
+        message
+        {
+            itemList:list<{
+            itemId:item_bid,
+            itemCount:u8
+            }>,
+            replyNum:reply_num
+        }
+    }
+}
+
+## 装备一键提炼
+proto MSG_EQUIP_ONE_KEY_EXCHANGE=14
+{
+    client
+    {
+        message
+        {
+            qualityList:list<{quality:u8}>     ## 装备的品质列表
+        }
+    }
+    server
+    {
+        message
+        {
+            itemList:list<{
+            itemId:item_bid,
+            itemCount:u8
+            }>,
+            replyNum:reply_num
+        }
+    }
+}
+

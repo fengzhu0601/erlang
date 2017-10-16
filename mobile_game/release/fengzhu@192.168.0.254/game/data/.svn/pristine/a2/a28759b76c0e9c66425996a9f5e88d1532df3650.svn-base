@@ -1,0 +1,40 @@
+#!/usr/bin/env python
+
+import chardet
+import os
+
+for fileName in os.listdir("."):
+	if fileName.endswith(".txt"):
+		f = open(fileName,'r')
+		d = f.read()
+		r = chardet.detect(d)
+
+		confidence = r['confidence']
+		encoding = r['encoding']
+
+		if confidence < 0.8:
+			print("chardet confidence too low! " + str(confidence) + ", " + fileName)
+		elif encoding == 'ascii' or encoding == 'utf-8':
+			print("pass: " + fileName + ", " + encoding)
+		else:
+			print("conv: " + fileName + ", " + encoding)
+			d = d.decode(encoding).encode('utf-8')
+			# f.write(d)
+			f.close()
+
+			# ugly
+			f = open(fileName, "w")
+			f.write(d)
+			f.close()
+
+print
+raw_input('PRESS ANY KEY TO EXIT!')
+
+# install python2.7
+# https://www.python.org/download/
+
+# install pip
+# http://pip.readthedocs.org/en/latest/installing.html
+
+# pip install chardet(windows)
+# python -m pip install chardet

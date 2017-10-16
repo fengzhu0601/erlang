@@ -1,0 +1,74 @@
+#神秘商人模块信息
+@include "game.sproto"
+
+#协议 神秘商人物品获取以及立即刷新
+proto SELLER_DATA=11
+{
+     client{
+         message{
+             type:u8         #type=1 拉取数据， type=2 立即刷新
+         }
+     }
+     server{
+         message{
+             next_time_refresh:timestamp,    #下次刷新时间戳
+             sellerItem:list<{
+                  seller_id:u8,                   ## 神秘商城配置id
+##                  item_id:item_id,            #道具id
+                  count:u8                    # 剩余次数
+             }>
+         }
+     }
+}
+
+#协议 购买物品
+proto MSG_SELLER_SHOPPING=12
+{
+     client{
+         message{
+             item_id:item_id,               #物品ID
+             item_num:item_count            #商品数量
+         }
+     }
+     server{
+         message=empty
+         }
+}
+
+#协议 购买历史信息记录
+proto MSG_SELLER_SHOPPING_HISTORY=101
+{
+     client{
+         message{
+             pageStart:u8,        #起始位置
+             pageEnd:u8           #终止位置
+         }
+     }
+     server{
+         message{
+             sellerHistory:list<{
+                  time:timestamp,             #时间戳
+                  player_id:player_id,
+                  name:sstr,                  #玩家名称
+                  item_bid:item_bid,          #道具bid
+                  item_count:item_count       #道具数量
+             }>
+         }
+     }
+}
+
+#推送 购买物品推送给所有人
+proto PUSH_SELLER_SHOPPING_DATA=1
+{
+     client{
+     }
+     server{
+         message{
+              time:timestamp,             #时间戳
+              player_id:player_id,
+              name:sstr,                  #玩家名称
+              item_bid:item_bid,          #道具bid
+              item_count:item_count       #道具数量
+         }
+     }
+}

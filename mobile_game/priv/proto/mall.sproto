@@ -1,0 +1,57 @@
+#商城模块
+@include "game.sproto"
+
+# 购买物品
+proto MSG_MALL_SHOPPING=1
+{
+    client{
+        message{
+            shopping_id:u32,               #购物id
+            item_num:item_count            #商品数量
+        }
+    }
+    server{
+        message{
+            reply_num:reply_num             #回复码
+#-define(REPLY_MSG_SHOP_BUY_OK,   0).   %% 购买物品成功
+#-define(REPLY_MSG_SHOP_BUY_1,    1).   %% 钻石不足
+#-define(REPLY_MSG_SHOP_BUY_2,    2).   %% 金币不足
+#-define(REPLY_MSG_SHOP_BUY_3,    3).   %% 背包已满
+#-define(REPLY_MSG_SHOP_BUY_4,    4).   %% 限时物品时间未到
+# -define(ERPLY_MSG_SHOP_BUY_5, 5).   %% count is not enough
+#-define(REPLY_MSG_SHOP_BUY_255,  255). %% 购买物品失败，请重试。重试失败，请联系GM。
+        }
+    }
+}
+
+
+# 获取限购时间信息
+proto MSG_MALL_TIME_INFOS=2
+{
+    client{
+        message{
+            shopping_ids:list<shopping_id:u32>
+        }
+    }
+    server{
+        message{
+            time_infos:list<{shopping_id:u32, time:u64}>
+        }
+    }
+}
+
+
+proto MSG_MALL_ID_INFOS=3
+{
+    client{
+        message{
+            shopping_ids:list<shopping_id:u32>
+        }
+    }
+    server{
+        message{
+            item_infos:list<{shopping_id:u32, number:u16}>
+        }
+    }
+}
+

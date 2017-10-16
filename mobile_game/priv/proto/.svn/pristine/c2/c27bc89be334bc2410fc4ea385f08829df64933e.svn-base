@@ -1,0 +1,36 @@
+@include "game.sproto"
+
+
+proto MSG_GONGCHENG_STAR=1
+{
+	client{
+		message{
+			NpcId:u16,
+			Type:u8
+		}
+	}
+
+	server{
+		message{
+			IsOK:u8 ## 0 suc
+		}
+	}
+
+	errnos{
+        ERR_TEAM_NOT_LEADER,
+        ERR_NOT_TEAM_MAIN_INS,
+        ERR_GWGC_NOT_LOOK
+    }
+}
+
+proto MSG_GONGCHENG_COMPLETE=2
+{
+	client{}
+
+	server{
+		message{
+			JiFen:u32,
+			prizeInfo:list<{itemId:u32, itemCount:u32}>
+		}
+	}
+}

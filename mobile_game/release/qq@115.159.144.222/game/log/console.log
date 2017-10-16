@@ -1,0 +1,7 @@
+2016-06-21 17:09:41.375 [info] <0.7.0> Application lager started on node 'qq@115.159.144.222'
+2016-06-21 17:09:41.484 [info] <0.7.0> Application inets started on node 'qq@115.159.144.222'
+2016-06-21 17:09:41.503 [info] <0.7.0> Application global_table started on node 'qq@115.159.144.222'
+2016-06-21 17:09:43.819 [error] <0.98.0> Mnesia('qq@115.159.144.222'): ** ERROR ** (core dumped to file: "/home/fengzhu/work/server/mobile_game/release/qq@115.159.144.222/game/MnesiaCore.qq@115.159.144.222_1466_500183_812935")
+ ** FATAL ** Possibly truncated decision_tab file: {corrupt_log_file,"/home/fengzhu/work/server/mobile_game/release/qq@115.159.144.222/game/../Database/Mnesia.game/DECISION_TAB.LOG"}
+
+2016-06-21 17:09:53.814 [error] <0.100.0> gen_server mnesia_monitor terminated with reason: killed

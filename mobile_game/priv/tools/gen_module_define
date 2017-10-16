@@ -1,0 +1,15 @@
+#! /bin/sh
+
+GEN_FILE=src/auto/defs/mod_name_def.hrl
+
+rm -f "$GEN_FILE"
+
+MODS=$(find src -name '*.erl' -exec  basename {} \; |sed -e "s/.erl//" | tr '\n' ' ')
+
+echo "%% Do not edit it." >> $GEN_FILE
+echo "%% Auto Generate by ffsj autotools" >> $GEN_FILE
+for M in $MODS
+do
+    echo "-ifndef($M). \n-define($M, $M).\n -endif.\n"  >> $GEN_FILE
+done
+

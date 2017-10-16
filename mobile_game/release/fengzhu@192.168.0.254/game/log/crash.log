@@ -1,0 +1,16 @@
+2017-08-11 15:01:31 =CRASH REPORT====
+  crasher:
+    initial call: mysql:init/1
+    pid: <0.794.0>
+    registered_name: []
+    exception exit: {{error,connect_failed},[{gen_server,init_it,6,[{file,"gen_server.erl"},{line,344}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+    ancestors: [<0.791.0>]
+    messages: []
+    links: [<0.791.0>]
+    dictionary: []
+    trap_exit: false
+    status: running
+    heap_size: 233
+    stack_size: 27
+    reductions: 124
+  neighbours:

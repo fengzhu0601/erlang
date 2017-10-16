@@ -1,0 +1,37 @@
+@include "game.sproto"
+
+## 数据初始化
+proto MSG_INIT_MESSAGE = 1
+{
+    client
+    {
+        message=empty
+    }
+
+    server
+    {
+        message
+        {
+            List:list<{day:u8, isGetPrize:u8}>  ## {天数， 是否领奖} isGetPrize: 0 没领奖， 1 可以领奖, 2 已经领奖 初始化到前端弄
+        }
+    }
+}
+
+## 领奖
+proto MSG_GET_PRIZE = 2
+{
+    client
+    {
+        message
+        {
+            day:u8
+        }
+    }
+    server
+    {
+        message
+        {
+            replyNum:reply_num
+        }
+    }
+}

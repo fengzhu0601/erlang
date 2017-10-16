@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<!-- edited with XMLSpy v2011 (http://www.altova.com) by aaa (dd) -->
+<scene_10011>
+	<!--副本事件流程-->
+	<State StateId="1" Desc="副本状态1">
+		<Event EventId="10002" Times="1" Desc="玩家移动">
+			<Can Func="is_player_got_task" Par="10000" Desc="是否携带某个任务"/>
+			<Can Func="is_player_in_x" Par="16" Desc="是否超过x坐标"/>
+			<Do Func="show_animation" Par="1" Desc="播放动画"/>
+			<Do Func="create_monsters" Par="[{1001110, 20, 15, 0, 7, 1}, {1001110, 19, 14, 0, 7, 2}, {1001110, 21, 13, 0, 7, 3}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+		</Event>
+		<Event EventId="10002" Times="1" Desc="玩家移动">
+			<Can Func="is_player_in_x" Par="30" Desc="是否超过x坐标"/>
+			<Do Func="create_monsters" Par="[{1001111, 20, 15, 0, 7, 4}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+		</Event>
+		<Event EventId="10003" Times="1" Desc="击杀怪物">
+			<Can Func="is_monster_die" Par="4" Desc="是否杀死某个flag标志的怪物"/>
+			<Do Func="fuben_complete" Par="" Desc="副本结束"/>
+		</Event>
+	</State>
+</scene_10011>

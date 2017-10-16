@@ -1,0 +1,114 @@
+
+## 所有的事件类型
+atom ev_kill_boss      %每杀死一个boss（包括单人组队副本）+1, 单人不同难度副本+1
+atom ev_kill_monster   %每杀死一个怪物+1(包括boss),所有副本
+atom ev_kill_monster_by_bid     %杀死指定MonsterId的怪物 +1（包括boss）
+atom ev_instance_pass_time      %通关副本所需时间
+
+atom ev_main_ins_pass           %通关副本
+atom ev_instance_success        %成功通关副本次数
+atom ev_ins_fail_totle          %通关副本失败次数
+atom ev_ins_relive_totle        %副本中复活次数
+atom ev_died                    %副本中角色死亡次数
+atom ev_nine_star_pass_ins      %九星通关副本
+atom ev_complete_task             %% 购买物品，完成任务 arg = TaskId
+
+atom ev_collect_item              %% 采集 arg = itemId
+atom ev_buy_item                  %% 采集 arg = itemId
+atom ev_convoy_npc                %% 采集 arg = taskId
+
+atom ev_gem_he_cheng       %宝石合成
+
+atom ev_pet_hatching       %宠物孵化
+atom ev_pet_advance        %宠物进阶
+atom ev_pet_skill_level    %宠物技能升级
+atom ev_pet_treasure       %宠物寻宝
+atom ev_pet_totle          %拥有XX只宠物（封印和未孵化的不计算）
+
+atom ev_guild_join         %加入一个公会
+atom ev_guild_create       %创建一个公会
+atom ev_guild_player_level %公会贡献到达XX等级
+atom ev_guild_tech_level   %公会科技每次升级
+atom ev_guild_activity     %公会活动，没有该功能
+
+atom ev_friend_add         %每次添加好友
+atom ev_friend_score       %友好度
+atom ev_friend_gift_quality%礼包的品质达到XX
+atom ev_friend_gift_num    %礼包的容量达到XX
+
+atom ev_crown_exchange     %皇冠兑换
+atom ev_crown_imbue        %皇冠附魔
+atom ev_crown_level        %皇冠碎片升级
+atom ev_crown_type_totle    %怒气技能的种类
+atom ev_crown_skill_use_totle     %怒气技能的使用次数
+
+atom ev_arena_fight_all    %竞技场总挑战次数
+atom ev_arena_success_all  %竞技场总胜利次数
+
+atom ev_arena_pve_fight %竞技场挑战次数
+atom ev_arena_pvp_fight
+atom ev_arena_multi_pvp_fight
+
+atom ev_arena_pve_win    %竞技场pve总胜利次数
+atom ev_arena_pve_fail   %竞技场在pve总失败次数
+atom ev_arena_pvp_win
+atom ev_arena_pvp_fail
+atom ev_arena_multi_pvp_win
+atom ev_arena_multi_pvp_fail
+
+atom ev_arena_level        %竞技场的等级达到规定等级
+
+atom ev_seller_buy_item    %在神秘商人处购买物品
+
+atom ev_get_item           %获得某个道具
+
+atom ev_equ_he_cheng       %装备合成
+atom ev_equ_ji_cheng       %装备继承
+atom ev_equ_qiang_hua      %装备强化
+atom ev_equ_xiangqian      %装备镶嵌
+atom ev_equ_qiang_hua_success   %强化成功
+atom ev_equ_qiang_hua_fail  %强化失败
+atom ev_dress_top_level_equ %装备等级装备
+atom ev_dress_equ_suit      %装备一套套装
+
+atom ev_task_chapter        %完成某个主线任务（章节任务）
+atom ev_branch_task_totle   %完成支线任务的总数
+atom ev_daily_task_totle    %完成日常任务的总数
+
+
+atom ev_unlock_bag         %开启多少页背包
+atom ev_unlock_depot       %开启多少页仓库
+
+atom ev_attr_money         %金币达到规定值XXX
+atom ev_attr_diamond       %钻石达到规定值XXX
+atom ev_player_level       %玩家等级达到规定值XXX
+atom ev_player_power       %玩家战力达到规定值XXX
+
+
+atom ev_long_wen_activate_totle   %龙纹激活
+atom ev_long_wen_level_up_totle %升级龙纹XX次
+
+atom ev_auction_sale_totle  %成功从拍卖行卖出XX件物品
+atom ev_auction_buy_totle   %成功从拍卖行买得XX件物品
+atom ev_auction_jingjia_totle    %参与竞价XX次
+
+atom ev_double_hit      %连击数
+atom ev_chapter_accomplishment_num  %对应章节的副本星级数量
+
+atom ev_npc_talk
+
+atom ev_mount
+atom ev_blessing
+
+##  atom ev_ins_success_totle       %通关副本成功次数
+##  atom ev_instance_kill_boss
+##  atom ev_instance_kill_monster
+##  atom ev_arena_fight
+##  atom ev_arena_fight_win
+##  atom ev_instance_no_die         %单次副本死亡总次数
+##  atom ev_instance_pass_difficulty%通过难度
+##  atom ev_kill_monster_exp_addition %% arg = AddExp reg is all
+##  atom ev_single_instance_pass      %% 副本任务 arg=InstacnId
+##  atom ev_enter_scene               %% arg=SceneId
+##  atom ev_leave_scene               %% arg=SceneId
+##  atom ev_offline                   %% arg=SceneId 下线

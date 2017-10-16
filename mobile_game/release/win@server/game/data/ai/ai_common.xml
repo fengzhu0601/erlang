@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<!-- edited with XMLSpy v2011 (http://www.altova.com) by clk (clk) -->
+<ai_common>
+	<!--AI事件流程-->
+	<State StateId="1" Desc="初始状态">
+		<Event EventId="10006" Times="1" Desc="">
+			<True Func="set_state" Par="{0,2}" Desc=""/>
+		</Event>
+	</State>
+	<State StateId="2" Desc="">
+		<Event EventId="10006" Times="1" Desc="">
+			<!--<True Func="trace" Par="state_2" Desc=""/>-->
+		</Event>
+		<Event EventId="10008" Times="-1" Desc="进行追击">
+			<Can Func="is_mutex" Par="{1, 80}" Desc=""/>
+			<Can Func="is_born_near_player_x" Par="{0, alert_radius}" Desc=""/>
+			<True Func="set_state" Par="{0,3}" Desc=""/>
+		</Event>
+		<Event EventId="10008" Times="-1" Desc="闲逛">
+			<Can Func="is_mutex" Par="{1, 50}" Desc=""/>
+			<Can Func="is_near_born_x" Par="{0, stroll_radius}" Desc=""/>
+			<True Func="move_rand" Par="" Desc=""/>
+		</Event>
+		<Event EventId="10008" Times="-1" Desc="闲逛">
+			<Can Func="is_mutex" Par="{1, 20}" Desc=""/>
+			<True Func="move_to_born_x" Par="" Desc=""/>
+		</Event>
+	</State>
+	<State StateId="3" Desc="追击">
+		<Event EventId="10008" Times="-1" Desc="攻">
+			<Can Func="is_mutex" Par="{1, 80}" Desc=""/>
+			<Can Func="is_born_near_player_x" Par="{0, alert_radius}" Desc="攻"/>
+			<Can Func="is_near_player_y" Par="{0, 2}" Desc=""/>
+			<Can Func="is_near_player_x" Par="{0, 2}" Desc=""/>
+			<Can Func="is_cd" Par="5000" Desc=""/>
+			<!--<True Func="trace" Par="skill_segment" Desc=""/>-->
+			<True Func="skill_segment" Par="rand_skill" Desc=""/>
+			<!--<True Func="recursion_ai" Par="{{attack, 1, 0}, 2}" Desc=""/>-->
+		</Event>
+		<Event EventId="10008" Times="-1" Desc="攻击空执行">
+			<Can Func="is_mutex" Par="{1, 60}" Desc=""/>
+			<Can Func="is_born_near_player_x" Par="{0, alert_radius}" Desc="攻"/>
+			<Can Func="is_near_player_y" Par="{0, 2}" Desc=""/>
+			<Can Func="is_near_player_x" Par="{0, 2}" Desc=""/>
+			<!--<True Func="trace" Par="wait_attack" Desc=""/>-->
+		</Event>
+		<Event EventId="10008" Times="-1" Desc="追">
+			<Can Func="is_mutex" Par="{1, 50}" Desc=""/>
+			<Can Func="is_born_near_player_x" Par="{0, alert_radius}" Desc="追"/>
+			<!--<True Func="trace" Par="move_to_near_player" Desc=""/>-->
+			<True Func="move_to_near_player" Par="" Desc=""/>
+		</Event>
+		<Event EventId="10008" Times="-1" Desc="回出生点">
+			<Can Func="is_mutex" Par="{1, 20}" Desc="即不能攻又不能追的情况下"/>
+			<True Func="set_state" Par="{0, 4}" Desc=""/>
+		</Event>
+	</State>
+	<State StateId="4" Desc="回出生点">
+		<Event EventId="10008" Times="-1" Desc="">
+			<Can Func="is_near_born_x" Par="{0, 1}" Desc=""/>
+			<True Func="set_state" Par="{0,2}" Desc="闲逛"/>
+			<False Func="move_to_born_x" Par="" Desc=""/>
+		</Event>
+	</State>
+</ai_common>

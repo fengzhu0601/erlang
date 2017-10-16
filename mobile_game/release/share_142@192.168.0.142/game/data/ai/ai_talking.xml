@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<!-- edited with XMLSpy v2011 (http://www.altova.com) by clk (clk) -->
+<npc_10011>
+	<!--副本事件流程-->
+	<State StateId="1" Desc="npc状态1">
+		<Event EventId="10006" Times="1" Desc="">
+			<Do Func="send_evt" Par="{2000,12}" Desc=""/>
+		</Event>
+	</State>
+</npc_10011>

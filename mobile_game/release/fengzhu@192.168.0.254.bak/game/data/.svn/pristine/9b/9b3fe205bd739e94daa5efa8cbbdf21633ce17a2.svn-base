@@ -1,0 +1,963 @@
+﻿ID（技能ID*10+num|buff组用段3000-3999（3*1000+buff组id*10+num）|卡牌变身用段7000-7999（7*1000+100*品质+num）|宠物技能8000-8999(8*1000+100*技能类型（1天赋技能，2主动技能，4主动技能附加效果，5被动技能+编号）)|祝福任务9000-9999（9*1000+100*品质+num））	名字	BUFF类型（1标记buff，2属性buff、3移动变速buff、4间隔性生效buff（无受击表现）、5伤害buff（有受击表现）、6buff组、7被动、8释放物buff、9重置CD，10博学（打怪的经验会或得加成，加成按照属性加成类型定）、11光环类、12技能修改（添加修改集的buff）、13临时护盾、14子弹buff(A反击B，只能记录B的伤害，B攻击A，只能记录A的伤害)、15阵营指向型（友方触发一个，敌方触发另外一个）	状态标记（1无敌、2霸体、3眩晕、4冰冻、5免伤、6定身、7沉默，8跳跃限制，9混乱（不受控制），10疯狂，11免疫debuff，12魔幻（不耗蓝），13重生，14隐身）	属性加成类型（1千分比、2具体值、3伤害值（统计或者造成的伤害）)	属性值([{attrid，value},....]value可以配置负数，表示减少;如果是转属性类计算，则本字段内的数值是给折算属性计算的；如果是3属性类型，固定为千分比，取实时伤害	是否可以被霸体清除（1是，0否,伤害buff会被霸体\无敌清除）	移动变速比率(千分比，可以配负数）	生效间隔(每隔多少毫秒生效一次，只针对血和蓝，为0代表1次）	伤害值[非数组形式是固定值伤害，数组形式是转属性伤害（折算类型（属性值1，伤害值2）,作用效果[（普通伤害1，火2，冰3，雷4），数值(额外附加的伤害)）]	被动效果[生效判定（1攻击生效，2受击生效）、折算类型（属性值1，伤害值2）、折算比例、折算者（1攻击方，2受击方）作用者（1攻击方，2受击方)、附加效果（1ap，火2，冰3，雷4，HP5，mp6）））]	折算属性类型[属性ID(如果是伤害则不需要填写属性id)]	叠加类型（1=时间叠加，2=效果叠加，3=同ID的新的覆盖掉旧的，4=同类型buff效果高的覆盖低的）	释放物ID	重置对应技能的CD	怪物类型千分比效果[{怪物类型1，怪物类型2····}，比例]（小怪=1，精英怪=2，boss=3）	光环id	修改集id（数组）	折算目标(1自己（buff携带者） 2敌人（buff给予者）对类型2，3，4,5，14有效（配14时，1是飞到自己(携带者)身上，2飞到buff给予者身上）)	子弹效果{buffid，per累积伤害百分比}	子弹特效路径[{"子弹头帧动画"，"拖尾图片"}]	固定值(护盾类型固定值)	触发条件(0无条件、1位移)buff自身触发条件，只针对buff类型4生效	阵容指向型buff{友方触发buff，敌方触发buff}	生效概率(千分比）	BUFF持续时间(毫秒）	技能绑定判断（1绑定技能，从技能动作结束后开始计算持续时间；0不绑定）	buff子集[{buffid,delay},.....]delay毫秒	buff归属（[归属组、等级、最大叠加次数](加减速组1、定身组2）没有的可为空	图标路径	动画，格式为("后","前"，"结束特效"，"buff自身生效特效"分别表示为前后的动画路径以及特效结束的特效。)
+id	client_name	type	tag	attr_type	attrs	break_by_bati	move_speed	interval	damage	passive_info	prop_type	pile	emitid	reset_skill_id	rate_info	haloid	client_skill_modify	convert_trage	client_bullet_buff	client_bullet_effect	value	client_cond_type	client_direct_buff	prob	time	skill_bind	sub_buffs	class	client_icon	client_ani
+1	冰冻	1	4																					1000	3000			[2,3,2]	{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+2	闪现无敌	1	1																					1000	700				{"skill/buff_icon_wudi.png"}	{"",""}
+3	蓄力一击霸体	1	2																					1000	3000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+4	眩晕	1	3																					1000	3000			[2,2,2]	{"skill/buff_icon_xuanyun.png"}	{"","effects/xuanyun_Add/xuanyun.frames"}
+5	保护罩	1	1																					1000	3000				{"skill/buff_icon_wudi.png"}	{"","effects/wudi_Add/wudi.frames"}
+6	法师冰晶护体无敌	1	1																					1000	5300				{"skill/buff_icon_wudi.png"}	{"",""}
+7	无敌	1	1																					1000	800				{"skill/buff_icon_wudi.png"}	{"","effects/wudi_Add/wudi.frames"}
+8	冲锋斩杀眩晕	1	3																					1000	1000				{"skill/buff_icon_xuanyun.png"}	{"","effects/xuanyuen/xuanyuen.frames"}
+9	冰冰冰技能冰冻	1	3																					1000	2100				{"skill/buff_icon_xuanyun.png"}	{"","effects/bingdong/bingdong.frames"}
+10	变身状态buff	2		2	[{11,1}]																			1000	900000				{"skill/buff_icon_bianshen.png"}	{"",""}
+18	水妖攻击眩晕	1	3																					500	3000				{"skill/buff_icon_xuanyun.png"}	{"","effects/xuanyun_Add/xuanyun.frames"}
+19	鼓舞1	2		1	[{19,500},{20,1000}]																			1000	10000				{"skill/buff_icon_gongji.png","skill/buff_icon_fangyu.png"}	{"effects/01guwu_Add/01guwu.frames",""}
+20	定身1	1	6																					1000	3000				{"skill/buff_icon_dingshen.png"}	{"","effects/01dingshen/01dingshen.frames"}
+21	定身2	1	6																					1000	3000				{"skill/buff_icon_dingshen.png"}	{"","effects/02dingshen/02dingshen.frames"}
+22	冰冻减速	3					-500																	1000	10000				{"skill/buff_icon_speed.png"}	{"effects/01jiansu/01jiansu.frames",""}
+23	雷电减速	3					-500																	1000	10000				{"skill/buff_icon_speed.png"}	{"","effects/02jiansu/02jiansu.frames"}
+24	冰冻全身1	1	4																					1000	3000				{"skill/buff_icon_bingdong.png"}	{"","effects/01bing/01bing.frames"}
+25	沉默	1	7																					1000	3000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+26	撕裂	2		1	[{19,-500},{20,-1000}]																			1000	10000				{"skill/buff_icon_gongji.png","skill/buff_icon_fangyu.png"}	{"","effects/silie/silie.frames"}
+27	中毒	4		2	[{11,-50}]			1000																1000	10000			[2,1,2]	{"skill/buff_icon_zhongdu.png"}	{"","effects/zhongdu_Add/zhongdu.frames"}
+28	灼烧	5				0		1000	50															1000	10000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+30	buff组测试	6																						1000	10000		[{7,500},{19,1500},{100,2500}]			{"",""}
+31	buff附加属性伤害效果测试	7								[1,1,100,1,2,4]	15													1000	10000				{"skill/buff_icon_binggong.png"}	{"",""}
+32	雷电伤害10%	7								[1,2,1000,1,2,4]														1000	0	1			{"skill/buff_icon_leigong.png"}	{"",""}
+33	冰霜伤害10%	7								[1,2,1000,1,2,3]														1000	0	1			{"skill/buff_icon_binggong.png"}	{"",""}
+34	火焰伤害10%	7								[1,2,1000,1,2,2]														1000	0	1			{"skill/buff_icon_huogong.png"}	{"",""}
+35	1秒的无敌状态	1	1																					1000	1000				{"skill/buff_icon_wudi.png"}	{"",""}
+36	施放物buff测试	8											9000101											1000	0					{"",""}
+37	暴风雪霸体	1	2																					1000	3000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+38	暴风雪造成20%智力伤害,对boss翻倍	7								[1,1,200,1,2,1]	16				[{1,2000}]									1000	0	1				{"",""}
+39	冰冻1秒	1	4																					1000	1000			[2,3,2]	{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+40	dot百分比转属性掉血	5		1				1000	[2,2,10]															1000	3000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+41	霸体（永久）	1	2																					1000	9999999				{"skill/buff_icon_bati.png"}	{"",""}
+100	加血加蓝	4		1	[{11,1000},{12,1000}]			0																1000	1000					{"effects/drink_blue/drink_blue.frames","effects/drink_blood/drink_blood.frames"}
+101	加血100%	4		1	[{11,1000}]			0																1000	1000					{"","effects/drink_blood/drink_blood.frames"}
+102	加血50%	4		1	[{11,500}]			0																1000	1000					{"","effects/drink_blood/drink_blood.frames"}
+103	加血20%	4		1	[{11,200}]			0																1000	1000					{"","effects/drink_blood/drink_blood.frames"}
+201	加蓝100%	4		1	[{12,1000}]			0																1000	1000					{"","effects/drink_blue/drink_blue.frames"}
+202	加蓝50%	4		1	[{12,500}]			0																1000	1000					{"","effects/drink_blue/drink_blue.frames"}
+203	加蓝20%	4		1	[{12,200}]			0																1000	1000					{"","effects/drink_blue/drink_blue.frames"}
+301	蓝血100%	4		1	[{11,1000},{12,1000}]			0																1000	1000					{"effects/drink_blue/drink_blue.frames","effects/drink_blood/drink_blood.frames"}
+401	群体回血10%	4		1	[{11,100}]			0																1000	1000					{"","effects/jiaxue/jiaxue.frames"}
+501	群体加攻10%	2		1	[{19,100}]																			1000	1000				{"skill/buff_icon_gongji.png"}	{"","effects/jiagongji/jiagongji.frames"}
+601	藤蔓束缚	1	6																					1000	1000				{"skill/buff_icon_dingshen.png"}	{"","effects/jiaxue/jiaxue.frames"}
+2001	怒气技能-冰冰冰冰冻	1	4																					1000	2000				{"skill/buff_icon_bingdong.png"}	{"","effects/01bing/01bing.frames"}
+2002	怒气技能-冰火雷禁锢	1	6																					1000	2000				{"skill/buff_icon_dingshen.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+2003	怒气技能-火火火灼烧	4		1	[{11,-50}]			1000																1000	5000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/02dingshen/02dingshen.frames"}
+2004	怒气技能-雷雷雷麻痹	3					-500																	1000	3000				{"skill/buff_icon_speed.png"}	{"","effects/02jiansu/02jiansu.frames"}
+2005	怒气技能-冰冰雷定身	1	4																					1000	1000				{"skill/buff_icon_bingdong.png"}	{"","effects/01bing/01bing.frames"}
+2006	怒气技能-火火冰定身	1	4																					1000	3000				{"skill/buff_icon_bingdong.png"}	{"","effects/01bing/01bing.frames"}
+2007	怒气技能-火火雷麻痹	1	6																					1000	3000				{"skill/buff_icon_dingshen.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+2008	怒气技能-雷雷冰冰冻	1	4																					1000	3000				{"skill/buff_icon_bingdong.png"}	{"","effects/01bing/01bing.frames"}
+3001	26%的概率重置CD	9												100113										260	0					{"",""}
+3002	32%的概率重置CD	9												100113										320	0					{"",""}
+3003	38%的概率重置CD	9												100113										380	0					{"",""}
+3004	44%的概率重置CD	9												100113										440	0					{"",""}
+3005	50%的概率重置CD	9												100113										500	0					{"",""}
+3006	56%的概率重置CD	9												100113										560	0					{"",""}
+3007	62%的概率重置CD	9												100113										620	0					{"",""}
+3008	68%的概率重置CD	9												100113										680	0					{"",""}
+3009	74%的概率重置CD	9												100113										740	0					{"",""}
+3010	80%的概率重置CD	9												100113										800	0					{"",""}
+3011	附加智力56%的寒冰伤害	7								[2,1,560,1,2,3]	16													1000	0	1			{"skill/buff_icon_binggong.png"}	{"",""}
+3012	附加智力72%的寒冰伤害	7								[2,1,720,1,2,3]	16													1000	0	1			{"skill/buff_icon_binggong.png"}	{"",""}
+3013	附加智力88%的寒冰伤害	7								[2,1,880,1,2,3]	16													1000	0	1			{"skill/buff_icon_binggong.png"}	{"",""}
+3014	附加智力104%的寒冰伤害	7								[2,1,1040,1,2,3]	16													1000	0	1			{"skill/buff_icon_binggong.png"}	{"",""}
+3015	附加智力120%的寒冰伤害	7								[2,1,1200,1,2,3]	16													1000	0	1			{"skill/buff_icon_binggong.png"}	{"",""}
+3016	附加智力136%的寒冰伤害	7								[2,1,1360,1,2,3]	16													1000	0	1			{"skill/buff_icon_binggong.png"}	{"",""}
+3017	附加智力152%的寒冰伤害	7								[2,1,1520,1,2,3]	16													1000	0	1			{"skill/buff_icon_binggong.png"}	{"",""}
+3018	附加智力168%的寒冰伤害	7								[2,1,1680,1,2,3]	16													1000	0	1			{"skill/buff_icon_binggong.png"}	{"",""}
+3019	附加智力184%的寒冰伤害	7								[2,1,1840,1,2,3]	16													1000	0	1			{"skill/buff_icon_binggong.png"}	{"",""}
+3020	附加智力200%的寒冰伤害	7								[2,1,2000,1,2,3]	16													1000	0	1			{"skill/buff_icon_binggong.png"}	{"",""}
+7101	青铜猴子菲力-千分比力量	2		1	[{15,50}]																			1000	900000				{"skill/buff_icon_liliang.png"}	{"",""}
+7201	白银猴子菲力-千分比力量	2		1	[{15,100}]																			1000	900000				{"skill/buff_icon_liliang.png"}	{"",""}
+7301	黄金猴子菲力-千分比力量	2		1	[{15,150}]																			1000	900000				{"skill/buff_icon_liliang.png"}	{"",""}
+7401	钻石猴子菲力-千分比力量	2		1	[{15,200}]																			1000	900000				{"skill/buff_icon_liliang.png"}	{"",""}
+7102	青铜审判骑士-千分比敏捷	2		1	[{17,50}]																			1000	900000				{"skill/buff_icon_minjie.png"}	{"",""}
+7202	白银审判骑士-千分比敏捷	2		1	[{17,100}]																			1000	900000				{"skill/buff_icon_minjie.png"}	{"",""}
+7302	黄金审判骑士-千分比敏捷	2		1	[{17,150}]																			1000	900000				{"skill/buff_icon_minjie.png"}	{"",""}
+7402	钻石审判骑士-千分比敏捷	2		1	[{17,200}]																			1000	900000				{"skill/buff_icon_minjie.png"}	{"",""}
+7103	青铜地精傀儡-千分比智力	2		1	[{16,50}]																			1000	900000				{"skill/buff_icon_zhili.png"}	{"",""}
+7203	白银地精傀儡-千分比智力	2		1	[{16,100}]																			1000	900000				{"skill/buff_icon_zhili.png"}	{"",""}
+7303	黄金地精傀儡-千分比智力	2		1	[{16,150}]																			1000	900000				{"skill/buff_icon_zhili.png"}	{"",""}
+7403	钻石地精傀儡-千分比智力	2		1	[{16,200}]																			1000	900000				{"skill/buff_icon_zhili.png"}	{"",""}
+7104	青铜地精厨娘-千分比体质	2		1	[{18,50}]																			1000	900000				{"skill/buff_icon_tizhi.png"}	{"",""}
+7204	白银地精厨娘-千分比体质	2		1	[{18,100}]																			1000	900000				{"skill/buff_icon_tizhi.png"}	{"",""}
+7304	黄金地精厨娘-千分比体质	2		1	[{18,150}]																			1000	900000				{"skill/buff_icon_tizhi.png"}	{"",""}
+7404	钻石地精厨娘-千分比体质	2		1	[{18,200}]																			1000	900000				{"skill/buff_icon_tizhi.png"}	{"",""}
+7105	青铜丑陋巨兽-千分比血量	2		1	[{11,50}]																			1000	900000				{"skill/buff_icon_tixue.png"}	{"",""}
+7205	白银丑陋巨兽-千分比血量	2		1	[{11,100}]																			1000	900000				{"skill/buff_icon_tixue.png"}	{"",""}
+7305	黄金丑陋巨兽-千分比血量	2		1	[{11,150}]																			1000	900000				{"skill/buff_icon_tixue.png"}	{"",""}
+7405	钻石丑陋巨兽-千分比血量	2		1	[{11,200}]																			1000	900000				{"skill/buff_icon_tixue.png"}	{"",""}
+7106	青铜大天使-千分比力量、敏捷、智力、体质	2		1	[{15,50},{17,50},{16,50},{18,50}]																			1000	900000				{"skill/buff_icon_liliang.png","skill/buff_icon_minjie.png","skill/buff_icon_zhili.png","skill/buff_icon_tizhi.png"}	{"",""}
+7206	白银大天使-千分比力量、敏捷、智力、体质	2		1	[{15,100},{17,100},{16,100},{18,100}]																			1000	900000				{"skill/buff_icon_liliang.png","skill/buff_icon_minjie.png","skill/buff_icon_zhili.png","skill/buff_icon_tizhi.png"}	{"",""}
+7306	黄金大天使-千分比力量、敏捷、智力、体质	2		1	[{15,150},{17,150},{16,150},{18,150}]																			1000	900000				{"skill/buff_icon_liliang.png","skill/buff_icon_minjie.png","skill/buff_icon_zhili.png","skill/buff_icon_tizhi.png"}	{"",""}
+7406	钻石大天使-千分比力量、敏捷、智力、体质	2		1	[{15,200},{17,200},{16,200},{18,200}]																			1000	900000				{"skill/buff_icon_liliang.png","skill/buff_icon_minjie.png","skill/buff_icon_zhili.png","skill/buff_icon_tizhi.png"}	{"",""}
+7107	青铜月光巨狼-千分比暴击	2		1	[{21,50}]																			1000	900000				{"skill/buff_icon_baoji.png"}	{"",""}
+7207	白银月光巨狼-千分比暴击	2		1	[{21,100}]																			1000	900000				{"skill/buff_icon_baoji.png"}	{"",""}
+7307	黄金月光巨狼-千分比暴击	2		1	[{21,150}]																			1000	900000				{"skill/buff_icon_baoji.png"}	{"",""}
+7407	钻石月光巨狼-千分比暴击	2		1	[{21,200}]																			1000	900000				{"skill/buff_icon_baoji.png"}	{"",""}
+7108	青铜死神-千分比招架	2		1	[{22,50}]																			1000	900000				{"skill/buff_icon_gedang.png"}	{"",""}
+7208	白银死神-千分比招架	2		1	[{22,100}]																			1000	900000				{"skill/buff_icon_gedang.png"}	{"",""}
+7308	黄金死神-千分比招架	2		1	[{22,150}]																			1000	900000				{"skill/buff_icon_gedang.png"}	{"",""}
+7408	钻石死神-千分比招架	2		1	[{22,200}]																			1000	900000				{"skill/buff_icon_gedang.png"}	{"",""}
+7109	青铜树精-千分比招架	2		1	[{22,50}]																			1000	900000				{"skill/buff_icon_gedang.png"}	{"",""}
+7209	白银树精-千分比招架	2		1	[{22,100}]																			1000	900000				{"skill/buff_icon_gedang.png"}	{"",""}
+7309	黄金树精-千分比招架	2		1	[{22,150}]																			1000	900000				{"skill/buff_icon_gedang.png"}	{"",""}
+7409	钻石树精-千分比招架	2		1	[{22,200}]																			1000	900000				{"skill/buff_icon_gedang.png"}	{"",""}
+7110	青铜吞云兽-千分比精准	2		1	[{29,50}]																			1000	900000				{"skill/buff_icon_jingque.png"}	{"",""}
+7210	白银吞云兽-千分比精准	2		1	[{29,100}]																			1000	900000				{"skill/buff_icon_jingque.png"}	{"",""}
+7310	黄金吞云兽-千分比精准	2		1	[{29,150}]																			1000	900000				{"skill/buff_icon_jingque.png"}	{"",""}
+7410	钻石吞云兽-千分比精准	2		1	[{29,200}]																			1000	900000				{"skill/buff_icon_jingque.png"}	{"",""}
+7111	青铜骨龙-千分比暴击、招架、精准、破甲	2		1	[{21,50},{22,50},{29,50},{25,50}]																			1000	900000				{"skill/buff_icon_baoji.png","skill/buff_icon_gedang.png","skill/buff_icon_jingque.png","skill/buff_icon_renxing.png"}	{"",""}
+7211	白银骨龙-千分比暴击、招架、精准、破甲	2		1	[{21,100},{22,100},{29,100},{25,100}]																			1000	900000				{"skill/buff_icon_baoji.png","skill/buff_icon_gedang.png","skill/buff_icon_jingque.png","skill/buff_icon_renxing.png"}	{"",""}
+7311	黄金骨龙-千分比暴击、招架、精准、破甲	2		1	[{21,150},{22,150},{29,150},{25,150}]																			1000	900000				{"skill/buff_icon_baoji.png","skill/buff_icon_gedang.png","skill/buff_icon_jingque.png","skill/buff_icon_renxing.png"}	{"",""}
+7411	钻石骨龙-千分比暴击、招架、精准、破甲	2		1	[{21,200},{22,200},{29,200},{25,200}]																			1000	900000				{"skill/buff_icon_baoji.png","skill/buff_icon_gedang.png","skill/buff_icon_jingque.png","skill/buff_icon_renxing.png"}	{"",""}
+7112	青铜雷神像-千分比破甲	2		1	[{25,50}]																			1000	900000				{"skill/buff_icon_renxing.png"}	{"",""}
+7212	白银雷神像-千分比破甲	2		1	[{25,100}]																			1000	900000				{"skill/buff_icon_renxing.png"}	{"",""}
+7312	黄金雷神像-千分比破甲	2		1	[{25,150}]																			1000	900000				{"skill/buff_icon_renxing.png"}	{"",""}
+7412	钻石雷神像-千分比破甲	2		1	[{25,200}]																			1000	900000				{"skill/buff_icon_renxing.png"}	{"",""}
+7113	青铜巨怪-千分比力量	2		1	[{15,50}]																			1000	900000				{"skill/buff_icon_liliang.png"}	{"",""}
+7213	白银巨怪-千分比力量	2		1	[{15,100}]																			1000	900000				{"skill/buff_icon_liliang.png"}	{"",""}
+7313	黄金巨怪-千分比力量	2		1	[{15,150}]																			1000	900000				{"skill/buff_icon_liliang.png"}	{"",""}
+7413	钻石巨怪-千分比力量	2		1	[{15,200}]																			1000	900000				{"skill/buff_icon_liliang.png"}	{"",""}
+7114	青铜黑巫师-千分比敏捷	2		1	[{17,50}]																			1000	900000				{"skill/buff_icon_minjie.png"}	{"",""}
+7214	白银黑巫师-千分比敏捷	2		1	[{17,100}]																			1000	900000				{"skill/buff_icon_minjie.png"}	{"",""}
+7314	黄金黑巫师-千分比敏捷	2		1	[{17,150}]																			1000	900000				{"skill/buff_icon_minjie.png"}	{"",""}
+7414	钻石黑巫师-千分比敏捷	2		1	[{17,200}]																			1000	900000				{"skill/buff_icon_minjie.png"}	{"",""}
+7115	青铜守望者-千分比智力	2		1	[{16,50}]																			1000	900000				{"skill/buff_icon_zhili.png"}	{"",""}
+7215	白银守望者-千分比智力	2		1	[{16,100}]																			1000	900000				{"skill/buff_icon_zhili.png"}	{"",""}
+7315	黄金守望者-千分比智力	2		1	[{16,150}]																			1000	900000				{"skill/buff_icon_zhili.png"}	{"",""}
+7415	钻石守望者-千分比智力	2		1	[{16,200}]																			1000	900000				{"skill/buff_icon_zhili.png"}	{"",""}
+7116	青铜深渊巨虫-千分比体质	2		1	[{18,50}]																			1000	900000				{"skill/buff_icon_tizhi.png"}	{"",""}
+7216	白银深渊巨虫-千分比体质	2		1	[{18,100}]																			1000	900000				{"skill/buff_icon_tizhi.png"}	{"",""}
+7316	黄金深渊巨虫-千分比体质	2		1	[{18,150}]																			1000	900000				{"skill/buff_icon_tizhi.png"}	{"",""}
+7416	钻石深渊巨虫-千分比体质	2		1	[{18,200}]																			1000	900000				{"skill/buff_icon_tizhi.png"}	{"",""}
+7117	青铜暗影魔豹-千分比血量	2		1	[{11,50}]																			1000	900000				{"skill/buff_icon_tixue.png"}	{"",""}
+7217	白银暗影魔豹-千分比血量	2		1	[{11,100}]																			1000	900000				{"skill/buff_icon_tixue.png"}	{"",""}
+7317	黄金暗影魔豹-千分比血量	2		1	[{11,150}]																			1000	900000				{"skill/buff_icon_tixue.png"}	{"",""}
+7417	钻石暗影魔豹-千分比血量	2		1	[{11,200}]																			1000	900000				{"skill/buff_icon_tixue.png"}	{"",""}
+7125	青铜圣龙-千分比力量，敏捷，智力，体质	2		1	[{15,50},{17,50},{16,50},{18,50}]																			1000	900000				{"skill/buff_icon_liliang.png","skill/buff_icon_minjie.png","skill/buff_icon_zhili.png","skill/buff_icon_tizhi.png"}	{"",""}
+7225	白银圣龙-千分比力量，敏捷，智力，体质	2		1	[{15,100},{17,100},{16,100},{18,100}]																			1000	900000				{"skill/buff_icon_liliang.png","skill/buff_icon_minjie.png","skill/buff_icon_zhili.png","skill/buff_icon_tizhi.png"}	{"",""}
+7325	黄金圣龙-千分比力量，敏捷，智力，体质	2		1	[{15,150},{17,150},{16,150},{18,150}]																			1000	900000				{"skill/buff_icon_liliang.png","skill/buff_icon_minjie.png","skill/buff_icon_zhili.png","skill/buff_icon_tizhi.png"}	{"",""}
+7425	钻石圣龙-千分比力量，敏捷，智力，体质	2		1	[{15,200},{17,200},{16,200},{18,200}]																			1000	900000				{"skill/buff_icon_liliang.png","skill/buff_icon_minjie.png","skill/buff_icon_zhili.png","skill/buff_icon_tizhi.png"}	{"",""}
+7118	青铜熔岩巨兽-千分比暴击	2		1	[{21,50}]																			1000	900000				{"skill/buff_icon_baoji.png"}	{"",""}
+7218	白银熔岩巨兽-千分比暴击	2		1	[{21,100}]																			1000	900000				{"skill/buff_icon_baoji.png"}	{"",""}
+7318	黄金熔岩巨兽-千分比暴击	2		1	[{21,150}]																			1000	900000				{"skill/buff_icon_baoji.png"}	{"",""}
+7418	钻石熔岩巨兽-千分比暴击	2		1	[{21,200}]																			1000	900000				{"skill/buff_icon_baoji.png"}	{"",""}
+7119	青铜蜥蜴首领-千分比招架	2		1	[{22,50}]																			1000	900000				{"skill/buff_icon_gedang.png"}	{"",""}
+7219	白银蜥蜴首领-千分比招架	2		1	[{22,100}]																			1000	900000				{"skill/buff_icon_gedang.png"}	{"",""}
+7319	黄金蜥蜴首领-千分比招架	2		1	[{22,150}]																			1000	900000				{"skill/buff_icon_gedang.png"}	{"",""}
+7419	钻石蜥蜴首领-千分比招架	2		1	[{22,200}]																			1000	900000				{"skill/buff_icon_gedang.png"}	{"",""}
+7120	青铜神殿守卫-千分比防御	2		1	[{20,50}]																			1000	900000				{"skill/buff_icon_fangyu.png"}	{"",""}
+7220	白银神殿守卫-千分比防御	2		1	[{20,100}]																			1000	900000				{"skill/buff_icon_fangyu.png"}	{"",""}
+7320	黄金神殿守卫-千分比防御	2		1	[{20,150}]																			1000	900000				{"skill/buff_icon_fangyu.png"}	{"",""}
+7420	钻石神殿守卫-千分比防御	2		1	[{20,200}]																			1000	900000				{"skill/buff_icon_fangyu.png"}	{"",""}
+7121	青铜冰川雪怪-千分比精准	2		1	[{29,50}]																			1000	900000				{"skill/buff_icon_jingque.png"}	{"",""}
+7221	白银冰川雪怪-千分比精准	2		1	[{29,100}]																			1000	900000				{"skill/buff_icon_jingque.png"}	{"",""}
+7321	黄金冰川雪怪-千分比精准	2		1	[{29,150}]																			1000	900000				{"skill/buff_icon_jingque.png"}	{"",""}
+7421	钻石冰川雪怪-千分比精准	2		1	[{29,200}]																			1000	900000				{"skill/buff_icon_jingque.png"}	{"",""}
+7122	青铜远古冰龙-千分比暴击、招架、精准、破甲	2		1	[{21,50},{22,50},{29,50},{25,50}]																			1000	900000				{"skill/buff_icon_baoji.png","skill/buff_icon_gedang.png","skill/buff_icon_jingque.png","skill/buff_icon_renxing.png"}	{"",""}
+7222	白银远古冰龙-千分比暴击、招架、精准、破甲	2		1	[{21,100},{22,100},{29,100},{25,100}]																			1000	900000				{"skill/buff_icon_baoji.png","skill/buff_icon_gedang.png","skill/buff_icon_jingque.png","skill/buff_icon_renxing.png"}	{"",""}
+7322	黄金远古冰龙-千分比暴击、招架、精准、破甲	2		1	[{21,150},{22,150},{29,150},{25,150}]																			1000	900000				{"skill/buff_icon_baoji.png","skill/buff_icon_gedang.png","skill/buff_icon_jingque.png","skill/buff_icon_renxing.png"}	{"",""}
+7422	钻石远古冰龙-千分比暴击、招架、精准、破甲	2		1	[{21,200},{22,200},{29,200},{25,200}]																			1000	900000				{"skill/buff_icon_baoji.png","skill/buff_icon_gedang.png","skill/buff_icon_jingque.png","skill/buff_icon_renxing.png"}	{"",""}
+7123	青铜邪魔-千分比破甲	2		1	[{25,50}]																			1000	900000				{"skill/buff_icon_renxing.png"}	{"",""}
+7223	白银邪魔-千分比破甲	2		1	[{25,100}]																			1000	900000				{"skill/buff_icon_renxing.png"}	{"",""}
+7323	黄金邪魔-千分比破甲	2		1	[{25,150}]																			1000	900000				{"skill/buff_icon_renxing.png"}	{"",""}
+7423	钻石邪魔-千分比破甲	2		1	[{25,200}]																			1000	900000				{"skill/buff_icon_renxing.png"}	{"",""}
+7124	青铜雕像巨人-千分比破甲	2		1	[{25,50}]																			1000	900000				{"skill/buff_icon_renxing.png"}	{"",""}
+7224	白银雕像巨人-千分比破甲	2		1	[{25,100}]																			1000	900000				{"skill/buff_icon_renxing.png"}	{"",""}
+7324	黄金雕像巨人-千分比破甲	2		1	[{25,150}]																			1000	900000				{"skill/buff_icon_renxing.png"}	{"",""}
+7424	钻石雕像巨人-千分比破甲	2		1	[{25,200}]																			1000	900000				{"skill/buff_icon_renxing.png"}	{"",""}
+8001	噬魔（宠物）扣蓝百分比	4		1	[{12,-30}]						17							2						1000	0				{"skill/buff_icon_renxing.png"}	{"",""}
+8002	噬魔（宠物）吸蓝	14																2	{8011,1000}	{"effects/03qianghua_add/03qianghua.avatar.frames","effects/03qianghua_add/03qianghua_0009.png"}				1000	5000					{"","effects/drink_blue/drink_blue.frames"}
+8003	血祭（宠物）回血百分比	4		1	[{11,100}]						18							2						1000	0				{"skill/buff_icon_renxing.png"}	{"",""}
+8004	血祭（宠物）回血固定值	4		2	[{11,50}]																			1000	0					{"",""}
+8005	神经毒素（宠物）技能掉血效果	5		1					[1,1,250]		17							2						1000	0					{"",""}
+8006	日光反射（宠物）回蓝百分比	4		1	[{12,1000}]						16							2						1000	0					{"","effects/drink_blue/drink_blue.frames"}
+8007	日光反射（宠物）回蓝固定值	4		2	[{12,100}]																			1000	0					{"",""}
+8008	豪猪箭雨（宠物）伤害效果buff	5		3					[2,1,0]															1000	0					{"",""}
+8009	双生蘑菇（宠物）友方回血百分比	4		1	[{11,500}]						18							2						1000	0				{"skill/buff_icon_renxing.png"}	{"","effects/drink_blood/drink_blood.frames"}
+8010	双生蘑菇（宠物）敌方爆炸	5		1					[1,1,500]		18													1000	0					{"",""}
+8011	噬魔（宠物）吸蓝效果	4		1	[{12,1000}]																			1000	0					{"",""}
+8101	免伤光环1（宠物）效果	2		1	[{27,40}]																			1000	3000				{"skill/buff_icon_attackrelief.png"}	{"",""}
+8102	免伤光环2（宠物）效果	2		1	[{27,60}]																			1000	3000				{"skill/buff_icon_attackrelief.png"}	{"",""}
+8103	免伤光环3（宠物）效果	2		1	[{27,100}]																			1000	3000				{"skill/buff_icon_attackrelief.png"}	{"",""}
+8104	回魔光环1（宠物）效果	4		2	[{12,4}]			1000																1000	3000				{"skill/buff_icon_huimo.png"}	{"",""}
+8105	回魔光环2（宠物）效果	4		2	[{12,6}]			1000																1000	3000				{"skill/buff_icon_huimo.png"}	{"",""}
+8106	回魔光环3（宠物）效果	4		2	[{12,10}]			1000																1000	3000				{"skill/buff_icon_huimo.png"}	{"",""}
+8107	增伤光环1（宠物）效果	2		1	[{26,40}]																			1000	3000				{"skill/buff_icon_attackdeep.png"}	{"",""}
+8108	增伤光环2（宠物）效果	2		1	[{26,60}]																			1000	3000				{"skill/buff_icon_attackdeep.png"}	{"",""}
+8109	增伤光环3（宠物）效果	2		1	[{26,100}]																			1000	3000				{"skill/buff_icon_attackdeep.png"}	{"",""}
+8110	回血光环1（宠物）效果	4		1	[{11,5}]			5000																1000	3000				{"skill/buff_icon_huixue.png"}	{"",""}
+8111	回血光环2（宠物）效果	4		1	[{11,10}]			5000																1000	3000				{"skill/buff_icon_huixue.png"}	{"",""}
+8112	回血光环3（宠物）效果	4		1	[{11,15}]			5000																1000	3000				{"skill/buff_icon_huixue.png"}	{"",""}
+8113	免伤光环1（宠物）	11														10001								1000	90000000					{"",""}
+8114	免伤光环2（宠物）	11														10002								1000	90000000					{"",""}
+8115	免伤光环3（宠物）	11														10003								1000	90000000					{"",""}
+8116	回魔光环1（宠物）	11														10004								1000	90000000					{"",""}
+8117	回魔光环2（宠物）	11														10005								1000	90000000					{"",""}
+8118	回魔光环3（宠物）	11														10006								1000	90000000					{"",""}
+8119	增伤光环1（宠物）	11														10007								1000	90000000					{"",""}
+8120	增伤光环2（宠物）	11														10008								1000	90000000					{"",""}
+8121	增伤光环3（宠物）	11														10009								1000	90000000					{"",""}
+8122	回血光环1（宠物）	11														10010								1000	90000000					{"",""}
+8123	回血光环2（宠物）	11														10011								1000	90000000					{"",""}
+8124	回血光环3（宠物）	11														10012								1000	90000000					{"",""}
+8201	撕裂（宠物）位移掉血	4		1	[{11,-200}]			250			15							2				1		1000	5000				{"skill/buff_icon_zhuoshao.png"}	{"","","","effects/eff_footblood/eff_footblood.frames"}
+8202	魔法粉尘（宠物）隐身	1	14																					1000	5000				{"skill/buff_icon_bianshen.png"}	{"",""}
+8203	冻入骨髓（宠物）cd延长	12															[7]							1000	7000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/eff_frozenhand/eff_frozenhand.frames"}
+8204	坎水泡泡（宠物）临时血量	13		1	[{11,1000}]						18							2			1000			1000	10000				{"skill/buff_icon_renxing.png"}	{"","effects/eff_watershield/eff_watershield.frames","effects/eff_shieldboom/eff_shieldboom.frames"}
+8205	旋风爪（宠物）霸体	1	2																					1000	5000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+8206	玩火（宠物）叠加灼烧	5		1				3000	[1,1,200]		16	2						2						1000	7000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+8207	噬魔（宠物）吸蓝buff组	6																						1000	5000		[{8001,0},{8002,0}]			{"","effects/drink_blue/drink_blue.frames"}
+8208	血祭（宠物）吸血buff组	6																						1000	200		[{8003,0},{8004,0}]			{"","effects/drink_blood/drink_blood.frames"}
+8209	豪猪箭雨（宠物）反击	14																2	{8008,1000}	{"effects/eff_arrow/eff_arrow.frames","effects/eff_arrow/eff_arrow_0000.png"}				1000	5000				{"skill/buff_icon_fantan.png"}	{"","effects/fanji/fanji.frames"}
+8210	涅槃（宠物）沉默	1	7																					1000	5000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+8211	神经毒素（宠物）技能掉血总配置	12															[8]							1000	7000				{"skill/buff_icon_zhongdu.png"}	{"","effects/handpoison/eff_handpoison.frames"}
+8212	重力震击（宠物）持续回血	4		1	[{11,350}]			2000			18							2						1000	6000				{"skill/buff_icon_renxing.png"}	{"","effects/drink_blood/drink_blood.frames"}
+8213	愤怒毁灭（宠物）普攻增伤	12															[9]							1000	6000				{"skill/buff_icon_attackdeep.png"}	{"","effects/eff_skillboost/eff_skillboost.frames"}
+8214	日光反射（宠物）回蓝buff组	6																2						1000	200		[{8006,0},{8007,0}]			{"","effects/drink_blue/drink_blue.frames"}
+8215	果酸飓风（宠物）出血	5		1				2000	[1,1,400]		17							2						1000	6000				{"skill/buff_icon_renxing.png"}	{"","effects/eff_blood/eff_blood.frames"}
+8216	双生蘑菇（宠物）攻击/加血	3					-500																	1000	2000				{"skill/buff_icon_speed.png"}	{"effects/01jiansu/01jiansu.frames",""}
+8501	低级精准光环（宠物）	2		1	[{29,40}]																			1000	900000				{"skill/buff_icon_renxing.png"}	{"",""}
+8502	中级精准光环（宠物）	2		1	[{29,60}]																			1000	900000				{"skill/buff_icon_renxing.png"}	{"",""}
+8503	高级精准光环（宠物）	2		1	[{29,100}]																			1000	900000				{"skill/buff_icon_renxing.png"}	{"",""}
+8504	低级移速光环（宠物）	2		1	[{36,40}]																			1000	900000				{"skill/buff_icon_renxing.png"}	{"",""}
+8505	中级移速光环（宠物）	2		1	[{36,60}]																			1000	900000				{"skill/buff_icon_renxing.png"}	{"",""}
+8506	高级移速光环（宠物）	2		1	[{36,100}]																			1000	900000				{"skill/buff_icon_renxing.png"}	{"",""}
+9000	初级祝福任务-力量5%	2		1	[{15,50}]																			1000	300000				{"skill/buff_icon_liliang.png"}	{"",""}
+9001	初级祝福任务-敏捷5%	2		1	[{17,50}]																			1000	300000				{"skill/buff_icon_minjie.png"}	{"",""}
+9002	初级祝福任务-体质5%	2		1	[{18,50}]																			1000	300000				{"skill/buff_icon_tizhi.png"}	{"",""}
+9003	初级祝福任务-血量5%	2		1	[{11,50}]																			1000	300000				{"skill/buff_icon_tizhi.png"}	{"",""}
+9100	中级祝福任务-力量8%	2		1	[{15,80}]																			1000	300000				{"skill/buff_icon_liliang.png"}	{"",""}
+9101	中级祝福任务-敏捷8%	2		1	[{17,80}]																			1000	300000				{"skill/buff_icon_minjie.png"}	{"",""}
+9102	中级祝福任务-体质8%	2		1	[{18,80}]																			1000	300000				{"skill/buff_icon_tizhi.png"}	{"",""}
+9103	中级祝福任务-血量8%	2		1	[{11,80}]																			1000	300000				{"skill/buff_icon_tizhi.png"}	{"",""}
+9200	高级祝福任务-力量10%	2		1	[{15,100}]																			1000	300000				{"skill/buff_icon_liliang.png"}	{"",""}
+9201	高级祝福任务-敏捷10%	2		1	[{15,100}]																			1000	300000				{"skill/buff_icon_minjie.png"}	{"",""}
+9202	高级祝福任务-体质10%	2		1	[{15,100}]																			1000	300000				{"skill/buff_icon_tizhi.png"}	{"",""}
+9203	高级祝福任务-血量10%	2		1	[{15,100}]																			1000	300000				{"skill/buff_icon_tizhi.png"}	{"",""}
+11101	战士-剑刃风暴（施放时命中率提升5%）	2		1	[{29,50}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+11102	战士-剑刃风暴（施放时命中率提升10%）	2		1	[{29,100}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+11103	战士-剑刃风暴（施放时命中率提升15%）	2		1	[{29,150}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+11104	战士-剑刃风暴（施放时命中率提升20%）	2		1	[{29,200}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+11105	战士-剑刃风暴（施放时命中率提升25%）	2		1	[{29,250}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+11106	战士-剑刃风暴（施放时命中率提升30%）	2		1	[{29,300}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+11107	战士-剑刃风暴（施放时命中率提升35%）	2		1	[{29,350}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+11108	战士-剑刃风暴（施放时命中率提升40%）	2		1	[{29,400}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+11109	战士-剑刃风暴（施放时命中率提升45%）	2		1	[{29,450}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+11110	战士-剑刃风暴（施放时命中率提升50%）	2		1	[{29,500}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+11501	战士-剑刃风暴（每次攻击对敌方叠加1%的减速效果，持续5秒）	3					-10					2												1000	3000				{"skill/buff_icon_speed.png"}	{"effects/01jiansu/01jiansu.frames",""}
+11502	战士-剑刃风暴（每次攻击对敌方叠加2%的减速效果，持续5秒）	3					-20					2												1000	3000				{"skill/buff_icon_speed.png"}	{"effects/01jiansu/01jiansu.frames",""}
+11503	战士-剑刃风暴（每次攻击对敌方叠加3%的减速效果，持续5秒）	3					-30					2												1000	3000				{"skill/buff_icon_speed.png"}	{"effects/01jiansu/01jiansu.frames",""}
+11504	战士-剑刃风暴（每次攻击对敌方叠加4%的减速效果，持续5秒）	3					-40					2												1000	3000				{"skill/buff_icon_speed.png"}	{"effects/01jiansu/01jiansu.frames",""}
+11505	战士-剑刃风暴（每次攻击对敌方叠加5%的减速效果，持续5秒）	3					-50					2												1000	3000				{"skill/buff_icon_speed.png"}	{"effects/01jiansu/01jiansu.frames",""}
+11506	战士-剑刃风暴（每次攻击对敌方叠加6%的减速效果，持续5秒）	3					-60					2												1000	3000				{"skill/buff_icon_speed.png"}	{"effects/01jiansu/01jiansu.frames",""}
+11507	战士-剑刃风暴（每次攻击对敌方叠加7%的减速效果，持续5秒）	3					-70					2												1000	3000				{"skill/buff_icon_speed.png"}	{"effects/01jiansu/01jiansu.frames",""}
+11508	战士-剑刃风暴（每次攻击对敌方叠加8%的减速效果，持续5秒）	3					-80					2												1000	3000				{"skill/buff_icon_speed.png"}	{"effects/01jiansu/01jiansu.frames",""}
+11509	战士-剑刃风暴（每次攻击对敌方叠加9%的减速效果，持续5秒）	3					-90					2												1000	3000				{"skill/buff_icon_speed.png"}	{"effects/01jiansu/01jiansu.frames",""}
+11510	战士-剑刃风暴（每次攻击对敌方叠加10%的减速效果，持续5秒）	3					-100					2												1000	3000				{"skill/buff_icon_speed.png"}	{"effects/01jiansu/01jiansu.frames",""}
+12101	战士-蓄力一击（施放时命中率提升5%）	2		1	[{29,50}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+12102	战士-蓄力一击（施放时命中率提升10%）	2		1	[{29,100}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+12103	战士-蓄力一击（施放时命中率提升15%）	2		1	[{29,150}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+12104	战士-蓄力一击（施放时命中率提升20%）	2		1	[{29,200}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+12105	战士-蓄力一击（施放时命中率提升25%）	2		1	[{29,250}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+12106	战士-蓄力一击（施放时命中率提升30%）	2		1	[{29,300}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+12107	战士-蓄力一击（施放时命中率提升35%）	2		1	[{29,350}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+12108	战士-蓄力一击（施放时命中率提升40%）	2		1	[{29,400}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+12109	战士-蓄力一击（施放时命中率提升45%）	2		1	[{29,450}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+12110	战士-蓄力一击（施放时命中率提升50%）	2		1	[{29,500}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+12301	战士-蓄力一击（技能持续时获得10%反伤，效果持续到技能结束后5秒）	2		1	[{39,100}]																			1000	5000	1			{"skill/buff_icon_fantan.png"}	{"",""}
+12302	战士-蓄力一击（技能持续时获得20%反伤，效果持续到技能结束后5秒）	2		1	[{39,200}]																			1000	5000	1			{"skill/buff_icon_fantan.png"}	{"",""}
+12303	战士-蓄力一击（技能持续时获得30%反伤，效果持续到技能结束后5秒）	2		1	[{39,300}]																			1000	5000	1			{"skill/buff_icon_fantan.png"}	{"",""}
+12304	战士-蓄力一击（技能持续时获得40%反伤，效果持续到技能结束后5秒）	2		1	[{39,400}]																			1000	5000	1			{"skill/buff_icon_fantan.png"}	{"",""}
+12305	战士-蓄力一击（技能持续时获得50%反伤，效果持续到技能结束后5秒）	2		1	[{39,500}]																			1000	5000	1			{"skill/buff_icon_fantan.png"}	{"",""}
+12306	战士-蓄力一击（技能持续时获得60%反伤，效果持续到技能结束后5秒）	2		1	[{39,600}]																			1000	5000	1			{"skill/buff_icon_fantan.png"}	{"",""}
+12307	战士-蓄力一击（技能持续时获得70%反伤，效果持续到技能结束后5秒）	2		1	[{39,700}]																			1000	5000	1			{"skill/buff_icon_fantan.png"}	{"",""}
+12308	战士-蓄力一击（技能持续时获得80%反伤，效果持续到技能结束后5秒）	2		1	[{39,800}]																			1000	5000	1			{"skill/buff_icon_fantan.png"}	{"",""}
+12309	战士-蓄力一击（技能持续时获得90%反伤，效果持续到技能结束后5秒）	2		1	[{39,900}]																			1000	5000	1			{"skill/buff_icon_fantan.png"}	{"",""}
+12310	战士-蓄力一击（技能持续时获得100%反伤，效果持续到技能结束后5秒）	2		1	[{39,1000}]																			1000	5000	1			{"skill/buff_icon_fantan.png"}	{"",""}
+12401	战士-蓄力一击（技能施放后立刻提升韧性39%，持续8S）	2		1	[{23,390}]																			1000	8000				{"skill/buff_icon_renxing.png"}	{"",""}
+12402	战士-蓄力一击（技能施放后立刻提升韧性48%，持续8秒）	2		1	[{23,480}]																			1000	8000				{"skill/buff_icon_renxing.png"}	{"",""}
+12403	战士-蓄力一击（技能施放后立刻提升韧性57%，持续8秒）	2		1	[{23,570}]																			1000	8000				{"skill/buff_icon_renxing.png"}	{"",""}
+12404	战士-蓄力一击（技能施放后立刻提升韧性66%，持续8秒）	2		1	[{23,660}]																			1000	8000				{"skill/buff_icon_renxing.png"}	{"",""}
+12405	战士-蓄力一击（技能施放后立刻提升韧性75%，持续8秒）	2		1	[{23,750}]																			1000	8000				{"skill/buff_icon_renxing.png"}	{"",""}
+12406	战士-蓄力一击（技能施放后立刻提升韧性84%，持续8秒）	2		1	[{23,840}]																			1000	8000				{"skill/buff_icon_renxing.png"}	{"",""}
+12407	战士-蓄力一击（技能施放后立刻提升韧性93%，持续8秒）	2		1	[{23,930}]																			1000	8000				{"skill/buff_icon_renxing.png"}	{"",""}
+12408	战士-蓄力一击（技能施放后立刻提升韧性102%，持续8秒）	2		1	[{23,1020}]																			1000	8000				{"skill/buff_icon_renxing.png"}	{"",""}
+12409	战士-蓄力一击（技能施放后立刻提升韧性111%，持续8秒）	2		1	[{23,1110}]																			1000	8000				{"skill/buff_icon_renxing.png"}	{"",""}
+12410	战士-蓄力一击（技能施放后立刻提升韧性120%，持续8秒）	2		1	[{23,1200}]																			1000	8000				{"skill/buff_icon_renxing.png"}	{"",""}
+12501	战士-蓄力一击（防御增加48%，效果持续到技能后5秒）	2		1	[{20,480}]																			1000	5000	1			{"skill/buff_icon_fangyu.png"}	{"",""}
+12502	战士-蓄力一击（防御增加56%，效果持续到技能后5秒）	2		1	[{20,560}]																			1000	5000	1			{"skill/buff_icon_fangyu.png"}	{"",""}
+12503	战士-蓄力一击（防御增加64%，效果持续到技能后5秒）	2		1	[{20,640}]																			1000	5000	1			{"skill/buff_icon_fangyu.png"}	{"",""}
+12504	战士-蓄力一击（防御增加72%，效果持续到技能后5秒）	2		1	[{20,720}]																			1000	5000	1			{"skill/buff_icon_fangyu.png"}	{"",""}
+12505	战士-蓄力一击（防御增加80%，效果持续到技能后5秒）	2		1	[{20,800}]																			1000	5000	1			{"skill/buff_icon_fangyu.png"}	{"",""}
+12506	战士-蓄力一击（防御增加88%，效果持续到技能后5秒）	2		1	[{20,880}]																			1000	5000	1			{"skill/buff_icon_fangyu.png"}	{"",""}
+12507	战士-蓄力一击（防御增加96%，效果持续到技能后5秒）	2		1	[{20,960}]																			1000	5000	1			{"skill/buff_icon_fangyu.png"}	{"",""}
+12508	战士-蓄力一击（防御增加104%，效果持续到技能后5秒）	2		1	[{20,1040}]																			1000	5000	1			{"skill/buff_icon_fangyu.png"}	{"",""}
+12509	战士-蓄力一击（防御增加112%，效果持续到技能后5秒）	2		1	[{20,1120}]																			1000	5000	1			{"skill/buff_icon_fangyu.png"}	{"",""}
+12510	战士-蓄力一击（防御增加120%，效果持续到技能后5秒）	2		1	[{20,1200}]																			1000	5000	1			{"skill/buff_icon_fangyu.png"}	{"",""}
+13301	战士-霸王回转(被击进入1秒的无敌状态，并有26%的几率重置CD)	6																						1000	1	1	[{35,0},{3001,0}]			{"",""}
+13302	战士-霸王回转(被击进入1秒的无敌状态，并有32%的几率重置CD)	6																						1000	1	1	[{35,0},{3002,0}]			{"",""}
+13303	战士-霸王回转(被击进入1秒的无敌状态，并有38%的几率重置CD)	6																						1000	1	1	[{35,0},{3003,0}]			{"",""}
+13304	战士-霸王回转(被击进入1秒的无敌状态，并有44%的几率重置CD)	6																						1000	1	1	[{35,0},{3004,0}]			{"",""}
+13305	战士-霸王回转(被击进入1秒的无敌状态，并有50%的几率重置CD)	6																						1000	1	1	[{35,0},{3005,0}]			{"",""}
+13306	战士-霸王回转(被击进入1秒的无敌状态，并有56%的几率重置CD)	6																						1000	1	1	[{35,0},{3006,0}]			{"",""}
+13307	战士-霸王回转(被击进入1秒的无敌状态，并有62%的几率重置CD)	6																						1000	1	1	[{35,0},{3007,0}]			{"",""}
+13308	战士-霸王回转(被击进入1秒的无敌状态，并有68%的几率重置CD)	6																						1000	1	1	[{35,0},{3008,0}]			{"",""}
+13309	战士-霸王回转(被击进入1秒的无敌状态，并有74%的几率重置CD)	6																						1000	1	1	[{35,0},{3009,0}]			{"",""}
+13310	战士-霸王回转(被击进入1秒的无敌状态，并有80%的几率重置CD)	6																						1000	1	1	[{35,0},{3010,0}]			{"",""}
+13401	战士-霸王回转（技能结束时提升格挡几率5%，持续4秒）	2		1	[{22,50}]																			1000	4000	1			{"skill/buff_icon_gedang.png"}	{"",""}
+13402	战士-霸王回转（技能结束时提升格挡几率10%，持续4秒）	2		1	[{22,100}]																			1000	4000	1			{"skill/buff_icon_gedang.png"}	{"",""}
+13403	战士-霸王回转（技能结束时提升格挡几率15%，持续4秒）	2		1	[{22,150}]																			1000	4000	1			{"skill/buff_icon_gedang.png"}	{"",""}
+13404	战士-霸王回转（技能结束时提升格挡几率20%，持续4秒）	2		1	[{22,200}]																			1000	4000	1			{"skill/buff_icon_gedang.png"}	{"",""}
+13405	战士-霸王回转（技能结束时提升格挡几率25%，持续4秒）	2		1	[{22,250}]																			1000	4000	1			{"skill/buff_icon_gedang.png"}	{"",""}
+13406	战士-霸王回转（技能结束时提升格挡几率30%，持续4秒）	2		1	[{22,300}]																			1000	4000	1			{"skill/buff_icon_gedang.png"}	{"",""}
+13407	战士-霸王回转（技能结束时提升格挡几率35%，持续4秒）	2		1	[{22,350}]																			1000	4000	1			{"skill/buff_icon_gedang.png"}	{"",""}
+13408	战士-霸王回转（技能结束时提升格挡几率40%，持续4秒）	2		1	[{22,400}]																			1000	4000	1			{"skill/buff_icon_gedang.png"}	{"",""}
+13409	战士-霸王回转（技能结束时提升格挡几率45%，持续4秒）	2		1	[{22,450}]																			1000	4000	1			{"skill/buff_icon_gedang.png"}	{"",""}
+13410	战士-霸王回转（技能结束时提升格挡几率50%，持续4秒）	2		1	[{22,500}]																			1000	4000	1			{"skill/buff_icon_gedang.png"}	{"",""}
+13501	战士-霸王回转（3秒内附加等同于自身力量48%的额外伤害）	7								[1,1,-480,1,2,5]	15													1000	3000					{"",""}
+13502	战士-霸王回转（3秒内附加等同于自身力量56%的额外伤害）	7								[1,1,-560,1,2,5]	15													1000	3000					{"",""}
+13503	战士-霸王回转（3秒内附加等同于自身力量64%的额外伤害）	7								[1,1,-640,1,2,5]	15													1000	3000					{"",""}
+13504	战士-霸王回转（3秒内附加等同于自身力量72%的额外伤害）	7								[1,1,-720,1,2,5]	15													1000	3000					{"",""}
+13505	战士-霸王回转（3秒内附加等同于自身力量80%的额外伤害）	7								[1,1,-800,1,2,5]	15													1000	3000					{"",""}
+13506	战士-霸王回转（3秒内附加等同于自身力量88%的额外伤害）	7								[1,1,-880,1,2,5]	15													1000	3000					{"",""}
+13507	战士-霸王回转（3秒内附加等同于自身力量96%的额外伤害）	7								[1,1,-960,1,2,5]	15													1000	3000					{"",""}
+13508	战士-霸王回转（3秒内附加等同于自身力量104%的额外伤害）	7								[1,1,-1040,1,2,5]	15													1000	3000					{"",""}
+13509	战士-霸王回转（3秒内附加等同于自身力量112%的额外伤害）	7								[1,1,-1120,1,2,5]	15													1000	3000					{"",""}
+13510	战士-霸王回转（3秒内附加等同于自身力量120%的额外伤害）	7								[1,1,-1200,1,2,5]	15													1000	3000					{"",""}
+14201	战士-冲锋斩杀（最终一击暴击的概率提升10%）	2		1	[{21,100}]																			1000	0	1			{"skill/buff_icon_baoji.png"}	{"",""}
+14202	战士-冲锋斩杀（最终一击暴击的概率提升20%）	2		1	[{21,200}]																			1000	0	1			{"skill/buff_icon_baoji.png"}	{"",""}
+14203	战士-冲锋斩杀（最终一击暴击的概率提升30%）	2		1	[{21,300}]																			1000	0	1			{"skill/buff_icon_baoji.png"}	{"",""}
+14204	战士-冲锋斩杀（最终一击暴击的概率提升40%）	2		1	[{21,400}]																			1000	0	1			{"skill/buff_icon_baoji.png"}	{"",""}
+14205	战士-冲锋斩杀（最终一击暴击的概率提升50%）	2		1	[{21,500}]																			1000	0	1			{"skill/buff_icon_baoji.png"}	{"",""}
+14206	战士-冲锋斩杀（最终一击暴击的概率提升60%）	2		1	[{21,600}]																			1000	0	1			{"skill/buff_icon_baoji.png"}	{"",""}
+14207	战士-冲锋斩杀（最终一击暴击的概率提升70%）	2		1	[{21,700}]																			1000	0	1			{"skill/buff_icon_baoji.png"}	{"",""}
+14208	战士-冲锋斩杀（最终一击暴击的概率提升80%）	2		1	[{21,800}]																			1000	0	1			{"skill/buff_icon_baoji.png"}	{"",""}
+14209	战士-冲锋斩杀（最终一击暴击的概率提升90%）	2		1	[{21,900}]																			1000	0	1			{"skill/buff_icon_baoji.png"}	{"",""}
+14210	战士-冲锋斩杀（最终一击暴击的概率提升100%）	2		1	[{21,1000}]																			1000	0	1			{"skill/buff_icon_baoji.png"}	{"",""}
+14301	战士-冲锋斩杀(使用该技能杀死一个敌对目标，回复自身最大血量的0.5%)	7								[1,1,5,1,1,5]	11													1000	0	1				{"",""}
+14302	战士-冲锋斩杀(使用该技能杀死一个敌对目标，回复自身最大血量的1.0%)	7								[1,1,10,1,1,5]	11													1000	0	1				{"",""}
+14303	战士-冲锋斩杀(使用该技能杀死一个敌对目标，回复自身最大血量的1.5%)	7								[1,1,15,1,1,5]	11													1000	0	1				{"",""}
+14304	战士-冲锋斩杀(使用该技能杀死一个敌对目标，回复自身最大血量的2.0%)	7								[1,1,20,1,1,5]	11													1000	0	1				{"",""}
+14305	战士-冲锋斩杀(使用该技能杀死一个敌对目标，回复自身最大血量的2.5%)	7								[1,1,25,1,1,5]	11													1000	0	1				{"",""}
+14306	战士-冲锋斩杀(使用该技能杀死一个敌对目标，回复自身最大血量的3.0%)	7								[1,1,30,1,1,5]	11													1000	0	1				{"",""}
+14307	战士-冲锋斩杀(使用该技能杀死一个敌对目标，回复自身最大血量的3.5%)	7								[1,1,35,1,1,5]	11													1000	0	1				{"",""}
+14308	战士-冲锋斩杀(使用该技能杀死一个敌对目标，回复自身最大血量的4.0%)	7								[1,1,40,1,1,5]	11													1000	0	1				{"",""}
+14309	战士-冲锋斩杀(使用该技能杀死一个敌对目标，回复自身最大血量的4.5%)	7								[1,1,45,1,1,5]	11													1000	0	1				{"",""}
+14310	战士-冲锋斩杀(使用该技能杀死一个敌对目标，回复自身最大血量的5.0%)	7								[1,1,50,1,1,5]	11													1000	0	1				{"",""}
+14501	战士-冲锋斩杀（3秒内附加等同于自身力量48%的额外伤害）	7								[1,1,-480,1,2,5]	15													1000	3000					{"",""}
+14502	战士-冲锋斩杀（3秒内附加等同于自身力量56%的额外伤害）	7								[1,1,-560,1,2,5]	15													1000	3000					{"",""}
+14503	战士-冲锋斩杀（3秒内附加等同于自身力量64%的额外伤害）	7								[1,1,-640,1,2,5]	15													1000	3000					{"",""}
+14504	战士-冲锋斩杀（3秒内附加等同于自身力量72%的额外伤害）	7								[1,1,-720,1,2,5]	15													1000	3000					{"",""}
+14505	战士-冲锋斩杀（3秒内附加等同于自身力量80%的额外伤害）	7								[1,1,-800,1,2,5]	15													1000	3000					{"",""}
+14506	战士-冲锋斩杀（3秒内附加等同于自身力量88%的额外伤害）	7								[1,1,-880,1,2,5]	15													1000	3000					{"",""}
+14507	战士-冲锋斩杀（3秒内附加等同于自身力量96%的额外伤害）	7								[1,1,-960,1,2,5]	15													1000	3000					{"",""}
+14508	战士-冲锋斩杀（3秒内附加等同于自身力量104%的额外伤害）	7								[1,1,-1040,1,2,5]	15													1000	3000					{"",""}
+14509	战士-冲锋斩杀（3秒内附加等同于自身力量112%的额外伤害）	7								[1,1,-1120,1,2,5]	15													1000	3000					{"",""}
+14510	战士-冲锋斩杀（3秒内附加等同于自身力量120%的额外伤害）	7								[1,1,-1200,1,2,5]	15													1000	3000					{"",""}
+15101	战士-火焰冲锋（施放时命中率提升5%）	2		1	[{29,50}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+15102	战士-火焰冲锋（施放时命中率提升10%）	2		1	[{29,100}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+15103	战士-火焰冲锋（施放时命中率提升15%）	2		1	[{29,150}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+15104	战士-火焰冲锋（施放时命中率提升20%）	2		1	[{29,200}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+15105	战士-火焰冲锋（施放时命中率提升25%）	2		1	[{29,250}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+15106	战士-火焰冲锋（施放时命中率提升30%）	2		1	[{29,300}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+15107	战士-火焰冲锋（施放时命中率提升35%）	2		1	[{29,350}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+15108	战士-火焰冲锋（施放时命中率提升40%）	2		1	[{29,400}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+15109	战士-火焰冲锋（施放时命中率提升45%）	2		1	[{29,450}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+15110	战士-火焰冲锋（施放时命中率提升50%）	2		1	[{29,500}]																			1000	0	1			{"skill/buff_icon_jingque.png"}	{"",""}
+15301	战士-火焰冲锋（攻击附加自身力量13%的雷电伤害）	7								[1,1,130,1,2,4]	15													1000	0	1			{"skill/buff_icon_leigong.png"}	{"",""}
+15302	战士-火焰冲锋（攻击附加自身力量16%的雷电伤害）	7								[1,1,160,1,2,4]	15													1000	0	1			{"skill/buff_icon_leigong.png"}	{"",""}
+15303	战士-火焰冲锋（攻击附加自身力量19%的雷电伤害）	7								[1,1,190,1,2,4]	15													1000	0	1			{"skill/buff_icon_leigong.png"}	{"",""}
+15304	战士-火焰冲锋（攻击附加自身力量22%的雷电伤害）	7								[1,1,220,1,2,4]	15													1000	0	1			{"skill/buff_icon_leigong.png"}	{"",""}
+15305	战士-火焰冲锋（攻击附加自身力量25%的雷电伤害）	7								[1,1,250,1,2,4]	15													1000	0	1			{"skill/buff_icon_leigong.png"}	{"",""}
+15306	战士-火焰冲锋（攻击附加自身力量28%的雷电伤害）	7								[1,1,280,1,2,4]	15													1000	0	1			{"skill/buff_icon_leigong.png"}	{"",""}
+15307	战士-火焰冲锋（攻击附加自身力量31%的雷电伤害）	7								[1,1,310,1,2,4]	15													1000	0	1			{"skill/buff_icon_leigong.png"}	{"",""}
+15308	战士-火焰冲锋（攻击附加自身力量34%的雷电伤害）	7								[1,1,340,1,2,4]	15													1000	0	1			{"skill/buff_icon_leigong.png"}	{"",""}
+15309	战士-火焰冲锋（攻击附加自身力量37%的雷电伤害）	7								[1,1,370,1,2,4]	15													1000	0	1			{"skill/buff_icon_leigong.png"}	{"",""}
+15310	战士-火焰冲锋（攻击附加自身力量40%的雷电伤害）	7								[1,1,400,1,2,4]	15													1000	0	1			{"skill/buff_icon_leigong.png"}	{"",""}
+15401	战士-火焰冲锋（15%概率使目标处于3S眩晕状态）	1	3																					150	3000			[2,2,2]	{"skill/buff_icon_xuanyun.png"}	{"","effects/xuanyun_Add/xuanyun.frames"}
+15402	战士-火焰冲锋（20%概率使目标处于3S眩晕状态）	1	3																					200	3000			[2,2,2]	{"skill/buff_icon_xuanyun.png"}	{"","effects/xuanyun_Add/xuanyun.frames"}
+15403	战士-火焰冲锋（25%概率使目标处于3S眩晕状态）	1	3																					250	3000			[2,2,2]	{"skill/buff_icon_xuanyun.png"}	{"","effects/xuanyun_Add/xuanyun.frames"}
+15404	战士-火焰冲锋（30%概率使目标处于3S眩晕状态）	1	3																					300	3000			[2,2,2]	{"skill/buff_icon_xuanyun.png"}	{"","effects/xuanyun_Add/xuanyun.frames"}
+15405	战士-火焰冲锋（35%概率使目标处于3S眩晕状态）	1	3																					350	3000			[2,2,2]	{"skill/buff_icon_xuanyun.png"}	{"","effects/xuanyun_Add/xuanyun.frames"}
+15406	战士-火焰冲锋（40%概率使目标处于3S眩晕状态）	1	3																					400	3000			[2,2,2]	{"skill/buff_icon_xuanyun.png"}	{"","effects/xuanyun_Add/xuanyun.frames"}
+15407	战士-火焰冲锋（45%概率使目标处于3S眩晕状态）	1	3																					450	3000			[2,2,2]	{"skill/buff_icon_xuanyun.png"}	{"","effects/xuanyun_Add/xuanyun.frames"}
+15408	战士-火焰冲锋（50%概率使目标处于3S眩晕状态）	1	3																					500	3000			[2,2,2]	{"skill/buff_icon_xuanyun.png"}	{"","effects/xuanyun_Add/xuanyun.frames"}
+15409	战士-火焰冲锋（55%概率使目标处于3S眩晕状态）	1	3																					550	3000			[2,2,2]	{"skill/buff_icon_xuanyun.png"}	{"","effects/xuanyun_Add/xuanyun.frames"}
+15410	战士-火焰冲锋（60%概率使目标处于3S眩晕状态）	1	3																					600	3000			[2,2,2]	{"skill/buff_icon_xuanyun.png"}	{"","effects/xuanyun_Add/xuanyun.frames"}
+16301	战士-鬼哭神嚎（技能结束时，提升所有属性抗性37%，持续3秒）	2		1	[{31,370},{33,370},{35,370}]																			1000	3000				{"skill/buff_icon_bingfang.png","skill/buff_icon_huofang.png","skill/buff_icon_leifang.png"}	{"",""}
+16302	战士-鬼哭神嚎（技能结束时，提升所有属性抗性44%，持续3秒）	2		1	[{31,440},{33,440},{35,440}]																			1000	3000				{"skill/buff_icon_bingfang.png","skill/buff_icon_huofang.png","skill/buff_icon_leifang.png"}	{"",""}
+16303	战士-鬼哭神嚎（技能结束时，提升所有属性抗性51%，持续3秒）	2		1	[{31,510},{33,510},{35,510}]																			1000	3000				{"skill/buff_icon_bingfang.png","skill/buff_icon_huofang.png","skill/buff_icon_leifang.png"}	{"",""}
+16304	战士-鬼哭神嚎（技能结束时，提升所有属性抗性58%，持续3秒）	2		1	[{31,580},{33,580},{35,580}]																			1000	3000				{"skill/buff_icon_bingfang.png","skill/buff_icon_huofang.png","skill/buff_icon_leifang.png"}	{"",""}
+16305	战士-鬼哭神嚎（技能结束时，提升所有属性抗性65%，持续3秒）	2		1	[{31,650},{33,650},{35,650}]																			1000	3000				{"skill/buff_icon_bingfang.png","skill/buff_icon_huofang.png","skill/buff_icon_leifang.png"}	{"",""}
+16306	战士-鬼哭神嚎（技能结束时，提升所有属性抗性72%，持续3秒）	2		1	[{31,720},{33,720},{35,720}]																			1000	3000				{"skill/buff_icon_bingfang.png","skill/buff_icon_huofang.png","skill/buff_icon_leifang.png"}	{"",""}
+16307	战士-鬼哭神嚎（技能结束时，提升所有属性抗性79%，持续3秒）	2		1	[{31,790},{33,790},{35,790}]																			1000	3000				{"skill/buff_icon_bingfang.png","skill/buff_icon_huofang.png","skill/buff_icon_leifang.png"}	{"",""}
+16308	战士-鬼哭神嚎（技能结束时，提升所有属性抗性86%，持续3秒）	2		1	[{31,860},{33,860},{35,860}]																			1000	3000				{"skill/buff_icon_bingfang.png","skill/buff_icon_huofang.png","skill/buff_icon_leifang.png"}	{"",""}
+16309	战士-鬼哭神嚎（技能结束时，提升所有属性抗性93%，持续3秒）	2		1	[{31,930},{33,930},{35,930}]																			1000	3000				{"skill/buff_icon_bingfang.png","skill/buff_icon_huofang.png","skill/buff_icon_leifang.png"}	{"",""}
+16310	战士-鬼哭神嚎（技能结束时，提升所有属性抗性100%，持续3秒）	2		1	[{31,1000},{33,1000},{35,1000}]																			1000	3000				{"skill/buff_icon_bingfang.png","skill/buff_icon_huofang.png","skill/buff_icon_leifang.png"}	{"",""}
+16501	战士-鬼哭神嚎（技能结束时，提升物理防御30%，持续10秒）	2		1	[{20,300}]																			1000	10000				{"skill/buff_icon_fangyu.png"}	{"",""}
+16502	战士-鬼哭神嚎（技能结束时，提升物理防御40%，持续10秒）	2		1	[{20,400}]																			1000	10000				{"skill/buff_icon_fangyu.png"}	{"",""}
+16503	战士-鬼哭神嚎（技能结束时，提升物理防御50%，持续10秒）	2		1	[{20,500}]																			1000	10000				{"skill/buff_icon_fangyu.png"}	{"",""}
+16504	战士-鬼哭神嚎（技能结束时，提升物理防御60%，持续10秒）	2		1	[{20,600}]																			1000	10000				{"skill/buff_icon_fangyu.png"}	{"",""}
+16505	战士-鬼哭神嚎（技能结束时，提升物理防御70%，持续10秒）	2		1	[{20,700}]																			1000	10000				{"skill/buff_icon_fangyu.png"}	{"",""}
+16506	战士-鬼哭神嚎（技能结束时，提升物理防御80%，持续10秒）	2		1	[{20,800}]																			1000	10000				{"skill/buff_icon_fangyu.png"}	{"",""}
+16507	战士-鬼哭神嚎（技能结束时，提升物理防御90%，持续10秒）	2		1	[{20,900}]																			1000	10000				{"skill/buff_icon_fangyu.png"}	{"",""}
+16508	战士-鬼哭神嚎（技能结束时，提升物理防御100%，持续10秒）	2		1	[{20,1000}]																			1000	10000				{"skill/buff_icon_fangyu.png"}	{"",""}
+16509	战士-鬼哭神嚎（技能结束时，提升物理防御110%，持续10秒）	2		1	[{20,1100}]																			1000	10000				{"skill/buff_icon_fangyu.png"}	{"",""}
+16510	战士-鬼哭神嚎（技能结束时，提升物理防御120%，持续10秒）	2		1	[{20,1200}]																			1000	10000				{"skill/buff_icon_fangyu.png"}	{"",""}
+21101	法师-暴风雪（暴风雪命中时会降低敌人40%的移动速度，持续0.5秒）	3					-400																	1000	500					{"effects/01jiansu/01jiansu.frames",""}
+21102	法师-暴风雪（暴风雪命中时会降低敌人40%的移动速度，持续1.0秒）	3					-400																	1000	1000					{"effects/01jiansu/01jiansu.frames",""}
+21103	法师-暴风雪（暴风雪命中时会降低敌人40%的移动速度，持续1.5秒）	3					-400																	1000	1500					{"effects/01jiansu/01jiansu.frames",""}
+21104	法师-暴风雪（暴风雪命中时会降低敌人40%的移动速度，持续2.0秒）	3					-400																	1000	2000					{"effects/01jiansu/01jiansu.frames",""}
+21105	法师-暴风雪（暴风雪命中时会降低敌人40%的移动速度，持续2.5秒）	3					-400																	1000	2500					{"effects/01jiansu/01jiansu.frames",""}
+21106	法师-暴风雪（暴风雪命中时会降低敌人40%的移动速度，持续3.0秒）	3					-400																	1000	3000					{"effects/01jiansu/01jiansu.frames",""}
+21107	法师-暴风雪（暴风雪命中时会降低敌人40%的移动速度，持续3.5秒）	3					-400																	1000	3500					{"effects/01jiansu/01jiansu.frames",""}
+21108	法师-暴风雪（暴风雪命中时会降低敌人40%的移动速度，持续4.0秒）	3					-400																	1000	4000					{"effects/01jiansu/01jiansu.frames",""}
+21109	法师-暴风雪（暴风雪命中时会降低敌人40%的移动速度，持续4.5秒）	3					-400																	1000	4500					{"effects/01jiansu/01jiansu.frames",""}
+21110	法师-暴风雪（暴风雪命中时会降低敌人40%的移动速度，持续5.0秒）	3					-400																	1000	5000					{"effects/01jiansu/01jiansu.frames",""}
+21201	法师-暴风雪（技能持续时处于霸体状态，但是伤害降低55%）	1	2																					1000	3000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+21202	法师-暴风雪（技能持续时处于霸体状态，但是伤害降低50%）	1	2																					1000	3000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+21203	法师-暴风雪（技能持续时处于霸体状态，但是伤害降低45%）	1	2																					1000	3000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+21204	法师-暴风雪（技能持续时处于霸体状态，但是伤害降低40%）	1	2																					1000	3000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+21205	法师-暴风雪（技能持续时处于霸体状态，但是伤害降低35%）	1	2																					1000	3000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+21206	法师-暴风雪（技能持续时处于霸体状态，但是伤害降低30%）	1	2																					1000	3000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+21207	法师-暴风雪（技能持续时处于霸体状态，但是伤害降低25%）	1	2																					1000	3000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+21208	法师-暴风雪（技能持续时处于霸体状态，但是伤害降低20%）	1	2																					1000	3000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+21209	法师-暴风雪（技能持续时处于霸体状态，但是伤害降低15%）	1	2																					1000	3000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+21210	法师-暴风雪（技能持续时处于霸体状态，但是伤害降低10%）	1	2																					1000	3000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+21301	法师-暴风雪(击中敌人后，降低其冰霜与火焰抗性28%，持续6秒)	2		1	[{33,-280},{35,-280}]																			1000	6000				{"skill/buff_icon_bingfang.png","skill/buff_icon_huofang.png"}	{"",""}
+21302	法师-暴风雪(击中敌人后，降低其冰霜与火焰抗性36%，持续6秒)	2		1	[{33,-360},{35,-360}]																			1000	6000				{"skill/buff_icon_bingfang.png","skill/buff_icon_huofang.png"}	{"",""}
+21303	法师-暴风雪(击中敌人后，降低其冰霜与火焰抗性44%，持续6秒)	2		1	[{33,-440},{35,-440}]																			1000	6000				{"skill/buff_icon_bingfang.png","skill/buff_icon_huofang.png"}	{"",""}
+21304	法师-暴风雪(击中敌人后，降低其冰霜与火焰抗性52%，持续6秒)	2		1	[{33,-520},{35,-520}]																			1000	6000				{"skill/buff_icon_bingfang.png","skill/buff_icon_huofang.png"}	{"",""}
+21305	法师-暴风雪(击中敌人后，降低其冰霜与火焰抗性60%，持续6秒)	2		1	[{33,-600},{35,-600}]																			1000	6000				{"skill/buff_icon_bingfang.png","skill/buff_icon_huofang.png"}	{"",""}
+21306	法师-暴风雪(击中敌人后，降低其冰霜与火焰抗性68%，持续6秒)	2		1	[{33,-680},{35,-680}]																			1000	6000				{"skill/buff_icon_bingfang.png","skill/buff_icon_huofang.png"}	{"",""}
+21307	法师-暴风雪(击中敌人后，降低其冰霜与火焰抗性76%，持续6秒)	2		1	[{33,-760},{35,-760}]																			1000	6000				{"skill/buff_icon_bingfang.png","skill/buff_icon_huofang.png"}	{"",""}
+21308	法师-暴风雪(击中敌人后，降低其冰霜与火焰抗性84%，持续6秒)	2		1	[{33,-840},{35,-840}]																			1000	6000				{"skill/buff_icon_bingfang.png","skill/buff_icon_huofang.png"}	{"",""}
+21309	法师-暴风雪(击中敌人后，降低其冰霜与火焰抗性92%，持续6秒)	2		1	[{33,-920},{35,-920}]																			1000	6000				{"skill/buff_icon_bingfang.png","skill/buff_icon_huofang.png"}	{"",""}
+21310	法师-暴风雪(击中敌人后，降低其冰霜与火焰抗性100%，持续6秒)	2		1	[{33,-1000},{35,-1000}]																			1000	6000				{"skill/buff_icon_bingfang.png","skill/buff_icon_huofang.png"}	{"",""}
+21401	法师-暴风雪（每造成一轮伤害，则命中率提升1%，持续到技能结束后3秒）	2		1	[{29,10}]							2												1000	3000	1			{"skill/buff_icon_jingque.png"}	{"",""}
+21402	法师-暴风雪（每造成一轮伤害，则命中率提升2%，持续到技能结束后3秒）	2		1	[{29,20}]							2												1000	3000	1			{"skill/buff_icon_jingque.png"}	{"",""}
+21403	法师-暴风雪（每造成一轮伤害，则命中率提升3%，持续到技能结束后3秒）	2		1	[{29,30}]							2												1000	3000	1			{"skill/buff_icon_jingque.png"}	{"",""}
+21404	法师-暴风雪（每造成一轮伤害，则命中率提升4%，持续到技能结束后3秒）	2		1	[{29,40}]							2												1000	3000	1			{"skill/buff_icon_jingque.png"}	{"",""}
+21405	法师-暴风雪（每造成一轮伤害，则命中率提升5%，持续到技能结束后3秒）	2		1	[{29,50}]							2												1000	3000	1			{"skill/buff_icon_jingque.png"}	{"",""}
+21406	法师-暴风雪（每造成一轮伤害，则命中率提升6%，持续到技能结束后3秒）	2		1	[{29,60}]							2												1000	3000	1			{"skill/buff_icon_jingque.png"}	{"",""}
+21407	法师-暴风雪（每造成一轮伤害，则命中率提升7%，持续到技能结束后3秒）	2		1	[{29,70}]							2												1000	3000	1			{"skill/buff_icon_jingque.png"}	{"",""}
+21408	法师-暴风雪（每造成一轮伤害，则命中率提升8%，持续到技能结束后3秒）	2		1	[{29,80}]							2												1000	3000	1			{"skill/buff_icon_jingque.png"}	{"",""}
+21409	法师-暴风雪（每造成一轮伤害，则命中率提升9%，持续到技能结束后3秒）	2		1	[{29,90}]							2												1000	3000	1			{"skill/buff_icon_jingque.png"}	{"",""}
+21410	法师-暴风雪（每造成一轮伤害，则命中率提升10%，持续到技能结束后3秒）	2		1	[{29,100}]							2												1000	3000	1			{"skill/buff_icon_jingque.png"}	{"",""}
+21501	法师-暴风雪（被打断有37%的几率冰冻攻击者3S，并造成相当于20%智力的伤害，对BOSS翻倍）	6																						1000	3000		[{38,0},{21511,0}]			{"",""}
+21502	法师-暴风雪（被打断有44%的几率冰冻攻击者3S，并造成相当于20%智力的伤害，对BOSS翻倍）	6																						1000	3000		[{38,0},{21512,0}]			{"",""}
+21503	法师-暴风雪（被打断有51%的几率冰冻攻击者3S，并造成相当于20%智力的伤害，对BOSS翻倍）	6																						1000	3000		[{38,0},{21513,0}]			{"",""}
+21504	法师-暴风雪（被打断有58%的几率冰冻攻击者3S，并造成相当于20%智力的伤害，对BOSS翻倍）	6																						1000	3000		[{38,0},{21514,0}]			{"",""}
+21505	法师-暴风雪（被打断有65%的几率冰冻攻击者3S，并造成相当于20%智力的伤害，对BOSS翻倍）	6																						1000	3000		[{38,0},{21515,0}]			{"",""}
+21506	法师-暴风雪（被打断有72%的几率冰冻攻击者3S，并造成相当于20%智力的伤害，对BOSS翻倍）	6																						1000	3000		[{38,0},{21516,0}]			{"",""}
+21507	法师-暴风雪（被打断有79%的几率冰冻攻击者3S，并造成相当于20%智力的伤害，对BOSS翻倍）	6																						1000	3000		[{38,0},{21517,0}]			{"",""}
+21508	法师-暴风雪（被打断有86%的几率冰冻攻击者3S，并造成相当于20%智力的伤害，对BOSS翻倍）	6																						1000	3000		[{38,0},{21518,0}]			{"",""}
+21509	法师-暴风雪（被打断有93%的几率冰冻攻击者3S，并造成相当于20%智力的伤害，对BOSS翻倍）	6																						1000	3000		[{38,0},{21519,0}]			{"",""}
+21510	法师-暴风雪（被打断有100%的几率冰冻攻击者3S，并造成相当于20%智力的伤害，对BOSS翻倍）	6																						1000	3000		[{38,0},{21520,0}]			{"",""}
+21511	法师-暴风雪（被打断有37%的几率冰冻攻击者3S，并造成相当于20%智力的伤害，对BOSS翻倍）冰冻	1	4																					370	3000			[2,3,2]	{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+21512	法师-暴风雪（被打断有44%的几率冰冻攻击者3S，并造成相当于20%智力的伤害，对BOSS翻倍）冰冻	1	4																					440	3000			[2,3,2]	{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+21513	法师-暴风雪（被打断有51%的几率冰冻攻击者3S，并造成相当于20%智力的伤害，对BOSS翻倍）冰冻	1	4																					510	3000			[2,3,2]	{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+21514	法师-暴风雪（被打断有58%的几率冰冻攻击者3S，并造成相当于20%智力的伤害，对BOSS翻倍）冰冻	1	4																					580	3000			[2,3,2]	{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+21515	法师-暴风雪（被打断有65%的几率冰冻攻击者3S，并造成相当于20%智力的伤害，对BOSS翻倍）冰冻	1	4																					650	3000			[2,3,2]	{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+21516	法师-暴风雪（被打断有72%的几率冰冻攻击者3S，并造成相当于20%智力的伤害，对BOSS翻倍）冰冻	1	4																					720	3000			[2,3,2]	{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+21517	法师-暴风雪（被打断有79%的几率冰冻攻击者3S，并造成相当于20%智力的伤害，对BOSS翻倍）冰冻	1	4																					790	3000			[2,3,2]	{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+21518	法师-暴风雪（被打断有86%的几率冰冻攻击者3S，并造成相当于20%智力的伤害，对BOSS翻倍）冰冻	1	4																					860	3000			[2,3,2]	{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+21519	法师-暴风雪（被打断有93%的几率冰冻攻击者3S，并造成相当于20%智力的伤害，对BOSS翻倍）冰冻	1	4																					930	3000			[2,3,2]	{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+21520	法师-暴风雪（被打断有100%的几率冰冻攻击者3S，并造成相当于20%智力的伤害，对BOSS翻倍）冰冻	1	4																					1000	3000			[2,3,2]	{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+22101	法师-炎爆（命中目标时附带灼烧效果，在之后的3秒内造成直接伤害3%的火焰伤害）	5		1				1000	[2,2,10]															1000	3000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+22102	法师-炎爆（命中目标时附带灼烧效果，在之后的3秒内造成直接伤害6%的火焰伤害）	5		1				1000	[2,2,20]															1000	3000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+22103	法师-炎爆（命中目标时附带灼烧效果，在之后的3秒内造成直接伤害9%的火焰伤害）	5		1				1000	[2,2,30]															1000	3000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+22104	法师-炎爆（命中目标时附带灼烧效果，在之后的3秒内造成直接伤害12%的火焰伤害）	5		1				1000	[2,2,40]															1000	3000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+22105	法师-炎爆（命中目标时附带灼烧效果，在之后的3秒内造成直接伤害15%的火焰伤害）	5		1				1000	[2,2,50]															1000	3000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+22106	法师-炎爆（命中目标时附带灼烧效果，在之后的3秒内造成直接伤害18%的火焰伤害）	5		1				1000	[2,2,60]															1000	3000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+22107	法师-炎爆（命中目标时附带灼烧效果，在之后的3秒内造成直接伤害21%的火焰伤害）	5		1				1000	[2,2,70]															1000	3000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+22108	法师-炎爆（命中目标时附带灼烧效果，在之后的3秒内造成直接伤害24%的火焰伤害）	5		1				1000	[2,2,80]															1000	3000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+22109	法师-炎爆（命中目标时附带灼烧效果，在之后的3秒内造成直接伤害27%的火焰伤害）	5		1				1000	[2,2,90]															1000	3000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+22110	法师-炎爆（命中目标时附带灼烧效果，在之后的3秒内造成直接伤害30%的火焰伤害）	5		1				1000	[2,2,100]															1000	3000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+22301	法师-炎爆(技能结束时，获得提升所有伤害4%的效果，持续3秒)	2		1	[{26,40}]																			1000	3000				{"skill/buff_icon_attackdeep.png"}	{"",""}
+22302	法师-炎爆(技能结束时，获得提升所有伤害8%的效果，持续3秒)	2		1	[{26,80}]																			1000	3000				{"skill/buff_icon_attackdeep.png"}	{"",""}
+22303	法师-炎爆(技能结束时，获得提升所有伤害12%的效果，持续3秒)	2		1	[{26,120}]																			1000	3000				{"skill/buff_icon_attackdeep.png"}	{"",""}
+22304	法师-炎爆(技能结束时，获得提升所有伤害16%的效果，持续3秒)	2		1	[{26,160}]																			1000	3000				{"skill/buff_icon_attackdeep.png"}	{"",""}
+22305	法师-炎爆(技能结束时，获得提升所有伤害20%的效果，持续3秒)	2		1	[{26,200}]																			1000	3000				{"skill/buff_icon_attackdeep.png"}	{"",""}
+22306	法师-炎爆(技能结束时，获得提升所有伤害24%的效果，持续3秒)	2		1	[{26,240}]																			1000	3000				{"skill/buff_icon_attackdeep.png"}	{"",""}
+22307	法师-炎爆(技能结束时，获得提升所有伤害28%的效果，持续3秒)	2		1	[{26,280}]																			1000	3000				{"skill/buff_icon_attackdeep.png"}	{"",""}
+22308	法师-炎爆(技能结束时，获得提升所有伤害32%的效果，持续3秒)	2		1	[{26,320}]																			1000	3000				{"skill/buff_icon_attackdeep.png"}	{"",""}
+22309	法师-炎爆(技能结束时，获得提升所有伤害36%的效果，持续3秒)	2		1	[{26,360}]																			1000	3000				{"skill/buff_icon_attackdeep.png"}	{"",""}
+22310	法师-炎爆(技能结束时，获得提升所有伤害40%的效果，持续3秒)	2		1	[{26,400}]																			1000	3000				{"skill/buff_icon_attackdeep.png"}	{"",""}
+22401	法师-炎爆（提升炎爆大火球暴击率28%）	1	2																					1000	300	1			{"skill/buff_icon_bati.png"}	{"",""}
+22402	法师-炎爆（提升炎爆大火球暴击率36%）	1	2																					1000	600	1			{"skill/buff_icon_bati.png"}	{"",""}
+22403	法师-炎爆（提升炎爆大火球暴击率44%）	1	2																					1000	900	1			{"skill/buff_icon_bati.png"}	{"",""}
+22404	法师-炎爆（提升炎爆大火球暴击率52%）	1	2																					1000	1200	1			{"skill/buff_icon_bati.png"}	{"",""}
+22405	法师-炎爆（提升炎爆大火球暴击率60%）	1	2																					1000	1500	1			{"skill/buff_icon_bati.png"}	{"",""}
+22406	法师-炎爆（提升炎爆大火球暴击率68%）	1	2																					1000	1800	1			{"skill/buff_icon_bati.png"}	{"",""}
+22407	法师-炎爆（提升炎爆大火球暴击率76%）	1	2																					1000	2100	1			{"skill/buff_icon_bati.png"}	{"",""}
+22408	法师-炎爆（提升炎爆大火球暴击率84%）	1	2																					1000	2400	1			{"skill/buff_icon_bati.png"}	{"",""}
+22409	法师-炎爆（提升炎爆大火球暴击率92%）	1	2																					1000	2700	1			{"skill/buff_icon_bati.png"}	{"",""}
+22410	法师-炎爆（提升炎爆大火球暴击率100%）	1	2																					1000	3000	1			{"skill/buff_icon_bati.png"}	{"",""}
+22501	法师-炎爆（24%的几率在命中时附加沉默效果，持续3秒）	1	7																					1000	3000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+22502	法师-炎爆（28%的几率在命中时附加沉默效果，持续3秒）	1	7																					1000	3000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+22503	法师-炎爆（32%的几率在命中时附加沉默效果，持续3秒）	1	7																					1000	3000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+22504	法师-炎爆（36%的几率在命中时附加沉默效果，持续3秒）	1	7																					1000	3000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+22505	法师-炎爆（40%的几率在命中时附加沉默效果，持续3秒）	1	7																					1000	3000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+22506	法师-炎爆（44%的几率在命中时附加沉默效果，持续3秒）	1	7																					1000	3000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+22507	法师-炎爆（48%的几率在命中时附加沉默效果，持续3秒）	1	7																					1000	3000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+22508	法师-炎爆（52%的几率在命中时附加沉默效果，持续3秒）	1	7																					1000	3000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+22509	法师-炎爆（56%的几率在命中时附加沉默效果，持续3秒）	1	7																					1000	3000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+22510	法师-炎爆（60%的几率在命中时附加沉默效果，持续3秒）	1	7																					1000	3000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+23301	法师-冰龙狂卷（每次造成伤害时，都有2%的几率冰冻目标3秒，对冰冻免疫的目标，给予该效果时附加2倍的寒冰伤害）	1	4																					20	3000			[2,3,2]	{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+23302	法师-冰龙狂卷（每次造成伤害时，都有4%的几率冰冻目标3秒，对冰冻免疫的目标，给予该效果时附加2倍的寒冰伤害）	1	4																					40	3000			[2,3,2]	{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+23303	法师-冰龙狂卷（每次造成伤害时，都有6%的几率冰冻目标3秒，对冰冻免疫的目标，给予该效果时附加2倍的寒冰伤害）	1	4																					60	3000			[2,3,2]	{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+23304	法师-冰龙狂卷（每次造成伤害时，都有8%的几率冰冻目标3秒，对冰冻免疫的目标，给予该效果时附加2倍的寒冰伤害）	1	4																					80	3000			[2,3,2]	{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+23305	法师-冰龙狂卷（每次造成伤害时，都有10%的几率冰冻目标3秒，对冰冻免疫的目标，给予该效果时附加2倍的寒冰伤害）	1	4																					100	3000			[2,3,2]	{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+23306	法师-冰龙狂卷（每次造成伤害时，都有12%的几率冰冻目标3秒，对冰冻免疫的目标，给予该效果时附加2倍的寒冰伤害）	1	4																					120	3000			[2,3,2]	{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+23307	法师-冰龙狂卷（每次造成伤害时，都有14%的几率冰冻目标3秒，对冰冻免疫的目标，给予该效果时附加2倍的寒冰伤害）	1	4																					140	3000			[2,3,2]	{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+23308	法师-冰龙狂卷（每次造成伤害时，都有16%的几率冰冻目标3秒，对冰冻免疫的目标，给予该效果时附加2倍的寒冰伤害）	1	4																					160	3000			[2,3,2]	{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+23309	法师-冰龙狂卷（每次造成伤害时，都有18%的几率冰冻目标3秒，对冰冻免疫的目标，给予该效果时附加2倍的寒冰伤害）	1	4																					180	3000			[2,3,2]	{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+23310	法师-冰龙狂卷（每次造成伤害时，都有20%的几率冰冻目标3秒，对冰冻免疫的目标，给予该效果时附加2倍的寒冰伤害）	1	4																					200	3000			[2,3,2]	{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+23401	法师-冰龙狂卷（施放后获得1.2秒的霸体状态并提升移动速度28%）主部分	6																						1000	1400		[{23601,0},{23701,0}]			{"",""}
+23402	法师-冰龙狂卷（施放后获得1.4秒的霸体状态并提升移动速度36%）主部分	6																						1000	1600		[{23602,0},{23702,0}]			{"",""}
+23403	法师-冰龙狂卷（施放后获得1.6秒的霸体状态并提升移动速度44%）主部分	6																						1000	1800		[{23603,0},{23703,0}]			{"",""}
+23404	法师-冰龙狂卷（施放后获得1.8秒的霸体状态并提升移动速度52%）主部分	6																						1000	2000		[{23604,0},{23704,0}]			{"",""}
+23405	法师-冰龙狂卷（施放后获得2.0秒的霸体状态并提升移动速度60%）主部分	6																						1000	2200		[{23605,0},{23705,0}]			{"",""}
+23406	法师-冰龙狂卷（施放后获得2.2秒的霸体状态并提升移动速度68%）主部分	6																						1000	2400		[{23606,0},{23706,0}]			{"",""}
+23407	法师-冰龙狂卷（施放后获得2.4秒的霸体状态并提升移动速度76%）主部分	6																						1000	2600		[{23607,0},{23707,0}]			{"",""}
+23408	法师-冰龙狂卷（施放后获得2.6秒的霸体状态并提升移动速度84%）主部分	6																						1000	2800		[{23608,0},{23708,0}]			{"",""}
+23409	法师-冰龙狂卷（施放后获得2.8秒的霸体状态并提升移动速度92%）主部分	6																						1000	3000		[{23609,0},{23709,0}]			{"",""}
+23410	法师-冰龙狂卷（施放后获得3.0秒的霸体状态并提升移动速度100%）主部分	6																						1000	3200		[{23610,0},{23710,0}]			{"",""}
+23601	法师-冰龙狂卷（施放后获得1.2秒的霸体状态并提升移动速度28%）霸体部分	1	2																					1000	1200				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+23602	法师-冰龙狂卷（施放后获得1.4秒的霸体状态并提升移动速度36%）霸体部分	1	2																					1000	1400				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+23603	法师-冰龙狂卷（施放后获得1.6秒的霸体状态并提升移动速度44%）霸体部分	1	2																					1000	1600				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+23604	法师-冰龙狂卷（施放后获得1.8秒的霸体状态并提升移动速度52%）霸体部分	1	2																					1000	1800				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+23605	法师-冰龙狂卷（施放后获得2.0秒的霸体状态并提升移动速度60%）霸体部分	1	2																					1000	2000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+23606	法师-冰龙狂卷（施放后获得2.2秒的霸体状态并提升移动速度68%）霸体部分	1	2																					1000	2200				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+23607	法师-冰龙狂卷（施放后获得2.4秒的霸体状态并提升移动速度76%）霸体部分	1	2																					1000	2400				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+23608	法师-冰龙狂卷（施放后获得2.6秒的霸体状态并提升移动速度84%）霸体部分	1	2																					1000	2600				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+23609	法师-冰龙狂卷（施放后获得2.8秒的霸体状态并提升移动速度92%）霸体部分	1	2																					1000	2800				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+23610	法师-冰龙狂卷（施放后获得3.0秒的霸体状态并提升移动速度100%）移速部分	1	2																					1000	3000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+23701	法师-冰龙狂卷（施放后获得1.2秒的霸体状态并提升移动速度28%）移速部分	3					280																	1000	1200				{"skill/buff_icon_speed.png"}	{"",""}
+23702	法师-冰龙狂卷（施放后获得1.4秒的霸体状态并提升移动速度36%）移速部分	3					360																	1000	1400				{"skill/buff_icon_speed.png"}	{"",""}
+23703	法师-冰龙狂卷（施放后获得1.6秒的霸体状态并提升移动速度44%）移速部分	3					440																	1000	1600				{"skill/buff_icon_speed.png"}	{"",""}
+23704	法师-冰龙狂卷（施放后获得1.8秒的霸体状态并提升移动速度52%）移速部分	3					520																	1000	1800				{"skill/buff_icon_speed.png"}	{"",""}
+23705	法师-冰龙狂卷（施放后获得2.0秒的霸体状态并提升移动速度60%）移速部分	3					600																	1000	2000				{"skill/buff_icon_speed.png"}	{"",""}
+23706	法师-冰龙狂卷（施放后获得2.2秒的霸体状态并提升移动速度68%）移速部分	3					680																	1000	2200				{"skill/buff_icon_speed.png"}	{"",""}
+23707	法师-冰龙狂卷（施放后获得2.4秒的霸体状态并提升移动速度76%）移速部分	3					760																	1000	2400				{"skill/buff_icon_speed.png"}	{"",""}
+23708	法师-冰龙狂卷（施放后获得2.6秒的霸体状态并提升移动速度84%）移速部分	3					840																	1000	2600				{"skill/buff_icon_speed.png"}	{"",""}
+23709	法师-冰龙狂卷（施放后获得2.8秒的霸体状态并提升移动速度92%）移速部分	3					920																	1000	2800				{"skill/buff_icon_speed.png"}	{"",""}
+23710	法师-冰龙狂卷（施放后获得3.0秒的霸体状态并提升移动速度100%）移速部分	3					1000																	1000	3000				{"skill/buff_icon_speed.png"}	{"",""}
+23501	法师-冰龙狂卷（附加吸血效果，回复造成伤害的0.5%的生命值）	7								[1,2,5,1,1,5]														1000	2000					{"",""}
+23502	法师-冰龙狂卷（附加吸血效果，回复造成伤害的1.0%的生命值）	7								[1,2,10,1,1,5]														1000	2000					{"",""}
+23503	法师-冰龙狂卷（附加吸血效果，回复造成伤害的1.5%的生命值）	7								[1,2,15,1,1,5]														1000	2000					{"",""}
+23504	法师-冰龙狂卷（附加吸血效果，回复造成伤害的2.0%的生命值）	7								[1,2,20,1,1,5]														1000	2000					{"",""}
+23505	法师-冰龙狂卷（附加吸血效果，回复造成伤害的2.5%的生命值）	7								[1,2,25,1,1,5]														1000	2000					{"",""}
+23506	法师-冰龙狂卷（附加吸血效果，回复造成伤害的3.0%的生命值）	7								[1,2,30,1,1,5]														1000	2000					{"",""}
+23507	法师-冰龙狂卷（附加吸血效果，回复造成伤害的3.5%的生命值）	7								[1,2,35,1,1,5]														1000	2000					{"",""}
+23508	法师-冰龙狂卷（附加吸血效果，回复造成伤害的4.0%的生命值）	7								[1,2,40,1,1,5]														1000	2000					{"",""}
+23509	法师-冰龙狂卷（附加吸血效果，回复造成伤害的4.5%的生命值）	7								[1,2,45,1,1,5]														1000	2000					{"",""}
+23510	法师-冰龙狂卷（附加吸血效果，回复造成伤害的5.0%的生命值）	7								[1,2,50,1,1,5]														1000	2000					{"",""}
+24301	法师-恶魔突袭(每次攻击都有2%的几率沉默目标3S，对沉默的目标，触发该效果时附加2倍的物理伤害)	1	7																					20	3000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+24302	法师-恶魔突袭(每次攻击都有4%的几率沉默目标3S，对沉默的目标，触发该效果时附加2倍的物理伤害)	1	7																					40	3000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+24303	法师-恶魔突袭(每次攻击都有6%的几率沉默目标3S，对沉默的目标，触发该效果时附加2倍的物理伤害)	1	7																					60	3000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+24304	法师-恶魔突袭(每次攻击都有8%的几率沉默目标3S，对沉默的目标，触发该效果时附加2倍的物理伤害)	1	7																					80	3000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+24305	法师-恶魔突袭(每次攻击都有10%的几率沉默目标3S，对沉默的目标，触发该效果时附加2倍的物理伤害)	1	7																					100	3000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+24306	法师-恶魔突袭(每次攻击都有12%的几率沉默目标3S，对沉默的目标，触发该效果时附加2倍的物理伤害)	1	7																					120	3000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+24307	法师-恶魔突袭(每次攻击都有14%的几率沉默目标3S，对沉默的目标，触发该效果时附加2倍的物理伤害)	1	7																					140	3000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+24308	法师-恶魔突袭(每次攻击都有16%的几率沉默目标3S，对沉默的目标，触发该效果时附加2倍的物理伤害)	1	7																					160	3000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+24309	法师-恶魔突袭(每次攻击都有18%的几率沉默目标3S，对沉默的目标，触发该效果时附加2倍的物理伤害)	1	7																					180	3000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+24310	法师-恶魔突袭(每次攻击都有20%的几率沉默目标3S，对沉默的目标，触发该效果时附加2倍的物理伤害)	1	7																					200	3000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+24401	法师-恶魔突袭（使用技能时，获得8%的移动速度提升效果，持续5秒）	3					80																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+24402	法师-恶魔突袭（使用技能时，获得16%的移动速度提升效果，持续5秒）	3					160																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+24403	法师-恶魔突袭（使用技能时，获得24%的移动速度提升效果，持续5秒）	3					240																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+24404	法师-恶魔突袭（使用技能时，获得32%的移动速度提升效果，持续5秒）	3					320																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+24405	法师-恶魔突袭（使用技能时，获得40%的移动速度提升效果，持续5秒）	3					400																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+24406	法师-恶魔突袭（使用技能时，获得48%的移动速度提升效果，持续5秒）	3					480																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+24407	法师-恶魔突袭（使用技能时，获得56%的移动速度提升效果，持续5秒）	3					560																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+24408	法师-恶魔突袭（使用技能时，获得64%的移动速度提升效果，持续5秒）	3					640																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+24409	法师-恶魔突袭（使用技能时，获得72%的移动速度提升效果，持续5秒）	3					720																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+24410	法师-恶魔突袭（使用技能时，获得80%的移动速度提升效果，持续5秒）	3					800																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+24501	法师-恶魔突袭（附加吸血效果，回复造成伤害的0.5%的生命值）	7								[1,2,5,1,1,5]														1000	2000					{"",""}
+24502	法师-恶魔突袭（附加吸血效果，回复造成伤害的1.0%的生命值）	7								[1,2,10,1,1,5]														1000	2000					{"",""}
+24503	法师-恶魔突袭（附加吸血效果，回复造成伤害的1.5%的生命值）	7								[1,2,15,1,1,5]														1000	2000					{"",""}
+24504	法师-恶魔突袭（附加吸血效果，回复造成伤害的2.0%的生命值）	7								[1,2,20,1,1,5]														1000	2000					{"",""}
+24505	法师-恶魔突袭（附加吸血效果，回复造成伤害的2.5%的生命值）	7								[1,2,25,1,1,5]														1000	2000					{"",""}
+24506	法师-恶魔突袭（附加吸血效果，回复造成伤害的3.0%的生命值）	7								[1,2,30,1,1,5]														1000	2000					{"",""}
+24507	法师-恶魔突袭（附加吸血效果，回复造成伤害的3.5%的生命值）	7								[1,2,35,1,1,5]														1000	2000					{"",""}
+24508	法师-恶魔突袭（附加吸血效果，回复造成伤害的4.0%的生命值）	7								[1,2,40,1,1,5]														1000	2000					{"",""}
+24509	法师-恶魔突袭（附加吸血效果，回复造成伤害的4.5%的生命值）	7								[1,2,45,1,1,5]														1000	2000					{"",""}
+24510	法师-恶魔突袭（附加吸血效果，回复造成伤害的5.0%的生命值）	7								[1,2,50,1,1,5]														1000	2000					{"",""}
+25101	法师-冰晶护体（技能持续时，每0.5秒回复一次生命，总共回复生命值上限的12%）	4		1	[{11,24}]			500																1000	2500					{"",""}
+25102	法师-冰晶护体（技能持续时，每0.5秒回复一次生命，总共回复生命值上限的14%）	4		1	[{11,28}]			500																1000	2500					{"",""}
+25103	法师-冰晶护体（技能持续时，每0.5秒回复一次生命，总共回复生命值上限的16%）	4		1	[{11,32}]			500																1000	2500					{"",""}
+25104	法师-冰晶护体（技能持续时，每0.5秒回复一次生命，总共回复生命值上限的18%）	4		1	[{11,36}]			500																1000	2500					{"",""}
+25105	法师-冰晶护体（技能持续时，每0.5秒回复一次生命，总共回复生命值上限的20%）	4		1	[{11,40}]			500																1000	2500					{"",""}
+25106	法师-冰晶护体（技能持续时，每0.5秒回复一次生命，总共回复生命值上限的22%）	4		1	[{11,44}]			500																1000	2500					{"",""}
+25107	法师-冰晶护体（技能持续时，每0.5秒回复一次生命，总共回复生命值上限的24%）	4		1	[{11,48}]			500																1000	2500					{"",""}
+25108	法师-冰晶护体（技能持续时，每0.5秒回复一次生命，总共回复生命值上限的26%）	4		1	[{11,52}]			500																1000	2500					{"",""}
+25109	法师-冰晶护体（技能持续时，每0.5秒回复一次生命，总共回复生命值上限的28%）	4		1	[{11,56}]			500																1000	2500					{"",""}
+25110	法师-冰晶护体（技能持续时，每0.5秒回复一次生命，总共回复生命值上限的30%）	4		1	[{11,60}]			500																1000	2500					{"",""}
+25301	法师-冰晶护体(冰晶结束时发生爆炸，冻结范围内敌人1秒，并附加相当于智力56%的寒冰伤害)	6																						1000	500		[{39,0},{3011,0}]			{"",""}
+25302	法师-冰晶护体(冰晶结束时发生爆炸，冻结范围内敌人1秒，并附加相当于智力72%的寒冰伤害)	6																						1000	500		[{39,0},{3012,0}]			{"",""}
+25303	法师-冰晶护体(冰晶结束时发生爆炸，冻结范围内敌人1秒，并附加相当于智力88%的寒冰伤害)	6																						1000	500		[{39,0},{3013,0}]			{"",""}
+25304	法师-冰晶护体(冰晶结束时发生爆炸，冻结范围内敌人1秒，并附加相当于智力104%的寒冰伤害)	6																						1000	500		[{39,0},{3014,0}]			{"",""}
+25305	法师-冰晶护体(冰晶结束时发生爆炸，冻结范围内敌人1秒，并附加相当于智力120%的寒冰伤害)	6																						1000	500		[{39,0},{3015,0}]			{"",""}
+25306	法师-冰晶护体(冰晶结束时发生爆炸，冻结范围内敌人1秒，并附加相当于智力136%的寒冰伤害)	6																						1000	500		[{39,0},{3016,0}]			{"",""}
+25307	法师-冰晶护体(冰晶结束时发生爆炸，冻结范围内敌人1秒，并附加相当于智力152%的寒冰伤害)	6																						1000	500		[{39,0},{3017,0}]			{"",""}
+25308	法师-冰晶护体(冰晶结束时发生爆炸，冻结范围内敌人1秒，并附加相当于智力168%的寒冰伤害)	6																						1000	500		[{39,0},{3018,0}]			{"",""}
+25309	法师-冰晶护体(冰晶结束时发生爆炸，冻结范围内敌人1秒，并附加相当于智力184%的寒冰伤害)	6																						1000	500		[{39,0},{3019,0}]			{"",""}
+25310	法师-冰晶护体(冰晶结束时发生爆炸，冻结范围内敌人1秒，并附加相当于智力200%的寒冰伤害)	6																						1000	500		[{39,0},{3020,0}]			{"",""}
+25401	法师-冰晶护体（技能开始时，获得65%的反伤效果，一直持续到技能结束后1秒 ）	2		1	[{39,650}]																			1000	1000	1			{"skill/buff_icon_fantan.png"}	{"",""}
+25402	法师-冰晶护体（技能开始时，获得80%的反伤效果，一直持续到技能结束后1秒 ）	2		1	[{39,800}]																			1000	1000	1			{"skill/buff_icon_fantan.png"}	{"",""}
+25403	法师-冰晶护体（技能开始时，获得95%的反伤效果，一直持续到技能结束后1秒 ）	2		1	[{39,950}]																			1000	1000	1			{"skill/buff_icon_fantan.png"}	{"",""}
+25404	法师-冰晶护体（技能开始时，获得110%的反伤效果，一直持续到技能结束后1秒 ）	2		1	[{39,1100}]																			1000	1000	1			{"skill/buff_icon_fantan.png"}	{"",""}
+25405	法师-冰晶护体（技能开始时，获得125%的反伤效果，一直持续到技能结束后1秒 ）	2		1	[{39,1250}]																			1000	1000	1			{"skill/buff_icon_fantan.png"}	{"",""}
+25406	法师-冰晶护体（技能开始时，获得140%的反伤效果，一直持续到技能结束后1秒 ）	2		1	[{39,1400}]																			1000	1000	1			{"skill/buff_icon_fantan.png"}	{"",""}
+25407	法师-冰晶护体（技能开始时，获得155%的反伤效果，一直持续到技能结束后1秒 ）	2		1	[{39,1550}]																			1000	1000	1			{"skill/buff_icon_fantan.png"}	{"",""}
+25408	法师-冰晶护体（技能开始时，获得170%的反伤效果，一直持续到技能结束后1秒 ）	2		1	[{39,1700}]																			1000	1000	1			{"skill/buff_icon_fantan.png"}	{"",""}
+25409	法师-冰晶护体（技能开始时，获得185%的反伤效果，一直持续到技能结束后1秒 ）	2		1	[{39,1850}]																			1000	1000	1			{"skill/buff_icon_fantan.png"}	{"",""}
+25410	法师-冰晶护体（技能开始时，获得200%的反伤效果，一直持续到技能结束后1秒 ）	2		1	[{39,2000}]																			1000	1000	1			{"skill/buff_icon_fantan.png"}	{"",""}
+25501	法师-冰晶护体（技能结束后获得1.4秒的霸体状态）	1	2																					1000	1400				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+25502	法师-冰晶护体（技能结束后获得1.8秒的霸体状态）	1	2																					1000	1800				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+25503	法师-冰晶护体（技能结束后获得2.2秒的霸体状态）	1	2																					1000	2200				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+25504	法师-冰晶护体（技能结束后获得2.6秒的霸体状态）	1	2																					1000	2600				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+25505	法师-冰晶护体（技能结束后获得3.0秒的霸体状态）	1	2																					1000	3000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+25506	法师-冰晶护体（技能结束后获得3.4秒的霸体状态）	1	2																					1000	3400				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+25507	法师-冰晶护体（技能结束后获得3.8秒的霸体状态）	1	2																					1000	3800				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+25508	法师-冰晶护体（技能结束后获得4.2秒的霸体状态）	1	2																					1000	4200				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+25509	法师-冰晶护体（技能结束后获得4.6秒的霸体状态）	1	2																					1000	4600				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+25510	法师-冰晶护体（技能结束后获得5.0秒的霸体状态）	1	2																					1000	5000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+26301	法师-抗拒火抗(技能结束时，获得提升所有伤害4%的效果，持续10秒)	2		1	[{26,40}]																			1000	10000				{"skill/buff_icon_attackdeep.png"}	{"",""}
+26302	法师-抗拒火抗(技能结束时，获得提升所有伤害8%的效果，持续10秒)	2		1	[{26,80}]																			1000	10000				{"skill/buff_icon_attackdeep.png"}	{"",""}
+26303	法师-抗拒火抗(技能结束时，获得提升所有伤害12%的效果，持续10秒)	2		1	[{26,120}]																			1000	10000				{"skill/buff_icon_attackdeep.png"}	{"",""}
+26304	法师-抗拒火抗(技能结束时，获得提升所有伤害16%的效果，持续10秒)	2		1	[{26,160}]																			1000	10000				{"skill/buff_icon_attackdeep.png"}	{"",""}
+26305	法师-抗拒火抗(技能结束时，获得提升所有伤害20%的效果，持续10秒)	2		1	[{26,200}]																			1000	10000				{"skill/buff_icon_attackdeep.png"}	{"",""}
+26306	法师-抗拒火抗(技能结束时，获得提升所有伤害24%的效果，持续10秒)	2		1	[{26,240}]																			1000	10000				{"skill/buff_icon_attackdeep.png"}	{"",""}
+26307	法师-抗拒火抗(技能结束时，获得提升所有伤害28%的效果，持续10秒)	2		1	[{26,280}]																			1000	10000				{"skill/buff_icon_attackdeep.png"}	{"",""}
+26308	法师-抗拒火抗(技能结束时，获得提升所有伤害32%的效果，持续10秒)	2		1	[{26,320}]																			1000	10000				{"skill/buff_icon_attackdeep.png"}	{"",""}
+26309	法师-抗拒火抗(技能结束时，获得提升所有伤害36%的效果，持续10秒)	2		1	[{26,360}]																			1000	10000				{"skill/buff_icon_attackdeep.png"}	{"",""}
+26310	法师-抗拒火抗(技能结束时，获得提升所有伤害40%的效果，持续10秒)	2		1	[{26,400}]																			1000	10000				{"skill/buff_icon_attackdeep.png"}	{"",""}
+26401	法师-抗拒火抗（技能施放时保持霸体状态，并在动作结束后持续0.5秒）	1	2																					1000	500	1			{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+26402	法师-抗拒火抗（技能施放时保持霸体状态，并在动作结束后持续1.0秒）	1	2																					1000	1000	1			{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+26403	法师-抗拒火抗（技能施放时保持霸体状态，并在动作结束后持续1.5秒）	1	2																					1000	1500	1			{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+26404	法师-抗拒火抗（技能施放时保持霸体状态，并在动作结束后持续2.0秒）	1	2																					1000	2000	1			{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+26405	法师-抗拒火抗（技能施放时保持霸体状态，并在动作结束后持续2.5秒）	1	2																					1000	2500	1			{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+26406	法师-抗拒火抗（技能施放时保持霸体状态，并在动作结束后持续3.0秒）	1	2																					1000	3000	1			{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+26407	法师-抗拒火抗（技能施放时保持霸体状态，并在动作结束后持续3.5秒）	1	2																					1000	3500	1			{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+26408	法师-抗拒火抗（技能施放时保持霸体状态，并在动作结束后持续4.0秒）	1	2																					1000	4000	1			{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+26409	法师-抗拒火抗（技能施放时保持霸体状态，并在动作结束后持续4.5秒）	1	2																					1000	4500	1			{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+26410	法师-抗拒火抗（技能施放时保持霸体状态，并在动作结束后持续5.0秒）	1	2																					1000	5000	1			{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+26501	法师-抗拒火环（24%的几率在命中时附加沉默效果，持续5秒）	1	7																					240	5000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+26502	法师-抗拒火环（28%的几率在命中时附加沉默效果，持续5秒）	1	7																					280	5000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+26503	法师-抗拒火环（32%的几率在命中时附加沉默效果，持续5秒）	1	7																					320	5000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+26504	法师-抗拒火环（36%的几率在命中时附加沉默效果，持续5秒）	1	7																					360	5000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+26505	法师-抗拒火环（40%的几率在命中时附加沉默效果，持续5秒）	1	7																					400	5000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+26506	法师-抗拒火环（44%的几率在命中时附加沉默效果，持续5秒）	1	7																					440	5000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+26507	法师-抗拒火环（48%的几率在命中时附加沉默效果，持续5秒）	1	7																					480	5000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+26508	法师-抗拒火环（52%的几率在命中时附加沉默效果，持续5秒）	1	7																					520	5000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+26509	法师-抗拒火环（56%的几率在命中时附加沉默效果，持续5秒）	1	7																					560	5000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+26510	法师-抗拒火环（60%的几率在命中时附加沉默效果，持续5秒）	1	7																					600	5000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+41401	骑士-三段斩（技能造成伤害的1%，作为治疗效果，由所有队友均分）（无队友）	7								[1,2,10,1,1,5]														1000	0	1				{"",""}
+41402	骑士-三段斩（技能造成伤害的2%，作为治疗效果，由所有队友均分）	7								[1,2,20,1,1,5]														1000	0	1				{"",""}
+41403	骑士-三段斩（技能造成伤害的3%，作为治疗效果，由所有队友均分）	7								[1,2,30,1,1,5]														1000	0	1				{"",""}
+41404	骑士-三段斩（技能造成伤害的4%，作为治疗效果，由所有队友均分）	7								[1,2,40,1,1,5]														1000	0	1				{"",""}
+41405	骑士-三段斩（技能造成伤害的5%，作为治疗效果，由所有队友均分）	7								[1,2,50,1,1,5]														1000	0	1				{"",""}
+41406	骑士-三段斩（技能造成伤害的6%，作为治疗效果，由所有队友均分）	7								[1,2,60,1,1,5]														1000	0	1				{"",""}
+41407	骑士-三段斩（技能造成伤害的7%，作为治疗效果，由所有队友均分）	7								[1,2,70,1,1,5]														1000	0	1				{"",""}
+41408	骑士-三段斩（技能造成伤害的8%，作为治疗效果，由所有队友均分）	7								[1,2,80,1,1,5]														1000	0	1				{"",""}
+41409	骑士-三段斩（技能造成伤害的9%，作为治疗效果，由所有队友均分）	7								[1,2,90,1,1,5]														1000	0	1				{"",""}
+41410	骑士-三段斩（技能造成伤害的10%，作为治疗效果，由所有队友均分）	7								[1,2,100,1,1,5]														1000	0	1				{"",""}
+41501	骑士-三段斩（杀死等级不低于自己5级的敌人时，获得自身最大HP13%的治疗效果，由所有队友均分)	7								[1,1,130,1,1,5]	11													1000	0	1				{"",""}
+41502	骑士-三段斩（杀死等级不低于自己5级的敌人时，获得自身最大HP16%的治疗效果，由所有队友均分)	7								[1,1,160,1,1,5]	11													1000	0	1				{"",""}
+41503	骑士-三段斩（杀死等级不低于自己5级的敌人时，获得自身最大HP19%的治疗效果，由所有队友均分)	7								[1,1,190,1,1,5]	11													1000	0	1				{"",""}
+41504	骑士-三段斩（杀死等级不低于自己5级的敌人时，获得自身最大HP22%的治疗效果，由所有队友均分)	7								[1,1,220,1,1,5]	11													1000	0	1				{"",""}
+41505	骑士-三段斩（杀死等级不低于自己5级的敌人时，获得自身最大HP25%的治疗效果，由所有队友均分)	7								[1,1,250,1,1,5]	11													1000	0	1				{"",""}
+41506	骑士-三段斩（杀死等级不低于自己5级的敌人时，获得自身最大HP28%的治疗效果，由所有队友均分)	7								[1,1,280,1,1,5]	11													1000	0	1				{"",""}
+41507	骑士-三段斩（杀死等级不低于自己5级的敌人时，获得自身最大HP31%的治疗效果，由所有队友均分)	7								[1,1,310,1,1,5]	11													1000	0	1				{"",""}
+41508	骑士-三段斩（杀死等级不低于自己5级的敌人时，获得自身最大HP34%的治疗效果，由所有队友均分)	7								[1,1,340,1,1,5]	11													1000	0	1				{"",""}
+41509	骑士-三段斩（杀死等级不低于自己5级的敌人时，获得自身最大HP37%的治疗效果，由所有队友均分)	7								[1,1,370,1,1,5]	11													1000	0	1				{"",""}
+41510	骑士-三段斩（杀死等级不低于自己5级的敌人时，获得自身最大HP40%的治疗效果，由所有队友均分)	7								[1,1,400,1,1,5]	11													1000	0	1				{"",""}
+42201	骑士-幻影之舞（技能结束5秒内，移动速度提升24%）	3					240																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+42202	骑士-幻影之舞（技能结束5秒内，移动速度提升28%）	3					280																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+42203	骑士-幻影之舞（技能结束5秒内，移动速度提升32%）	3					320																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+42204	骑士-幻影之舞（技能结束5秒内，移动速度提升36%）	3					360																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+42205	骑士-幻影之舞（技能结束5秒内，移动速度提升40%）	3					400																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+42206	骑士-幻影之舞（技能结束5秒内，移动速度提升44%）	3					440																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+42207	骑士-幻影之舞（技能结束5秒内，移动速度提升48%）	3					480																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+42208	骑士-幻影之舞（技能结束5秒内，移动速度提升52%）	3					520																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+42209	骑士-幻影之舞（技能结束5秒内，移动速度提升56%）	3					560																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+42210	骑士-幻影之舞（技能结束5秒内，移动速度提升60%）	3					600																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+42301	骑士-幻影之舞（2%的几率直接杀死生命值低于30%的普通怪物和精英怪）	5							99999999						[{1,1000},{2,1000},{3,0}]									20	0	1				{"",""}
+42302	骑士-幻影之舞（4%的几率直接杀死生命值低于30%的普通怪物和精英怪）	5							99999999						[{1,1000},{2,1000},{3,0}]									40	0	1				{"",""}
+42303	骑士-幻影之舞（6%的几率直接杀死生命值低于30%的普通怪物和精英怪）	5							99999999						[{1,1000},{2,1000},{3,0}]									60	0	1				{"",""}
+42304	骑士-幻影之舞（8%的几率直接杀死生命值低于30%的普通怪物和精英怪）	5							99999999						[{1,1000},{2,1000},{3,0}]									80	0	1				{"",""}
+42305	骑士-幻影之舞（10%的几率直接杀死生命值低于30%的普通怪物和精英怪）	5							99999999						[{1,1000},{2,1000},{3,0}]									100	0	1				{"",""}
+42306	骑士-幻影之舞（12%的几率直接杀死生命值低于30%的普通怪物和精英怪）	5							99999999						[{1,1000},{2,1000},{3,0}]									120	0	1				{"",""}
+42307	骑士-幻影之舞（14%的几率直接杀死生命值低于30%的普通怪物和精英怪）	5							99999999						[{1,1000},{2,1000},{3,0}]									140	0	1				{"",""}
+42308	骑士-幻影之舞（16%的几率直接杀死生命值低于30%的普通怪物和精英怪）	5							99999999						[{1,1000},{2,1000},{3,0}]									160	0	1				{"",""}
+42309	骑士-幻影之舞（18%的几率直接杀死生命值低于30%的普通怪物和精英怪）	5							99999999						[{1,1000},{2,1000},{3,0}]									180	0	1				{"",""}
+42310	骑士-幻影之舞（20%的几率直接杀死生命值低于30%的普通怪物和精英怪）	5							99999999						[{1,1000},{2,1000},{3,0}]									200	0	1				{"",""}
+42401	骑士-幻影之舞（命中目标时，都会使其造成的所有攻击降低16%，持续5秒）	2		2	[{19,-160}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+42402	骑士-幻影之舞（命中目标时，都会使其造成的所有攻击降低22%，持续5秒）	2		2	[{19,-220}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+42403	骑士-幻影之舞（命中目标时，都会使其造成的所有攻击降低28%，持续5秒）	2		2	[{19,-280}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+42404	骑士-幻影之舞（命中目标时，都会使其造成的所有攻击降低34%，持续5秒）	2		2	[{19,-340}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+42405	骑士-幻影之舞（命中目标时，都会使其造成的所有攻击降低40%，持续5秒）	2		2	[{19,-400}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+42406	骑士-幻影之舞（命中目标时，都会使其造成的所有攻击降低46%，持续5秒）	2		2	[{19,-460}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+42407	骑士-幻影之舞（命中目标时，都会使其造成的所有攻击降低52%，持续5秒）	2		2	[{19,-520}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+42408	骑士-幻影之舞（命中目标时，都会使其造成的所有攻击降低58%，持续5秒）	2		2	[{19,-580}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+42409	骑士-幻影之舞（命中目标时，都会使其造成的所有攻击降低64%，持续5秒）	2		2	[{19,-640}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+42410	骑士-幻影之舞（命中目标时，都会使其造成的所有攻击降低70%，持续5秒）	2		2	[{19,-700}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+42501	骑士-幻影之舞（使用技能时如果被击中，有28%的几率触发圣光爆炸，对范围内的敌人造成火焰伤害）	8											9000304											280	100					{"",""}
+42502	骑士-幻影之舞（使用技能时如果被击中，有36%的几率触发圣光爆炸，对范围内的敌人造成火焰伤害）	8											9000305											360	100					{"",""}
+42503	骑士-幻影之舞（使用技能时如果被击中，有44%的几率触发圣光爆炸，对范围内的敌人造成火焰伤害）	8											9000306											440	100					{"",""}
+42504	骑士-幻影之舞（使用技能时如果被击中，有52%的几率触发圣光爆炸，对范围内的敌人造成火焰伤害）	8											9000307											520	100					{"",""}
+42505	骑士-幻影之舞（使用技能时如果被击中，有60%的几率触发圣光爆炸，对范围内的敌人造成火焰伤害）	8											9000308											600	100					{"",""}
+42506	骑士-幻影之舞（使用技能时如果被击中，有68%的几率触发圣光爆炸，对范围内的敌人造成火焰伤害）	8											9000309											680	100					{"",""}
+42507	骑士-幻影之舞（使用技能时如果被击中，有76%的几率触发圣光爆炸，对范围内的敌人造成火焰伤害）	8											9000310											760	100					{"",""}
+42508	骑士-幻影之舞（使用技能时如果被击中，有84%的几率触发圣光爆炸，对范围内的敌人造成火焰伤害）	8											9000311											840	100					{"",""}
+42509	骑士-幻影之舞（使用技能时如果被击中，有92%的几率触发圣光爆炸，对范围内的敌人造成火焰伤害）	8											9000312											920	100					{"",""}
+42510	骑士-幻影之舞（使用技能时如果被击中，有100%的几率触发圣光爆炸，对范围内的敌人造成火焰伤害）	8											9000313											1000	100					{"",""}
+43201	骑士-火焰之轮(技能结束5秒内，移动速度提升24%)	3					240																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+43202	骑士-火焰之轮(技能结束5秒内，移动速度提升28%)	3					280																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+43203	骑士-火焰之轮(技能结束5秒内，移动速度提升32%)	3					320																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+43204	骑士-火焰之轮(技能结束5秒内，移动速度提升36%)	3					360																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+43205	骑士-火焰之轮(技能结束5秒内，移动速度提升40%)	3					400																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+43206	骑士-火焰之轮(技能结束5秒内，移动速度提升44%)	3					440																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+43207	骑士-火焰之轮(技能结束5秒内，移动速度提升48%)	3					480																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+43208	骑士-火焰之轮(技能结束5秒内，移动速度提升52%)	3					520																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+43209	骑士-火焰之轮(技能结束5秒内，移动速度提升56%)	3					560																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+43210	骑士-火焰之轮(技能结束5秒内，移动速度提升60%)	3					600																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+43301	骑士-火焰之轮（技能结束0.5秒内，物理招架率为100%）	2		1	[{22,1000}]																			1000	500				{"skill/buff_icon_gedang.png"}	{"",""}
+43302	骑士-火焰之轮（技能结束1.0秒内，物理招架率为100%）	2		1	[{22,1000}]																			1000	1000				{"skill/buff_icon_gedang.png"}	{"",""}
+43303	骑士-火焰之轮（技能结束1.5秒内，物理招架率为100%）	2		1	[{22,1000}]																			1000	1500				{"skill/buff_icon_gedang.png"}	{"",""}
+43304	骑士-火焰之轮（技能结束2.0秒内，物理招架率为100%）	2		1	[{22,1000}]																			1000	2000				{"skill/buff_icon_gedang.png"}	{"",""}
+43305	骑士-火焰之轮（技能结束2.5秒内，物理招架率为100%）	2		1	[{22,1000}]																			1000	2500				{"skill/buff_icon_gedang.png"}	{"",""}
+43306	骑士-火焰之轮（技能结束3.0秒内，物理招架率为100%）	2		1	[{22,1000}]																			1000	3000				{"skill/buff_icon_gedang.png"}	{"",""}
+43307	骑士-火焰之轮（技能结束3.5秒内，物理招架率为100%）	2		1	[{22,1000}]																			1000	3500				{"skill/buff_icon_gedang.png"}	{"",""}
+43308	骑士-火焰之轮（技能结束4.0秒内，物理招架率为100%）	2		1	[{22,1000}]																			1000	4000				{"skill/buff_icon_gedang.png"}	{"",""}
+43309	骑士-火焰之轮（技能结束4.5秒内，物理招架率为100%）	2		1	[{22,1000}]																			1000	4500				{"skill/buff_icon_gedang.png"}	{"",""}
+43310	骑士-火焰之轮（技能结束5.0秒内，物理招架率为100%）	2		1	[{22,1000}]																			1000	5000				{"skill/buff_icon_gedang.png"}	{"",""}
+43401	骑士-火焰之轮（命中目标时，都会使其造成的所有攻击降低16%，持续5秒）	2		1	[{19,-160}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+43402	骑士-火焰之轮（命中目标时，都会使其造成的所有攻击降低22%，持续5秒）	2		1	[{19,-220}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+43403	骑士-火焰之轮（命中目标时，都会使其造成的所有攻击降低28%，持续5秒）	2		1	[{19,-280}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+43404	骑士-火焰之轮（命中目标时，都会使其造成的所有攻击降低34%，持续5秒）	2		1	[{19,-340}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+43405	骑士-火焰之轮（命中目标时，都会使其造成的所有攻击降低40%，持续5秒）	2		1	[{19,-400}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+43406	骑士-火焰之轮（命中目标时，都会使其造成的所有攻击降低46%，持续5秒）	2		1	[{19,-460}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+43407	骑士-火焰之轮（命中目标时，都会使其造成的所有攻击降低52%，持续5秒）	2		1	[{19,-520}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+43408	骑士-火焰之轮（命中目标时，都会使其造成的所有攻击降低58%，持续5秒）	2		1	[{19,-580}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+43409	骑士-火焰之轮（命中目标时，都会使其造成的所有攻击降低64%，持续5秒）	2		1	[{19,-640}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+43410	骑士-火焰之轮（命中目标时，都会使其造成的所有攻击降低70%，持续5秒）	2		1	[{19,-700}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+43501	骑士-火焰之轮（灼烧命中的目标，在6秒内附加等同于自身敏捷30%火焰伤害）	5		1				1000	[1,2,50]		17													1000	6000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+43502	骑士-火焰之轮（灼烧命中的目标，在6秒内附加等同于自身敏捷40%火焰伤害）	5		1				1000	[1,2,60]		17													1000	6000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+43503	骑士-火焰之轮（灼烧命中的目标，在6秒内附加等同于自身敏捷50%火焰伤害）	5		1				1000	[1,2,80]		17													1000	6000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+43504	骑士-火焰之轮（灼烧命中的目标，在6秒内附加等同于自身敏捷60%火焰伤害）	5		1				1000	[1,2,100]		17													1000	6000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+43505	骑士-火焰之轮（灼烧命中的目标，在6秒内附加等同于自身敏捷70%火焰伤害）	5		1				1000	[1,2,110]		17													1000	6000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+43506	骑士-火焰之轮（灼烧命中的目标，在6秒内附加等同于自身敏捷80%火焰伤害）	5		1				1000	[1,2,130]		17													1000	6000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+43507	骑士-火焰之轮（灼烧命中的目标，在6秒内附加等同于自身敏捷90%火焰伤害）	5		1				1000	[1,2,150]		17													1000	6000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+43508	骑士-火焰之轮（灼烧命中的目标，在6秒内附加等同于自身敏捷100%火焰伤害）	5		1				1000	[1,2,160]		17													1000	6000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+43509	骑士-火焰之轮（灼烧命中的目标，在6秒内附加等同于自身敏捷110%火焰伤害）	5		1				1000	[1,2,180]		17													1000	6000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+43510	骑士-火焰之轮（灼烧命中的目标，在6秒内附加等同于自身敏捷120%火焰伤害）	5		1				1000	[1,2,200]		17													1000	6000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+44301	骑士-十字审判(返还该技能消耗能量值的13%）	7								[1,2,10,1,1,6]														1000	0	1				{"",""}
+44302	骑士-十字审判(返还该技能消耗能量值的16%）	7								[1,2,20,1,1,6]														1000	0	1				{"",""}
+44303	骑士-十字审判(返还该技能消耗能量值的19%）	7								[1,2,30,1,1,6]														1000	0	1				{"",""}
+44304	骑士-十字审判(返还该技能消耗能量值的22%）	7								[1,2,40,1,1,6]														1000	0	1				{"",""}
+44305	骑士-十字审判(返还该技能消耗能量值的25%）	7								[1,2,50,1,1,6]														1000	0	1				{"",""}
+44306	骑士-十字审判(返还该技能消耗能量值的28%）	7								[1,2,60,1,1,6]														1000	0	1				{"",""}
+44307	骑士-十字审判(返还该技能消耗能量值的31%）	7								[1,2,70,1,1,6]														1000	0	1				{"",""}
+44308	骑士-十字审判(返还该技能消耗能量值的34%）	7								[1,2,80,1,1,6]														1000	0	1				{"",""}
+44309	骑士-十字审判(返还该技能消耗能量值的37%）	7								[1,2,90,1,1,6]														1000	0	1				{"",""}
+44310	骑士-十字审判(返还该技能消耗能量值的40%）	7								[1,2,100,1,1,6]														1000	0	1				{"",""}
+44401	骑士-十字审判（技能结束时，获得霸体状态，持续0.5秒）	1	2																					1000	500				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+44402	骑士-十字审判（技能结束时，获得霸体状态，持续1.0秒）	1	2																					1000	1000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+44403	骑士-十字审判（技能结束时，获得霸体状态，持续1.5秒）	1	2																					1000	1500				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+44404	骑士-十字审判（技能结束时，获得霸体状态，持续2.0秒）	1	2																					1000	2000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+44405	骑士-十字审判（技能结束时，获得霸体状态，持续2.5秒）	1	2																					1000	2500				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+44406	骑士-十字审判（技能结束时，获得霸体状态，持续3.0秒）	1	2																					1000	3000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+44407	骑士-十字审判（技能结束时，获得霸体状态，持续3.5秒）	1	2																					1000	3500				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+44408	骑士-十字审判（技能结束时，获得霸体状态，持续4.0秒）	1	2																					1000	4000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+44409	骑士-十字审判（技能结束时，获得霸体状态，持续4.5秒）	1	2																					1000	4500				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+44410	骑士-十字审判（技能结束时，获得霸体状态，持续5.0秒）	1	2																					1000	5000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+44501	骑士-十字审判（技能造成伤害的1%，作为治疗效果，由所有队友均分）	7								[1,2,10,1,1,5]														1000	0	1				{"",""}
+44502	骑士-十字审判（技能造成伤害的2%，作为治疗效果，由所有队友均分）	7								[1,2,20,1,1,5]														1000	0	1				{"",""}
+44503	骑士-十字审判（技能造成伤害的3%，作为治疗效果，由所有队友均分）	7								[1,2,30,1,1,5]														1000	0	1				{"",""}
+44504	骑士-十字审判（技能造成伤害的4%，作为治疗效果，由所有队友均分）	7								[1,2,40,1,1,5]														1000	0	1				{"",""}
+44505	骑士-十字审判（技能造成伤害的5%，作为治疗效果，由所有队友均分）	7								[1,2,50,1,1,5]														1000	0	1				{"",""}
+44506	骑士-十字审判（技能造成伤害的6%，作为治疗效果，由所有队友均分）	7								[1,2,60,1,1,5]														1000	0	1				{"",""}
+44507	骑士-十字审判（技能造成伤害的7%，作为治疗效果，由所有队友均分）	7								[1,2,70,1,1,5]														1000	0	1				{"",""}
+44508	骑士-十字审判（技能造成伤害的8%，作为治疗效果，由所有队友均分）	7								[1,2,80,1,1,5]														1000	0	1				{"",""}
+44509	骑士-十字审判（技能造成伤害的9%，作为治疗效果，由所有队友均分）	7								[1,2,90,1,1,5]														1000	0	1				{"",""}
+44510	骑士-十字审判（技能造成伤害的10%，作为治疗效果，由所有队友均分）	7								[1,2,100,1,1,5]														1000	0	1				{"",""}
+45101	骑士-凤舞九天（提升招架率26%，持续8秒）	2		1	[{22,260}]																			1000	8000				{"skill/buff_icon_speed.png"}	{"",""}
+45102	骑士-凤舞九天（提升招架率32%，持续8秒）	2		1	[{22,320}]																			1000	8000				{"skill/buff_icon_speed.png"}	{"",""}
+45103	骑士-凤舞九天（提升招架率38%，持续8秒）	2		1	[{22,380}]																			1000	8000				{"skill/buff_icon_speed.png"}	{"",""}
+45104	骑士-凤舞九天（提升招架率44%，持续8秒）	2		1	[{22,440}]																			1000	8000				{"skill/buff_icon_speed.png"}	{"",""}
+45105	骑士-凤舞九天（提升招架率50%，持续8秒）	2		1	[{22,500}]																			1000	8000				{"skill/buff_icon_speed.png"}	{"",""}
+45106	骑士-凤舞九天（提升招架率56%，持续8秒）	2		1	[{22,560}]																			1000	8000				{"skill/buff_icon_speed.png"}	{"",""}
+45107	骑士-凤舞九天（提升招架率62%，持续8秒）	2		1	[{22,620}]																			1000	8000				{"skill/buff_icon_speed.png"}	{"",""}
+45108	骑士-凤舞九天（提升招架率68%，持续8秒）	2		1	[{22,680}]																			1000	8000				{"skill/buff_icon_speed.png"}	{"",""}
+45109	骑士-凤舞九天（提升招架率74%，持续8秒）	2		1	[{22,740}]																			1000	8000				{"skill/buff_icon_speed.png"}	{"",""}
+45110	骑士-凤舞九天（提升招架率80%，持续8秒）	2		1	[{22,800}]																			1000	8000				{"skill/buff_icon_speed.png"}	{"",""}
+45201	骑士-凤舞九天(技能结束5秒内，移动速度提升24%)	3					240																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+45202	骑士-凤舞九天(技能结束5秒内，移动速度提升28%)	3					280																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+45203	骑士-凤舞九天(技能结束5秒内，移动速度提升32%)	3					320																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+45204	骑士-凤舞九天(技能结束5秒内，移动速度提升36%)	3					360																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+45205	骑士-凤舞九天(技能结束5秒内，移动速度提升40%)	3					400																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+45206	骑士-凤舞九天(技能结束5秒内，移动速度提升44%)	3					440																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+45207	骑士-凤舞九天(技能结束5秒内，移动速度提升48%)	3					480																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+45208	骑士-凤舞九天(技能结束5秒内，移动速度提升52%)	3					520																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+45209	骑士-凤舞九天(技能结束5秒内，移动速度提升56%)	3					560																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+45210	骑士-凤舞九天(技能结束5秒内，移动速度提升60%)	3					600																	1000	5000				{"skill/buff_icon_speed.png"}	{"",""}
+45301	骑士-凤舞九天(命中时有4%的几率使目标定身，持续4秒)	1	6																					40	4000				{"skill/buff_icon_dingshen.png"}	{"","effects/02dingshen/02dingshen.frames"}
+45302	骑士-凤舞九天(命中时有8%的几率使目标定身，持续4秒)	1	6																					80	4000				{"skill/buff_icon_dingshen.png"}	{"","effects/02dingshen/02dingshen.frames"}
+45303	骑士-凤舞九天(命中时有12%的几率使目标定身，持续4秒)	1	6																					120	4000				{"skill/buff_icon_dingshen.png"}	{"","effects/02dingshen/02dingshen.frames"}
+45304	骑士-凤舞九天(命中时有16%的几率使目标定身，持续4秒)	1	6																					160	4000				{"skill/buff_icon_dingshen.png"}	{"","effects/02dingshen/02dingshen.frames"}
+45305	骑士-凤舞九天(命中时有20%的几率使目标定身，持续4秒)	1	6																					200	4000				{"skill/buff_icon_dingshen.png"}	{"","effects/02dingshen/02dingshen.frames"}
+45306	骑士-凤舞九天(命中时有24%的几率使目标定身，持续4秒)	1	6																					240	4000				{"skill/buff_icon_dingshen.png"}	{"","effects/02dingshen/02dingshen.frames"}
+45307	骑士-凤舞九天(命中时有28%的几率使目标定身，持续4秒)	1	6																					280	4000				{"skill/buff_icon_dingshen.png"}	{"","effects/02dingshen/02dingshen.frames"}
+45308	骑士-凤舞九天(命中时有32%的几率使目标定身，持续4秒)	1	6																					320	4000				{"skill/buff_icon_dingshen.png"}	{"","effects/02dingshen/02dingshen.frames"}
+45309	骑士-凤舞九天(命中时有36%的几率使目标定身，持续4秒)	1	6																					360	4000				{"skill/buff_icon_dingshen.png"}	{"","effects/02dingshen/02dingshen.frames"}
+45310	骑士-凤舞九天(命中时有40%的几率使目标定身，持续4秒)	1	6																					400	4000				{"skill/buff_icon_dingshen.png"}	{"","effects/02dingshen/02dingshen.frames"}
+45401	骑士-凤舞九天（技能结束时，受到伤害的37%会转化为能量值，持续6秒）	7								[2,2,370,2,2,6]														1000	6000					{"",""}
+45402	骑士-凤舞九天（技能结束时，受到伤害的44%会转化为能量值，持续6秒）	7								[2,2,440,2,2,6]														1000	6000					{"",""}
+45403	骑士-凤舞九天（技能结束时，受到伤害的51%会转化为能量值，持续6秒）	7								[2,2,510,2,2,6]														1000	6000					{"",""}
+45404	骑士-凤舞九天（技能结束时，受到伤害的58%会转化为能量值，持续6秒）	7								[2,2,580,2,2,6]														1000	6000					{"",""}
+45405	骑士-凤舞九天（技能结束时，受到伤害的65%会转化为能量值，持续6秒）	7								[2,2,650,2,2,6]														1000	6000					{"",""}
+45406	骑士-凤舞九天（技能结束时，受到伤害的72%会转化为能量值，持续6秒）	7								[2,2,720,2,2,6]														1000	6000					{"",""}
+45407	骑士-凤舞九天（技能结束时，受到伤害的79%会转化为能量值，持续6秒）	7								[2,2,790,2,2,6]														1000	6000					{"",""}
+45408	骑士-凤舞九天（技能结束时，受到伤害的86%会转化为能量值，持续6秒）	7								[2,2,860,2,2,6]														1000	6000					{"",""}
+45409	骑士-凤舞九天（技能结束时，受到伤害的93%会转化为能量值，持续6秒）	7								[2,2,930,2,2,6]														1000	6000					{"",""}
+45410	骑士-凤舞九天（技能结束时，受到伤害的100%会转化为能量值，持续6秒）	7								[2,2,1000,2,2,6]														1000	6000					{"",""}
+45501	骑士-凤舞九天（使用技能时，受到伤害的14%转化为怒气,持续6秒）	7								[2,2,140,2,2,1]														1000	6000					{"",""}
+45502	骑士-凤舞九天（使用技能时，受到伤害的18%转化为怒气,持续6秒）	7								[2,2,180,2,2,1]														1000	6000					{"",""}
+45503	骑士-凤舞九天（使用技能时，受到伤害的22%转化为怒气,持续6秒）	7								[2,2,220,2,2,1]														1000	6000					{"",""}
+45504	骑士-凤舞九天（使用技能时，受到伤害的26%转化为怒气,持续6秒）	7								[2,2,260,2,2,1]														1000	6000					{"",""}
+45505	骑士-凤舞九天（使用技能时，受到伤害的30%转化为怒气,持续6秒）	7								[2,2,300,2,2,1]														1000	6000					{"",""}
+45506	骑士-凤舞九天（使用技能时，受到伤害的34%转化为怒气,持续6秒）	7								[2,2,340,2,2,1]														1000	6000					{"",""}
+45507	骑士-凤舞九天（使用技能时，受到伤害的38%转化为怒气,持续6秒）	7								[2,2,380,2,2,1]														1000	6000					{"",""}
+45508	骑士-凤舞九天（使用技能时，受到伤害的42%转化为怒气,持续6秒）	7								[2,2,420,2,2,1]														1000	6000					{"",""}
+45509	骑士-凤舞九天（使用技能时，受到伤害的46%转化为怒气,持续6秒）	7								[2,2,460,2,2,1]														1000	6000					{"",""}
+45510	骑士-凤舞九天（使用技能时，受到伤害的50%转化为怒气,持续6秒）	7								[2,2,500,2,2,1]														1000	6000					{"",""}
+46201	骑士-混沌斩杀（命中时使目标流血，在3秒内造成150点伤害）	5						1000	50															1000	3000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+46202	骑士-混沌斩杀（命中时使目标流血，在3秒内造成300点伤害）	5						1000	100															1000	3000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+46203	骑士-混沌斩杀（命中时使目标流血，在3秒内造成450点伤害）	5						1000	150															1000	3000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+46204	骑士-混沌斩杀（命中时使目标流血，在3秒内造成600点伤害）	5						1000	200															1000	3000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+46205	骑士-混沌斩杀（命中时使目标流血，在3秒内造成750点伤害）	5						1000	250															1000	3000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+46206	骑士-混沌斩杀（命中时使目标流血，在3秒内造成900点伤害）	5						1000	300															1000	3000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+46207	骑士-混沌斩杀（命中时使目标流血，在3秒内造成1050点伤害）	5						1000	350															1000	3000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+46208	骑士-混沌斩杀（命中时使目标流血，在3秒内造成1200点伤害）	5						1000	400															1000	3000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+46209	骑士-混沌斩杀（命中时使目标流血，在3秒内造成1350点伤害）	5						1000	450															1000	3000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+46210	骑士-混沌斩杀（命中时使目标流血，在3秒内造成1500点伤害）	5						1000	500															1000	3000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+46301	骑士-混沌斩杀(命中目标时，都会使其造成的所有攻击降低16%，持续5秒)	2		1	[{19,-160}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+46302	骑士-混沌斩杀(命中目标时，都会使其造成的所有攻击降低22%，持续5秒)	2		1	[{19,-220}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+46303	骑士-混沌斩杀(命中目标时，都会使其造成的所有攻击降低28%，持续5秒)	2		1	[{19,-280}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+46304	骑士-混沌斩杀(命中目标时，都会使其造成的所有攻击降低34%，持续5秒)	2		1	[{19,-340}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+46305	骑士-混沌斩杀(命中目标时，都会使其造成的所有攻击降低40%，持续5秒)	2		1	[{19,-400}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+46306	骑士-混沌斩杀(命中目标时，都会使其造成的所有攻击降低46%，持续5秒)	2		1	[{19,-460}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+46307	骑士-混沌斩杀(命中目标时，都会使其造成的所有攻击降低52%，持续5秒)	2		1	[{19,-520}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+46308	骑士-混沌斩杀(命中目标时，都会使其造成的所有攻击降低58%，持续5秒)	2		1	[{19,-580}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+46309	骑士-混沌斩杀(命中目标时，都会使其造成的所有攻击降低64%，持续5秒)	2		1	[{19,-640}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+46310	骑士-混沌斩杀(命中目标时，都会使其造成的所有攻击降低70%，持续5秒)	2		1	[{19,-700}]																			1000	5000				{"skill/buff_icon_gongji.png"}	{"",""}
+46401	骑士-混沌斩杀（技能结束0.5秒内，物理招架率为100%）	2		1	[{22,1000}]																			1000	500				{"skill/buff_icon_gedang.png"}	{"",""}
+46402	骑士-混沌斩杀（技能结束1.0秒内，物理招架率为100%）	2		1	[{22,1000}]																			1000	1000				{"skill/buff_icon_gedang.png"}	{"",""}
+46403	骑士-混沌斩杀（技能结束1.5秒内，物理招架率为100%）	2		1	[{22,1000}]																			1000	1500				{"skill/buff_icon_gedang.png"}	{"",""}
+46404	骑士-混沌斩杀（技能结束2.0秒内，物理招架率为100%）	2		1	[{22,1000}]																			1000	2000				{"skill/buff_icon_gedang.png"}	{"",""}
+46405	骑士-混沌斩杀（技能结束2.5秒内，物理招架率为100%）	2		1	[{22,1000}]																			1000	2500				{"skill/buff_icon_gedang.png"}	{"",""}
+46406	骑士-混沌斩杀（技能结束3.0秒内，物理招架率为100%）	2		1	[{22,1000}]																			1000	3000				{"skill/buff_icon_gedang.png"}	{"",""}
+46407	骑士-混沌斩杀（技能结束3.5秒内，物理招架率为100%）	2		1	[{22,1000}]																			1000	3500				{"skill/buff_icon_gedang.png"}	{"",""}
+46408	骑士-混沌斩杀（技能结束4.0秒内，物理招架率为100%）	2		1	[{22,1000}]																			1000	4000				{"skill/buff_icon_gedang.png"}	{"",""}
+46409	骑士-混沌斩杀（技能结束4.5秒内，物理招架率为100%）	2		1	[{22,1000}]																			1000	4500				{"skill/buff_icon_gedang.png"}	{"",""}
+46410	骑士-混沌斩杀（技能结束5.0秒内，物理招架率为100%）	2		1	[{22,1000}]																			1000	5000				{"skill/buff_icon_gedang.png"}	{"",""}
+46501	骑士-混沌斩杀（使用该技能杀死等级不低于自己5级的敌人时，回复自身最大能量值的0.3%）	7								[1,1,3,1,1,6]	12													1000	0	1				{"",""}
+46502	骑士-混沌斩杀（使用该技能杀死等级不低于自己5级的敌人时，回复自身最大能量值的0.6%）	7								[1,1,6,1,1,6]	12													1000	0	1				{"",""}
+46503	骑士-混沌斩杀（使用该技能杀死等级不低于自己5级的敌人时，回复自身最大能量值的0.9%）	7								[1,1,9,1,1,6]	12													1000	0	1				{"",""}
+46504	骑士-混沌斩杀（使用该技能杀死等级不低于自己5级的敌人时，回复自身最大能量值的1.2%）	7								[1,1,12,1,1,6]	12													1000	0	1				{"",""}
+46505	骑士-混沌斩杀（使用该技能杀死等级不低于自己5级的敌人时，回复自身最大能量值的1.5%）	7								[1,1,15,1,1,6]	12													1000	0	1				{"",""}
+46506	骑士-混沌斩杀（使用该技能杀死等级不低于自己5级的敌人时，回复自身最大能量值的1.8%）	7								[1,1,18,1,1,6]	12													1000	0	1				{"",""}
+46507	骑士-混沌斩杀（使用该技能杀死等级不低于自己5级的敌人时，回复自身最大能量值的2.1%）	7								[1,1,21,1,1,6]	12													1000	0	1				{"",""}
+46508	骑士-混沌斩杀（使用该技能杀死等级不低于自己5级的敌人时，回复自身最大能量值的2.4%）	7								[1,1,24,1,1,6]	12													1000	0	1				{"",""}
+46509	骑士-混沌斩杀（使用该技能杀死等级不低于自己5级的敌人时，回复自身最大能量值的2.7%）	7								[1,1,27,1,1,6]	12													1000	0	1				{"",""}
+46510	骑士-混沌斩杀（使用该技能杀死等级不低于自己5级的敌人时，回复自身最大能量值的3.0%）	7								[1,1,30,1,1,6]	12													1000	0	1				{"",""}
+142201	骑士-圣光爆炸（释放物）造成智力伤害的56%	7								[1,1,560,1,1,2]	17													280	100					{"",""}
+142202	骑士-圣光爆炸（释放物）造成智力伤害的72%	7								[1,1,720,1,1,2]	17													360	100					{"",""}
+142203	骑士-圣光爆炸（释放物）造成智力伤害的88%	7								[1,1,880,1,1,2]	17													440	100					{"",""}
+142204	骑士-圣光爆炸（释放物）造成智力伤害的104%	7								[1,1,1040,1,1,2]	17													520	100					{"",""}
+142205	骑士-圣光爆炸（释放物）造成智力伤害的120%	7								[1,1,1200,1,1,2]	17													600	100					{"",""}
+142206	骑士-圣光爆炸（释放物）造成智力伤害的136%	7								[1,1,1360,1,1,2]	17													680	100					{"",""}
+142207	骑士-圣光爆炸（释放物）造成智力伤害的152%	7								[1,1,1520,1,1,2]	17													760	100					{"",""}
+142208	骑士-圣光爆炸（释放物）造成智力伤害的168%	7								[1,1,1680,1,1,2]	17													840	100					{"",""}
+142209	骑士-圣光爆炸（释放物）造成智力伤害的184%	7								[1,1,1840,1,1,2]	17													920	100					{"",""}
+142210	骑士-圣光爆炸（释放物）造成智力伤害的200%	7								[1,1,2000,1,1,2]	17													1000	100					{"",""}
+1001051	战士后跳无敌	1	1																					1000	700				{"skill/buff_icon_wudi.png"}	{"",""}
+1001101	战士重击眩晕	1	3																					1000	3000				{"skill/buff_icon_xuanyun.png"}	{"","effects/xuanyun_Add/xuanyun.frames"}
+1001131	战士霸王回旋附加雷电伤害	7								[1,2,10,1,2,4]														1000	0	1			{"skill/buff_icon_leigong.png"}	{"",""}
+1001141	战士蓄力一击霸体	1	2																					1000	3000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+1001142	战士蓄力一击附加雷电伤害	7								[1,2,10,1,2,4]														1000	0	1			{"skill/buff_icon_leigong.png"}	{"",""}
+1001151	战士火焰冲锋附加雷电伤害	7								[1,2,10,1,2,4]														1000	0	1			{"skill/buff_icon_leigong.png"}	{"",""}
+1002051	法师后跳无敌	1	1																					1000	700				{"skill/buff_icon_wudi.png"}	{"",""}
+1002121	法师冰晶护体无敌	1	1																					1000	5300				{"skill/buff_icon_wudi.png"}	{"",""}
+1002161	法师抗拒火环霸体	1	2																					1000	3000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+1002111	法师暴风雪附加寒冰伤害	7								[1,2,10,1,2,3]														1000	0	1			{"skill/buff_icon_binggong.png"}	{"",""}
+1002162	法师抗拒火环附加火焰伤害	7								[1,2,10,1,2,2]														1000	0	1			{"skill/buff_icon_leigong.png"}	{"",""}
+1002131	法师冰龙卷附加冰霜伤害	7								[1,2,10,1,2,3]														1000	0	1			{"skill/buff_icon_binggong.png"}	{"",""}
+1003131	骑士火焰之轮附加火焰伤害	7								[1,2,10,1,2,2]														1000	0	1			{"skill/buff_icon_huogong.png"}	{"",""}
+1003141	骑士十字审判霸体	1	2																					1000	3000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+1003142	骑士十字审判附加火焰伤害	7								[1,2,10,1,2,2]														1000	0	1			{"skill/buff_icon_huogong.png"}	{"",""}
+1003151	骑士凤舞九天附加火焰伤害	7								[1,2,10,1,2,2]														1000	0	1			{"skill/buff_icon_huogong.png"}	{"",""}
+3001021	暗影猎豹扑击撕裂	4		2	[{11,-10}]			1000																1000	5000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/silie/silie.frames"}
+3001022	暗影魔豹霸体获取	1	2																					1000	3000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+3003031	雕像巨人踩地眩晕	1	3																					1000	3000				{"skill/buff_icon_xuanyun.png"}	{"","effects/xuanyun_Add/xuanyun.frames"}
+3004011	地精厨娘霸体获取	1	2																					1000	3000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+3004021	地精厨娘腾空大坐眩晕	1	3																					1000	3000				{"skill/buff_icon_xuanyun.png"}	{"","effects/xuanyun_Add/xuanyun.frames"}
+3004031	地精厨娘回血技能	4		1	[{11,100}]			0																1000	1000					{"",""}
+3005011	丑陋巨兽挥拳眩晕	1	3																					1000	3000				{"skill/buff_icon_xuanyun.png"}	{"","effects/xuanyun_Add/xuanyun.frames"}
+3005031	丑陋巨兽喷毒中毒	4		2	[{11,-10}]			1000																1000	10000				{"skill/buff_icon_zhongdu.png"}	{"","effects/zhongdu_Add/zhongdu.frames"}
+3005032	丑陋巨兽喷毒减速	3					-300																	1000	10000				{"skill/buff_icon_speed.png"}	{"effects/01jiansu/01jiansu.frames",""}
+3006031	大天使能量拳感电	5						1000	10															1000	10000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/02jiansu/02jiansu.frames"}
+3007021	月光巨狼爪咬撕裂	4		2	[{11,-10}]			1000																1000	10000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/silie/silie.frames"}
+3008021	吞云兽喷毒中毒	4		2	[{11,-10}]			1000																1000	10000				{"skill/buff_icon_zhongdu.png"}	{"","effects/zhongdu_Add/zhongdu.frames"}
+3008022	吞云兽喷毒减速	3					-300																	1000	10000				{"skill/buff_icon_speed.png"}	{"effects/01jiansu/01jiansu.frames",""}
+3011031	骨龙喷毒中毒	4		2	[{11,-10}]			1000																1000	10000				{"skill/buff_icon_zhongdu.png"}	{"","effects/zhongdu_Add/zhongdu.frames"}
+3011032	骨龙喷毒减速	3					-300																	1000	10000				{"skill/buff_icon_speed.png"}	{"effects/01jiansu/01jiansu.frames",""}
+3013011	雷神像千斤脚眩晕	1	3																					1000	1000				{"skill/buff_icon_xuanyun.png"}	{"","effects/xuanyun_Add/xuanyun.frames"}
+3013012	雷神像定身	1	6																					1000	1000				{"skill/buff_icon_dingshen.png"}	{"","effects/02dingshen/02dingshen.frames"}
+2520011	水妖攻击概率减速	3					-500																	100	5000				{"skill/buff_icon_speed.png"}	{"effects/01jiansu/01jiansu.frames",""}
+2602011	诅咒巫师概率沉默	1	7				1000																	200	3000				{"skill/buff_icon_chenmo.png"}	{"","effects/chenmo/chenmo.frames"}
+5000041	冰冰冰冰冻	1	4																					1000	8000				{"skill/buff_icon_bingdong.png"}	{"","effects/01bing/01bing.frames"}
+5000061	火火火灼烧	5						1000	20															1000	10000				{"skill/buff_icon_zhuoshao.png"}	{"","effects/zhuoshao_Add/zhuoshao.frames"}
+5000051	冰火雷禁锢	1	6																					1000	15000				{"skill/buff_icon_dingshen.png"}	{"","effects/02dingshen/02dingshen.frames"}
+207011	藤蔓禁锢	1	4																					1000	2500					{"",""}
+10000000	起身无敌	1	1																					1000	1700				{"skill/buff_icon_wudi.png"}	{"",""}
+10000001	复活无敌	1	1																					1000	5000				{"skill/buff_icon_wudi.png"}	{"","effects/fuhuoxing/fuhuoxing.frames"}
+50001	骨龙攻击提升200%	2		1	[{19,2000}]																			1000	36000000				{"skill/buff_icon_gongji.png"}	{"","effects/jiagongji/jiagongji.frames"}
+50002	地精厨娘攻击提升30%	2		1	[{19,300}]																			1001	36000000				{"skill/buff_icon_gongji.png"}	{"","effects/jiagongji/jiagongji.frames"}
+50003	大天使霸体效果	1	2																					1000	5000				{"skill/buff_icon_bati.png"}	{"","effects/bati/bati.frames"}
+50004	加血10%	4		1	[{11,100}]			0																1000	1000					{"","effects/huifu_add/huifu.frames"}
+50005	加血5%	4		1	[{11,50}]			0																1000	1000					{"","effects/huifu_add/huifu.frames"}
+50006	加血20%	4		1	[{11,200}]			0																1000	1000					{"","effects/huifu_add/huifu.frames"}
+50007	圣光龙狂暴buff-霸体	1	2																					1000	600000					{"",""}
+50008	圣光龙狂暴buff-攻击提升	2		1	[{19,500}]																			1000	600000				{"skill/buff_icon_gongji.png"}	{"","effects/jiagongji/jiagongji.frames"}
+50009	冰龙啃咬击中效果-冰冻1秒	1	4																					1000	1000				{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+50010	冰龙啃咬击中效果-冰冻2秒	1	4																					1000	2000				{"skill/buff_icon_bingdong.png"}	{"","effects/bingdong/bingdong.frames"}
+50011	冰霜吐息-减速效果	3					-800																	1000	6000				{"skill/buff_icon_speed.png"}	{"effects/01jiansu/01jiansu.frames",""}
+50012	简单难度boss霸体	1	2																					1000	5000					{"",""}
+50013	困难难度boss霸体	1	2																					1000	6000					{"",""}
+50014	噩梦难度boss霸体	1	2																					1000	10000					{"",""}
+50015	boss永久霸体	1	2																					1000	36000000					{"",""}
+50016	游侠移动速度提升	3					500																	1000	36000000					{"",""}
+60001	重置CD	9																						1000	1000				{"skill/buff_icon_bati.png"}	{"effects/01jiansu/01jiansu.frames",""}
+60003	跳跃限制	1	8																					1000	6000				{"skill/buff_icon_bati.png"}	{"effects/01jiansu/01jiansu.frames",""}
+60004	混乱	1	9																					1000	6000				{"skill/buff_icon_bati.png"}	{"effects/01jiansu/01jiansu.frames",""}
+60005	疯狂	1	10																					1000	6000				{"skill/buff_icon_bati.png"}	{"effects/01jiansu/01jiansu.frames",""}
+60006	免疫减益效果	1	11																					1000	6000				{"skill/buff_icon_bati.png"}	{"effects/01jiansu/01jiansu.frames",""}
+60007	魔幻	1	12																					1000	6000				{"skill/buff_icon_bati.png"}	{"effects/01jiansu/01jiansu.frames",""}
+60008	重生buff	1	13																					1000	10000				{"skill/buff_icon_bati.png"}	{"effects/01jiansu/01jiansu.frames",""}
+60009	免伤90%	2		2	[{27,900}]																			1000	4000					{"","effects/bati/bati.frames"}
+60010	小丑反伤	2		2	[{39,500}]																			1000	36000000					{"","effects/bati/bati.frames"}
+60011	鲨鱼战士-简单难度属性调整	2		1	[{11,35000},{19,-750},{20,20000}]																			1000	36000000				{"skill/buff_icon_gongji.png","skill/buff_icon_fangyu.png"}	{"effects/01guwu_Add/01guwu.frames",""}
+60012	鲨鱼战士-困难难度属性调整	2		1	[{11,35000},{19,-670},{20,20000}]																			1000	36000000				{"skill/buff_icon_gongji.png","skill/buff_icon_fangyu.png"}	{"effects/01guwu_Add/01guwu.frames",""}
+60013	鲨鱼战士-噩梦难度属性调整	2		1	[{11,35000},{19,-500},{20,20000}]																			1000	36000000				{"skill/buff_icon_gongji.png","skill/buff_icon_fangyu.png"}	{"effects/01guwu_Add/01guwu.frames",""}
+60014	吸怪	11														4								1000	10000					{"","effects/bati/bati.frames"}

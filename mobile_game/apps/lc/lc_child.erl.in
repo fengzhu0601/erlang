@@ -1,0 +1,28 @@
+-module(lc_child).
+
+-export([start_child/0,
+         stop_child/0
+        ]).
+
+-define(TCP_OPTIONS, [binary, {active, false},{packet, 2}, 
+                      {reuseaddr, true}, 
+                      {nodelay, false}, {delay_send, true}, {send_timeout, 5000},
+                      %{keepalive, true}, 
+                      {exit_on_close, true}]).
+
+%% TODO config
+-define(LISTEN_PORT, 5000).
+
+%% start a client_listener port accepters.
+-spec start_child() -> no_return().
+start_child() ->
+  lc_listener_sup:start_listener(?MODULE,
+                                 5, 
+                                 ?LISTEN_PORT,
+                                 ?TCP_OPTIONS,
+                                 fun player_sup:start_child/1
+                                ).
+
+%% close all client_listener.
+stop_child() ->
+    lc_listener_sup:stop_listener(?MODULE).

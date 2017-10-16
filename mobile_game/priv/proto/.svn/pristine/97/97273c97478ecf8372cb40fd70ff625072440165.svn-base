@@ -1,0 +1,121 @@
+## 虚空深渊系统
+
+@include "game.sproto"
+
+##==客户端拉取数据======================================
+
+# 玩家基本信息
+proto GET_SELECT_ABYSS_INFO=11
+{
+     client{
+         message=empty
+     }
+     server{
+         message{
+            layer1:u16,           #简单难度层数
+            layer2:u16,           #噩梦难度层数
+            auto_layer1:u16,      #自动爬塔简单层数
+            auto_layer2:u16,      #自动爬塔噩梦层数
+            fight_count:u8,       #挑战次数
+            fight_reset:u8,       #重置次数
+            score:u32,            #积分
+            rankIndex:u16         #排行
+         }
+     }
+}
+
+
+##==客户端服务端交互====================================
+# 自动爬塔
+proto MSG_ABYSS_AUTO_FIGHT=21
+{
+     client{
+         message{
+            diff:u8                           #1简单难度， 2噩梦难度
+         }
+     }
+     server{
+         message{
+            ##drop_prize:list<{item_bid:item_bid,item_count:u32}>,
+            score:u32,                        #该层的积分
+            prize:list<{
+                item_bid:item_bid,            #该层奖励，包括道具奖励和货币奖励
+                item_count:u32
+            }>
+         }
+     }
+}
+
+# 重置
+proto MSG_ABYSS_RESET_COUNT=22
+{
+     client{
+         message{
+            diff:u8
+         }
+     }
+     server{
+         message{
+            state:u8                         #0重置失败（失败会走错误码）， 1重置成功
+         }
+     }
+}
+
+# 战斗
+proto MSG_ABYSS_FIGHT=23
+{
+     client{
+         message{
+            diff:u8                           #1简单难度， 2噩梦难度
+         }
+     }
+     server{
+         message=empty
+     }
+}
+
+#奖励
+proto PUSH_ABYSS_PRIZE=24
+{
+     client{
+     }
+     server{
+         message{
+            instance_id:u32,
+            percent:u8,         ## 衰减度
+            prizeInfo:list<{itemId:item_bid, itemCount:u32}>
+         }
+     }
+}
+
+## # 奖励信息
+## proto MSG_ABYSS_ALL_PRIZE_INFO=25
+## {
+##      client{
+##      }
+##      server{
+##          message
+##          {
+##             prizeListInfo:list<{
+##                 instance_id:u32,                                    # 副本Id
+##                 prizeInfo:list<{itemId:item_bid, itemCount:u32}>,   # 每层的奖励列表
+##                 decay:u16                                           # 每层的奖励衰减
+##             }>             ## 各层的奖励列表
+##          }
+##      }
+## }
+
+## 虚空深渊最后的结算
+proto MSG_ABYSS_COMPLETE=26
+{
+     client{
+     }
+     server{
+         message{
+            basescore:u32,                                      ## 基础积分奖励
+            vipscore:u32,                                       ## vip加成后的 basescore + basescore * vip
+            totalscore:u32,                                     ## 总的积分 以前的+ vipscore
+            prizeInfo:list<{itemId:item_bid, itemCount:u32}>    ## 所有奖励信息
+         }
+     }
+}

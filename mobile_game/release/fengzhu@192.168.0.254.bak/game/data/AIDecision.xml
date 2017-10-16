@@ -1,0 +1,2307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<!-- edited with XMLSpy v2011 (http://www.altova.com) by abcd (abcd) -->
+<Data>
+	<!--AI决策组-->
+	<AI ID="1" desc="怪物基础AI">
+		<Strategy ID="1" desc="在出身点范围内随机移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="向左随机移动" TYPE="MoveLeftInBornArea">
+				<PAR TYPE="number" VAL="300" desc="半径"/>
+				<PAR TYPE="number" VAL="1" desc="限制方向"/>
+				<PAR TYPE="number" VAL="1" desc="移动方向"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="向右随机移动" TYPE="MoveRightInBornArea">
+				<PAR TYPE="number" VAL="300" desc="半径"/>
+				<PAR TYPE="number" VAL="2" desc="限制方向"/>
+				<PAR TYPE="number" VAL="2" desc="移动方向"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换到攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="500" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="131" desc="最小范围"/>
+				<PAR TYPE="number" VAL="500" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="500" LimitCount="-1" desc="近战攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="130" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="2" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="501" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="追随主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="501" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="500" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="2" desc="怪物基础AI">
+		<Strategy ID="1" desc="在出身点范围内随机移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="向左随机移动" TYPE="MoveLeftInBornArea">
+				<PAR TYPE="number" VAL="300" desc="半径"/>
+				<PAR TYPE="number" VAL="1" desc="限制方向"/>
+				<PAR TYPE="number" VAL="1" desc="移动方向"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="向右随机移动" TYPE="MoveRightInBornArea">
+				<PAR TYPE="number" VAL="300" desc="半径"/>
+				<PAR TYPE="number" VAL="2" desc="限制方向"/>
+				<PAR TYPE="number" VAL="2" desc="移动方向"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换到攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="500" desc="最大范围"/>
+				<PAR TYPE="number" VAL="2" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="131" desc="最小范围"/>
+				<PAR TYPE="number" VAL="500" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="500" LimitCount="-1" desc="近战攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="130" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="2" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="501" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="追随主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="501" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="500" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="3" desc="人质">
+		<Strategy ID="1" desc="在出身点范围内随机移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="向左随机移动" TYPE="MoveLeftInBornArea">
+				<PAR TYPE="number" VAL="200" desc="半径"/>
+				<PAR TYPE="number" VAL="1" desc="限制方向"/>
+				<PAR TYPE="number" VAL="1" desc="移动方向"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="向右随机移动" TYPE="MoveRightInBornArea">
+				<PAR TYPE="number" VAL="200" desc="半径"/>
+				<PAR TYPE="number" VAL="2" desc="限制方向"/>
+				<PAR TYPE="number" VAL="2" desc="移动方向"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换到对话" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="500" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="对话">
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="5" LimitCount="-1" desc="对话" TYPE="SayToHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="500" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="string" VAL="我是一只小毛驴你从来也不骑。" desc="对话内容"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="4" desc="近战猛攻AI">
+		<Strategy ID="1" desc="在出身点范围内随机移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换到攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="2100" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="500" LimitCount="-1" desc="近战攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="170" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="2" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="171" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="追随主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="161" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="-1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="160" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="5" desc="远程追杀AI">
+		<Strategy ID="1" desc="在出身点范围内随机移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="向左随机移动" TYPE="MoveLeftInBornArea">
+				<PAR TYPE="number" VAL="50" desc="半径"/>
+				<PAR TYPE="number" VAL="1" desc="限制方向"/>
+				<PAR TYPE="number" VAL="1" desc="移动方向"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="向右随机移动" TYPE="MoveRightInBornArea">
+				<PAR TYPE="number" VAL="50" desc="半径"/>
+				<PAR TYPE="number" VAL="2" desc="限制方向"/>
+				<PAR TYPE="number" VAL="2" desc="移动方向"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换到攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="600" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="600" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="601" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="追随主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="501" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="-1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="500" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="6" desc="站桩远程输出AI">
+		<Strategy ID="1" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="600" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="7" desc="站桩远近输出AI">
+		<Strategy ID="1" desc="在出身点范围内随机移动">
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换到攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="600" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="500" LimitCount="-1" desc="近战攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="160" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="2" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="161" desc="最小范围"/>
+				<PAR TYPE="number" VAL="600" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="8" desc="美国大兵移动AI-1">
+		<Strategy ID="1" desc="在出身点范围内随机移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="向左随机移动" TYPE="MoveLeftInBornArea">
+				<PAR TYPE="number" VAL="50" desc="半径"/>
+				<PAR TYPE="number" VAL="1" desc="限制方向"/>
+				<PAR TYPE="number" VAL="1" desc="移动方向"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="向右随机移动" TYPE="MoveRightInBornArea">
+				<PAR TYPE="number" VAL="50" desc="半径"/>
+				<PAR TYPE="number" VAL="2" desc="限制方向"/>
+				<PAR TYPE="number" VAL="2" desc="移动方向"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="9" desc="美国大兵攻击-远">
+		<Strategy ID="1" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="131" desc="最小范围"/>
+				<PAR TYPE="number" VAL="500" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="300" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="130" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="501" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="1" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="10" desc="美国大兵攻击-近">
+		<Strategy ID="1" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="近程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="131" desc="最小范围"/>
+				<PAR TYPE="number" VAL="500" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="2" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="500" LimitCount="-1" desc="近程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="130" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="2" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="501" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="1" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="11" desc="被攻击近战追杀型">
+		<Strategy ID="1" desc="在出身点范围内随机移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="被攻击切换" TYPE="GotoStateBeAttack">
+				<PAR TYPE="number" VAL="3" desc="切换的策略组编号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="发现玩家切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="400" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="500" LimitCount="-1" desc="近战攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="160" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="2" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="161" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="追随主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="156" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="155" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="12" desc="被攻击远程追杀型">
+		<Strategy ID="1" desc="在出身点范围内随机移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="被攻击切换" TYPE="GotoStateBeAttack">
+				<PAR TYPE="number" VAL="2" desc="切换的策略组编号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="发现玩家切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="400" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="500" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="501" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="追随主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="501" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="500" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="13" desc="被攻击远近追杀型">
+		<Strategy ID="1" desc="在出身点范围内随机移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="被攻击切换" TYPE="GotoStateBeAttack">
+				<PAR TYPE="number" VAL="2" desc="切换的策略组编号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="发现玩家切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="400" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="141" desc="最小范围"/>
+				<PAR TYPE="number" VAL="500" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="500" LimitCount="-1" desc="近战攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="140" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="2" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="501" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="追随主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="501" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="500" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="14" desc="吃鱼的螃蟹（近战躲避版）(屏幕内版)">
+		<Strategy ID="1" desc="切换1">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="被攻击切换" TYPE="GotoStateBeAttack">
+				<PAR TYPE="number" VAL="5" desc="切换的策略组编号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="发现玩家切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="400" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="5" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="向左移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗左移动" TYPE="guaichuchuangyidong">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-130" desc="左范围"/>
+				<PAR TYPE="number" VAL="9999" desc="右范围"/>
+				<PAR TYPE="number" VAL="1" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-500" desc="左范围"/>
+				<PAR TYPE="number" VAL="-131" desc="右范围"/>
+				<PAR TYPE="number" VAL="5" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="1200" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="4" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="200" WriteTime="0" FreezeTime="1900" LimitCount="-1" desc="近战攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="2" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="4" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="1900" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="5" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="229" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="201" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="4" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-900" desc="左范围"/>
+				<PAR TYPE="number" VAL="80" desc="右范围"/>
+				<PAR TYPE="number" VAL="6" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="5" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-80" desc="左范围"/>
+				<PAR TYPE="number" VAL="9999" desc="右范围"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="5" desc="移动到主角身边">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="165" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="166" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="6" desc="向右移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗右移动" TYPE="guaichuchuangyidong">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-900" desc="左范围"/>
+				<PAR TYPE="number" VAL="130" desc="右范围"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="131" desc="左范围"/>
+				<PAR TYPE="number" VAL="500" desc="右范围"/>
+				<PAR TYPE="number" VAL="5" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="15" desc="吃鱼的螃蟹（近战猛攻版）">
+		<Strategy ID="1" desc="切换1">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="被攻击切换" TYPE="GotoStateBeAttack">
+				<PAR TYPE="number" VAL="5" desc="切换的策略组编号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="发现玩家切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="400" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="5" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="切换2">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="900" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="171" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="5" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="200" WriteTime="0" FreezeTime="1000" LimitCount="-1" desc="近战攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="170" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="2" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="4" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="1900" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="5" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="229" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="201" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="5" desc="移动到主角身边">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="165" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="166" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="6" desc="逃离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="5000" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="16" desc="风筝远近左右摇摆型(屏幕内版)">
+		<Strategy ID="1" desc="在出身点范围内随机移动">
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换到攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="5000" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="161" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="3000" LimitCount="-1" desc="近战攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="160" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="2" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="900" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="追随主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="401" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="背离玩家" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="400" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="1500" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="4" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-900" desc="左范围"/>
+				<PAR TYPE="number" VAL="80" desc="右范围"/>
+				<PAR TYPE="number" VAL="5" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="5" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-80" desc="左范围"/>
+				<PAR TYPE="number" VAL="9999" desc="右范围"/>
+				<PAR TYPE="number" VAL="4" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="4" desc="向左移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗左移动" TYPE="guaichuchuangyidong">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-130" desc="左范围"/>
+				<PAR TYPE="number" VAL="9999" desc="右范围"/>
+				<PAR TYPE="number" VAL="1" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-500" desc="左范围"/>
+				<PAR TYPE="number" VAL="-131" desc="右范围"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="5" desc="向右移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗右移动" TYPE="guaichuchuangyidong">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-900" desc="左范围"/>
+				<PAR TYPE="number" VAL="130" desc="右范围"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="131" desc="左范围"/>
+				<PAR TYPE="number" VAL="500" desc="右范围"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="17" desc="螃蟹远攻风筝（间隔长）(屏幕内版)">
+		<Strategy ID="1" desc="切换1">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="发现玩家切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="2000" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="4" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="1800" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="300" desc="最小范围"/>
+				<PAR TYPE="number" VAL="450" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="450" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="300" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="4" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-900" desc="左范围"/>
+				<PAR TYPE="number" VAL="80" desc="右范围"/>
+				<PAR TYPE="number" VAL="5" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="5" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-80" desc="左范围"/>
+				<PAR TYPE="number" VAL="9999" desc="右范围"/>
+				<PAR TYPE="number" VAL="4" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="900" FreezeTime="0" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="200" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="4" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="300" desc="最小范围"/>
+				<PAR TYPE="number" VAL="450" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="451" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="299" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="4" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-900" desc="左范围"/>
+				<PAR TYPE="number" VAL="80" desc="右范围"/>
+				<PAR TYPE="number" VAL="6" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="5" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-80" desc="左范围"/>
+				<PAR TYPE="number" VAL="9999" desc="右范围"/>
+				<PAR TYPE="number" VAL="5" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="5" desc="向左移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗左移动" TYPE="guaichuchuangyidong">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-190" desc="左范围"/>
+				<PAR TYPE="number" VAL="9999" desc="右范围"/>
+				<PAR TYPE="number" VAL="1" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-500" desc="左范围"/>
+				<PAR TYPE="number" VAL="-191" desc="右范围"/>
+				<PAR TYPE="number" VAL="4" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="6" desc="向右移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗右移动" TYPE="guaichuchuangyidong">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-900" desc="左范围"/>
+				<PAR TYPE="number" VAL="190" desc="右范围"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="191" desc="左范围"/>
+				<PAR TYPE="number" VAL="500" desc="右范围"/>
+				<PAR TYPE="number" VAL="4" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="18" desc="螃蟹远攻风筝（间隔短）(屏幕内版)">
+		<Strategy ID="1" desc="切换1">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="发现玩家切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="2000" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="4" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="1100" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="299" desc="最小范围"/>
+				<PAR TYPE="number" VAL="449" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="450" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="300" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="4" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-900" desc="左范围"/>
+				<PAR TYPE="number" VAL="80" desc="右范围"/>
+				<PAR TYPE="number" VAL="5" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="5" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-80" desc="左范围"/>
+				<PAR TYPE="number" VAL="9999" desc="右范围"/>
+				<PAR TYPE="number" VAL="4" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="700" FreezeTime="0" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="4" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="300" desc="最小范围"/>
+				<PAR TYPE="number" VAL="450" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="451" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="299" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="4" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-900" desc="左范围"/>
+				<PAR TYPE="number" VAL="80" desc="右范围"/>
+				<PAR TYPE="number" VAL="6" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="5" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-80" desc="左范围"/>
+				<PAR TYPE="number" VAL="9999" desc="右范围"/>
+				<PAR TYPE="number" VAL="5" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="5" desc="向左移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗左移动" TYPE="guaichuchuangyidong">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-190" desc="左范围"/>
+				<PAR TYPE="number" VAL="9999" desc="右范围"/>
+				<PAR TYPE="number" VAL="1" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-500" desc="左范围"/>
+				<PAR TYPE="number" VAL="-191" desc="右范围"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="6" desc="向右移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗右移动" TYPE="guaichuchuangyidong">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-900" desc="左范围"/>
+				<PAR TYPE="number" VAL="190" desc="右范围"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="191" desc="左范围"/>
+				<PAR TYPE="number" VAL="500" desc="右范围"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="19" desc="摇摆灵活的螃蟹(屏幕内版)">
+		<Strategy ID="1" desc="在出身点范围内随机移动">
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换到攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="5000" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="远程攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="900" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="保持距离">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="321" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="背离玩家" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="320" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="1400" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="4" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="4" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-900" desc="左范围"/>
+				<PAR TYPE="number" VAL="80" desc="右范围"/>
+				<PAR TYPE="number" VAL="8" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="5" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-80" desc="左范围"/>
+				<PAR TYPE="number" VAL="9999" desc="右范围"/>
+				<PAR TYPE="number" VAL="7" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="4" desc="选择远近战">
+			<DECISIONS Benefit="100" Block="1" Rand="400" WriteTime="200" FreezeTime="1" LimitCount="-1" desc="切换远程攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="200" FreezeTime="1" LimitCount="-1" desc="切换近战攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="6" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换近战攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="170" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="5" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="5" desc="近战攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="3000" LimitCount="-1" desc="近战攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="2" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="900" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="6" desc="接近玩家">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="170" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="169" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="5" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="7" desc="向左移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗左移动" TYPE="guaichuchuangyidong">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-130" desc="左范围"/>
+				<PAR TYPE="number" VAL="9999" desc="右范围"/>
+				<PAR TYPE="number" VAL="1" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-500" desc="左范围"/>
+				<PAR TYPE="number" VAL="-131" desc="右范围"/>
+				<PAR TYPE="number" VAL="9" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="8" desc="向右移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗右移动" TYPE="guaichuchuangyidong">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-900" desc="左范围"/>
+				<PAR TYPE="number" VAL="130" desc="右范围"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="131" desc="左范围"/>
+				<PAR TYPE="number" VAL="500" desc="右范围"/>
+				<PAR TYPE="number" VAL="9" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="9" desc="选择远近逃离">
+			<DECISIONS Benefit="100" Block="1" Rand="400" WriteTime="200" FreezeTime="1" LimitCount="-1" desc="切换远程攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="200" FreezeTime="1" LimitCount="-1" desc="切换近战攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="6" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换近战攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="170" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="5" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="200" WriteTime="200" FreezeTime="1" LimitCount="-1" desc="切换到逃离" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="20" desc="屏幕外走出站桩输出">
+		<Strategy ID="1" desc="保持距离">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="450" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="449" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="4" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="远程攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="500" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="21" desc="黄蜂风筝输出高位10.6(屏幕内版)">
+		<Strategy ID="1" desc="切换1">
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="发现玩家切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="2000" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="4" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="1500" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="350" desc="最小范围"/>
+				<PAR TYPE="number" VAL="450" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="450" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="350" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="4" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-900" desc="左范围"/>
+				<PAR TYPE="number" VAL="50" desc="右范围"/>
+				<PAR TYPE="number" VAL="6" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="5" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-50" desc="左范围"/>
+				<PAR TYPE="number" VAL="9999" desc="右范围"/>
+				<PAR TYPE="number" VAL="5" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="700" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="4" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="350" desc="最小范围"/>
+				<PAR TYPE="number" VAL="450" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="450" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="350" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="5" desc="向左移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗左移动" TYPE="guaichuchuangyidong">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-400" desc="左范围"/>
+				<PAR TYPE="number" VAL="999" desc="右范围"/>
+				<PAR TYPE="number" VAL="1" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-800" desc="左范围"/>
+				<PAR TYPE="number" VAL="-399" desc="右范围"/>
+				<PAR TYPE="number" VAL="4" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="6" desc="向右移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗右移动" TYPE="guaichuchuangyidong">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-900" desc="左范围"/>
+				<PAR TYPE="number" VAL="400" desc="右范围"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="401" desc="左范围"/>
+				<PAR TYPE="number" VAL="800" desc="右范围"/>
+				<PAR TYPE="number" VAL="4" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="22" desc="黄蜂风筝输出中位8.6(屏幕内版)">
+		<Strategy ID="1" desc="切换1">
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="发现玩家切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="2000" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="4" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="1500" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="250" desc="最小范围"/>
+				<PAR TYPE="number" VAL="350" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="351" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="249" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="4" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-900" desc="左范围"/>
+				<PAR TYPE="number" VAL="50" desc="右范围"/>
+				<PAR TYPE="number" VAL="6" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="5" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-50" desc="左范围"/>
+				<PAR TYPE="number" VAL="9999" desc="右范围"/>
+				<PAR TYPE="number" VAL="5" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="700" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="4" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="250" desc="最小范围"/>
+				<PAR TYPE="number" VAL="350" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="351" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="249" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="5" desc="向左移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗左移动" TYPE="guaichuchuangyidong">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-400" desc="左范围"/>
+				<PAR TYPE="number" VAL="999" desc="右范围"/>
+				<PAR TYPE="number" VAL="1" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-800" desc="左范围"/>
+				<PAR TYPE="number" VAL="-399" desc="右范围"/>
+				<PAR TYPE="number" VAL="4" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="6" desc="向右移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗右移动" TYPE="guaichuchuangyidong">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-900" desc="左范围"/>
+				<PAR TYPE="number" VAL="400" desc="右范围"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="401" desc="左范围"/>
+				<PAR TYPE="number" VAL="800" desc="右范围"/>
+				<PAR TYPE="number" VAL="4" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="23" desc="黄蜂风筝输出低位6.8（屏幕内版）">
+		<Strategy ID="1" desc="切换1">
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="发现玩家切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="2000" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="4" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="1500" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="150" desc="最小范围"/>
+				<PAR TYPE="number" VAL="250" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="251" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="149" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="4" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-900" desc="左范围"/>
+				<PAR TYPE="number" VAL="50" desc="右范围"/>
+				<PAR TYPE="number" VAL="6" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="5" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-50" desc="左范围"/>
+				<PAR TYPE="number" VAL="9999" desc="右范围"/>
+				<PAR TYPE="number" VAL="5" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="700" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="4" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="150" desc="最小范围"/>
+				<PAR TYPE="number" VAL="250" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="251" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="149" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="5" desc="向左移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗左移动" TYPE="guaichuchuangyidong">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-400" desc="左范围"/>
+				<PAR TYPE="number" VAL="999" desc="右范围"/>
+				<PAR TYPE="number" VAL="1" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-800" desc="左范围"/>
+				<PAR TYPE="number" VAL="-399" desc="右范围"/>
+				<PAR TYPE="number" VAL="4" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="6" desc="向右移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗右移动" TYPE="guaichuchuangyidong">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-900" desc="左范围"/>
+				<PAR TYPE="number" VAL="400" desc="右范围"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="401" desc="左范围"/>
+				<PAR TYPE="number" VAL="800" desc="右范围"/>
+				<PAR TYPE="number" VAL="4" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="24" desc="盾牌兵站桩远近输出AI">
+		<Strategy ID="1" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="2" Rand="200" WriteTime="0" FreezeTime="4000" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="171" desc="最小范围"/>
+				<PAR TYPE="number" VAL="550" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="200" WriteTime="0" FreezeTime="900" LimitCount="-1" desc="近战攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="170" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="2" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="25" desc="向左移动200站桩远近输出">
+		<Strategy ID="1" desc="在出身点范围内随机移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="向左随机移动" TYPE="MoveLeftInBornArea">
+				<PAR TYPE="number" VAL="200" desc="半径"/>
+				<PAR TYPE="number" VAL="1" desc="限制方向"/>
+				<PAR TYPE="number" VAL="1" desc="移动方向"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换到攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="600" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="151" desc="最小范围"/>
+				<PAR TYPE="number" VAL="600" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="700" LimitCount="-1" desc="近战攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="150" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="2" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="26" desc="向右移动200站桩远近输出">
+		<Strategy ID="1" desc="在出身点范围内随机移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="向右随机移动" TYPE="MoveRightInBornArea">
+				<PAR TYPE="number" VAL="200" desc="半径"/>
+				<PAR TYPE="number" VAL="2" desc="限制方向"/>
+				<PAR TYPE="number" VAL="2" desc="移动方向"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换到攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="600" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="151" desc="最小范围"/>
+				<PAR TYPE="number" VAL="600" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="700" LimitCount="-1" desc="近战攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="150" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="2" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="27" desc="向左移动200站桩远程输出">
+		<Strategy ID="1" desc="在出身点范围内随机移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="向左随机移动" TYPE="MoveLeftInBornArea">
+				<PAR TYPE="number" VAL="200" desc="半径"/>
+				<PAR TYPE="number" VAL="1" desc="限制方向"/>
+				<PAR TYPE="number" VAL="1" desc="移动方向"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换到攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="600" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="600" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="28" desc="向右移动200站桩远程输出">
+		<Strategy ID="1" desc="在出身点范围内随机移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="向右随机移动" TYPE="MoveRightInBornArea">
+				<PAR TYPE="number" VAL="200" desc="半径"/>
+				<PAR TYPE="number" VAL="2" desc="限制方向"/>
+				<PAR TYPE="number" VAL="2" desc="移动方向"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换到攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="600" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="600" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="29" desc="向左移动200站桩近战输出">
+		<Strategy ID="1" desc="在出身点范围内随机移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="向左随机移动" TYPE="MoveLeftInBornArea">
+				<PAR TYPE="number" VAL="200" desc="半径"/>
+				<PAR TYPE="number" VAL="1" desc="限制方向"/>
+				<PAR TYPE="number" VAL="1" desc="移动方向"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换到攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="600" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="700" LimitCount="-1" desc="近战攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="165" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="2" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="30" desc="向右移动200站桩近战输出">
+		<Strategy ID="1" desc="在出身点范围内随机移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="向右随机移动" TYPE="MoveRightInBornArea">
+				<PAR TYPE="number" VAL="200" desc="半径"/>
+				<PAR TYPE="number" VAL="2" desc="限制方向"/>
+				<PAR TYPE="number" VAL="2" desc="移动方向"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换到攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="600" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="700" LimitCount="-1" desc="近战攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="165" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="2" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="31" desc="螃蟹近战躲避版(屏幕内版)">
+		<Strategy ID="1" desc="切换1">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="发现玩家切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="2000" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="5" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="向左移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗左移动" TYPE="guaichuchuangyidong">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-130" desc="左范围"/>
+				<PAR TYPE="number" VAL="9999" desc="右范围"/>
+				<PAR TYPE="number" VAL="1" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-500" desc="左范围"/>
+				<PAR TYPE="number" VAL="-131" desc="右范围"/>
+				<PAR TYPE="number" VAL="5" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="1200" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="4" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="200" WriteTime="0" FreezeTime="1900" LimitCount="-1" desc="近战攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="2" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="4" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="1900" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="5" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="229" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="201" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="4" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-900" desc="左范围"/>
+				<PAR TYPE="number" VAL="80" desc="右范围"/>
+				<PAR TYPE="number" VAL="6" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="5" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="右出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="2" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-80" desc="左范围"/>
+				<PAR TYPE="number" VAL="9999" desc="右范围"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="5" desc="移动到主角身边">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="165" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="166" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="6" desc="向右移动">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗右移动" TYPE="guaichuchuangyidong">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="-900" desc="左范围"/>
+				<PAR TYPE="number" VAL="130" desc="右范围"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="左出窗" TYPE="guaichuchuangpd">
+				<PAR TYPE="number" VAL="1" desc="左出窗"/>
+				<PAR TYPE="number" VAL="131" desc="左范围"/>
+				<PAR TYPE="number" VAL="500" desc="右范围"/>
+				<PAR TYPE="number" VAL="5" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="32" desc="站桩远程输出800距离3500ms">
+		<Strategy ID="1" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="3500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="800" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="33" desc="站桩远程输出960距离4000ms">
+		<Strategy ID="1" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="960" WriteTime="0" FreezeTime="4000" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="600" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="34" desc="吃鱼的螃蟹（近战躲避版）">
+		<Strategy ID="1" desc="切换1">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="被攻击切换" TYPE="GotoStateBeAttack">
+				<PAR TYPE="number" VAL="5" desc="切换的策略组编号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="发现玩家切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="400" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="5" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="切换2">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="1100" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="4" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="200" WriteTime="0" FreezeTime="3000" LimitCount="-1" desc="近战攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="2" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="4" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="1900" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="5" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="229" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="201" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="5" desc="移动到主角身边">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="165" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="166" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="6" desc="逃离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="5000" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="35" desc="风筝远攻左右摇摆型">
+		<Strategy ID="1" desc="在出身点范围内随机移动">
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换到攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="5000" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="161" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="3000" LimitCount="-1" desc="近战攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="160" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="2" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="900" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="追随主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="401" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="背离玩家" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="400" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="900" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="36" desc="螃蟹远攻风筝（间隔长）">
+		<Strategy ID="1" desc="切换1">
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="发现玩家切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="2000" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="4" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="3000" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="250" desc="最小范围"/>
+				<PAR TYPE="number" VAL="450" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="450" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="250" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="1" FreezeTime="0" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="200" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="4" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="250" desc="最小范围"/>
+				<PAR TYPE="number" VAL="450" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="450" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="250" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="5" desc="移动到主角身边">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="165" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="166" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="6" desc="逃离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="5000" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="37" desc="螃蟹远攻风筝（间隔快）">
+		<Strategy ID="1" desc="切换1">
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="发现玩家切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="2000" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="4" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="1500" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="250" desc="最小范围"/>
+				<PAR TYPE="number" VAL="450" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="450" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="250" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="9" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="200" WriteTime="0" FreezeTime="3000" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="4" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="250" desc="最小范围"/>
+				<PAR TYPE="number" VAL="450" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="450" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="250" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="38" desc="摇摆灵活的螃蟹">
+		<Strategy ID="1" desc="在出身点范围内随机移动">
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换到攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="5000" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="远程攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="900" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="保持距离">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="401" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="背离玩家" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="400" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="1400" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="4" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="4" desc="选择远近战">
+			<DECISIONS Benefit="100" Block="1" Rand="400" WriteTime="200" FreezeTime="1" LimitCount="-1" desc="切换远程攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="200" FreezeTime="1" LimitCount="-1" desc="切换近战攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="6" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换近战攻击" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="170" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="5" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="5" desc="近战攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="3000" LimitCount="-1" desc="近战攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="2" desc="武器ID"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="900" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="6" desc="接近玩家">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="170" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="169" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="5" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="39" desc="黄蜂风筝输出高位10.6">
+		<Strategy ID="1" desc="切换1">
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="发现玩家切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="2000" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="4" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="3000" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="350" desc="最小范围"/>
+				<PAR TYPE="number" VAL="450" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="450" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="350" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="200" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="4" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="350" desc="最小范围"/>
+				<PAR TYPE="number" VAL="450" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="450" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="350" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="5" desc="移动到主角身边">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="165" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="166" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="6" desc="逃离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="5000" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="40" desc="黄蜂风筝输出中位8.6">
+		<Strategy ID="1" desc="切换1">
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="发现玩家切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="2000" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="4" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="3000" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="250" desc="最小范围"/>
+				<PAR TYPE="number" VAL="350" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="350" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="250" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="200" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="4" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="250" desc="最小范围"/>
+				<PAR TYPE="number" VAL="350" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="350" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="250" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="41" desc="黄蜂风筝输出低位6.8">
+		<Strategy ID="1" desc="切换1">
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="发现玩家切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="2000" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="4" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="3000" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="150" desc="最小范围"/>
+				<PAR TYPE="number" VAL="250" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="250" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="150" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="200" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="2" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="2500" LimitCount="-1" desc="远程攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="1" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="4" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="150" desc="最小范围"/>
+				<PAR TYPE="number" VAL="250" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="250" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="150" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+	<AI ID="42" desc="螃蟹近战躲避版">
+		<Strategy ID="1" desc="切换1">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="被攻击切换" TYPE="GotoStateBeAttack">
+				<PAR TYPE="number" VAL="5" desc="切换的策略组编号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="发现玩家切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="2000" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="5" desc="切换的策略组编号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="2" desc="切换2">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="3" desc="攻击主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="1100" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="4" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="200" WriteTime="0" FreezeTime="3000" LimitCount="-1" desc="近战攻击" TYPE="AttackHeroByWeapon">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="是否取反"/>
+				<PAR TYPE="number" VAL="2" desc="武器ID"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="4" desc="保持距离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="1900" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="5" desc="切换组号"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="229" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="3" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="201" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="5" desc="移动到主角身边">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="追随" TYPE="FollowHero">
+				<PAR TYPE="number" VAL="165" desc="最小范围"/>
+				<PAR TYPE="number" VAL="9999" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+			<DECISIONS Benefit="100" Block="2" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="切换" TYPE="GotoStateOnWatchHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="166" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+				<PAR TYPE="number" VAL="3" desc="切换组号"/>
+			</DECISIONS>
+		</Strategy>
+		<Strategy ID="6" desc="逃离主角">
+			<DECISIONS Benefit="100" Block="1" Rand="100" WriteTime="0" FreezeTime="1" LimitCount="-1" desc="逃离" TYPE="OutHero">
+				<PAR TYPE="number" VAL="0" desc="最小范围"/>
+				<PAR TYPE="number" VAL="5000" desc="最大范围"/>
+				<PAR TYPE="number" VAL="1" desc="不取反"/>
+			</DECISIONS>
+		</Strategy>
+	</AI>
+</Data>

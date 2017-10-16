@@ -1,0 +1,6 @@
+﻿id	名称	资源路径
+id	client_name	client_resource
+1	烟花	effects/fireworks/flower_particle_texture.pt
+2	红玫瑰	effects/fireworks/lihua1.skel
+3	蓝玫瑰	effects/fireworks/lihua2.skel
+4	白玫瑰	effects/fireworks/lihua3.skel

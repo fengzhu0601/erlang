@@ -1,0 +1,55 @@
+
+%% 公共拍卖信息
+-define(com_auction_tab, com_auction_tab).                 %% 公共拍卖信息表
+-record(com_auction_tab, {
+    id = 0,                  %% 拍卖id
+    item_state = 1,        %% 物品的拍卖状态（1，正在拍卖中， 0已经被经被卖掉，一口价）
+    cfg_id = 0,            %% 配置表中的索引id
+    ver = 0,               %% 版本号,用于数据升级
+    item = undefined,      %% 物品             #item_new{} | {Bid, Count}
+    item_type = 0,         %% 物品类型
+    seller,                %% 物品出售者name
+
+    money_type = 0,        %% 货币类型
+    start_price = 0,       %% 起拍价格
+    high_price = 0,        %% 一口价
+    step_price = 0,        %% 最小单位的计算价格（最少加价）
+
+    cur_price = 0,         %% 当前价格
+    bider_id = 0,          %% 竞拍人
+    fee_rate = 0,          %% 当被新增拍卖者的价格超过时，原拍卖者的钱按照此比率退回（千分比）
+
+    timeout = 0,           %% 拍卖超时时间
+    timer_ref             %% 定时器引用
+}).
+
+%% 个人拍卖背包
+-record(auction_tab, {
+    id,
+    ver = 0,
+    auction_bag = []  %% [{AuctionId, IsTimeout}] [{拍卖id, 是否流拍}]
+}).
+
+-define(auction_log_tab, auction_log_tab).
+-record(auction_log_tab,
+{
+    id = 0,                 %% 拍卖id
+    playerId = 0,           %% 拍下物品的玩家id
+    itemId = 0,               %% 拍下物品
+    money_type = 0,         %% 拍卖时使用的货币类型
+    owner_name = [],        %% 物品拥有者名字
+    price = 0,              %% 价格
+    datetime = 0,           %% 参加竞拍的时间
+    payType = 0             %% 支付类型（1 一口价， 0 最高价）
+}).
+
+-define(day_auction_count, day_auction_count).             %% 每天可以拍卖的次数
+-define(player_auction_tab, player_auction_table).
+-define(com_auction_timeout_tab, com_auction_timeout_tab). %% 公共拍卖流拍信息表
+
+-define(item_auction_ed, 0).
+-define(item_auction_ing, 1).
+
+-define(pd_auction_time_out, pd_auction_time_out). %% 拍卖行休市的时间区间
+
+

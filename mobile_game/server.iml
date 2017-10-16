@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="ERLANG_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="erlang" name="Erlang">
+      <configuration />
+    </facet>
+    <facet type="Lua" name="Lua">
+      <configuration SdkName="Kahlua" />
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/game/include" type="erlang-include" />
+      <sourceFolder url="file://$MODULE_DIR$/src/game/config_data" type="erlang-include" />
+      <sourceFolder url="file://$MODULE_DIR$/src/game/event_server" type="erlang-include" />
+      <sourceFolder url="file://$MODULE_DIR$/src/game/global_data" type="erlang-include" />
+      <sourceFolder url="file://$MODULE_DIR$/src/auto/defs" type="erlang-include" />
+      <sourceFolder url="file://$MODULE_DIR$/src/auto/proto" type="erlang-include" />
+      <sourceFolder url="file://$MODULE_DIR$/src/game/link/wk_player/callback" type="erlang-include" />
+      <sourceFolder url="file://$MODULE_DIR$/src/game/link/wk_player/db_data" type="erlang-include" />
+      <sourceFolder url="file://$MODULE_DIR$/src/game/link/wk_scene/include" type="erlang-include" />
+      <sourceFolder url="file://$MODULE_DIR$/src/game/msg_include" type="erlang-include" />
+      <sourceFolder url="file://$MODULE_DIR$/src/game/util" type="erlang-include" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/erlang_mysql/include" type="erlang-include" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/common/include" type="erlang-include" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/config/include" type="erlang-include" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/gm_controller/include" type="erlang-include" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/json/include" type="erlang-include" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/lager/include" type="erlang-include" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/pangzi/include" type="erlang-include" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

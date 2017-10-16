@@ -1,0 +1,3 @@
+﻿位置id	怪物id	场景内的x	场景内的y	方向
+id	group_id	x	y	direction
+1	11	19	13	7

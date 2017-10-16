@@ -1,0 +1,23 @@
+
+MSG_SPELL_ADD=1
+# S-C
+# spellId:16
+
+## 学习和升级龙纹
+# C-S  longWenIdCfg:16   不含等级的id
+# S-C longWenIdCfgId:32   包含等级的id
+MSG_SPELL_ADD_LONG_WEN=2
+
+## Get LongWen Info
+# C->S NULL
+# S->C 
+# Len:8 
+#  for Len
+#  	LongWenCfgId:32
+MSG_SPELL_GET_LONG_WEN=3
+
+##获得被动技能
+## spellId:16
+#MSG_C2S_SPELL_PASSIVE_ADD=5
+## spellId:16
+#MSG_S2C_SPELL_PASSIVE_ADD=6

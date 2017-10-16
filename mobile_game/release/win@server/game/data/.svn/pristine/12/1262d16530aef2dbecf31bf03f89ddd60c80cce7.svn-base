@@ -1,0 +1,15 @@
+﻿id	名字	坐骑描述	icon	path1(后景）	path2（前景）	乘骑属性，乘骑后增加
+id	client_name	client_desc	client_icon	client_path1	client_path2	speed
+1	草原战马	"极光大陆的野马，配上马鞍后，能载人长途跋涉，是世界上最常用的坐骑。"	"horse/icon/icon_mount_00001.png"	"avatars/horse/mount_00001.skel"	""	[{37,5}]
+2	冲锋岩羊	"雷霆之巅石林的岩羊，头生大角，能抵御刀剑，身体强壮，攀山越岭不在话下。是矮人族喜爱的坐骑。"	"horse/icon/icon_mount_00002.png"	"avatars/horse/mount_00002_hou.skel"	"avatars/horse/mount_00002_qian.skel"	[{37,10}]
+3	狂怒犹猪	"暮光森林里面的犹猪，黑皮肤,獠牙外凸,身材并不高大,但是胜在皮厚.驾驭起来有点费力,毕竟容易被敌人的食物迷惑。"	"horse/icon/icon_mount_00003.png"	"avatars/horse/mount_00003_hou.skel"	"avatars/horse/mount_00003_qian.skel"	[{37,15}]
+4	月光角鹿	"暮光森林中精灵族的高贵坐骑，头生巨角，体格强健，耐寒，非常适合去寒冷的地方乘骑。"	"horse/icon/icon_mount_00004.png"	"avatars/horse/mount_00004_hou.skel"	"avatars/horse/mount_00004_qian.skel"	[{37,20}]
+5	极地雪狼	"远古冰川中的大型雪狼，身披甲胄，口有利齿，可配合骑手上下攻击"	"horse/icon/icon_mount_00005.png"	"avatars/horse/mount_00005_hou.skel"	"avatars/horse/mount_00005_qian.skel"	[{37,25}]
+6	嗜血暴熊	"远古冰川中的暴熊，力大无比，目光森冷，能帮助主人横扫战场，如入无人之境。"	"horse/icon/icon_mount_00006.png"	"avatars/horse/mount_00006_hou.skel"	"avatars/horse/mount_00006_qian.skel"	[{37,30}]
+7	威武狮王	"龙骨荒野的蓝色狮王，威武霸气，身披黄金甲，只有王者才有资格坐在它背上"	"horse/icon/icon_mount_00007.png"	"avatars/horse/mount_00007_hou.skel"	"avatars/horse/mount_00007_qian.skel"	[{37,35}]
+8	独角飞马	"传说在天空之城生活的坐骑，梦幻般的身姿，背履双翼，高贵典雅，常载人往返于天地间。"	"horse/icon/icon_mount_00008.png"	"avatars/horse/mount_00008_hou.skel"	"avatars/horse/mount_00008_qian.skel"	[{37,40}]
+9	重装狮鹫	"传说在耳语海岸生活的物种，鹰头，狮身，背生双翼，身负重甲，骑上它，敢与龙争雄"	"horse/icon/icon_mount_00009.png"	"avatars/horse/mount_00009_hou.skel"	"avatars/horse/mount_00009_qian.skel"	[{37,45}]
+10	虚空飞龙	"传说在虚空深渊生活的蓝龙，是一股镇压魔王的隐藏力量，远古时代与人类共同抗击魔族，身上雷霆闪耀，隐隐展示着他们的魔法力量。"	"horse/icon/icon_mount_00010.png"	"avatars/horse/mount_00010_hou.skel"	"avatars/horse/mount_00010_qian.skel"	[{37,50}]
+11	午夜凶影	"来自幽冥的凶影，生前是一匹英雄的战马，与英雄同死于恶魔手上，恶魔将它转化成魔物，它时常会在深夜出来回味曾经的宿命。"	"horse/icon/icon_mount_special_00001.png"	"avatars/horse/mount_special_00001.skel"	""	[{37,50}]
+12	绿野熊猫	"来自东方的萌宠坐骑，载人逍遥于天地间，它代表着生命与快乐，它途径的地方，往往留下绿色的生机。"	"horse/icon/icon_mount_special_00002.png"	"avatars/horse/mount_special_00002.skel"	""	[{37,50}]
+13	烈焰魔龙	"曾经是无恶不作的魔龙，脚踏烈焰，鼻息间火星隐现。背生魔翼，身披重甲，骑上它，天地间的对手，已寥寥无几。"	"horse/icon/icon_mount_special_00003.png"	"avatars/horse/mount_special_00003_hou.skel"	"avatars/horse/mount_special_00003_qian.skel"	[{37,50}]

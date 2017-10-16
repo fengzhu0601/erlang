@@ -1,0 +1,15 @@
+﻿id	名字	icon	path1后景）	path2（前景）	speed
+id	name	icon	path1	path2	speed
+1	草原战马	"horse/icon/icon_mount_00001.png"	"avatars/horse/mount_00001.skel"		{{37,120}}
+2	冲锋岩羊	"horse/icon/icon_mount_00002.png"	"avatars/horse/mount_00002.skel"		{{37,125}}
+3	狂怒犹猪	"horse/icon/icon_mount_00003.png"	"avatars/horse/mount_00003.skel"		{{37,130}}
+4	月光角鹿	"horse/icon/icon_mount_00004.png"	"avatars/horse/mount_00004.skel"		{{37,135}}
+5	极地雪狼	"horse/icon/icon_mount_00005.png"	"avatars/horse/mount_00005.skel"		{{37,140}}
+6	嗜血暴熊	"horse/icon/icon_mount_00006.png"	"avatars/horse/mount_00006.skel"		{{37,145}}
+7	威武狮王	"horse/icon/icon_mount_00007.png"	"avatars/horse/mount_00007.skel"		{{37,150}}
+8	独角飞马	"horse/icon/icon_mount_00008.png"	"avatars/horse/mount_00008.skel"		{{37,155}}
+9	重装狮鹫	"horse/icon/icon_mount_00009.png"	"avatars/horse/mount_00009.skel"		{{37,160}}
+10	虚空飞龙	"horse/icon/icon_mount_00010.png"	"avatars/horse/mount_00010.skel"		{{37,165}}
+101	午夜凶影	"horse/icon/icon_mount_special_00001.png"	"avatars/horse/mount_special_00001.skel"		{{37,165}}
+102	绿野熊猫	"horse/icon/icon_mount_special_00002.png"	"avatars/horse/mount_special_00002.skel"		{{37,165}}
+103	烈焰魔龙	"horse/icon/icon_mount_special_00003.png"	"avatars/horse/mount_special_00003.skel"		{{37,165}}

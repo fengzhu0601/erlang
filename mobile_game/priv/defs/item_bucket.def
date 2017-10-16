@@ -1,0 +1,12 @@
+
+### item_atom
+enum bucket_type
+{
+    BUCKET_TYPE_BAG    = 1 : pd_bag,
+    BUCKET_TYPE_DEPOT  = 2 : pd_depot,
+    BUCKET_TYPE_EQM    = 3 : pd_equip,
+}
+
+### equip_atom
+atom pd_he_cheng_yl
+

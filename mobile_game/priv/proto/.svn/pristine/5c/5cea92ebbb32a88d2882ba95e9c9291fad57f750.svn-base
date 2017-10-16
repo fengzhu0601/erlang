@@ -1,0 +1,760 @@
+@include "game.sproto"
+
+struct player_info{
+    index:u8,
+    finalPlayer:u8,
+    playerId:player_id,
+    playerName:sstr,
+    playerLev:player_level,
+    playerCarrer:player_carrer
+}
+
+# zhanghao登录
+proto MSG_PLAYER_ACCOUNT_LOGIN=1
+{
+    client
+    {
+        message
+        {
+            platformPlayerName:sstr,
+            passworld:sstr,
+            platformId:u8,
+            serverId:u16,
+            machine_mac:sstr,   # 设备MAC地址
+            machine_id:sstr,    # 设备ID
+            machine_style:sstr, # 设备型号
+            machine_info:sstr   # 设备系统信息
+        }
+    }
+
+    server
+    {
+        # while
+        #    size:u8
+        #    index:u8
+        #    playerid:player_id
+        #    playername:sstr
+        #    playerlevel:player_level,
+        #    playercarrer:player_carrer
+        #    effect/binary
+        #    avatar/binary
+        # finalPlayer:u8
+        message
+        {
+            finalplayer:u8,
+            info:binary
+        }
+    }
+
+    errnos{
+        ERR_ROLE_NOT_EXIST,
+        ERR_ACCOUNT_ONLY_JOIN_ONE,   ##  一个账户
+        ERR_ACCOUNT_PASSWORD   ##  密码错误
+    }
+}
+
+
+
+## 错误消息
+proto MSG_PLAYER_ERROR=2
+{
+    client{}
+
+    server{
+        message{
+            cmdId:u16,
+            errCode:u16,
+            arg:binary
+        }
+    }
+}
+
+# 玩家创建英雄
+proto MSG_PLAYER_CREATE_ROLE=4
+{
+    client{
+        message {
+            index:u8,
+            career:player_carrer,
+            name:binary
+        }
+    }
+
+    server{
+        message=empty
+    }
+
+    errnos{
+        ERR_ROLE_NAME_NOT_ILLEGAL,
+        ERR_ROLE_NAME_ALREAY_EXIST
+    }
+}
+
+
+
+
+# 保持客户端数据, 私有数据
+proto MSG_PLAYER_CLIENT_DATA_POST=7 
+{
+    client{
+        message {
+            type:u8, // 类型 
+            data:binary // 内容
+        }
+    }
+
+    server{}
+}
+
+typedef client_data_id = u8
+
+# 获得客户端数据, 私有数据
+proto MSG_PLAYER_CLIENT_DATA_GET=8 
+{
+    client{
+        message {
+            type:client_data_id// 类型 
+        }
+    }
+
+    server{
+        message {
+            type:client_data_id, // 类型 
+            data:binary // 内容
+        }
+    }
+}
+
+## 后台较色已经初始化完成，上线成功
+proto MSG_PLAYER_ONLINE_FINISH=9
+{
+    client{}
+
+    server{
+        message{
+             uptime:u64 //服务器的当前uptime
+        }
+    }
+}
+
+## 回显
+proto MSG_PLAYER_ECHO=10
+{
+    client{
+        message {
+            msg:binary
+        }
+    }
+
+    server{
+        message {
+            msg:binary
+        }
+    }
+}
+
+proto MSG_PLAYER_GET_SERVER_TIME=11
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message {
+            timetampMsec:u64
+        }
+    }
+}
+
+# 各种数值变化
+proto MSG_PLAYER_DATA_CHANGED=15
+{
+    client{}
+
+    server{
+        message {
+#-define(PL_MONEY, 10).
+#-define(PL_DIAMOND, 11).
+#-define(PL_FRAGMENT, 12).
+#-define(PL_LEVEL, 20).
+#-define(PL_EXP, 21).
+#-define(PL_HP, 22).
+#-define(PL_LONGWENS, 23).
+#-define(PL_HONOUR, 24).
+#-define(PL_PEARL, 25).
+#-define(PL_LONG_WEN, 26).
+#-define(PL_COMBAT_POWER, 30).
+#-define(PL_MP, 31).
+#-define(PL_SP, 104).
+            type:u8,
+            Value:u32
+        }
+    }
+}
+
+
+## 自身属性改变
+proto MSG_PLAYER_ATTR_CHANGE=16
+{
+    client{}
+
+    server{
+        message {
+            attr:attr
+        }
+    }
+}
+
+##查看某人属性
+proto MSG_PLAYER_LOOKUP_PLAYER_ATTR=17
+{
+    client{
+        message{
+            id:player_id
+        }
+    }
+
+    server{
+        message {
+            id:player_id,
+            name:sstr,
+            career:player_carrer,
+            level:player_level,
+            CombatPower:player_power,
+            attr:attr,
+            EqmL:list<item:item_info> # 装备信息
+        }
+    }
+}
+
+
+## 技能移动
+proto MSG_PLAYER_SKILL_MOVE=20  disable
+{
+    client{
+        message{
+            x:u16,
+            y:u16
+        }
+    }
+
+    server{}
+}
+
+
+##  初始化玩家基础数据
+proto MSG_PLAYER_INIT_CLIENT=30
+{
+    client{}
+    server {
+        message{ 
+            playerId : player_id,
+            name     : sstr,
+            career   : player_carrer,
+            level    : player_level,
+            exp      : player_exp,
+            fragment : player_fragment,
+            longwen  : player_longwen,
+            money    : player_money,
+            diamond  : player_diamond,
+            honour   : player_honour,
+            jinxing:u32,
+            yinxing:u32,
+            hp       : player_hp,
+            mp       : player_mp,
+            sp       : u16,
+            sp_count : u8,
+            attr     : attr,
+            combat_power:player_power,
+            yuansu_moli  : u32,
+            guangan_moli : u32,
+            mingyun_moli : u32
+        }
+    }
+}
+
+
+## 通过名字得到id
+proto MSG_PLAYER_NAME_TO_ID=31
+{
+    client{
+        message{
+            name      : sstr          #玩家名字
+        }
+    }
+    server{
+        message{ 
+            playerId  : player_id     #玩家id id为0的时候玩家不存在
+            ,name      : sstr          #玩家名字
+        }
+    }
+}
+## 获取系统时间
+proto MSG_PLAYER_SYS_TIME=32
+{
+    client{
+        message=empty
+    }
+    server{
+        message{ 
+            time_sec:u64        #系统时间戳
+        }
+    }
+}
+
+## 同步公会buf
+proto MSG_PLAYER_SYNC_SOCIETY_BUFS = 33
+{
+    client{}
+    server
+    {
+        message
+        {
+            society_bufs:list<id:u16>
+        }
+    }
+}
+
+## 同步人物字段
+proto MSG_PLAYER_SYNC_FIELD = 34
+{
+    client{}
+    server
+    {
+        message
+        {
+            fields:list<{id:u16,val:u32}>
+        }
+    }
+}
+
+
+## 消耗钻石购买体力
+proto MSG_PLAYER_COST_DIAMOND_BUY_SP = 35
+{
+    client
+    {
+        message
+        {
+            count:u8    #购买次数
+        }
+    }
+    server
+    {
+        message
+        {
+            reply:u8    #是否成功 1失败 0成功
+        }
+    }
+}
+
+
+#版本协议调试
+proto MSG_VERSION = 36
+{
+    client
+    {
+        message
+        {
+            debugId:u16,            # 调试号
+            mainVersionId:u16,      # 主版本号
+            assistVersionId:u16,    # 辅助版本号
+            resourceVersionId:u16   # 资源版本号
+        }
+    }
+
+    server
+    {
+        message
+        {
+            replyNum:u8      # 回复码 0表示调试匹配成功,1调试匹配失败,2主版本匹配失败,3资源版本匹配失败,4辅助版本匹配失败
+        }
+    }
+}
+
+# task is open
+proto MSG_PLAYER_TASK_IS_OPEN = 37
+{
+    client
+    {
+        message=empty
+    }
+
+    server
+    {
+        message
+        {
+            isopen:u8
+        }
+    }
+}
+
+# 同步资产类的数据
+proto MSG_PLAYER_FIELD_CHANGE = 38
+{
+    client
+    {
+    }
+
+    server
+    {
+        message
+        {
+            fields:list<{ids:u32, vals:list<val:u32>}>
+        }
+    }
+}
+
+# 人物属性优化
+proto MSG_PLAYER_SKILL_CHANGE = 39
+{
+    client
+    {
+    }
+
+    server
+    {
+        message
+        {
+            skill_change:list<ids:u32>
+        }
+    }
+}
+
+
+proto MSG_PLAYER_EFFECT_CHANGE = 40
+{
+    client
+    {
+    }
+
+    server
+    {
+        message
+        {
+            effect:list<ids:u16>
+        }
+    }
+}
+
+proto MSG_PLAYER_AVATAR_CHANGE = 41
+{
+    client
+    {
+    }
+
+    server
+    {
+        message
+        {
+            job:u8,
+            changeset:list<ids:u32>
+        }
+    }
+}
+
+proto MSG_PLAYER_OFFLINE_INFO = 42
+{
+    client
+    {
+    }
+
+    server
+    {
+        message
+        {
+            errorcode:u8
+        }
+    }
+}
+
+proto MSG_PLAYER_EARNINGS_CHANGE = 43  ##   改变增益百分比
+{
+    client
+    {
+    }
+    server
+    {
+        message
+        {
+            result:u16
+        }
+    }
+}
+
+proto MSG_SHOW_NEAR_PLAYER_SET = 44 ##   附近的玩家数量显示设置
+{
+    client
+    {
+        message
+        {
+            receive:u16                 ##  前端设置的数量
+        }
+    }
+    server
+    {
+        message
+        {
+             send:u16                    ##  把设置成功的玩家数量返回到前端
+        }
+    }
+}
+
+## 装备变身卡牌
+proto MSG_DRESS_SHAPESHIFT=47
+{
+    client{
+    }
+
+    server{
+        message{
+            cardId:u32                  ## 卡牌ID
+        }
+    }
+}
+
+
+proto MSG_PLAYER_DELETE = 45
+{
+    client
+    {
+        message
+        {
+            index:u8
+        }
+    }
+
+    server
+    {
+        message
+        {
+            isok:u8
+        }
+    }
+}
+
+proto MSG_PLAYER_JOIN_GAME = 46
+{
+    client
+    {
+        message
+        {
+            index:u8,
+            wx:u8, # 视野x（半屏的格子数）
+            wy:u8 # 视野x（半屏的格子数）
+        }
+    }
+
+    server{}
+
+    errnos{
+        ERR_PLAYER_FREEZE       ##  玩家被封
+    }
+}
+
+proto MSG_PLAYER_GM = 48
+{
+    client
+    {
+
+    }
+
+    server
+    {
+        message
+        {
+            info:list<{index:u8,val:u8}>
+        }
+    }
+}
+
+
+
+#qq sdk登录
+proto MSG_PLAYER_QQ_AUTH_LOGIN=49
+{
+    client
+    {
+        message
+        {
+            openid:sstr,
+            accessToken:sstr,
+            platformId:u8,
+            serverId:u16,
+            machine_mac:sstr,   # 设备MAC地址
+            machine_id:sstr,    # 设备ID
+            machine_style:sstr, # 设备型号
+            machine_info:sstr   # 设备系统信息
+        }
+    }
+
+    server
+    {
+        # while
+        #    size:u8
+        #    index:u8
+        #    playerid:player_id
+        #    playername:sstr
+        #    playerlevel:player_level,
+        #    playercarrer:player_carrer
+        #    effect/binary
+        #    avatar/binary
+        # finalPlayer:u8
+        message
+        {
+            finalplayer:u8,
+            info:binary
+        }
+    }
+
+    errnos{
+        ERR_AUTH_MESSAGE
+    }
+}
+
+# ping
+proto MSG_PLAYER_PING = 50
+{
+    client
+    {
+        message=empty
+    }
+    server
+    {
+        message=empty
+    }
+}
+
+proto MSG_PLAYER_RECONNECTION = 51
+{
+    client
+    {
+        message{
+            platformPlayerName:sstr,
+            platformId:u8,
+            serverId:u16,
+            machine_mac:sstr,   # 设备MAC地址
+            machine_id:sstr,    # 设备ID
+            machine_style:sstr, # 设备型号
+            machine_info:sstr,   # 设备系统信息
+            index:u8,
+            wx:u8, # 视野x（半屏的格子数）
+            wy:u8 # 视野x（半屏的格子数）
+        }
+    }
+    server
+    {
+        message
+        {
+            Isok:u8
+        }
+    }
+}
+
+## 坐骑
+proto MSG_PlAYER_RIDE = 52
+{
+    client{
+    }
+
+    server{
+        message{
+            rideId:u16                  ## 坐骑ID
+        }
+    }
+
+}
+
+proto MSG_PLAYER_ACTIVITY_LIST=53
+{
+    client{}
+    server{
+        message{
+            #info:list<{Id:u8}>
+            info:binary
+        }
+    }
+}
+
+## 取消装备变身卡牌
+proto MSG_PLAYER_UNDRESS_SHAPESHIFT=54
+{
+    client{
+        message=empty
+    }
+
+    server{
+    }
+}
+
+## 完成调查问卷通知
+proto MSG_PLAYER_DO_SURVEY_NOTIFY=55
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message{
+            result:u8   ## 0：未完成 1：已完成
+        }
+    }
+}
+
+## 推送体力刷新时间
+proto MSG_PLAYER_SP_REFRESH_TIME=56
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message{
+            time_sec:u32        #系统时间戳
+        }
+    }
+}
+
+## CD_KEY
+proto MSG_PLAYER_CD_KEY = 57
+{
+    client{
+        message{
+            cd_key:sstr       ## cd_key
+        }
+    }
+
+    server{
+        message{
+            replyNum:u8      ## 回复码 0表示成功,1失败
+        }
+    }
+}
+
+## 英雄盛宴,整点回复体力
+proto MSG_PLAYER_ADD_HOURLY_SP = 58
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message{
+            replyNum:u8      ## 回复码 0表示成功,1失败
+        }
+    }
+}
+
+## 英雄盛宴状态
+proto MSG_PLAYER_PUSH_HOURLY_SP_STATUS = 59
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message{
+            status:u8   ## 0未领取，1已经领取,2不在时间段内
+        }
+    }
+}

@@ -1,0 +1,4 @@
+-define(teamroom_wait_ets, teamroom_wait_ets). %% room{} 所有等待的房间
+-define(teamroom_start_can_join_ets, teamroom_start_can_join_ets). %% room{} 所有开始的房间, 可以quick_join
+-define(teamroom_start_cannot_join_ets, teamroom_start_cannot_join_ets). %% room{} 所有开始的房间,不能quick_join
+-define(teamroom_player_ets, teamroom_player_ets). %% {PlayerId, roomId} 玩家如果在房间,会存放一个object

@@ -1,0 +1,147 @@
+﻿ID(与monster表ID一致）	名称	动画文件(骨骼路径emits文件夹下）	移动前延时，单位毫秒（移动类需配置，定点不需配置，不配则填0）	偏移，Vector3，单位为地图格，用于移动攻击类（针对玩家基点的偏移）{x,y,z}	初始速度,Vector3,单位每十秒多少格,用于移动攻击类({x,y,z},暂时只用到x（格式[{x,x_a,time},{y,y_a,time},{z,z_a,time}],{初速度,加速度,时间}）	消亡时间，用于移动攻击类（毫秒）	触发类型（0代表没有，1代表技能）	触发深度（触发的深度，与技能段配置一致）	攻击间隔（毫秒）（移动释放物特有）	攻击技能（skill表ID）	定点类型，用于定点攻击类（1代表释放者偏移，2代表屏幕中央偏移，3.队友（server），4，敌方随机一个偏移）	复数性攻击，用于定点攻击类，[{攻击骨骼名，攻击技能段}]	是否跟踪玩家（1跟踪；0不跟踪）	随机分布(0代表不随机，1代表根据释放者随机，2代表根据根据屏幕中央随机释放)	缩放[x,y]	角度（0-360）	是否跟踪(0代表不跟踪，1代表跟踪)	触发条件（1代表生成的时候触发，2代表消失的时候触发）	触发的数据（目前只支持技能，格式[skillID]）	半径（随机释放物可配置，以释放者为中心，按格子数计算，随机释放物不配置偏移）	是否可以穿过不可行走区域（0，不可穿越，1，可以，不填则默认0）	跟随释放者（0否，1跟随）	掉落信息{掉落标签，掉落数量}释放物死的时候会触发	释放物背景音效{delay（毫秒）,"音效文件路径"}
+id	client_name	client_skel	delay	offset	speed	time	trigger_type	trigger_depth	attack_interval	attack_skill	client_anchor_type	client_attacks	client_is_follow_palyer	client_rand	client_scale	client_ratotion	client_isfollow	trigger_condition	trigger_datas	radius	client_is_through	client_is_follow_releaser	client_drop_info	client_sound
+9000101	弧光冲击释放物	emits/soldier_skill5.skel	100			2100				500009	1	[attack1]	0		[1,1]						1			
+9000102	鬼哭神嚎释放物	emits/soldier_skill4_5.skel	100			750				500008	1	[attack1,attack2]	0								1			
+9000201	冰龙狂卷	emits/magican_skill4.skel	300	{5, 0,5}	[{15,0,0},{0,0,0},{0,0,0}]	3000	0	1	500	500001			0								1			{0,"sounds/skill4.wav"}
+9000202	恶魔突袭	emits/magican_skill1.skel	100	{4, 0,3}	[{150,0,0},{0,0,0},{0,0,0}]	2000	0	1	250	500002			0								1			{0,"sounds/skill1.wav"}
+9000204	暴风雪	emits/magican_skill3.skel	100			1350				500003	1	[attack1,attack2,attack3]	0								1			
+9000205	闪动爆弹	emits/magican_skill6.skel	100	{0,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	10000				500033	1	[attack1]	0								0			
+9000206	冰锥术	emits/magican_skill2.skel	100	{4,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	3000				500032	1	[attack1]	0								1			
+9000207	冰锥术	emits/magican_skill2.skel	100	{8,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	3000				500032	1	[attack1]	0								1			
+9000208	冰锥术	emits/magican_skill2.skel	100	{12,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	3000				500032	1	[attack1]	0								1			
+9000209	冰锥术	emits/magican_skill2.skel	100	{16,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	3000				500032	1	[attack1]	0								1			
+9000210	冰锥术	emits/magican_skill2.skel	100	{20,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	3000				500032	1	[attack1]	0								1			
+9000301	幻影之舞	emits/paladin_skill2.skel	100			2110				500011	1	[attack1,attack2,attack3,attack4,attack5]	0								1			
+9000302	混沌之击	emits/paladin_skill6.skel	100			3210				500012	1	[attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8,attack9,attack10]	0								1			
+9000303	光耀之斩	emits/paladin_skill1_3.skel	100			910				500013	1	[attack1,attack2,attack3,attack4,attack5]	0								1			
+9000304	幻影之舞+最后一击	emits/paladin_skill2.skel	100			2110				500011	1	[attack1,attack2,attack3,attack4,attack5,attack6]	0								1			
+9000001	怒气技-冰冰冰	emits/nuqiji_b.skel	100			4200				500004	1	[attack1,attack2,attack3]	0								1			
+9000002	怒气技-冰火雷	emits/nuqiji_bhl.skel	100			3100				500005	1	[attack1,attack2]	0								1			
+9000003	怒气技-火火火	emits/nuqiji_h.skel	100			1500				500006	1	[attack1,attack2,attack3,attack4]	0								1			
+9000004	怒气技-雷雷雷	emits/nuqiji_l.skel	300	{4, 0,4}	[{85,0,0},{0,0,0},{0,0,0}]	2500	0	1	100	500007			0								1			
+9000005	怒气技-冰冰火	emits/nuqiji_bbh.skel	300	{10, 0,4}	[{1,0,0},{0,0,0},{0,0,0}]	5000	0	1	500	500026			0								1			
+9000006	怒气技-冰冰雷	emits/nuqiji_bbl.skel	100			4000				500027	1	[attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8]	0								1			
+9000007	怒气技-火火冰	emits/nuqiji_hhb.skel	100			2500				500028	1	[attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8]	0								1			
+9000008	怒气技-火火雷	emits/nuqiji_hhl.skel	300	{4, 0,4}	[{85,0,0},{0,0,0},{0,0,0}]	2500	0	1	100	500029			0								1			
+9000009	怒气技-雷雷冰	emits/nuqiji_llb.skel	300	{4, 0,4}	[{85,0,0},{0,0,0},{0,0,0}]	2500	0	1	500	500030			0								1			
+9000010	怒气技-雷雷火	emits/nuqiji_llh.skel	100			3000				500031	1	[attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8]	0								1			
+9000601	起身反击	emits/souseng.skel	100			100				390002	1	[attack1]	0											
+9000401	宠物地刺	emits/dici.skel	100			1950				600003	1	[attack1,attack2,attack3]	0											
+9000402	宠物南瓜魔火球转转转	emits/pet_22010_houqiu.skel	100	{0,0,0}	[{1,0,0},{0,0,0},{0,0,0}]	3000	0	1	500	609001			0								1	1		
+9000403	宠物花蘑菇丢蘑菇1	emits/pet_44010_xmg.skel	100	{0,0,0}		3000	0	1	500	609002			0								1			
+9000404	宠物花蘑菇丢蘑菇2	emits/pet_44010_xmg.skel	100	{5,0,3}		5000	0	1	500	609002			0								1			
+9000405	宠物花蘑菇丢蘑菇3	emits/pet_44010_xmg.skel	100	{5,0,-3}		5000	0	1	500	609002			0								1			
+9000406	宠物花蘑菇丢蘑菇4	emits/pet_44010_xmg.skel	100	{-5,0,-5}		5000	0	1	500	609002			0								1			
+9000407	宠物花蘑菇丢蘑菇5	emits/pet_44010_xmg.skel	100	{-10,0,0}		5000	0	1	500	609002			0								1			
+9000408	宠物种族技-末日烈焰	emits/longxi.skel	100	{0,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	2000	0	1		601101	2	[attack1,attack2,attack3,attack4,attack5]	0								1			
+9000409	宠物种族技-地狱之门	emits/diyumen_sfw.skel	100	{0,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	7000	0	1		602101	2	[attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8,attack9,attack10,attack11,attack12]	0								1			
+9000410	宠物种族技-兽群冲击	emits/mount_00002_sfj.skel	300	{-21,-4,0}	[{200,0,0},{0,0,0},{0,0,0}]	10000	0	1	300	603101	2		0								1			
+9000411	宠物种族技-兽群冲击	emits/mount_00003_sfj.skel	300	{-21,-2,0}	[{200,0,0},{0,0,0},{0,0,0}]	10000	0	1	300	603102	2		0								1			
+9000412	宠物种族技-兽群冲击	emits/mount_00005_sfj.skel	300	{-21,0,0}	[{200,0,0},{0,0,0},{0,0,0}]	10000	0	1	300	603103	2		0								1			
+9000413	宠物种族技-兽群冲击	emits/mount_00007_sfj.skel	300	{-21,2,0}	[{200,0,0},{0,0,0},{0,0,0}]	10000	0	1	300	603104	2		0								1			
+9000414	宠物种族技-盛衰枯荣	emits/hua_sfj.skel	100	{-12,1,0}	[{0,0,0},{0,0,0},{0,0,0}]	6000	0	1		604101	2	[attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8]	0								1			
+9000415	宠物种族技-盛衰枯荣	emits/hua_sfj.skel	100	{-8,-4,0}	[{0,0,0},{0,0,0},{0,0,0}]	6000	0	1		604101	2	[attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8]	0								1			
+9000416	宠物种族技-盛衰枯荣	emits/hua_sfj.skel	100	{-2,1,0}	[{0,0,0},{0,0,0},{0,0,0}]	6000	0	1		604101	2	[attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8]	0								1			
+9000417	宠物种族技-盛衰枯荣	emits/hua_sfj.skel	100	{0,-1,0}	[{0,0,0},{0,0,0},{0,0,0}]	6000	0	1		604101	2	[attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8]	0								1			
+9000418	宠物种族技-盛衰枯荣	emits/hua_sfj.skel	100	{7,-4,0}	[{0,0,0},{0,0,0},{0,0,0}]	6000	0	1		604101	2	[attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8]	0								1			
+9000419	宠物种族技-盛衰枯荣	emits/hua_sfj.skel	100	{13,1,0}	[{0,0,0},{0,0,0},{0,0,0}]	6000	0	1		604101	2	[attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8]	0								1			
+9000501	冰龙狂卷2	emits/magican_skill4_1.skel	300	{5, 0,5}	[{15,0,0},{0,0,0},{0,0,0}]	3000	0	1	500	500010			0								1			
+9000701	雷神狂风	emits/boss_20013_fen.skel	100			2500				500014	1	[attack1,attack2,attack3,attack4]	0											
+9000702	飞镖	emits/feibiao.skel	300	{2, 0,3}	[{300,0,0},{0,0,0},{0,0,0}]	1500	0	1	1500	510001			0								1			
+9000703	流星释放物	emits/yanbao.skel	100			5000				500015	1	[attack1]	0											
+9000704	机关—电击释放物	emits/dianji.skel	100			5000				520001	1	[attack1]	1											
+9000705	光柱	emits/boss_20006_guangzhu.skel	100			5000				530001	1	[attack1,attack2,attack3]	0											
+9000706	刀光	emits/boss_20004_daoguang.skel	100			5000				540001	1	[attack1]	0											
+9000707	毒气	emits/duqi.skel	100			6000				550001	1	[attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8,attack9,attack10]	0											
+9000708	地刺	emits/boss_20009_dici.skel	100			5000				560001	2	[attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8,attack9]	0											
+9000709	骨刺-简单	emits/boss_20011_dici.skel	300	{0,0,0}	[{1,0,0},{0,0,0},{0,0,0}]	6000	0	2	1000	570001			0											
+9000710	骨刺-困难	emits/boss_20011_dici.skel	300	{0,0,0}	[{1,0,0},{0,0,0},{0,0,0}]	7000	0	2	1000	570002			0											
+9000711	骨刺-噩梦	emits/boss_20011_dici.skel	300	{0,0,0}	[{1,0,0},{0,0,0},{0,0,0}]	8000	0	2	1000	570003			0											
+9000712	圣光道标	emits/boss_10005_jy_qiu.skel	100	{4, 0,7}	[{1,0,0},{0,0,0},{0,0,0}]	3000	0	1	1000	580001			0								1			
+9000713	圣光道标	emits/boss_10005_jy_qiu.skel	100	{0, 0,0}	[{1,0,0},{0,0,0},{0,0,0}]	3000	0	1	1000	580002			1								1			
+9000714	冰刃	emits/boss_30006_bingren.skel	100	{0,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	2000	0	1		590001	2	[attack1]	1	2	[1.4,1.4]	0				5				
+9000715	冰刃	emits/boss_30006_bingren.skel	100	{0,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	2000	0	1		610001	2	[attack1]	0	2	[0.8,0.8]	0				3				
+9000716	冰面	emits/boss_30006_bingmian.skel	100			6000				620001	1	[attack1]	0											
+9000717	冰刃	emits/boss_30006_bingren.skel	100	{5,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	2000	0	1		630001	2	[attack1]	0	2	[1,1]	0				3				
+9000718	冰刃	emits/boss_30006_bingren.skel	100	{5,0,0}	[{0,0,0},{0,0,0},{0,0,1}]	2000	0	1		640001	2	[attack1]	0	2	[1.1,1.1]	0				3				
+9000719	冰刃	emits/boss_30006_bingren.skel	100	{5,0,0}	[{0,0,0},{0,0,0},{0,0,2}]	2000	0	1		650001	2	[attack1]	0	2	[1.3,1.3]	0				3				
+9000720	冰刃	emits/boss_30006_bingren.skel	100	{-5,0,0}	[{0,0,0},{0,0,0},{0,0,3}]	2000	0	1		660001	2	[attack1]	0	2	[0.7,0.7]	0				3				
+9000721	冰刃	emits/boss_30006_bingren.skel	100	{-5,0,0}	[{0,0,0},{0,0,0},{0,0,4}]	2000	0	1		670001	2	[attack1]	0	2	[0.9,0.9]	0				3				
+9000722	冰刃	emits/boss_30006_bingren.skel	100	{-5,0,0}	[{0,0,0},{0,0,0},{0,0,5}]	2000	0	1		680001	2	[attack1]	0	2	[1.2,1.2]	0				3				
+9000723	弓箭1	emits/boss_80001_jian1.skel	100	{3, 1,4}	[{300,1000,2000},{0,0,0},{0,0,0}]	1500	0	1	1500	690001		[attack1]	0	0	[1,1]	0					1			
+9000724	弓箭2	emits/boss_80001_jian2.skel	100	{3, 0,4}	[{300,1000,2000},{0,0,0},{0,0,0}]	1500	0	1	1500	700001		[attack1]	0	0	[1,1]	0					1			
+9000725	弓箭3	emits/boss_80001_jian3.skel	100	{0,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	12000	0	1	3000	710001	2	[attack1]	1	2	[1.5,1.5]	0				4	1			
+9000726	弓箭3	emits/boss_80001_jian3.skel	100	{5,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	12000	0	1	3000	720001	2	[attack1]	0	2	[1.5,1.5]	0				4				
+9000727	微型龙卷	emits/feng_2.skel	300	{0,0,2}	[{200,0,0},{0,0,0},{0,0,0}]	10000	0	1	10000	730001		[attack1]	0								1			
+9000728	小水滴	emits/boss_80006_sfw_lingshi.skel	100	{0,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	6000	0	1	6000	740001		[attack1]	1											
+9000729	触须-左上	emits/boss_80006_sfw_attack_box.skel	100	{-21,-8,0}	[{1,0,0},{0,0,0},{0,0,0}]	3000	0	1	1000	750001	1	[attack1]	0											
+9000730	触须-左下	emits/boss_80006_sfw_attack_box.skel	100	{-21,-8,0}	[{1,0,0},{0,0,0},{0,0,0}]	3000	0	1	1000	760001	1	[attack1]	0											
+9000731	触须-右上	emits/boss_80006_sfw_attack_box.skel	100	{0,-8,0}	[{1,0,0},{0,0,0},{0,0,0}]	3000	0	1	1000	770001	1	[attack1]	0											
+9000732	触须-右下	emits/boss_80006_sfw_attack_box.skel	100	{0,-8,0}	[{1,0,0},{0,0,0},{0,0,0}]	3000	0	1	1000	780001	1	[attack1]	0											
+9000733	凌视光波	emits/boss_80006_sfw_lingshi.skel	100	{0,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	10000	0	1	300	790001		[attack1]	1											
+9000734	电触须	emits/boss_80006_sfw_dianchu.skel	100	{-22,-1,2}	[{1,0,0},{0,0,0},{0,0,0}]	1200	0	1	300	800001		[attack1]	0			0								
+9000735	海浪	emits/boss_80005_hailang.skel	100	{5, 0,0}	[{100,0,0},{0,0,0},{0,0,0}]	3000	0	2	500	810001		[attack1]	0								1			
+9000736	水弹	emits/boss_80005_shuidan.skel	100	{2, 0,3}	[{300,0,0},{0,0,0},{0,0,0}]	1500	0	1	1500	820001		[attack1]	0											
+9000737	海浪	emits/boss_80005_hailang.skel	100	{2, 0,3}	[{150,0,0},{0,0,0},{0,0,0}]	3000	0	1	1500	830001		[attack1]	0		[2,2]									
+9000738	电触须-反	emits/boss_80006_sfw_dianchu_fan.skel	100	{22,-4,2}	[{1,0,0},{0,0,0},{0,0,0}]	1200	0	1	300	840001		[attack1]	0			0								
+9000739	电触须	emits/boss_80006_sfw_dianchu.skel	100	{-22,-8,2}	[{1,0,0},{0,0,0},{0,0,0}]	1200	0	1	300	850001		[attack]	0			0								
+9000740	弓箭1	emits/boss_80001_jian1.skel	100	{3, -1,4}	[{300,1000,2000},{0,0,0},{0,0,0}]	1500	0	1	1500	690002		[attack1]	0	0	[1,1]	0					1			
+9000741	弓箭2	emits/boss_80001_jian2.skel	100	{3, 2,4}	[{300,1000,2000},{0,0,0},{0,0,0}]	1500	0	1	1500	700002		[attack1]	0	0	[1,1]	0					1			
+9000742	弓箭2	emits/boss_80001_jian2.skel	100	{3, -2,4}	[{300,1000,2000},{0,0,0},{0,0,0}]	1500	0	1	1500	700003		[attack1]	0	0	[1,1]	0					1			
+9000743	恶魔突袭（黑巫师释放物）	emits/magican_skill1.skel	100	{6, 0,4}	[{150,0,0},{0,0,0},{0,0,0}]	1500	0	1	500	860001			0		[0.8,0.8]						1			
+9000744	凌视光波	emits/boss_80006_sfw_lingshi.skel	100	{3,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	10000	0	1	10000	870001	2	[attack1]	0	2						5				
+9000745	小水滴	emits/boss_80006_sfw_lingshi.skel	100	{0,-3,4}	[{0,0,0},{0,0,0},{0,0,0}]	5000	0	1	5000	880001	2	[attack1]	0	2	[0.6,0.6]	0				4				
+9000746	小水滴	emits/boss_80006_sfw_lingshi.skel	100	{0,-3,4}	[{0,0,0},{0,0,0},{0,0,0}]	5000	0	1	5000	890001	2	[attack1]	0	2	[0.7,0.7]	0				4				
+9000747	小水滴	emits/boss_80006_sfw_lingshi.skel	100	{0,-3,4}	[{0,0,0},{0,0,0},{0,0,1}]	5000	0	1	5000	900001	2	[attack1]	0	2	[0.7,0.7]	0				4				
+9000748	小水滴	emits/boss_80006_sfw_lingshi.skel	100	{0,-3,4}	[{0,0,0},{0,0,0},{0,0,2}]	5000	0	1	5000	910001	2	[attack1]	0	2	[0.8,0.8]	0				4				
+9000749	小水滴	emits/boss_80006_sfw_lingshi.skel	100	{0,-3,4}	[{0,0,0},{0,0,0},{0,0,3}]	5000	0	1	5000	920001	2	[attack1]	0	2	[0.9,0.9]	0				4				
+9000750	小水滴	emits/boss_80006_sfw_lingshi.skel	100	{0,-3,4}	[{0,0,0},{0,0,0},{0,0,4}]	5000	0	1	5000	930001	2	[attack1]	0	2	[0.9,0.9]	0				4				
+9000751	小水滴	emits/boss_80006_sfw_lingshi.skel	100	{0,-3,4}	[{0,0,0},{0,0,0},{0,0,5}]	5000	0	1	5000	940001	2	[attack1]	0	2	[1,1]	0				4				
+9000752	微型龙卷	emits/feng_2.skel	300	{-44,0,2}	[{200,0,0},{0,0,0},{0,0,0}]	10000	0	1	1000	950001		[attack1]	0								1			
+9000753	水柱-小	emits/boss_80002_sfw_shuizhu.skel	100	{0,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	850	0	4	200	960001		[attack1]	0		[0.3,1.0]									
+9000754	水柱-大	emits/boss_80002_sfw_shuizhu.skel	100	{0,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	850	0	4	200	970001		[attack1]	0		[0.4,1.0]									
+9000755	微型龙卷	emits/feng_2.skel	300	{-44,0,2}	[{200,0,0},{0,0,0},{0,0,0}]	10000	0	1	10000	950002		[attack1]	0								1			
+9000756	微型龙卷	emits/feng_2.skel	300	{12,5,0}	[{0,0,0},{100,300,1200},{0,0,0}]	1200	0	1	600	950003		[attack1]	0	2						2	1			
+9000757	微型龙卷	emits/feng_2.skel	300	{-12,5,0}	[{0,0,0},{100,300,1200},{0,0,0}]	1200	0	1	600	950004		[attack1]	0	2						2	1			
+9000758	尾刺	emits/boss_90001_sfw_weici.skel	100	{0,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	10000	0	1	1000	980001		[attack1]	0		[0.6,0.6]									
+9000759	爆裂火弹	emits/boss_90001_sfw_huoqiu.skel	100	{0,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	10000	0	1	1000	990001		[attack1]	0	2						5				
+9000760	爆裂毒弹1	emits/boss_90001_sfw_duqiu_1.skel	100	{0,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	10000	0	1	1000	990002		[attack1]	0	2						5				
+9000761	爆裂毒弹2	emits/boss_90001_sfw_duqiu_2.skel	100	{0,0,0}	[{1,0,0},{0,0,0},{0,0,0}]	3000	0	1	1000	990003		[attack1]	0											
+9000762	喷吐	emits/boss_90002_sfw_pentu.skel	100	{9, 0,3}	[{50,0,0},{0,0,0},{0,0,0}]	10000	0	1	500	1000001		[attack1]	0								1			
+9000763	骷髅	emits/boss_90002_sfw_xinengzhihuen.skel	100	{0,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	6500	0	1	650	1010001	1	[attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8,attack9,attack10]	0								1			
+9000764	火龙卷大风车	emits/boss_90003_huoquan.skel	100	{3, 0,2}	[{400,800,2000},{0,0,0},{0,0,0}]	4000	0	1	500	1020001		[attack1]	0		[1.3,1.3]						1			
+9000765	裂空斩	emits/boss_90004_long_sfj_lkz.skel	100	{0,-5,0}	[{0,0,0},{0,0,0},{0,0,0}]	6000	0	1	600	1030001		[attack1]	0		[1.7,1.7]									
+9000766	恶魔裂缝	emits/boss_90005_emoliehuo.skel	100	{0,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	10000	0	1	1000	1040001		[attack1]	0		[1.4,1.4]									
+9000767	暗影漩涡	emits/boss_90005_xuanwo.skel	100	{0,0,0}	[{1,0,0},{0,0,0},{0,0,0}]	5000	0	1	1000	1050001		[attack1]	0	2						5				
+9000768	毁灭之焰	emits/boss_90006_huoyan.skel	100	{0,0,0}	[{1,0,0},{0,0,0},{0,0,0}]	10000	0	1	1000	1060001		[attack1]	0	2						5				
+9000769	死灵喷吐	emits/monster_90004_silingpentu.skel	100	{4, 0,6}	[{500,0,0},{0,0,0},{0,0,0}]	6000	0	1	6000	1070001		[attack1]	0								1			
+9000770	闪电	emits/boss_70002_sfw_shandian.skel	100	{0,0,0}	[{1,0,0},{0,0,0},{0,0,0}]	800	0	1	80	1080001		[attack1]	1											
+9000771	地精傀儡光球释放物(释放物)	emits/boss_10005_jy_qiu.skel	100	{4,0,7}	[{1,0,0},{0,0,0},{0,0,0}]	1700	0	1	600	580003			0											
+9000772	地精傀儡光球释放物(释放物)	emits/boss_10005_jy_qiu.skel	100	{1,0,0}	[{1,0,0},{0,0,0},{0,0,0}]	1800	0	1	600	580004			0											
+9000773	地精傀儡光球释放物(释放物)	emits/boss_10005_jy_qiu.skel	100	{7,0,0}	[{1,0,0},{0,0,0},{0,0,0}]	1800	0	1	600	580005			0											
+9000774	死灵喷吐-深渊巨虫释放物	emits/monster_90004_silingpentu.skel	100	{4, 0,3}	[{1,0,0},{0,0,0},{0,0,0}]	2000	0	1	400	1090001		[attack1]	0		[1.4,1.4]						1			
+9000775	水柱-人鱼释放物	emits/boss_80005_shuizhu.skel	100	{0, 0,0}	[{1,0,0},{0,0,0},{0,0,0}]	800	0	1	400	1100001		[attack1]	1											
+9000776	死亡之雾	emits/boss_90002_siwangzhiwu.skel	100	{8, 0,0}	[{0,0,0},{0,0,0},{0,0,0}]	4500	0	1		1120001		[attack1,attack2,attack3,attack4,attack5,attack6,attack7]	0								1			
+9000777	龙卷-守望者释放物	emits/feng_2.skel	300	{5, 3,0}	[{100,1000,10000},{0,0,0},{0,0,0}]	12000	0	1	600	950002		[attack1]	0		[1,1.3]						1			
+9000778	弓箭3	emits/boss_80001_jian3.skel	100	{-5,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	12000	0	1	3000	720001	2	[attack1]	0	2	[1.5,1.5]	0				4				
+9000779	尾刺2	emits/boss_90001_sfw_weici.skel	100	{7,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	10000	0	1	1000	980001		[attack1]	0		[0.6,0.6]									
+9000780	尾刺3	emits/boss_90001_sfw_weici.skel	100	{14,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	10000	0	1	1000	980001		[attack1]	0		[0.6,0.6]									
+9000781	恶魔裂缝2	emits/boss_90005_emoliehuo.skel	100	{10,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	10000	0	1	1000	1040001	2	[attack1]	0	2						5				
+9000782	恶魔裂缝3	emits/boss_90005_emoliehuo.skel	100	{-10,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	10000	0	1	1000	1040001	2	[attack1]	0	2						5				
+9000783	旋风斧	emits/monster_90003_feihu.skel	100	{10, 0,3}	[{1,0,0},{0,0,0},{0,0,0}]	10000	0	1	2000	1130001	1	[attack1]	0	1						4	1			
+9000784	炎爆	emits/yanbao_2.skel	100	{10,0,0}	[{1,0,0},{0,0,0},{0,0,0}]	1400	0	1	1400	1140001	1	[attack1]	0	1						4	1			
+9000785	丢芒果	emits/boss_70003_sfw_mangguo.skel	100	{6,0,4}	[{600,0,0},{0,0,0},{0,0,0}]	5000	0	1	5000	1150001		[attack1]	0								1			
+9000786	丢香蕉	emits/boss_70003_sfw_xiangjiao.skel	100	{6,0,0}	[{1,0,0},{0,0,0},{0,0,0}]	6000	0	1	3000	1160001		[attack1]	0	1						3	1			
+9000787	榴莲炸弹	emits/boss_70003_sfw_liulian.skel	100	{0,0,0}	[{0,0,0},{0,0,0},{0,0,0}]	5000	0	1	5000	1170001		[attack1]	1								1			
+9000788	丢香蕉-远	emits/boss_70003_sfw_xiangjiao.skel	100	{18,0,0}	[{1,0,0},{0,0,0},{0,0,0}]	6000	0	1	3000	1160001		[attack1]	0	1						3	1			
+9000789	毁灭之焰	emits/boss_90006_huoyan.skel	100	{10,0,0}	[{1,0,0},{0,0,0},{0,0,0}]	10000	0	1	1000	1060001		[attack1]	0	2						5				
+9000790	毁灭之焰	emits/boss_90006_huoyan.skel	100	{-10,0,0}	[{1,0,0},{0,0,0},{0,0,0}]	10000	0	1	1000	1060001		[attack1]	0	2						5				
+9000791	丢香蕉-跟踪玩家	emits/boss_70003_sfw_xiangjiao.skel	100	{0,0,0}	[{1,0,0},{0,0,0},{0,0,0}]	3000	0	1	3000	1160001		[attack1]	1								1			
+9000901	弧光冲击释放物-机器人	emits/soldier_skill5.skel	100			2100				500020	1	[attack1]	0								1			
+9000902	鬼哭神嚎释放物-机器人	emits/soldier_skill4_5.skel	100			750				500019	1	[attack1,attack2]	0								1			
+9001001	冰龙狂卷-机器人	emits/magican_skill4.skel	300	{5, 0,5}	[{15,0,0},{0,0,0},{0,0,0}]	3000	0	1	500	500016			0								1			
+9001002	恶魔突袭-机器人	emits/magican_skill1.skel	100	{4, 0,3}	[{150,0,0},{0,0,0},{0,0,0}]	2000	0	1	250	500017			0								1			
+9001004	暴风雪-机器人	emits/magican_skill3.skel	100			1750				500018	1	[attack1,attack2,attack3,attack4,attack5,attack6,attack7]	0								1			
+9001101	幻影之舞-机器人	emits/paladin_skill2.skel	100			2110				500022	1	[attack1,attack2,attack3,attack4,attack5]	0								1			
+9001102	混沌之击-机器人	emits/paladin_skill6.skel	100			3210				500023	1	[attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8,attack9,attack10]	0								1			
+9001103	光耀之斩-机器人	emits/paladin_skill1_3.skel	100			910				500024	1	[attack1,attack2,attack3,attack4,attack5]	0								1			

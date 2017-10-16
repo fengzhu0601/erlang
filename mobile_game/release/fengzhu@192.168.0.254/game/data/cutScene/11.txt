@@ -1,0 +1,24 @@
+=。=
+id	eventTriggerTime	eventEndTime	scene	command
+0	0	0	1	Target:add:洛萨:npc_30008:21:14:SE:0:npc_30008
+1	0	0	1	Target:add:PLAYER:PLAYER:20:16:E:0:PLAYER
+2	1000	0	1	Target:dialog:PLAYER:R:承蒙先生馈赠，在下无以为报。
+3	2000	0	1	Target:dialog:洛萨:R:区区一柄武器而已，江湖儿女何必如此计较。
+4	2500	0	1	Target:dialog:PLAYER:R:那倒是我略显矫情了。
+5	6000	0	1	Target:dialog:洛萨:R:你这丫头，慌慌张张的干什么。
+6	8000	0	1	Target:dialog:洛萨:R:什么？
+7	9000	0	1	Target:dialog:PLAYER:R:二位不用担心，看我的。
+8	10000	0	1	Target:dialog:PLAYER:R:姑娘还请在前面引路。
+9	9500	0	1	Target:direction:PLAYER:NW
+10	10500	0	1	Target:direction:洛萨:NW
+11	11000	13000	1	Target:run:PLAYER:25:14:0
+12	0	0	1	Camera:lockToPosition:20:14:0
+13	12500	0	1	Stop:null:
+14	7000	0	1	Target:dialog:洛萨:R:村外来了好多山贼，马上就要闯进来了。s
+15	1000	0	1	Target:action:PLAYER:attack5
+16	1	0	1	Target:fadeIn:洛萨
+17	1	0	1	Target:fadeIn:PLAYER
+18	12400	0	1	Target:fadeOut:PLAYER
+19	3001	3500	1	Effect:move:01pengquan_effect:25:14:0
+20	3000	0	1	Effect:add:01pengquan_effect:01pengquan_effect:23:16
+21	5500	0	1	Effect:delete:01pengquan_effect

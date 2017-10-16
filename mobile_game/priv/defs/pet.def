@@ -1,0 +1,22 @@
+atom pd_all_pets          ##所有宠物信息
+atom pd_fight_pets        ##战斗状态宠物ID
+atom pd_pet_treasure      ##寻宝
+atom pd_pet_treasure_log  ##寻宝日志
+
+atom pd_prev_add_attr ##宠物出战，给角色附加的属性
+
+## pet ai
+atom event_start
+atom event_leave
+atom event_stroll_wait_timeout
+atom event_move_over
+atom event_move_step
+atom event_release_skill
+atom event_release_skill_over
+atom event_beat_back_stiff_end
+atom event_stiff_end
+atom event_has_enemy
+atom event_reaction_timeout
+
+atom  msg_enter_scene
+

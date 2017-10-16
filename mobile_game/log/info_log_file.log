@@ -1,0 +1,12 @@
+Pid:<0.1026.0> Time:{{2016,5,10},{21,44,57}} 
+ Log:["handle_call ?enter_scene_msg",<0.1011.0>] 
+Pid:<0.1026.0> Time:{{2016,5,10},{21,45,1}} 
+ Log:["idx ~p leave_scene",1] 
+Pid:<0.964.0> Time:{{2016,5,10},{21,45,28}} 
+ Log:["handle_call ?enter_scene_msg",<0.1037.0>] 
+Pid:<0.964.0> Time:{{2016,5,10},{21,45,40}} 
+ Log:["idx ~p leave_scene",1] 
+Pid:<0.964.0> Time:{{2016,5,10},{21,46,5}} 
+ Log:["handle_call ?enter_scene_msg",<0.1120.0>] 
+Pid:<0.964.0> Time:{{2016,5,10},{21,46,23}} 
+ Log:["idx ~p leave_scene",2] 

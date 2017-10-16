@@ -1,0 +1,12 @@
+{application, lc,
+ [
+  {description, ""},
+  {vsn, "1.0"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { lc_app, []}},
+  {env, []}
+ ]}.

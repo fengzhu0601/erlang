@@ -1,0 +1,69 @@
+
+## scene process dictionary
+atom pd_cfg_id
+atom pd_cfg_limit
+atom pd_cfg_link
+atom pd_cfg_enter
+atom pd_cfg_relive
+atom pd_cfg_type
+atom pd_cfg_node
+atom pd_cfg_free_kill
+atom pd_cfg_commands
+atom pd_cfg_pk_modes
+atom pd_type_mod
+atom pd_scene_count
+
+atom pd_scene_id
+atom pd_map_width
+atom pd_map_height
+atom pd_map_id
+atom pd_player_max_id  %% 下一个分配给player 的object id
+atom pd_player_free_id %% gb_trees
+
+atom pd_monster_max_id %% 下一个分配给player 的object id
+atom pd_monster_free_id%% 下一个分配给player 的object id
+atom pd_monster_index  %% 怪物的唯一编号 integer
+
+atom pd_kill_boss_monster_count
+atom pd_kill_normal_monster_count
+
+atom pd_monsters_list %%场景中的怪物列表
+
+atom pd_agent_list_tmp
+
+atom scene_group
+
+
+## 移动类型
+atom move_stop
+atom skill_move
+atom large_move 
+atom sync_position 
+
+atom fly_move_step
+
+atom gravity_move 
+atom uniform_move
+
+atom releaseing_skill
+
+%% 被机关杀死
+atom killer_device
+
+%% 碰撞结果
+atom scene_hit_box_ret
+
+
+enum move_type
+{
+    MT_MOVE=1,
+    MT_RUN=2,
+}
+
+
+enum main_in_difficulty
+{
+    DIFF_EASY=1,
+    DIFF_NORMAL=2,
+    DIFF_DIFFICULT=3
+}

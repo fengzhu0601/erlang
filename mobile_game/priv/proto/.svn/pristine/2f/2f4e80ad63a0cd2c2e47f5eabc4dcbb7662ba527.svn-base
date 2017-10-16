@@ -1,0 +1,49 @@
+@include"game.sproto"
+
+# 初始化开服狂欢信息到客户端(任务完成情况更新时也用这条协议)
+proto MSG_OPEN_SERVER_HAPPY_INIT_CLIENT = 1
+{
+    client
+    {
+        message = empty
+    }
+    server
+    {
+        message
+        {
+            day:u8,                                     ## 第几天
+            taskList:list<{taskId:u16,taskNum:u8,finishTaskNum:u8,isGetPrize:u8}>  ## taskId:任务id，taskNum:现在完成数量，finishTaskNum:完成全部数量，isGetPrize:是否领奖
+        }
+    }
+}
+
+## 领取任务奖励
+proto MSG_GET_TASK_PRIZE = 2
+{
+    client
+    {
+        message
+        {
+            taskId:u16
+        }
+    }
+    server
+    {
+        message
+        {
+            replyNum:reply_num  ## 返回0代表领取成功
+        }
+    }
+}
+
+## 打开面板时返回的协议（用于记录玩家打开面板的次数）
+proto MSG_OPEN_SERVER_HAPPY_BOARD = 3
+{
+    client
+    {
+        message = empty
+    }
+    server
+    {
+    }
+}

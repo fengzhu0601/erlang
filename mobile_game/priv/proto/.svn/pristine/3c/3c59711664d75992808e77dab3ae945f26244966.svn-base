@@ -1,0 +1,133 @@
+@include "game.sproto"
+
+typedef task_id=u16
+## 上线时初始化任务数据
+proto MSG_TASK_INIT_CLIENT=1
+{
+    client{}
+
+    server{
+        message{
+            Task:list<{
+                completeTasks:list<{taskType:u16, #已提交完的任务类型
+                                    taskProgress:u16 #任务类型对应的进度
+                                  }>,
+                AcceptTasks:list<{taskId:task_id,
+                                  goalId:u32, # 目标Id
+                                  Count:u8 # Count 剩余数量
+                                }>
+            }>,
+            DailyStar:u8,      #每日任务星级
+            DailyCount:u8,     #已经接取每日任务的次数
+            DailyFrushCount:u8, #已经刷新过的次数
+            DailyReadyTask:u32 #可接取的日常任务ID
+        }
+    }
+}
+
+
+
+# 领取任务
+proto MSG_TASK_ACCEPT=2
+{
+    client{
+        message{
+            TaskId:task_id
+        }
+    }
+
+    server{
+        message{
+            ReplyNum:reply_num   #回复码
+            ,TaskId:task_id
+        }
+    }
+}
+
+
+# 任务进度变化
+proto MSG_TASK_PROGRESS=3
+{
+    client{}
+
+    server{
+        message{
+            TaskId:task_id,
+            goalId:u32, # 目标Id
+            Count:u8 # Count 剩余数量
+        }
+    }
+}
+
+
+# 提交已完成的任务
+proto MSG_TASK_SUBMIT=4
+{
+    client{
+        message{
+            TaskId:task_id
+        }
+    }
+    server{
+        message{
+            ReplyNum:reply_num,
+            TaskId:task_id,
+            NextTaskID:task_id
+       }
+    }
+}
+
+# 直接完成(暂时废弃)
+proto MSG_TASK_DIRECT_COMPLETE=5 disable
+{
+    client{
+        message{
+            TaskId:task_id
+        }
+    }
+
+    server{}
+}
+
+## 任务失败
+proto MSG_TASK_FAILED=6
+{
+    client{}
+
+    server{
+        message{
+            TaskId:task_id
+        }
+    }
+}
+
+
+# 放弃任务(暂时没有放弃任务功能)
+proto MSG_TASK_GIVE_UP=7 disable
+{
+    client{
+        message{
+            TaskId:task_id
+        }
+    }
+
+    server{}
+}
+
+# 刷新每日任务星级
+proto MSG_TASK_FLUSH_DAILY_STAR=8
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message{
+            ReplyNum:reply_num
+            ,DailyStar:u8     # 每日任务星级
+
+        }
+    }
+}
+
+

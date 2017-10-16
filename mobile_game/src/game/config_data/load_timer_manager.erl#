@@ -1,0 +1,32 @@
+%%%-------------------------------------------------------------------
+%%% @author yujian
+%%% @doc
+%%%-------------------------------------------------------------------
+-module(load_timer_manager).
+-include("inc.hrl").
+-include_lib("config/include/config.hrl").
+-include("timer_manager.hrl").
+
+load_config_meta() ->
+    [
+        #config_meta{
+            record = #timer_manager_cfg{},
+            fields = ?record_fields(?timer_manager_cfg),
+            file = "activity_time_manager.txt",
+            keypos = #timer_manager_cfg.activity_key,
+            all = [#timer_manager_cfg.activity_key],
+            verify = fun verify/1}
+    ].
+
+verify(#timer_manager_cfg{id = Id, activity_key = Key, activity_launch = Launch, activity_close = Close, period = Period, cycle_time = CycleTime,
+    prepare_start_time_set = PSTimeSet, prepare_start_notice = PsNotice, start_notice = SNotice,
+    prepare_finish_time_set = PFTimeSet, prepare_finish_notice = PFNotice, finish_notice = FNotice}) ->
+    ?check(is_integer(Id), "activity_time_manager.txt id ~w 无效!", [Id]),
+    ?check(is_atom(Key) orelse Key =:= 0, "activity_time_manager.txt id ~w 无效!", [Id]),
+    ?check(is_tuple(Launch) orelse Launch =:= 0, "activity_time_manager.txt id ~w 无效!", [Id]),
+    ?check(is_tuple(Close) orelse Launch =:= 0, "activity_time_manager.txt id ~w 无效!", [Id]),
+    ?check(Period =:= 1 orelse Period =:= 2 orelse Period =:= 3, "activity_time_manager.txt id ~w 无效!", [Id]),
+    ?check(is_list(CycleTime), "activity_time_manager.txt id ~w 无效!", [Id]),
+    ?check(is_tuple(PSTimeSet), "activity_time_manager.txt id ~w 无效!", [Id]),
+    ?check(is_tuple(PFTimeSet), "activity_time_manager.txt id ~w 无效!", [Id]).
+    

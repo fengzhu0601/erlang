@@ -1,0 +1,7 @@
+﻿id	优先级	名称	图标	标题	描述	执行代码
+id	priority	 name	icon	title	desc	code
+1	1	技能	mainSceneUI/icon/6.png		升级技能龙纹可使技能威力更强大。	{ui,open_skill_ui}
+2	2	成就	mainSceneUI/icon/4.png		完成成就任务，可获得大量钻石奖励。	{ui,open_achievement_ui}
+3	3	公会	mainSceneUI/icon/13.png		加入公会，与小伙伴们一起大冒险。	{ui,open_guild_ui}
+4	4	好友	mainSceneUI/icon/15.png		结交好友，让你不再孤独。	{ui,open_friend_ui}
+5	5	战争学院	mainSceneUI/icon/16.png		在这里训练不仅能提升技巧，还能获得钻石奖励哦！	{ui,open_war_course_ui}

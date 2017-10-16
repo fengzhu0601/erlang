@@ -1,0 +1,105 @@
+@include "game.sproto"
+
+## 拍卖行拍卖日志数据结构
+struct auction_log
+{
+     playerId:player_id                 #玩家id
+        ,name:sstr                      #玩家名字
+        ,itemId:item_id                 #竞拍物品id
+        ,money_type:u8                  #货币类型
+        ,price:u32                      #竞拍价格
+        ,datetime:u32                   #参加竞拍的时间
+        ,auctionType:u8                 #(1,一口价，0最高价）
+}
+
+#拍卖行竞拍界面(包含物品的拍卖信息、日志的文件信息的发送)
+proto MSG_AUCTION_PANEL=1
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message{
+            ret:u8,                     #拍卖行是否开放（1 开放， 0 休市）
+            timeOut:u64,                 #拍卖行总的结束时间
+
+            auctionInfoL:list<{
+                itemState:u8,         #物品状态（1 正在拍卖中， 0 已经被竞拍掉）
+                auctionId:u32,        #拍卖id
+                ownName:sstr,         #拥有者名字
+                item:item_bid,        #物品信息bid
+                itemNum:u8,           #物品的数量
+                moneyType:u8,         #货币类型
+                curPrice:u32,         #当前价格
+                addCount:u32,         #加价的最小数量
+                highPrice:u32         #一口价
+            }>
+        }
+    }
+}
+
+
+
+#竞价
+proto MSG_AUCTION_PRICE=2
+{
+    client{
+        message{
+            auctionId:u32,       #拍卖id
+            price:u32            #竞拍价格
+        }
+    }
+    server{
+        message{
+            replyNum:reply_num, #返回码 (参见该协议使用的地方)
+            auctionId:u32       #拍卖id
+        }
+    }
+}
+
+
+## 拍卖行的数据更新
+proto MSG_AUCTION_REFRESH=3
+{
+    client{
+        message=empty
+    }
+    server{
+        message{
+            auctionInfoL:list<{
+                itemState:u8,         #物品状态（1 正在拍卖中， 0 已经被竞拍掉）
+                auctionId:u32,        #拍卖id
+                curPrice:u32        #当前价格
+            }>
+        }
+    }
+}
+
+
+## 打开拍卖行的面板
+proto MSG_OPEN_AUCTION_PANEL=4
+{
+    client{
+        message=empty
+    }
+    server{
+        message{
+            replyNum:u8             # 返回数据为0表示打开面板成功
+        }
+    }
+}
+
+
+## 拍卖行日志的数据更新
+proto MSG_AUCTION_LOG_REFRESH=5
+{
+    client{
+        message=empty
+    }
+    server{
+        message{
+             LogL:list<log:auction_log>
+        }
+    }
+}

@@ -1,0 +1,10 @@
+{application,gm_controller_server,
+             [{description,[]},
+              {vsn,"1"},
+              {registered,[]},
+              {applications,[kernel,stdlib]},
+              {mod,{gm_controller_server_app,[]}},
+              {env,[]},
+              {modules,[gm_controller_acceptor,gm_controller_eng,
+                        gm_controller_listener_sup,gm_controller_server_app,
+                        gm_controller_server_sup,gm_controller_sup]}]}.

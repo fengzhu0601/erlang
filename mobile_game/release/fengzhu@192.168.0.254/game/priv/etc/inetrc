@@ -1,0 +1,3 @@
+%% -- ERLANG INET CONFIGURATION FILE --
+
+{lookup, [file, dns]}.

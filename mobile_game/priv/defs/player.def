@@ -1,0 +1,468 @@
+
+## player process directionare
+
+
+## 数据库表(_tab后缀的,就是指数据库表,或指数据库的结构)
+atom player_tab                     ## 在线玩家表
+atom player_name_tab                ## 防同名表
+atom player_platform_id_tab         ## 玩家平台名映射玩家游戏服ID表
+atom player_client_data_tab         ## 客户端数据表(1024个字节,由客户端全权主导,用于保存一些系统设置的数据)
+atom player_attr_tab                ##
+atom player_crown_tab               ##
+atom player_misc_tab                ##
+atom player_equip_tab               ##
+atom player_data_tab                ## 玩家数据表
+atom player_attr_image_tab          ## 玩家镜像
+atom player_arena_log_tab
+atom g_misc_tab
+atom pd_event_eng                   ## player event
+atom account_tab
+
+
+# scene
+atom pd_idx
+atom pd_x
+atom pd_y
+%atom pd_scene_id
+atom pd_scene_pid
+atom pd_entering_scene
+atom pd_pet_idx
+
+atom pd_save_x
+atom pd_save_y
+atom pd_save_scene_id
+
+atom pd_add_hp_mp_info
+# crown
+atom pd_crown_mng 
+atom pd_crown_dressed_gems ## list()
+atom pd_crown_gen_id ## 自增id u16
+atom pd_crown_anger
+atom pd_pearl
+atom pd_long_wen
+atom pd_crown_used_skill
+
+
+
+
+
+atom pd_client_chat      %群聊cd
+atom pd_client_p2p_chat  %私聊cd
+atom pd_mining_zhaoji       %公会挖矿召集玩家cd
+
+atom pd_timer_eng
+
+atom pd_defer_badmath
+
+atom wait_msg_unmatch
+
+
+### team_atom
+atom pd_team_id
+
+### item_atom
+atom pd_item_id
+
+atom pd_money
+atom pd_diamond
+atom pd_exp
+atom pd_longwens
+atom pd_sp
+atom pd_sp_buy_count
+atom pd_main_ins_jinxing
+atom pd_main_ins_yinxing
+atom pd_level
+atom pd_hp
+atom pd_mp
+atom pd_fragment
+atom pd_combat_power
+atom pd_guild_contribution                  ## 公会贡献
+
+
+atom pd_socket                                          ##  socket
+atom pd_init_completed                                  ##  加载数据完成
+atom pd_alread_offline                                  ##  玩家已经下线
+atom pd_is_first_enter_game                             ##  谁否是首次上线
+atom pd_is_die                                          ##  是否死亡
+atom pd_tcp_closed                                      ##  unknown
+atom pd_tcp_cork_data                                   ##  unknown
+atom pd_tran_old_data                                   ##  unknown
+atom pd_store_pack_data                                 ##  存储待发送的协议
+atom pd_id                                              ##  玩家player_id
+atom pd_name                                            ##  玩家名称
+atom pd_name_pkg                                        ##  玩家名称打包。8位长度+玩家名称
+atom pd_career                                          ##  玩家职业
+atom pd_last_online_time                                ##  最后一次登录时间
+atom pd_last_logout_time                                ##  最后一次下线时间
+atom pd_attr                                            ##  玩家属性
+atom pd_misc_mail_time                                  ##  unknown
+atom pd_skill_mng                                       ##  技能
+atom pd_dressed_skills                                  ##  着装技能
+atom pd_longwens_mng                                    ##  unknown
+atom pd_skill_dress_group_id                            ##  目前裝備的技能組
+atom pd_skill_reset_longwens                            ##  重置龙纹次数
+
+atom pd_ins_id                                          ##  维护目前进入的副本id
+atom pd_ins_die_count                                   ##  维护一个副本的死亡次数
+
+## -----------------------------------------------------------------------------------
+## 杂项字段
+enum player_sundry_field
+{
+    ## -----------------------------------------------------------------------------------
+    pd_platform_id                              =   100001,                   ##  渠道ID
+    pd_server_id                                =   100002,                   ##  登录时客户端发送的游戏服ID
+    pd_vx                                       =   100003,                   ##  view x
+    pd_vy                                       =   100004,                   ##  view y
+    pd_client_data                              =   100005,                   ##  客户端私有数据
+    pd_machine_mac                              =   100006,                   ##  前端机器mac
+    pd_machine_id                               =   100007,                   ##  前端机器id
+    pd_machine_style                            =   100008,                   ##  前端机器类型
+    pd_machine_info                             =   100009,                   ##  前端机器备注
+    pd_client_ip                                =   100010,                   ##  前端Ip
+    pd_client_port                              =   100011,                   ##  前端端口
+    pd_account_ip                               =   100012,                   ##  帐号Ip
+    pd_account_port                             =   100013,                   ##  帐号端口
+    pd_user_id                                  =   100014,                   ##  用户ID
+    pd_user_id_log                              =   100015,                   ##  用户ID的日志
+
+    ## -----------------------------------------------------------------------------------
+    pd_field_begin                              =   7003,                   ##  角色属性开始
+    pd_bind_diamond                             =   7003,                   ##  绑定钻石
+    pd_sinks_state                              =   7004,                   ##  开关数据
+    pd_dial_prize                               =   7005,                   ##  转盘数据
+    pd_last_reflash_tm                          =   7006,                   ##  最近一次的刷新时间
+    pd_login_prize                              =   7007,                   ##  登陆奖励数据
+    pd_vip                                      =   7008,                   ##  永久VIP
+    pd_card_vip                                 =   7009,                   ##  买卡获得的临时VIP
+    pd_card_vip_give_tm                         =   7010,                   ##  VIP卡领奖时间
+    pd_card_vip_end_tm                          =   7011,                   ##  VIP卡截止时间
+    pd_day_total_consume                        =   7012,                   ##  日消费
+    pd_total_consume                            =   7013,                   ##  总消费
+    pd_power                                    =   7014,                   ##  体力
+    pd_pay_orders                               =   7015,                   ##  支付订单
+    pd_init_cliend_completed_xx                 =   7016,                   ##  加载数据完成
+    pd_society_bufs                             =   7017,                   ##  公会buf
+    pd_system_item_id                           =   7018,                   ##  实体UID
+    pd_vip_first_pay_time                       =   7019,                   ##   vip首冲奖励钻石倒计时
+#    pd_equip_bucket                             =   7019,                   ##  装备背包
+#    pd_goods_bucket                             =   7020,                   ##  物品背包
+#    pd_depot_bucket                             =   7021,                   ##  仓库背包
+    pd_guild_mining_buyed_time         =  7020,                      ##   公会挖矿购买次数
+    pd_guild_mining_leave_time              =  7021,                      ## 公会挖矿剩余次数
+
+    pd_task_progress_list                       =   7022,                   ##  任务进度集合
+    pd_task_list                                =   7023,                   ##  主线支线任务数据
+    pd_daily_task_list                          =   7024,                   ##  日常任务数据
+    pd_task_daily_free_flush_times              =   7025,                   ##  日常活动刷新Count
+    pd_task_daily_task_times                    =   7026,                   ##  日常活动used do count
+    pd_task_is_open                             =   7027,                   ##  是否开启引导任务
+
+    pd_arena_honor                              =   7028,                   ##  荣誉
+    pd_arena_win_streak                         =   7029,                   ##  连胜数
+    pd_challenged_count                         =   7030,                   ##  挑战次数
+    pd_buy_challenged_count                     =   7031,                   ##  购买次数
+    pd_arena_prize_id                           =   7032,                   ##  竞技场可领的奖励ID
+    pd_get_arena_prize_tm                       =   7033,                   ##  竞技场可领的奖励ID
+##    pd_create_time                              =   7034,                   ##  角色创建时间
+    pd_online_total_time                        =   7035,                   ##  在线总时长
+    pd_arena_attr_id                            =   7036,                   ##  竞技属性
+    pd_uid_prefix                               =   7037,                   ##  分配的UID前缀
+    pd_room_prize_count                         =   7038,                   ##  副本当天奖励次数
+    pd_player_scene_time_count                  =   7039,                   ##  记录玩家当天在线的时间(seconds)
+    pd_player_scene_second_this_time            =   7040,                   ##  记录玩家本次在线时长(seconds)
+    player_is_on_new_wizard                     =   7041,                   ##  是否为新手入场引导(true,false)
+    pd_is_first_arena                           =   7042,                   ##  是否为首次竞技
+    pd_is_near_player_count_set                 =   7043,                   ##  显示附近的玩家数量
+    pd_player_efts_list                         =   7044,                   ##  用于存放玩家的特效列表[{PlayerId, EftsList}]
+    pd_shapeshift_data                          =   7045,                   ##  角色的变身效果数据
+    pd_shapeshift_end_time                      =   7046,                   ##  角色的变身效果结束时间
+    pd_task_daily_pay_flush_times               =   7047,                   ##  日常任务的付费次数
+    pd_daily_task_list_event_data               =   7048,                   ##  日常任务的事件
+    pd_daily_event_to_task_list                 =   7049,                   ##  日常任务事件对应的任务ID
+    pd_daily_task_prize_list                    =   7050,                   ##  日常任务对应的奖励列表
+    pd_is_first_p2e_arena                       =   7051,                   ##  是否第一次人机模式
+    pd_arena_turn_award_times                   =   7052,                   ##  竞技场抽奖的奖励次数
+    pd_daily_task_collect_dig_list              =   7053,                   ##  日常任务中的采集目标
+    pd_do_he_cheng_count                        =   7054,                   ##  记录装备的合成次数
+    pd_main_instance_relive_times               =   7055,                   ##  主线副本复活次数
+    #pd_main_ins_jinxing                         =   7056,                   ##  金星
+    #pd_main_ins_yinxing                         =   7057,                   ##  银星
+    pd_guild_boss_donate                        =   7058,                   ##  献祭
+    pd_ride_soul_data                           =   7059,                   ##  玩家兽魂数据
+    pd_ride_data                                =   7060,                   ##  玩家坐骑数据
+    pd_riding_data                              =   7061,                   ##  玩家当前骑乘坐骑
+    pd_guild_boss_challage                      =   7062,                   ##  公会BOSS挑战次数
+    pd_task_bless_buff                          =   7063,                   ##  任务祝福加的buff
+    pd_task_mount_time                          =   7064,                   ##  任务给的临时做骑时效
+    pd_crown_yuansu_moli                        =   7065,                   ##  元素魔力
+    pd_crown_guangan_moli                       =   7066,                   ##  光暗魔力
+    pd_crown_mingyun_moli                       =   7067,                   ##  命运魔力
+    pd_equip_fumo_mode_state                    =   7068,                   ##  装备附魔公式的状态  [{fumoModeId, IsUse}]
+    pd_clean_room_list                          =   7069,                   ##  玩家可扫荡副本列表
+    pd_bounty_task_free_refresh_count           =   7070,                   ##  玩家免费刷新赏金任务的次数
+    pd_bounty_task_pay_refresh_count            =   7071,                   ##  玩家付费刷新赏金任务的次数
+    pd_bounty_refresh_remain                    =   7072,                   ##  赏金任务剩余刷新时间
+    pd_is_do_survey                             =   7073,                   ##  是否完成调查问卷
+    pd_rank_ride_buy_count                      =   7074,                   ##  坐骑王者超级礼包购买次数
+    pd_rank_pet_buy_count                       =   7075,                   ##  宠物王者超级礼包购买次数
+    pd_ride_soul_happy_time_remain              =   7076,                   ##  兽魂愉悦度剩余时间
+    pd_hourly_sp_lunch                          =   7077,                   ##  英雄盛宴午餐
+    pd_hourly_sp_dinner                         =   7078,                   ##  英雄盛宴晚餐
+    pd_remain_sp_time                           =   7079,                   ##  体力计时器下线时的剩余时间
+    pd_cd_key_type_list                         =   7080,                   ##  玩家领取的cd_key类型列表
+    pd_share_game_status                        =   7081,                   ##  玩家当天是否已经分享游戏
+    pd_prize_share_game_status                  =   7082,                   ##  玩家当天是否已经领取分享游戏奖励
+    pd_field_end                                =   7082,                   ##  角色属性结束
+
+
+
+
+    ## -----------------------------------------------------------------------------------
+    pd_temp_field_list                          =   10001,                  ##  发送字段数据的临时链表
+    pd_temp_res_list                            =   10002,                  ##  资源产出数据的临时链表
+    pd_vote_evts_tree                           =   10003,                  ##  保存否决事件的回调函数
+    pd_run_evts_tree                            =   10004,                  ##  保存执行事件的回调函数
+    pd_treasure_map_list                        =   10007,                  ##  藏宝图分布表
+    pd_goods_bucket_temp                        =   10008,                  ##  货物背包操作时保存要同步到前端的背包数据的临时数据区
+    pd_equip_bucket_temp                        =   10009,                  ##  装备背包操作时保存要同步到前端的背包数据的临时数据区
+    pd_depot_bucket_temp                        =   10010,                  ##  仓库背包操作时保存要同步到前端的背包数据的临时数据区
+    pd_global_bucket_temp                       =   10011,                  ##  为适应前端的特殊时序要求而建的临时数据区
+    pd_hecheng_equip_tmp                        =   10012,                  ##  合成装备的临时数据
+    pd_temp_field_list_ex                       =   10013,                  ##  发送字段数据的临时链表
+    pd_room_prize_id                            =   10014,                  ##  标志是否副本奖励（当0时是副本外获得的奖励，生成奖励规则按策划要求的弄；否则是奖励规则按旧有设计弄）
+    pd_arena_rank_snapshoot                     =   10015,                  ##  竞技场排名快照
+    pd_temp_area_opponents                      =   10016,                  ##  竞技场的对手表
+    pd_arena_opponent_order                     =   10017,                  ##  竞技场的排名快照（上线时快照一下，有修改时会更新，免得每次都要去进程里call查询）
+    pd_temp_res_change_reasion                  =   10018,                  ##  资源产出原因
+    pd_temp_equip_efts                          =   10019,                  ##  装备特效
+    pd_init_cliend_completed                    =   10020,                  ##  加载数据完成
+    pd_goods_bucket_prea                        =   10021,                  ##  旧代码用到
+    pd_equip_bucket_prea                        =   10022,                  ##  旧代码用到
+    pd_depot_bucket_prea                        =   10023,                  ##  旧代码用到
+    pd_suid_attr_list                           =   10024,                  ##  未知
+    pd_temp_field_state                         =   10025,                  ##  标志是否需要人物属性同步到前端
+    pd_room                                     =   10026,                  ##  未知
+    pd_ready_room                               =   10027,                  ##  未知
+    pd_gateway_node_addr                        =   10028,                  ##  网关结点地址
+    pd_gateway_node_pid                         =   10029,                  ##  网关结点进程
+    pd_is_in_room                               =   10030,                  ##  判断角色是否在副本中
+    pd_account_id                               =   10031,                  ##  帐号ID
+    pd_account_build_tm                         =   10032,                  ##  帐号创建时间
+    pd_account_name                             =   10033,                  ##  帐号名
+    pd_mods_state                               =   10034,                  ##  未知
+    pd_can_get_prize_from_room                  =   10035,                  ##  判断角色是否能从副本中获得奖励(没体力打副本没奖励)
+    pd_get_honour                               =   10036,                  ##  PVE获得的荣誉值
+    pd_equip_bucket                             =   10037,                  ##  装备背包
+    pd_goods_bucket                             =   10038,                  ##  物品背包
+    pd_depot_bucket                             =   10039,                  ##  仓库背包
+    pd_bounty_task_list                         =   10040,                  ##  赏金任务列表
+    pd_bounty_liveness_prize_list               =   10041,                  ##  赏金活跃度奖励表
+    pd_bounty_liveness                          =   10042,                  ##  玩家活跃度
+    pd_total_recharge                           =   10043,                  ##  玩家累计充值金额
+    pd_reward_status                            =   10044,                  ##  累计充值奖励状态
+    pd_cost_sp                                  =   10045,                  ##  玩家打副本消耗的体力值
+    pd_part_qiang_hua_list                      =   10046,                  ##  装备部位强化列表
+    pd_part_qiang_hua_effect                    =   10047,                  ##  装备部分强化特效列表
+    pd_is_build_suit                            =   10048,                  ##  给装备时是否有套装
+
+    ## mail
+    pd_mail_mng                                 =   9001,                   ##  邮件
+
+    ## main_instance
+    pd_main_ins_mng                             =   9002,                   ##   主线副本
+
+    ## task
+    pd_task_main                                =   9003,                   ##任务主线（已经完成，未完成）
+    pd_task_branch                              =   9004,                   ##支线（已经完成，未完成）
+    pd_task_daily                               =   9005,                   ##日常活动（已经完成，未完成）
+
+
+    ## guild
+    pd_guild_id                                 =   9011,                   ##工会ID
+    pd_guild_position                           =   9012,                   ##工会职位
+    pd_join_guild_time                          =   9013,                   ##加入工会时间
+    pd_guild_totle_contribution                 =   9014,                   ##玩家总贡献值
+    pd_guild_lv                                 =   9015,                   ##玩家工会等级
+    pd_guild_exp                                =   9016,                   ##玩家该工会等级下的经验值
+    pd_guild_daily_task_count                   =   9017,                   ##活动次数
+    pd_guild_tech_items                         =   9018,                   ##工会科技信息
+    pd_guild_quit_guild_time                    =   9032,                   ##玩家退出公会时间
+    pd_guild_saint_list                         =   9034,                   ##玩家公会圣物列表
+
+    ##seller
+    pd_seller_itemids                           =   9019,                   ##道具列表
+    pd_seller_refresh_time                      =   9020,                   ##刷新时间戳
+    pd_seller_activation_time                   =   9021,                   ##神秘商人功能开放时间戳
+
+    ##camp
+    pd_camp_self_camp                           =   9022,                   ##自己种族ID
+    pd_camp_enter_count                         =   9023,                   ##进入副本次数
+    pd_camp_exploit                             =   9024,                   ##玩家功勋值
+    pd_camp_open_instance                       =   9025,                   ##玩家活动副本已经激活的副本
+    pd_camp_fight_instance                      =   9026,                   ##本次活动中玩家战胜的副本id
+    pd_camp_fight_endtime                       =   9027,                   ##本次活动结束时间
+    pd_select_camp_time                         =   9028,                   ##人族选择其他种族的时间
+
+    ##abyss
+    pd_abyss_tab                                =   9029,                   ##虚空深渊活动玩家数据
+
+    ##daily_activity
+    pd_daily_activity_tab                       =   9030,                   ##日常活动玩家数据
+    
+
+    ##sky_ins
+    pd_sky_ins_tab		                        =   9031,                   ##天空大型副本活动玩家数据
+
+    pd_fishing_daily_tab                        =   9033,                   ##钓鱼活动表
+
+
+}
+## -----------------------------------------------------------------------------------
+
+
+## -----------------------------------------------------------------------------------
+## 角色实体字段
+enum player_attr_field
+{
+    pd_attr_private_begin                       =   6001,                   ##  角色属性开始
+    pd_attr_cur_title                           =   6001,                   ##  当前称号
+    pd_attr_titles                              =   6002,                   ##  拥有的称号链表
+    pd_attr_private_end                         =   6005,                   ##  角色属性结束
+
+
+    pd_attr_public_begin                        =   100,                    ##  角色属性开始
+    pd_attr_add_hp_times                        =   101,                    ##  角色加血次数
+    pd_attr_add_hp_mp_cd                        =   102,                    ##  角色上次加血时间
+    pd_attr_relive_times                        =   103,                    ##  角色复活次数
+    pd_attr_dig_list                            =   104,                    ##  可采集资源列表
+    pd_attr_equip_bag                           =   105,                    ##
+    pd_attr_public_end                          =   200,                    ##  角色属性结束
+
+
+    ##  读配置表
+    pd_fight_begin                              =   7999,                   ##  角色属性开始
+    pd_attr_max_hp                              =   7999,                   ##  max_hp
+    pd_attr_hp                                  =   8000,                   ##  hp
+    pd_attr_max_mp                              =   8001,                   ##  max_mp
+    pd_attr_mp                                  =   8002,                   ##  mp
+    pd_attr_max_sp                              =   8003,                   ##  max_体力
+    pd_attr_sp                                  =   8004,                   ##  体力
+    pd_attr_max_np                              =   8005,                   ##  max_能量
+    pd_attr_np                                  =   8006,                   ##  能量
+    pd_attr_strength                            =   8007,                   ##  力量
+    pd_attr_intellect                           =   8008,                   ##  智力
+    pd_attr_nimble                              =   8009,                   ##  敏捷
+    pd_attr_strong                              =   8010,                   ##  体质
+
+    pd_attr_atk                                 =   8011,                   ##  攻击
+    pd_attr_def                                 =   8012,                   ##  防御
+    pd_attr_crit                                =   8013,                   ##  暴击等级
+    pd_attr_crit_multi                          =   8014,                   ##  暴击被率
+    pd_attr_block                               =   8015,                   ##  格挡
+    pd_attr_pliable                             =   8016,                   ##  柔韧
+    pd_attr_pure_atk                            =   8017,                   ##  无视防御伤害
+    pd_attr_break_def                           =   8018,                   ##  破甲
+    pd_attr_atk_deep                            =   8019,                   ##  伤害加深
+    pd_attr_atk_free                            =   8020,                   ##  伤害减免
+    pd_attr_atk_speed                           =   8021,                   ##  攻击速度
+    pd_attr_precise                             =   8022,                   ##  精确
+
+    pd_attr_thunder_atk                         =   8023,                   ##  雷攻
+    pd_attr_thunder_def                         =   8024,                   ##  雷防
+    pd_attr_fire_atk                            =   8025,                   ##  火攻
+    pd_attr_fire_def                            =   8026,                   ##  火防
+    pd_attr_ice_atk                             =   8027,                   ##  冰攻
+    pd_attr_ice_def                             =   8028,                   ##  冰防
+    pd_attr_move_speed                          =   8029,                   ##  移动速度
+    pd_attr_run_speed                           =   8030,                   ##  跑步速度
+    pd_attr_suck_blood                          =   8031,                   ##  吸血
+    pd_attr_reverse                             =   8032,                   ##  反伤
+    pd_attr_bati                                =   8033,                   ##  霸体
+
+    pd_fight_attr_pre                           =   8034,                   ##  属性加成
+    pd_fight_attr_2lvl                          =   8035,                   ##  补充2级属性
+    pd_fight_end                                =   8035,                   ##  角色属性结束
+
+    pd_attr_2prop_begin                         =   8011,                   ##  二级属性开始
+    pd_attr_2prop_end                           =   8022,                   ##  二级属性结束
+}
+## -----------------------------------------------------------------------------------
+
+
+## -----------------------------------------------------------------------------------
+## 装备实体字段
+enum player_equip_field
+{
+    pd_equip_public_begin                        =   100,                       ##  角色属性开始
+    pd_equip_add_hp_times                        =   101,                       ##  角色加血次数
+    pd_equip_add_hp_mp_cd                        =   102,                       ##  角色上次加血时间
+    pd_equip_relive_times                        =   103,                       ##  角色复活次数
+    pd_equip_public_end                          =   200,                       ##  角色属性结束
+
+    pd_equip_private_begin                       =   6001,                      ##  角色属性开始
+    pd_equip_cur_title                           =   6001,                      ##  当前称号
+    pd_equip_titles                              =   6002,                      ##  拥有的称号链表
+    pd_equip_private_end                         =   6005,                      ##  角色属性结束
+    pd_equip_attr_2lvl                           =   6006,
+}
+## -----------------------------------------------------------------------------------
+
+
+## 玩家属性虚拟ID
+## 不要改变数值
+## TODO:在此处添加了对应的id之后必须，有原子的必须在下面的assets_pd里面对应添加
+enum special_item_id
+{
+    PL_MONEY            = 10 : pd_money,
+    PL_DIAMOND          = 11 : pd_diamond,
+    PL_FRAGMENT         = 12 : pd_fragment,
+    PL_JINXING         = 13 : pd_main_ins_jinxing,
+    PL_YINXING         = 14 : pd_main_ins_yinxing,
+    PL_LEVEL            = 20 : pd_level,
+    PL_EXP              = 21 : pd_exp,
+    PL_HP               = 22 : pd_hp,
+
+    PL_LONGWENS         = 23 : pd_longwens,
+    PL_HONOUR           = 24 : pd_honour,
+    PL_PEARL            = 25 : pd_pearl,        ##玩家宠物经验值
+    PL_LONG_WEN         = 26 : pd_long_wen,
+    PL_MP               = 27 : pd_mp,
+    PL_COMBAT_POWER     = 30 : pd_combat_power,
+#    PL_MP               = 31 : pd_mp,
+    PL_PET_TACIT        = 41,                   ##宠物默契度
+    PL_SP               = 104 : pd_sp,##角色体力,区分attr{sp=0::作用未知}
+    PL_SP_COUNT         = 105 : pd_sp_buy_count,
+    PL_SKILL_CD_RESET   = 106,  ## 技能CD重置
+    PL_MOVE_SPEED       = 107   ## 移动速度
+}
+
+eatom assets_pd 
+{
+	pd_money,
+	pd_diamond,
+	pd_exp,
+    pd_longwens,
+    pd_sp,          #体力
+    pd_sp_buy_count, #当前体力购买次数
+    pd_main_ins_jinxing,
+    pd_main_ins_yinxing
+}
+
+## 职业
+enum career
+{
+  C_ZS= 1, ##盾战士
+  C_FS= 2, ##法师  
+  C_SS= 3, ##弓箭手
+  C_QS= 4, ##骑士  
+  C_ANY=9 ## all
+}
+
+## 皇冠宝石属性
+enum crown_gem_type
+{
+    CGT_ICE = 1,
+    CGT_FIRE = 10,
+    CGT_THUNDER = 100,
+}

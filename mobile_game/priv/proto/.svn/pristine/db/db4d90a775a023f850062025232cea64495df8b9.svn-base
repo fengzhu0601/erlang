@@ -1,0 +1,36 @@
+@include "game.sproto"
+
+# 服务器推送
+proto MSG_CHARGE_INFO_SC = 1
+{
+    client
+    {
+        message=empty
+    }
+    server
+    {
+        message
+        {
+            dayCost:u32, #每日消费数
+            totalCost:u32 #累计消费数
+        }
+    }
+}
+
+# 客户端请求
+# 请求领取奖励
+proto MSG_CHARGE_REWARD_CS = 2
+{
+    client
+    {
+        message
+        {
+            id:u32 #表奖励id
+        }
+    }
+    server
+    {
+        message=empty
+    }
+}
+

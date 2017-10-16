@@ -1,0 +1,212 @@
+@include "game.sproto"
+
+proto MSG_PET_NEW_PET_LIST=1
+{
+	client{
+		message=empty
+	}
+
+	server{
+		message{
+			# Size:8
+			# while
+			#    Id:u32,
+			#    PetId:32,
+			#    Level:8
+			#    Advance:8
+			#    Status:8          # 1出战 2上阵 3休息
+			#    InitativeSkillLevel:u8
+			#    CurExp:u64
+			#    size:u8
+			#    while
+			#       Index:u8
+			#     	SkillId:u32   
+			#    PassivitySkill/binary
+			info:binary
+		}
+	}
+}
+
+
+proto MSG_PET_NEW_UPGRADE=2
+{
+	client{
+		message{
+			id:u32,
+			chongwudanid:u32,
+			num:u8
+		}
+	}
+
+	server{
+		message{
+			id:u32,
+			level:u8,
+			exp:u64
+		}
+	}
+}
+
+proto MSG_PET_NEW_ADVANCE=3
+{
+	client{
+		message{
+			id:u32
+		}
+	}
+
+	server{
+		message{
+			id:u32,
+			advance:u8
+		}
+	}
+
+	errnos{
+		ERR_COST_NOT_ENOUGH,
+		ERR_PET_CANT_ADVANCE, ##宠物不能进阶
+		ERR_PET_NOT_EXIST##寵物不存在
+    }
+}
+
+proto MSG_PET_NEW_UPGRADE_SKILL=4
+{
+	client{
+		message{
+			id:u32
+		}
+	}
+
+	server{
+		message{
+			id:u32,
+			level:u8
+		}
+	}
+
+	errnos{
+		ERR_COST_NOT_ENOUGH,
+    	ERR_PET_MAX_LEVEL, ## 技能已达最大等级
+		ERR_PET_NOT_EXIST##寵物不存在
+    }
+}
+
+proto MSG_PET_NEW_DEL=5
+{
+	client{
+		message{
+			id:u32
+		}
+	}
+
+	server{
+		message{
+			id:u32
+		}
+	}	
+}
+
+proto MSG_PET_NEW_UPDATE_AND_ADD=6
+{
+	client{}
+
+	server{
+		message{
+			info:binary
+		}
+	}
+}
+
+proto MSG_PET_NEW_PASSIVITY_SKILL_INLAY=7
+{
+	client{
+		message{
+			id:u32,
+			slot:u8,
+			eggid:u32
+		}
+	}
+
+	server{
+		message=empty
+	}
+
+	errnos{
+		ERR_PET_NOT_PASSIVITYSKILL_ID,##不是一个被动技能
+        ERR_PET_POS_REPEAT_OF_ATTR##被动技能不能同时吸引相同加成的
+    }
+}
+
+proto MSG_PET_NEW_SHANGZHEN=8
+{
+	client{
+		message{
+			id:u32,
+			status:u8,  ## 2 shang 3xia
+			index:u8
+		}
+	}
+
+	server{
+		message=empty
+	}
+
+	errnos{
+    	ERR_PET_NOT_SHANGZHEN, ## 此位置不允许上阵
+    	ERR_PET_NOT_XIAZHEN, ## 此位置不允许下阵
+		ERR_PET_NOT_EXIST##寵物不存在
+    }
+}
+##宠物设置出战/休息
+proto MSG_PET_NEW_GAN=9
+{
+	client{
+		message{
+			id:u32,
+			status:u8
+		}
+	}
+
+	server{
+		message{
+			id:u32,
+            status:u8
+		}
+	}
+}
+## 封印
+proto MSG_PET_NEW_FENGYIN=10
+{
+	client{
+		message{
+			id:u32
+		}
+	}
+
+	server{
+		message=empty
+	}
+
+	errnos{
+        ERR_PET_NOT_EXIST,##寵物不存在
+        ERR_COST_NOT_ENOUGH,
+        ERR_PET_NOT_FENGYIN ## 此位置不允许封印战斗中
+    }
+}
+
+proto MSG_PET_NEW_SHANGZHEN_LIST=11
+{
+	client{
+		message=empty
+	}
+
+	server{
+		message{
+			# Size:8
+			# while
+			#    Index:u8,
+			#    Id:32,
+			info:binary
+		}
+	}
+}

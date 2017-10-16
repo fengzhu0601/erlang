@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<!-- edited with XMLSpy v2011 (http://www.altova.com) by aaa (dd) -->
+<scene_10032>
+	<!--副本事件流程-->
+	<State StateId="1" Desc="副本状态1">
+		<Event EventId="10001" Times="1" Desc="玩家进入场景">
+			<True Func="set_event" Par="{100, 9001}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+		<Event EventId="9001" Times="1" Desc="监听自定义事件">
+			<True Func="lock_area" Par="{1,{0, 70}}" Desc="锁屏区域{序号,{X1, X2}}"/>
+			<True Func="create_monsters" Par="[{1003100, 20, 16, 0, 7, 1}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="monster_speaking" Par="{1,60001}" Desc="怪物说话{怪物序号，talksid}"/>
+			<True Func="set_event" Par="{1000, 9002}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+		<Event EventId="9002" Times="1" Desc="监听自定义事件">
+			<True Func="create_monsters" Par="[{1003110, 30, 16, 0, 7, 2}, {1003110, 39, 17, 0, 7, 3}, {1003110, 49, 16, 0, 7, 4}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{1003111, 25, 17, 0, 7, 5}, {1003111, 26, 17, 0, 7, 6}, {1003110, 25, 17, 0, 7, 7}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+		</Event>
+		<Event EventId="10002" Times="1" Desc="玩家移动">
+		    <Can Func="is_player_in_x" Par="25" Desc="是否超过x坐标"/>
+			<True Func="create_monsters" Par="[{1003110, 10, 16, 0, 3, 8}, {1003110, 12, 17, 0, 3, 9}, {1003110, 12, 16, 0, 3, 10}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="create_monsters" Par="[{1003111, 50, 16, 0, 7, 5}, {1003111, 50, 17, 0, 7, 6}, {1003110, 50, 14, 0, 7, 7}]" Desc="创建怪物列表[{id, x, y, z, dir, flag}]"/>
+			<True Func="set_event" Par="{1000, 9003}" Desc="定时抛出事件，{毫秒，事件id}"/>
+		</Event>
+		<Event EventId="9003" Times="3" Desc="监听自定义事件">
+		<True Func="monsters_flush_ok" Par="" Desc="已经刷完所有怪物"/>
+		</Event>
+		<Event EventId="10003" Times="1" Desc="击杀怪物">
+			<Can Func="is_monsters_flush_ok" Par="" Desc="是否已经刷完所有怪物"/>
+			<Can Func="is_all_monster_die" Par="" Desc="是否杀死当前所有怪物"/>
+			<True Func="fuben_complete" Par="" Desc="副本结束"/>
+		</Event>
+	</State>
+</scene_10032>

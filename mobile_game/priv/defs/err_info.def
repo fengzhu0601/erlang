@@ -1,0 +1,259 @@
+## Game Logic Error Code
+
+enum err_code
+{
+    ERR_OK                              = 0  ,## 没有错误
+    ERR_ROLE_NOT_EXIST                  = 1  ,## 角色不存在
+    ERR_ROLE_NAME_NOT_ILLEGAL           = 2  ,## 角色名字非法
+    ERR_ROLE_NAME_ALREAY_EXIST          = 3  ,## 角色名字已经存在
+    ERR_NOT_EXIST_CFG                   = 4  :none_cfg ,## 无存在配置
+    ERR_SYSTEM                          = 5, ##系统错误
+    ERR_SET_ATTR                        = 6, ##设值异常
+    ERR_AUTH_MESSAGE                    = 7, ## sdk 验证信息错误
+
+    ERR_ITEM_NOT_EXIST                  = 10,##物品不存在
+
+    ERR_ENTER_SCENE_REQUEST_DISAPPROVED = 30, ## 不能进入场景
+
+    ERR_COST_NOT_ENOUGH                 = 50 :cost_not_enough       ,## 消耗不足
+    ERR_POINT_NOT_WALKABLE              = 61  ,## 当前点不可行走
+    ERR_NOT_IN_INS                      = 62 :not_in_ins,   ## 不再副本中
+    ERR_NOT_EXIST_SKILL                 = 70  ,
+    ERR_CD_LIMIT                        = 71 :cd_limit ,
+    ERR_TYPE_ILL                        = 72 :type_ill,
+
+    ## crown mng
+    ERR_CROWN_GEM_ALREADY_DRESS         = 81, ## 宝石已经装备
+    ERR_CROWN_GEM_NOT_DRESSED           = 82, ## 宝石没有被装备
+    ERR_CROWN_SLOT_FULL                 = 83, ## 宝石槽已满
+    ERR_CROWN_GEM_FULL_LEVEL            = 84, ## 宝石已满级
+    ERR_CROWN_ANGER_NOT_FULL            = 85, ## 怒气值未满
+
+    ## 好友系统
+    ERR_FRIEND_NO_FRIEND                = 90, ## 该玩家不是好友
+
+    ## main instance
+    ERR_TEAM_INS_ROOM_NOT_EXIST         = 110, ## 队伍不存在
+    ERR_NOT_TEAM_MAIN_INS               = 111 :not_team_main_ins, ## 副本非多人副本
+    ERR_SP_NOT_ENOUGHT                  = 112, ## sp不足
+    ERR_CHAPTER_START_PRIZE_1           = 113, ## 已领取
+    ERR_CHAPTER_START_PRIZE_2           = 114, ## 未到达要求
+
+    ## 技能错误码
+    ERR_SKILL_LW_IS_EXIST               = 120, ##该龙纹已经存在
+    ERR_SKILL_NO_ID                     = 121, ##不存在该技能
+    ERR_SKILL_LW_LEVEL_NOT_ENOUGH       = 122, ##升级龙纹等级不够
+    ERR_SKILL_LW_MAX                    = 123, ##龙纹已达最大等级
+    ERR_SKILL_LW_LEVEL_ERROR            = 124, ##龙纹服务器等级和客户端等级不一致
+
+    ## 背包错误码
+    ERR_BAG_FULL                        = 130, ## 背包已满
+
+
+    ## 称号错误码
+    ERR_TITLE_NOT_EXIST                 = 140, ##称号不存在
+    ERR_TITLE_IS_CUR_TITLE              = 141, ##已是当前称号
+
+    ##寵物
+    ERR_PET_SKILL_ALREADY_STUDY = 150, ##技能已學習
+    ERR_PET_SKILL_NOT_STUDY = 151, ##技能未學習
+    ERR_PET_FIGHT_STATUS = 152, ##寵物出戰中
+    ERR_PET_NOT_EXIST = 153, ##寵物不存在
+    ERR_PET_CANT_ADVANCE = 154, ##宠物不能进阶
+    ERR_PET_SKILL_POS_NOT_ACTIVE = 155, ##技能曹还未激活
+    ERR_PET_SKILL_POS_ALREADY_LOAD=156, ##技能曹已学技能
+    ERR_PET_TREASURE = 157, ##宠物寻宝中
+    ERR_PET_NOT_TREASURE = 158, ##宠物不在寻宝中
+    ERR_PET_TREASURE_NOT_EXIST = 159, ##寻宝不存在
+    ERR_PET_POS_ISOPEN = 160, ##技能曹已开启
+    ERR_PET_POS_CANOPEN = 161, ##技能曹无法开启
+    ERR_PET_POS_REPEAT = 162,  ##被动技能不能重复
+    ERR_PET_POS_REPEAT_OF_ATTR = 163, ## 被动技能不能同时吸引相同加成的
+    ERR_PET_NOT_PASSIVITYSKILL_ID = 164, ## 不是一个被动技能
+    ERR_PET_MAX_LEVEL = 165, ## 技能已达最大等级
+    ERR_PET_NOT_SHANGZHEN = 166, ## 此位置不允许上阵
+    ERR_PET_NOT_XIAZHEN = 167, ## 此位置不允许下阵
+    ERR_PET_NOT_FENGYIN = 168, ## 此位置不允许封印
+
+
+    ##坐骑 480~499
+    ERR_RIDE_NO_ENOUGH = 480,    ## 材料不够
+    ERR_RIDE_NO_THIS_RIDE = 481, ## 没有这个坐骑
+    ERR_RIDE_NO_RIDING = 482,    ## 没骑乘坐骑
+    ERR_RIDE_LEVELMAX = 483,     ## 兽魂等级大于玩家等级
+    ERR_RIDE_EXP_NO_ENOUGH = 484,## 兽魂经验不足
+    ERR_RIDE_CHANGE_NO_CD = 485, ## 兽魂转化CD冷却中
+    ERR_RIDE_MAX_HAPPY = 486,    ## 兽魂愉悦度已满
+    ERR_RIDE_LEVEL_ENOUGH = 487, ## 兽魂等级不够进阶
+    ERR_RIDE_HAPPY_ENOUGH = 488, ## 兽魂愉悦度不足
+    ERR_RIDE_ADVANCE_LEVEL = 489,## 兽魂进阶等级不够
+    ERR_RIDE_CHANGE_NO_NUM = 490,## 兽魂转化次数不够
+    ERR_RIDE_EVOLVE_MAX    = 491,## 坐骑进化到最大等级
+
+    ##公会 500~599
+    ERR_GUILD_NOT_JOIN = 500,             ##玩家没有加入公会
+    ERR_GUILD_NOT_PERMISSION = 501,       ##玩家权限不足
+    ERR_GUILD_NO_GUILD = 502,             ##没有公会
+    ERR_GUILD_HAS_GUILD = 503,            ##已经加入公会
+    ERR_GUILD_INVALID_GUILDNAME=504,      ##公会名称不合法
+    ERR_GUILD_INVALID_NOTICE=505,         ##公会公告不能为空或者长度大于70字节
+    ERR_GUILD_NOT_IN_SAMEGUILD=506,       ##不在同一个公会
+    ERR_GUILD_DAILY_NUMBER_FINISHED=507,  ##每日次数已经用完
+    ERR_GUILD_MASTER_CONNOT_QUIT=508,     ##会长无法退出公会
+    ERR_GUILD_HASALREADY_APPLY=509,       ##已经申请过该公会
+    ERR_GUILD_PROTO_ARG_ERROR=510,        ##参数不正确
+    ERR_GUILD_UNKNOWN=511,                ##未定义情况
+    ERR_GUILD_MINING_INFO=512,            ##  获取公会挖矿信息失败
+    ERR_GUILD_SAINT_NO_OPEN = 513,        ## 圣物未开放
+    ERR_GUILD_SAINT_GETTED = 514,         ## 圣物已经交流
+
+    ##神秘商人 601~610
+    ERR_SELLER_NOT_ACTIVATE=601,        #没有激活该功能
+    ERR_SELLER_NO_THIS_CONFIG=602,      #神秘商人道具表没有该id
+    ERR_SELLER_NO_THIS_RANDOM_ID=603,   #目前随机的道具不包含该itemid
+    ERR_SELLER_DIAMOND_NOT_ENOUGH=604,  #钻石不足
+    ERR_SELLER_COST_NOT_ENOUGH=605,     #消耗不足
+    ERR_SELLER_ARG_ERROR=606,           #客户端输入的参数不正确
+    ERR_SELLER_BUY_COUNT_NOT_ENOUGH=607,
+
+    ##成就 611～620
+    ERR_ACC_THIS_ACCID_NOT_ACCEPT = 611,  ##该成就没有被接取
+    ERR_ACC_CHECH_ERR = 612,              ##该等级成就还未完成
+
+    ##神魔系统 621～700
+    ERR_CAMP_HAVE_OPEN=621,                ##已经开放功能
+    ERR_CAMP_NOT_OPEN=622,                 ##神魔系统没有开放
+    ERR_CAMP_NOT_JOIN_CAMP=623,            ##没有加入阵营
+    ERR_CAMP_NOT_FIGHT=624,                ##目前处于备战状态
+    ERR_CAMP_HAVE_CAMP=625,                ##已经加入种族
+    ERR_CAMP_NOT_PERSION=626,              ##不是人族
+    ERR_CAMP_SELECT_CAMP=627,              ##已经选择种族
+    ERR_CAMP_NO_ENOUGH_COUNT=628,          ##进入副本次数已经用完
+    ERR_CAMP_CHECH_INSTANCE_ERROR=629,     ##个人试炼校验副本失败
+    ERR_CAMP_EXIT_IN_THIS_SCENE=630,       ##已经在该场景
+    ERR_CAMP_IS_FIGHT=631,                 ##已经进入战斗状态
+    ERR_CAMP_IS_IN_BOSS_ROOM=632,          ##已经在boss房间
+    ERR_CAMP_NOT_INVADE=633,               ##玩家不是入侵状态
+    ERR_CAMP_NO_FIGHT=634,                 ##该副本没有玩家入侵
+    ERR_CAMP_GUARD_MY_INS=635,             ##守护必须是自己的副本
+
+    ##虚空深渊 701～730
+    ERR_ABYSS_NOT_OPEN=701,               ##功能未开放
+    ERR_ABYSS_MAX_ENTER_LAYER=702,        ##目前处于最高层
+    ERR_ABYSS_AUTO_MAX_LAYER=703,         ##已经自动爬塔到最大层数
+    ERR_ABYSS_NO_THIS_LAYER=704,          ##没有该层配置
+    ERR_ABYSS_THIS_HEIGHT_LAYER=705,      ##已经最高层
+    ERR_ABYSS_MAX_COUNT=706,              ##最大免费次数
+    ERR_ABYSS_COST_FAIL=707,              ##消耗失败,您的钻石不足
+    ERR_ABYSS_ENTER_SCENE_FIAL=708,       ##进入战斗场景失败
+    ERR_ABYSS_LIMIT_LEVEL=709,            ##等级不足
+    ERR_ABYSS_EASY_LAYER_NOT_ENOUGH=710,  ##简单难度层数没有达到条件
+
+
+    ## 731~760
+    ERR_LOOKUP_LVL_PRIZE_CFG = 731,	    ## 找不到配置表记录
+    ERR_SINK_STATE = 732,			    ## 开关数据已设置
+    ERR_DIAMOND_NOT_ENOUGH = 733,	    ## 钻石不足
+    ERR_UNKNOW = 734,				    ## 未知异常
+    ERR_ERROR_TIME = 735,			    ## 无效时间
+
+    ## 761~780
+    ERR_ERROR_ORDER_ID = 761,		    ## 无效订单
+    ERR_ERROR_GIVE = 762,			    ## 领取失败
+
+    ERR_ERROR_DAILY_TASK_PRIZE = 763,
+
+    ERR_PAY_NOT_ENOUGH = 764,            ## 扣费失败,需要充值
+    ERR_QQ_PAY_HAS_ORDER = 765,          ## 订单已存在
+    ERR_QQ_PAY_TOKEN = 766,              ## QQ扣费 token校验失败
+    ERR_QQ_PAY_FAILURE = 767,             ## QQ扣费失败 其他错误
+    ERR_PAY_LIMIT = 768,                   ## 购买次数达到上限
+    ERR_VIP_BUYED = 769,                  ## 已购买
+
+    ## main star shop 
+    ERR_MAIN_STAR_SHOP_NOT_OPEN = 790,
+
+    ## gongcheng  and team
+    ERR_TEAM_NOT_LEADER = 791,         ## 你不是队长
+    ERR_TEAM_IS_FULL = 792,            ## 队伍已满
+    ERR_TEAM_ALREADY_EXIST = 793,      ## 队伍已经存在
+    ERR_TEAM_TYPE_ERROR = 794,          ## 队伍类型错误
+    ERR_TEAM_FAST_JOIN = 795,            ## 当前没有队伍
+    ERR_TEAM_NOT_EXIST_PLAYER = 796,      ## 你不再此队伍中
+    ERR_TEAM_NOT_JOIN_SELF = 797,          ## 不能重复进自己的队伍
+    ERR_GWGC_NOT_CAN_FIGHT = 798,         ## 此副本已经有其它队伍在攻占
+    ERR_GWGC_NOT_LOOK = 799,              ## 不允许观看
+    ERR_GWGC_NOT_STAR = 800,               ## 活动没开启
+    ERR_GWGC_PLAYER_NORMAL_SCENE = 801,     ## 队友还不在主场景中
+
+    ## 装备 物品
+    ERR_NOT_FOUND_THIS_ITEM = 851,          ## 没找到该物品
+    ERR_GIVE_GOODS_ERROR = 852,              ## 给物品失败
+    ERR_NOT_FOUND_CFG_GOODS_LIST = 853,      ## 没找到配置的物品列表
+    ERR_DEL_GOODS_ERROR = 854               ## 删除物品错误
+}
+
+##通用错误码 200~500
+enum err_code_com
+{
+    ERR_NOT_OPEN_FUN            = 201,          ##功能未开放
+    ERR_COST_MONEY_FAIL         = 202,          ##您的金币不足
+    ERR_COST_DIAMOND_FAIL       = 203,          ##您的钻石不足
+    ERR_LIMIT_LEVEL             = 204,          ##等级不足
+    ERR_MAX_COUNT               = 205,          ##次数不足
+    ERR_MAX_LEVEL               = 206,          ##已经满级
+    ERR_NO_CFG                  = 207,          ##没有配置信息
+    ERR_PLAYER_OFFLINE          = 208,          ##玩家没有上线
+    ERR_MAIN_INS_START_NOT_ENOUGH = 209,        ## main start not enough
+    ERR_MAIN_SHOP_NOT_GOODS       = 210,        ## 副本商店中的物品不存在
+    ERR_ACCOUNT_PASSWORD       =211,            ## 密码错误
+    ERR_ACCOUNT_FREEZE         =212,            ## 帐号被封
+    ERR_PLAYER_FREEZE         =213,             ##  玩家被封
+    ERR_CLEAN_MAIN_INS_PASS   =214,             ## 副本还未通关
+    ERR_CLEAN_MAIN_INS_SP_ENOUGH =215,          ## 副本体力不够
+    ERR_ACCOUNT_ONLY_JOIN_ONE   = 216,
+    ERR_CLEAN_MAIN_INS_SEVEN_STAR_PASS = 217,    ##副本7星通关
+    ERR_JINXING_FAIL             = 218,
+    ERR_YINXING_FAIL          = 219,
+    ERR_MAIN_INS_SWEEP_NOT_ENOUGH = 220,         ## 副本扫荡券不足或翻牌消耗钻石不足
+    ERR_BUY_CHALLENGE_NOT_ENOUGH = 221,         ## 购买挑战次数不足
+    ERR_BUY_CHALLENGE_NOT_MAIN_INS = 222        ## 购买挑战次数副本不是主线副本
+}
+
+##日常活动 731~760
+enum err_code_daily
+{
+    ERR_DAILY_NO_THIS_TYPE      = 731, ##该日常活动没有开启
+    ERR_DAILY_NO_THIS_SCENE     = 732, ##选择场景，出现错误，没有该场景配置
+    ERR_DAILY_IN_FIGHT          = 733, ##正在进行时空裂痕boss战斗
+
+}
+
+enum err_mail
+{
+    GET_PRIZE_OK=0,       #提取附件成功
+    GET_PRIZE_1=1,        #邮件不存在
+    GET_PRIZE_2=2,        #附件为空
+    GET_PRIZE_3=3,        #背包满
+    GET_PRIZE_255 = 255   #提取附件失败，请重试。再次失败请联系GM
+}
+
+eatom err_atom
+{
+   
+   none_cfg,  %% can not find config
+   level_limit, %% 玩家等级不足 更具
+   err_load,
+   cost_not_enough,
+   task_goal_not_complete,
+   not_stand_npc_side,
+   not_in_ins,
+   cd_limit,
+}
+
+## gm err code
+enum gm_return_code
+{
+    GM_SUCCESS                = 0,
+    GM_NOT_FIND_TYPE          = 127
+}

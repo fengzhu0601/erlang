@@ -1,0 +1,123 @@
+##日常活动 1.保卫人鱼公主 2.桑尼号 3.时空裂痕
+
+@include "game.sproto"
+
+# 上线推送保卫人鱼公主-桑尼号-时空裂隙玩家基本信息
+proto PUSH_DAILY_ACTIVITY_INFO=11
+{
+    client{
+    }
+    server{
+        message{
+                type:u8,                 #1.保卫人鱼公主 2.桑尼号 3.时空裂痕
+           		fight_count:u8,          #已经挑战次数
+       		    fight_totle_count:u8,    #挑战总次数
+            	pay_count:u8,            #已经购买次数
+            	pay_totle_count:u8       #购买总次数
+            	#max_wave:u8,            #拉取保卫人鱼公主信息时加上最大波数
+            	#max_point:u32           #拉取桑尼号信息时加上最大积分
+         }
+     }
+}
+
+# 客户端发送选择的场景列表
+proto MSG_SELECT_IDS=12
+{
+    client{
+        message{
+                scene_id_1:u32,
+                scene_id_2:u32,
+                scene_id_3:u32,
+                scene_id_4:u32
+        }
+    }
+    server{
+        message=empty
+    }
+}
+
+# 进入场景
+proto MSG_ENTER_SCENE=13
+{
+    client{
+        message{
+            type:u8
+        }
+    }
+    server{
+        message=empty
+        ##进入时空裂缝，会把scene_id发回给客户端
+        ##scene_id_1:u32,
+        ##scene_id_2:u32,
+        ##scene_id_3:u32,
+        ##scene_id_4:u32
+    }
+}
+
+#奖励
+proto PUSH_PRIZE=14
+{
+    client{
+    }
+    server{
+        message{
+            prizeInfo1:list<{itemId:item_bid, itemCount:u32}>
+        }
+    }
+}
+
+#时空裂隙结算奖励
+proto PUSH_BOSS_PRIZE=15
+{
+    client{
+    }
+    server{
+        message{
+            scene_id_1:u32,
+            scene_id_2:u32,
+            scene_id_3:u32,
+            scene_id_4:u32,
+            prizeInfo2:list<{itemId:item_bid, itemCount:u32}>
+        }
+    }
+}
+
+#活动1 美人鱼公主波数
+proto PUSH_WAVE_PRIZE=16
+{
+    client{
+    }
+    server{
+        message{
+            is_success:u8,   #是否成功
+            wave:u8          #美人鱼公主波数
+        }
+    }
+}
+
+#活动2 桑尼号积分
+proto PUSH_POINT_PRIZE=17
+{
+    client{
+    }
+    server{
+        message{
+            point:u32  #桑尼号积分
+        }
+    }
+}
+
+# 扫荡
+proto MSG_DAILY_ACTIVITY_SWEEP=18
+{
+    client{
+        message{
+            type:u8
+        }
+    }
+    server{
+        message{
+            prizeInfo:list<{itemId:u32, itemCount:u32}>
+        }
+    }
+}

@@ -1,0 +1,48 @@
+@include "game.sproto"
+
+# VIP主页信息
+proto MSG_VIP_NEW_INFO=1
+{
+    client{}
+    server
+    {
+        message
+        {
+            VipLevel:u8,         #永久vip等级
+            TotalCount:u32,      #总共充值的数量
+            CardEndTime:u32      #vip到期时间戳
+        }
+    }
+}
+# VIP购买
+proto MSG_VIP_NEW_ONE_BUY=2
+{
+    client{
+        message{
+            VipLevel:u8
+        }
+    }
+    server{
+        message=empty
+    }
+    errnos{
+        ERR
+    }
+}
+
+# VIP 领奖
+proto MSG_VIP_NEW_GET_PRIZE=3
+{
+    client{
+        message{
+            Type:u8,   # 1表示领取特权奖励，2表示每日奖励
+            VipLevel:u8
+        }
+    }
+    server{
+        message=empty
+    }
+    errnos{
+        ERR
+    }
+}

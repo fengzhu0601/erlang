@@ -1,0 +1,4 @@
+﻿ID	平台id1是应用宝	服务器id	有效期	奖励Id	使用次数，-1是万用码专用只能用1次	类型100是万用码	生成个数
+id	platform	server	duration	prize_id	usetimes	type	sum
+1	1	1	0	1002	1	1	5000
+2	1	1	0	1002	-1	100	1

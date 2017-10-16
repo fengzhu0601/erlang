@@ -1,0 +1,41 @@
+﻿功能开放	功能名称	开关ID[Id大于100, 不能大于400]	任务触发(任务ID）	限制等级	主线任务ID	限制章节	功能名称	功能说明
+id	client_name	sinks	task_trigger	limit_level	limit_main_task	limit_chapter	client_nice_name	client_desc
+1	bag_ui	101		1			背包	
+2	depot_ui	102		1			仓库	
+3	shop_ui	103		1			商店	
+4	mall_ui	104		13			商城	
+5	login_reward_ui	105		9			登录奖励	
+6	charge_ui	106		14			充值奖励	
+7	ranking_ui	107		1			排行榜	
+8	achievement_ui	108		1	11004		成就	
+9	friend_ui	109		7	11010		好友	
+10	crown_ui	110		5			皇冠	
+11	card_ui	111		100	11011		卡牌	
+12	guild_ui	112		15	12010		公会	
+14	pet_ui	114		22	13003		宠物	
+15	vip_ui	115		1			贵族	
+16	auction_ui	116		17	12016		黑市拍卖	
+17	arena_ui	117		14	12008		竞技场	
+18	skill_ui	118		13			技能	
+19	activity_ui	119		16	12014		日常活动	
+20	待定	120		100			？？？	
+21	待定	121		100			？？？	
+22	abyss_ui	122		22	13003		虚空深渊	
+23	camp_ui	123	90001	1			神魔战	
+24	seller_ui	124		100			？？？	
+25	war_course_ui	225		19	12020		战争学院	
+26	daily_task_ui	125		24	13010		每日任务	
+27	horse_ui	126		11	12002		坐骑	
+28	monster_siege_ui	127		23			怪物攻城	
+29	equip_op_ui	128		1			锻造	
+30	signin_reward	129		3			每日签到界面	
+31	activity_hall_ui	130		3			福利大厅	
+2500	war_course_tab1	226		19			战争学院-基础训练	
+2501	war_course_tab2	227		21			战争学院-进阶训练	
+2502	war_course_tab3	228		26			战争学院-高阶训练	
+2503	war_course_tab4	229		30			战争学院-挑战练习	
+3001	equipOp_inlay	301		5			镶嵌	
+3002	equipOp_compound	302		6			洗练	
+3003	equipOp_enhance	303		7			附魔	
+3004	equipOP_leach	304		8			萃取	
+3005	equip_op_ui	305		1			强化主界面	

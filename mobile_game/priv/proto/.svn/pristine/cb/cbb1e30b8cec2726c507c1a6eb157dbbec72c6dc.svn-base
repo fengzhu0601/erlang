@@ -1,0 +1,392 @@
+@include "game.sproto"
+
+struct rank_info{
+    index:u8                        #排名
+    ,playerCarrer:player_carrer     #角色职业
+    ,playerId:player_id             #角色id
+    ,playerName:sstr                #角色名字
+    ,playerLev:player_level         #角色等级
+    ,playerPower:player_power       #角色战力
+}
+
+struct rank_info_arena {
+    index:u8                    #排名
+    ,arenaLev:u8                #竞技场等级
+    ,arenaCent:u16              #竞技场积分
+    ,playerId:player_id         #角色id
+    ,playerName:sstr            #角色名字
+    ,playerLev:player_level     #角色等级
+    ,playerCarrer:player_carrer #职业
+    ,playerPower:player_power   #战力
+}
+
+struct rank_info_pet{
+    index:u8                    #排名
+    ,petLev:u8                  #宠物等级
+    ,petName:sstr               #宠物名
+    ,petAC:u8                   #宠物进阶等级
+    ,petPower:u32               #宠物战力
+    ,playerId:player_id         #角色id
+    ,playerName:sstr            #角色名字
+}
+
+struct rank_info_friend{
+    index:u8                        #排名
+    ,playerCarrer:player_carrer     #角色职业
+    ,playerId:player_id             #角色id
+    ,playerName:sstr                #角色名字
+    ,playerLev:player_level         #角色等级
+    ,playerPower:player_power       #角色战力
+    ,friendScore:u16                #友好度
+}
+
+struct rank_info_accomplishment{
+    index:u8                        #排名
+    ,playerCarrer:player_carrer     #角色职业
+    ,playerId:player_id             #角色id
+    ,playerName:sstr                #角色名字
+    ,playerLev:player_level         #角色等级
+    ,playerPower:player_power       #角色战力
+    ,accomplishmentScore:u16        #成就点
+}
+
+
+# 等级排行榜
+proto MSG_RANK_LEV=1
+{
+    client{
+        message{
+            startPos:u8
+            ,len:u8
+        }
+    }
+
+    server{
+        message{
+            myIndex:u8     #自己的排名
+            ,size:u8
+            ,ranks:list<RankInfo:rank_info>
+        }
+    }
+}
+
+# 战力排行榜
+proto MSG_RANK_POWER=2
+{
+    client{
+        message{
+            startPos:u8
+            ,len:u8
+        }
+    }
+
+    server{
+        message{
+            myIndex:u8     #自己的排名
+            ,size:u8
+            ,ranks:list<RankInfo:rank_info>
+        }
+    }
+}
+
+
+# 竞技场排行榜
+proto MSG_RANK_ARENA=3
+{
+    client{
+        message{
+            startPos:u8
+            ,len:u8
+        }
+    }
+
+    server{
+        message{
+            myIndex:u8     #自己的排名
+            ,arenaLev:u8                #竞技场等级
+            ,arenaCent:u16              #竞技场积分
+            ,size:u8
+            ,ranks:list<RankInfo:rank_info_arena>
+        }
+    }
+}
+
+# 宠物排行榜
+proto MSG_RANK_PET=4
+{
+    client{
+        message{
+            startPos:u8
+            ,len:u8
+        }
+    }
+    server{
+        message{
+            myRank:rank_info_pet
+            ,size:u8
+            ,ranks:list<RankInfo:rank_info_pet>
+        }
+    }
+}
+
+struct rank_info_guild{
+    index:u8                    #排名
+    ,totem_id:u8                #帮会图腾
+    ,border_id:u8               #工会边框
+    ,guildLev:u8                #帮会等级
+    ,guildName:sstr             #帮会名
+    ,masterId:player_id         #帮主id
+    ,masterName:sstr            #帮主名
+    ,guildPower:u64             #帮会战力
+}
+# 工会排行榜
+proto MSG_RANK_GUILD=5
+{
+    client{
+        message{
+            startPos:u8
+            ,len:u8
+        }
+    }
+    server{
+        message{
+            myRank:rank_info_guild
+            ,size:u8
+            ,ranks:list<RankInfo:rank_info_guild>
+        }
+    }
+}
+
+# 魅力排行榜 
+proto MSG_RANK_FRIEND=6
+{
+    client{
+        message{
+            startPos:u8
+            ,len:u8
+        }
+    }
+    server{
+        message{
+            myRank:u8
+            ,size:u8
+            ,ranks:list<RankInfo:rank_info_friend>
+        }
+    }
+}
+
+
+
+# 成就排行榜 
+proto MSG_RANK_ACCOMPLISHMENT=7
+{
+    client{
+        message{
+            startPos:u8
+            ,len:u8
+        }
+    }
+    server{
+        message{
+            myRank:rank_info_accomplishment
+            ,size:u8
+            ,ranks:list<RankInfo:rank_info_accomplishment>
+        }
+    }
+}
+
+struct rank_info_shenmo{
+    index:u8                        #排名
+    ,playerCarrer:player_carrer     #角色职业
+    ,playerId:player_id             #角色id
+    ,playerName:sstr                #角色名字
+    ,playerLev:player_level         #角色等级
+    ,playerPower:player_power       #角色战力
+    ,group:sstr                     #族群
+    ,honour:u64                     #成就值
+    ,titleName:sstr                 #称号
+}
+
+# 神魔排行榜 
+proto MSG_RANK_SHENMO=8
+{
+    client{
+        message{
+            startPos:u8
+            ,len:u8
+        }
+    }
+    server{
+        message{
+            myRank:rank_info_shenmo
+            ,size:u8
+            ,ranks:list<RankInfo:rank_info_shenmo>
+        }
+    }
+}
+
+# 日常活动-守卫人鱼公主排行榜
+struct rank_info_daily_1{
+    index:u8                        #排名
+    ,playerCarrer:player_carrer     #角色职业
+    ,playerId:player_id             #角色id
+    ,playerName:sstr                #角色名字
+    ,playerLev:player_level         #角色等级
+    ,playerPower:player_power       #角色战力
+    ,max_count:u16                  #最大波数
+
+}
+proto MSG_RANK_DAILY_1=9
+{
+    client{
+        message{
+            startPos:u8
+            ,len:u8
+        }
+    }
+    server{
+        message{
+            myRank:rank_info_daily_1
+            ,size:u8
+            ,ranks:list<RankInfo:rank_info_daily_1>
+        }
+    }
+}
+
+# 日常活动-桑尼号的试炼排行榜
+struct rank_info_daily_2{
+    index:u8                        #排名
+    ,playerCarrer:player_carrer     #角色职业
+    ,playerId:player_id             #角色id
+    ,playerName:sstr                #角色名字
+    ,playerLev:player_level         #角色等级
+    ,playerPower:player_power       #角色战力
+    ,max_integral:u32               #最高积分
+
+}
+proto MSG_RANK_DAILY_2=10
+{
+    client{
+        message{
+            startPos:u8
+            ,len:u8
+        }
+    }
+    server{
+        message{
+            myRank:rank_info_daily_2
+            ,size:u8
+            ,ranks:list<RankInfo:rank_info_daily_2>
+        }
+    }
+}
+
+# 虚空深渊排行榜
+struct rank_info_abyss{
+    index:u8                        #排名
+    ,playerCarrer:player_carrer     #角色职业
+    ,playerId:player_id             #角色id
+    ,playerName:sstr                #角色名字
+    ,playerLev:player_level         #角色等级
+    ,playerPower:player_power       #角色战力
+    ,easy_layer:u16                 #简单难度通关层数
+    ,hard_layer:u16                 #噩梦难度通关层数
+
+}
+proto MSG_RANK_ABYSS=11
+{
+    client{
+        message{
+            startPos:u8
+            ,len:u8
+        }
+    }
+    server{
+        message{
+            myRank:rank_info_abyss
+            ,size:u8
+            ,ranks:list<RankInfo:rank_info_abyss>
+        }
+    }
+}
+
+# 天空副本排行榜
+struct rank_info_sky_info{
+    index:u8                        #排名
+    ,playerCarrer:player_carrer     #角色职业
+    ,playerId:player_id             #角色id
+    ,playerName:sstr                #角色名字
+    ,playerLev:player_level         #角色等级
+    ,playerGuildName:sstr           #角色公会
+    ,kill_count:u16                 #杀怪、杀角色数量
+
+}
+
+# 天空副本排行榜
+proto MSG_RANK_SKY_KILL_MONSTER=12
+{
+    client{
+        message{
+            startPos:u8
+            ,len:u8
+        }
+    }
+    server{
+        message{
+            myRank:rank_info_sky_info
+            ,size:u8
+            ,ranks:list<RankInfo:rank_info_sky_info>
+        }
+    }
+}
+
+proto MSG_RANK_SKY_KILL_PLAYER=13
+{
+    client{
+        message{
+            startPos:u8
+            ,len:u8
+        }
+    }
+    server{
+        message{
+            myRank:rank_info_sky_info
+            ,size:u8
+            ,ranks:list<RankInfo:rank_info_sky_info>
+        }
+    }
+}
+
+# 套装排行榜
+struct rank_info_suit{
+    index:u8,
+    playerCareer:player_carrer,
+    playerId:player_id,
+    playerName:sstr,
+    playerLev:player_level,
+    playerPower:player_power,
+    suit_num:u8,            # 套数
+    suit_num_all:u8,        # 总套数
+    equip_num:u16,          # 件数
+    equip_num_all:u16       # 总件数
+}
+proto MSG_RANK_SUIT=14
+{
+    client{
+        message{
+            startPos:u8,
+            len:u8
+        }
+    }
+    server{
+        message{
+            myRank:u8,
+            suitNum:u8,
+            suitNumAll:u8,
+            equipNum:u16,
+            equipNumAll:u16,
+            size:u8,
+            ranks:list<RankInfo:rank_info_suit>
+        }
+    }
+}

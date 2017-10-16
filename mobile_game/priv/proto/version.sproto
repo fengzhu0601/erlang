@@ -1,0 +1,20 @@
+@include "game.sproto"
+
+#版本协议调试
+proto MSG_VERSION_DEBUG=1
+{
+    client{
+        message{
+            debugId:u16,    # 调试号
+            mainVersionId:u16,  #主版本号
+            assistVersionId:u16,  #辅助版本号
+            resourceVersionId:u16 # 资源版本号
+        }
+    }
+
+    server{
+        message{
+            replyNum:u8      # 回复码 0表示调试匹配成功,1调试匹配失败,2主版本匹配失败,3资源版本匹配失败,4辅助版本匹配失败
+        }
+    }
+}

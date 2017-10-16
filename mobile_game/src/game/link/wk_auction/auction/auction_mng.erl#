@@ -1,0 +1,575 @@
+%%% coding:utf-8
+%%%-------------------------------------------------------------------
+%%% @author zlb
+%%% @doc 拍卖行模块
+%%%
+%%% @end
+%%%-------------------------------------------------------------------
+
+-module(auction_mng).
+
+-include_lib("pangzi/include/pangzi.hrl").
+-include("item_bucket.hrl").
+-include("item.hrl").
+-include("item_new.hrl").
+
+-include("inc.hrl").
+-include("game.hrl").
+-include("player.hrl").
+-include("player_mod.hrl").
+-include("handle_client.hrl").
+-include("player_eng.hrl").
+
+-include("auction.hrl").
+-include("auction_mng_reply.hrl").
+-include("load_auction_ai.hrl").
+-include("load_item.hrl").
+-include("load_phase_ac.hrl").
+-include("achievement.hrl").
+-include("system_log.hrl").
+
+-include("load_black_shop_cfg.hrl").
+-include("load_db_misc.hrl").
+-include("../../wk_player/part/wonderful_activity/bounty_struct.hrl").
+
+-define(LOOKUP_LEV_LEN, 9).
+
+
+-export
+([
+%%    lookup_auction_bag/1
+    bider_win/2
+    , server_create_auction/0
+]).
+
+
+%% ?MSG_AUCTION_NOTICE_OWNER_UP 对应的类型码
+-define(NOTICE_ADD, 1).  %% 通知添加
+-define(NOTICE_UP, 2).  %% 通知更新
+
+%% ?MSG_AUCTION_CREATE 中对应的背包类型
+-define(CREATE_BAG, 1).  %% 背包
+-define(CREATE_AUC, 2).  %% 个人拍卖背包
+
+bider_win(BiderId, Item) ->
+%%    ?DEBUG_LOG("BiderId---------:~p-----Item---:~p",[BiderId, Item]),
+%%    achievement_mng:do_ac(?gouwukuang),
+    if
+        is_integer(Item) ->                                         %% 当拍卖成功之后皇冠碎片是以资产类的形式发送到玩家的邮箱里面
+            bounty_mng:do_bounty_task(?BOUNTY_TASK_HEISHI, 1),
+            mail_mng:send_sysmail(BiderId, ?S_MAIL_AUCTION_BIDER_WIN, [], [{Item, 1}]);
+        is_record(Item, item_new) ->
+            bounty_mng:do_bounty_task(?BOUNTY_TASK_HEISHI, 1),
+            mail_mng:send_sysmail(BiderId, ?S_MAIL_AUCTION_BIDER_WIN, [Item]);
+        is_tuple(Item) ->
+            bounty_mng:do_bounty_task(?BOUNTY_TASK_HEISHI, 1),
+            mail_mng:send_sysmail(BiderId, ?S_MAIL_AUCTION_BIDER_WIN, [], [Item]);
+        true ->
+            ?ERROR_LOG("auction send item error")
+    end,
+
+    ok.
+
+%% 给竞拍失败者通过邮件返还东西
+bider_loss(?undefined, _MoneyType, _Price, _DiscItem) -> ok;
+bider_loss(BiderId, MoneyType, Price, _DiscItem) ->
+    %GoodsIdList = [{DiscItem, 1}],
+    %?DEBUG_LOG("Price------------------------:~p",[Price]),
+    mail_mng:send_sysmail(BiderId, ?S_MAIL_AUCTION_BIDER_LOSS, [], [{MoneyType, Price}]),
+    ok.
+
+%% 注：拍卖行改成黑市拍卖行之后个人的背包数据用不到了
+lookup_auction_bag(SelfId) ->
+    case dbcache:lookup(?player_auction_tab, SelfId) of
+        [#auction_tab{auction_bag = MyABag}] ->
+            MyABag;
+        _E ->
+            %?ERROR_LOG("查找自己拍卖背包~w错误", [_E]),
+            ?none
+    end.
+
+handle_frame(_) -> ok.
+
+
+create_mod_data(SelfId) ->
+    case dbcache:insert_new(?player_auction_tab
+        , #auction_tab{id = SelfId})
+    of
+        ?true -> ok;
+        ?false ->
+            ?ERROR_LOG("player ~p create new player_auction_tab not alread exists ", [SelfId])
+    end,
+    ok.
+
+load_mod_data(PlayerId) ->
+    case dbcache:load_data(?player_auction_tab, PlayerId) of
+        [] ->
+            ?ERROR_LOG("player ~p can not find auction_tab  mode", [PlayerId]),
+            create_mod_data(PlayerId);
+        [#auction_tab{}] ->
+            %% TODO
+            ok
+    end,
+    ok.
+
+init_client() ->
+    ignore.
+
+view_data(Msg) ->
+    Msg.
+
+online() -> ok.
+
+offline(_PlayerId) ->
+    ok.
+
+save_data(_) ->
+%%     dbcache:update(?auction_log_tab, #auction_log_tab{}),
+    ok.
+
+load_db_table_meta() ->
+    [
+        #db_table_meta{
+            name = ?player_auction_tab
+            , fields = ?record_fields(auction_tab)
+            , record_name = auction_tab
+            , shrink_size = 1
+            , load_all = true
+            , flush_interval = 3}
+    ].
+
+
+
+
+%% 服务器创建拍卖行列表（根据black_shop.txt配置表）
+server_create_auction() ->
+
+    AllCfgList = load_black_shop_cfg:get_all_black_shop_id(),
+    #{
+        black_shop_end := {Hour,Min,Sec},               %% 拍卖结束的时间
+        black_shop_refresh := {_MinDay, _MaxDay},            %% 拍卖行休市的时间[M,N] 从该范围内随机天数作为休市时间
+        fee := Free,                                      %% 对竞拍失败者扣除的手续费比率
+        refresh_num := NumFre                              %% 每次拍卖数据更新时候刷新的数量
+    } = misc_cfg:get_black_shop_misc(),
+
+    CfgList =
+        case length(AllCfgList) < NumFre of
+            false -> com_util:rand_more(AllCfgList, NumFre);
+            _ -> AllCfgList
+        end,
+
+    Now = com_time:timestamp_sec(),
+
+    ACTList =
+        lists:foldl
+        (
+            fun(CfgId, AccList) ->
+                #black_shop_cfg{
+                    id = IdCfg,
+                    item = ItemId,
+                    num = Num,
+                    ratio = _Rat,
+                    type = Type,                      %%    这里的类型是指的物品类型的名字
+                    seller = SellerName,
+                    money_type = MoneyType,
+                    start_price = StartPrice,
+                    end_price = FixPrice,             %%   一口价
+                    step_price = UnitPrice            %%    每次加价单位价格
+                } = load_black_shop_cfg:lookup_black_shop_cfg(CfgId),
+
+                Item =
+                    case load_item:get_type(ItemId) of
+                        ?val_item_type_crown_debris ->                  %% 当参加竞拍的物品是皇冠碎片的时候需要记录皇冠碎片的数量
+                            {ItemId, Num};
+                        _ ->
+                            entity_factory:build(ItemId, Num, [], ?FLOW_REASON_AUCTION)           %% 根据配置的数量来生成相应数量的物品
+                    end,
+
+                %% 创建物品的拍卖信息
+                CAT = #com_auction_tab{
+                    cfg_id = IdCfg,
+                    item = Item,
+                    item_type = Type,
+                    seller = SellerName,
+                    money_type = MoneyType,
+
+                    start_price = StartPrice,
+                    high_price = FixPrice,
+                    step_price = UnitPrice,
+
+                    cur_price = StartPrice,
+                    fee_rate = Free,
+                    timeout = Now + ?SECONDS_PER_HOUR * (Hour) + 60 * Min + Sec - com_time:today_passed_sec()
+                },
+                {_, R} = auction_svr:create(CAT),
+                [R | AccList]
+            end,
+            [],
+            CfgList
+        ),
+    ACTList.
+
+%%handle_client({?MSG_AUCTION_MY_PANEL, {}}) -> handle_client(?MSG_AUCTION_MY_PANEL, {});
+handle_client({Pack, Arg}) ->
+    handle_client(Pack, Arg).
+%%    case task_open_fun:is_open(?OPEN_AUCTION) of
+%%        ?false -> ?return_err(?ERR_NOT_OPEN_FUN);
+%%        ?true -> handle_client(Pack, Arg)
+%%    end.
+
+
+%% 获取拍卖行面板的信息
+handle_client(?MSG_AUCTION_PANEL, {}) ->
+    #{
+        black_shop_end := {Hour,Min,Sec},               %% 拍卖结束的时间
+        black_shop_refresh := {_MinDay, _MaxDay},            %% 拍卖行休市的时间{M,N} 从该范围内随机天数作为休市时间
+        fee := _Free,                                      %% 对竞拍失败者扣除的手续费比率
+        refresh_num := _Num                            %% 每次拍卖数据更新时候刷新的数量
+    } = misc_cfg:get_black_shop_misc(),
+
+    %% 获取当前时间的秒数
+    Now = com_time:timestamp_sec(),
+
+    ACTS = auction_svr:get_all(),
+    ACTS1 =
+        case length(ACTS) =< 1 of
+            true ->
+                server_create_auction();             %% 根据配置的个数创建拍卖信息的条数
+            _ -> ACTS
+        end,
+
+    IsOpen =
+        case Now =< load_db_misc:get(?misc_auction_close_time, 0) of
+            true -> 0;
+            _ -> 1
+        end,
+
+%%    ?INFO_LOG("IsOpen = ~p", [IsOpen]),
+%%    ?INFO_LOG("Now = ~p, auction timeout = ~p", [Now, my_ets:get(?pd_auction_time_out, 0)]),
+
+    Pkg = pack(?MSG_AUCTION_PANEL, _Tmp = {IsOpen, Now+?SECONDS_PER_HOUR*Hour+60*Min+Sec - com_time:today_passed_sec(), ACTS1}),
+    ?player_send(Pkg),
+    ok;
+
+%% 竞价物品
+handle_client(?MSG_AUCTION_PRICE, {AId, Price}) ->
+%%    ?DEBUG_LOG("AId--Price-----------------:~p", [{AId, Price}]),
+    ReplyNum = add_price(Price, AId),
+
+    %% 刷新拍卖行的竞拍数据
+    ReList = get_refresh_data(),
+    ?player_send(auction_sproto:pkg_msg(?MSG_AUCTION_REFRESH, {ReList})),
+
+    ?player_send(auction_sproto:pkg_msg(?MSG_AUCTION_PRICE, {ReplyNum, AId})),
+    api:sync_phase_prize_data(),
+
+    ok;
+
+%% 刷新拍卖行的竞拍数据
+handle_client(?MSG_AUCTION_REFRESH, {}) ->
+%%    ?INFO_LOG("refresh auction data --------- "),
+    ReList = get_refresh_data(),
+    ?player_send(auction_sproto:pkg_msg(?MSG_AUCTION_REFRESH, {ReList})),
+    ok;
+
+%% 刷新拍卖行的日志信息
+handle_client(?MSG_AUCTION_LOG_REFRESH, {}) ->
+%%    ?INFO_LOG("refresh auction log -------- "),
+    LogList = auction_svr:get_all_log(),
+    LogList1 =
+        lists:foldl
+        (
+            fun(#auction_log_tab{playerId = PlayerId,itemId = ItemId, money_type = MoneyType,
+                price = Price, datetime = Time, payType = PayType}, Acc) ->
+                PlayerName =
+                    case player:lookup_info(PlayerId, [?pd_name]) of
+                        [?none] -> ?ERROR_LOG("is not find player name -----");
+                        [Name] -> Name
+                    end,
+                [{PlayerId,PlayerName,ItemId,MoneyType,Price,Time,PayType}|Acc]
+            end,
+            [],
+            LogList
+        ),
+
+    ?player_send(auction_sproto:pkg_msg(?MSG_AUCTION_LOG_REFRESH, {LogList1})),
+    ok;
+
+%% 打开拍卖行的面板
+handle_client(?MSG_OPEN_AUCTION_PANEL, {}) ->
+    %% 发送刷新的数据
+    ReList = get_refresh_data(),
+    ?player_send(auction_sproto:pkg_msg(?MSG_AUCTION_REFRESH, {ReList})),
+    ?player_send(auction_sproto:pkg_msg(?MSG_OPEN_AUCTION_PANEL, {0})),
+    ok;
+
+
+handle_client(Mod, Msg) ->
+    ?ERROR_LOG("no known msg Mod:~p Msg:~p", [Mod, Msg]).
+
+
+%% 拍卖成功
+handle_msg(_FromMod, {owner_win, _AId, #item_new{type = ItemType}, CurPrice, CPrice}) ->
+    #{charge_rate := CRates, bail := BailRate} = misc_cfg:get_auction_cfg(),
+    Bail = max(1, com_util:ceil((BailRate * CPrice) / 100)),
+    case lists:keyfind(ItemType, 1, CRates) of
+        {_, CRate} when is_integer(CRate) ->
+            Charge = erlang:max((CurPrice * CRate div 100), 1),
+            SelfId = get(?pd_id),
+%%            ?player_send(auction_sproto:pkg_msg(?MSG_AUCTION_NOTICE_OWNER_DEL, {AId})),
+            ?DEBUG_LOG("SelfId-----------------------------------:~p", [SelfId]),
+            api:sync_phase_prize_data(),
+            achievement_mng:do_ac(?paimaidashi),
+            mail_mng:send_sysmail(SelfId, ?S_MAIL_AUCTION_OWNER_WIN, [], [{?PL_MONEY, CurPrice - Charge + Bail}]),
+            ok;
+        _ ->
+            ?ERROR_LOG("ItemType:~w not found charge_rate in ~p", [ItemType, CRates]),
+            {error, ill_charge_rate}
+    end;
+
+%%  添加物品（添加皇冠碎片的临时处理）
+% handle_msg(_FromMod, {add_goods, Item}) ->
+%     game_res:try_give_ex([{Item, 1}]),
+%     ok;
+
+
+
+%% 流拍
+handle_msg(_FromMod, {auctiom_timeout, _CAT}) ->
+%%    Pkg = pack(?MSG_AUCTION_NOTICE_OWNER_UP, {?NOTICE_UP, CAT}),
+%%    ?player_send(Pkg),
+    api:sync_phase_prize_data(),
+    ok;
+
+%% 拍卖超时打印日志
+handle_msg(_FromMod, {?auction_timeout_msg, #auction_timeout_msg{item = Item, price = Price, sellerId = SellerId}}) ->
+    Money = get(?pd_money),
+    #item_new{id = GoodsId} = Item,
+    api:sync_phase_prize_data(),
+    system_log:info_auction_buy_log(Money+Price, Money, GoodsId, 1, Price, SellerId);
+
+%% 发送消息到客户端使客户端为休市状态
+handle_msg(_From, {close_client_auction}) ->
+%%    ?INFO_LOG("send close_client_auction"),
+    Pkg = pack(?MSG_AUCTION_PANEL, _Tmp = {0, load_db_misc:get(?misc_auction_close_time, 0), []}),
+    case auction_svr:get_all() of
+        [] -> pass;
+        _ -> mnesia:clear_table(?com_auction_tab)
+    end,
+    case auction_svr:get_all_log() of
+        [] -> pass;
+        _ -> mnesia:clear_table(?auction_log_tab)
+    end,
+    ?player_send(Pkg);
+
+handle_msg(FromMod, Msg) ->
+    ?ERROR_LOG("~p recv a unknown msg ~p from ~p", [?pname(), Msg, FromMod]).
+
+
+
+%% 竞价
+add_price(Price, AId) ->
+    SelfId = get(?pd_id),
+    Ret =
+        case dbcache:lookup(?com_auction_tab, AId) of
+            [#com_auction_tab{bider_id = BiderId, money_type = MoneyType,
+                cur_price = CPrice, high_price = HPrice,
+                step_price = StepPrice, timeout = TimeOut} = CAT] ->
+                Now = com_time:timestamp_sec(),
+
+                if
+                    SelfId =:= BiderId ->                           %% 自己已经是最高竞价者
+                        {error, is_bider_id};
+                    Price - CPrice < StepPrice, HPrice > CPrice -> %% 加价幅度小于默认值
+                        {error, add_price_little};
+                    TimeOut - Now < 60 ->   %% 竞拍时间已经截止(还有一分钟的时候就不给竞价了
+                        {error, last_min};
+                    ?true ->
+                        case game_res:try_del([{MoneyType, Price}], ?FLOW_REASON_AUCTION) of
+                            ok ->
+                                case do_add_price(SelfId, CPrice, CAT#com_auction_tab{cur_price = Price}) of
+                                    ok ->
+                                        phase_achievement_mng:do_pc(?PHASE_AC_PAIMAI_JIAOYI, 1),
+                                        ?DEBUG_LOG("add price is ok-------------------------"),
+                                        ok;
+                                    {error, APReason} ->
+                                        {error, APReason}
+                                end;
+                            _ ->
+                                {error, money_not_enough}
+                        end
+                end;
+            _E ->  %% 你下手晚了，已经被别人买了
+                {error, aready_acutoin}
+        end,
+    case Ret of
+        ok ->
+            event_eng:post(?ev_auction_jingjia_totle, {?ev_auction_jingjia_totle, 0}, 1),
+            ?REPLY_MSG_AUCTION_PRICE_OK;  %% 竞价成功
+        {error, add_price_little} ->      %% 加价幅度小于默认值
+            ?REPLY_MSG_AUCTION_PRICE_1;
+        {error, last_min} ->              %% 竞价时间已经截止（还有一分钟的时候就不给竞价了
+            ?REPLY_MSG_AUCTION_PRICE_2;
+        {error, is_bider_id} ->           %% 您已经是最高竞价者了
+            ?REPLY_MSG_AUCTION_PRICE_3;
+        {error, money_not_enough} ->    %% 钻石不足，无法竞价
+            ?REPLY_MSG_AUCTION_PRICE_4;
+        {error, aready_acutoin} ->        %% 您下手晚了，已经被别人拍走了
+            ?REPLY_MSG_AUCTION_PRICE_5;
+        {error, _Reason} ->               %% 竞价失败，请重试。重试失败，请联系GM
+            ?REPLY_MSG_AUCTION_PRICE_255
+    end.
+
+%% 加价处理函数（分为两种情况,1 正常加价， 2 一口价）
+do_add_price(SelfId, OCPrice, #com_auction_tab{id = AId, seller = Name, bider_id = OBiderId, high_price = HPrice, item = Item, money_type = MoneyType, cur_price = Price} = CAT) ->
+    NCAT = CAT#com_auction_tab{bider_id = SelfId},
+%%    ?DEBUG_LOG("OBiderId--------------------:~p",[OBiderId]),
+    #{fee := Free} = misc_cfg:get_black_shop_misc(),
+    if
+        Price >= HPrice ->          %% 一口价成交
+            case auction_svr:high_price(NCAT) of
+                ok ->
+                    Money = get(?pd_money),
+
+                    %% 发送系统日志
+                    if
+                        is_integer(Item) ->
+                            system_log:info_auction_buy_log(Money+Price, Money, Item, 1, Price, 0);
+                        is_record(Item, item_new) ->
+                            #item_new{id = GoodsId, quantity = QuaCount} = Item,
+                            system_log:info_auction_buy_log(Money+Price, Money, GoodsId, QuaCount, Price, 0);
+                        is_tuple(Item) ->
+                            system_log:info_auction_buy_log(Money+Price, Money, element(1, Item), element(2, Item), Price, 0);
+                        true ->
+                            ?ERROR_LOG("auction system log error")
+                    end,
+
+                    %% 向竞拍失败者返还金币或者钻石
+                    bider_loss(OBiderId, MoneyType, com_util:ceil(OCPrice - OCPrice * (Free/1000)), Item),
+                    %% 设置该物品已经被竞拍掉了
+                    dbcache:update(?com_auction_tab, CAT#com_auction_tab{item_state = ?item_auction_ed}),
+
+                    ItemBid =
+                        if
+                            is_integer(Item) ->
+                                Item;
+                            is_record(Item, item_new) ->
+                                #item_new{bid = Bid} = Item,
+                                Bid;
+                            is_tuple(Item) ->
+                                element(1, Item);
+                            true ->
+                                ?ERROR_LOG("undefine auction item ")
+                        end,
+
+                    LogAuc =
+                        #auction_log_tab{
+                            id = AId,
+                            playerId = SelfId,
+                            itemId = ItemBid,
+                            money_type = MoneyType,
+                            owner_name = Name,
+                            price = Price,
+                            datetime = com_time:timestamp_sec(),
+                            payType = 1
+                        },
+                    %% 添加拍卖行的拍卖日志
+                    dbcache:insert_new(?auction_log_tab, LogAuc),
+                    ok;
+                _ ->
+                    {error, high_price_error}
+            end;
+        ?true ->          %% 正常加价
+            case auction_svr:add_price(NCAT) of
+                ok ->
+                    achievement_mng:do_ac(?jingjiagaoshou),
+
+                    %% 向竞拍失败者返还物品
+                    bider_loss(OBiderId, MoneyType, com_util:ceil(OCPrice - OCPrice * (Free/1000)), Item),
+                    ok;
+                _ ->
+                    {error, add_price_error}
+            end
+    end.
+
+
+%%---------------------------------------------------- item_equip:get_sink_info(Item, Pos)
+%% 数据打包解包
+%% 拍卖行里程表初始化的数据打包
+pack(?MSG_AUCTION_PANEL, {AucState, TimeOut, ACTs}) ->
+    ACTL =
+        lists:foldr
+        (
+            fun(#com_auction_tab{id = Id, item_state = _ItemState, seller = OwnName
+                , item = Item, bider_id = _BiderId, money_type = MoneyType
+                , cur_price = CurPrice, high_price = HPrice, step_price = StepPrice
+                }, Acc) ->
+                if
+                    is_integer(Item) ->
+                        [{1, Id, OwnName, Item, 1, MoneyType, CurPrice, StepPrice, HPrice} | Acc];
+                    is_record(Item, item_new) ->
+                        #item_new{bid = Bid, quantity = Count} = Item,
+                        [{1, Id, OwnName, Bid, Count, MoneyType, CurPrice, StepPrice, HPrice} | Acc];
+                    is_tuple(Item) ->
+                        [{1, Id, OwnName, erlang:element(1,Item), erlang:element(2,Item), MoneyType, CurPrice, StepPrice, HPrice} | Acc];
+                    true ->
+                        ?ERROR_LOG("PANEL ERROR")
+                end
+
+            end,
+            [],
+            ACTs
+        ),
+
+
+%%    ?DEBUG_LOG("Len, ACTL--------:~p",[{length(ACTL), ACTL}]),
+    auction_sproto:pkg_msg(?MSG_AUCTION_PANEL, {AucState, TimeOut, ACTL});
+
+%%pack(?MSG_AUCTION_MY_PANEL, AuctionBags) ->
+%%    %Now = com_time:timestamp_sec(),
+%%    AuctionBagL = lists:foldr(fun(#com_auction_tab{id = Id
+%%        , item = Item, timeout = TimeOut
+%%        , check_price = CPrice, cur_price = CurPrice
+%%        , high_price = HPrice, timer_ref = _TimerRef
+%%    }, Acc
+%%    ) ->
+%%        %AState = ?if_else(TimerRef==?undefined, ?TRUE, ?FALSE),
+%%%%                 ItemData = item:pack(Item),
+%%        %TOut = erlang:max(TimeOut-Now, 0),
+%%        %[{Id, AState, ItemData, TOut, CPrice, CurPrice, HPrice} | Acc]
+%%        [{Id, item_equip:get_sink_info(Item, 0), TimeOut, CPrice, CurPrice, HPrice} | Acc]
+%%                              end
+%%        , [], AuctionBags),
+%%    auction_sproto:pkg_msg(?MSG_AUCTION_MY_PANEL, {AuctionBagL});
+%%pack(?MSG_AUCTION_NOTICE_OWNER_UP, {Type,
+%%    #com_auction_tab{id = Id
+%%        , item = Item, timeout = TimeOut
+%%        , check_price = CPrice, cur_price = CurPrice
+%%        , high_price = HPrice, timer_ref = _TimerRef
+%%    }
+%%}) ->
+%%    %AState = ?if_else(TimerRef==?undefined, ?TRUE, ?FALSE),
+%%%%         ItemData = item:pack(Item),
+%%    %TOut = erlang:max(TimeOut - com_time:timestamp_sec(), 0),
+%%    %AuctionInfo = {Type, Id, AState, ItemData, TOut,CPrice, CurPrice, HPrice},
+%%    AuctionInfo = {Type, Id, item_equip:get_sink_info(Item, 0), TimeOut, CPrice, CurPrice, HPrice},
+%%    auction_sproto:pkg_msg(?MSG_AUCTION_NOTICE_OWNER_UP, AuctionInfo);
+
+pack(_MsgId, _Data) ->
+    ?ERROR_LOG("Auction Pkg (~w, ~p) Error!", [_MsgId, _Data]),
+    <<>>.
+
+get_refresh_data() ->
+    AuctList = auction_svr:get_all(),
+    AuctList1 =
+        lists:foldr
+        (
+            fun(#com_auction_tab{item_state = State,
+                id = Id, cur_price = Price}, Acc) ->
+                [{State, Id, Price} | Acc]
+            end,
+            [],
+            AuctList
+        ),
+    AuctList1.
+

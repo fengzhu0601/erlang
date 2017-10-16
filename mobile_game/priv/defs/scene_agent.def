@@ -1,0 +1,82 @@
+
+## 僵直状态 stiff_state
+eatom agent_ss_state
+{
+    ss_ba_ti, %%霸体
+    ss_stiff, %% 既不能移动也不能释放技能,也不会被攻击到
+    ss_beat_back_stiff, %% 击退击飞击退中
+    ss_down_ground_stiff, %% 倒地
+}
+
+## agent type
+eatom agent_type
+{
+    agent_player,   %% 
+    agent_monster,
+    agent_skill_obj,  %% 释放物
+    agent_pet,
+    agent_ob,      %% 观战
+}
+
+eatom agent_state_new
+{
+    st_new_move
+}
+
+## monster 状态迁移
+eatom agent_state
+{
+    st_none,
+    st_die, 
+
+    ## monster used
+    st_stand,  %% 站立不主动攻击
+    st_stroll, %% 闲逛
+    st_stroll_wait, %%  闲逛休息
+    st_chase, %% 追击
+    st_back,  %% 回到出生点
+    st_fight, %% 战斗中
+    st_reaction,
+
+    ## convoy_npc
+    st_convoy,
+    st_convoy_wait_player,
+
+    ## skill obj
+    st_skill_obj
+}
+
+## 移动原因
+eatom move_reason
+{
+    mst_move, %% 主动移动
+    mst_skill_move, %% 技能移动
+    mst_skill_rush, %% 技能rush
+    mst_beat_back, %% 击退移动
+}
+
+
+
+
+
+eatom agent_pl_state
+{
+    pl_attack,
+    pl_ba_ti,
+    pl_be_attacked,
+    pl_beat_back,
+    pl_beat_fly,
+    pl_beat_up,
+    pl_dead,
+    pl_jumping,
+    pl_moving,
+    pl_path_teleport,
+    pl_rush,
+    pl_stiff,
+    pl_beat_down,
+    pl_beat_horizontal,
+    pl_beat_vertical,
+    pl_bullet_attack_area,
+    pl_wait_for_moving,
+    pl_dizzy
+}

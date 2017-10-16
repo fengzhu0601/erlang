@@ -1,0 +1,5 @@
+-define(safe_ets_behavior, safe_ets).
+-ifndef(no_safe_ets_behavior).
+-behaviour(?safe_ets_behavior).
+-export([create_safe_ets/0]).
+-endif.

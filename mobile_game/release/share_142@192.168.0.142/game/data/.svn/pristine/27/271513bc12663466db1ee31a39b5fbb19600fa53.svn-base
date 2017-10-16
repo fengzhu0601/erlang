@@ -1,0 +1,27 @@
+%% set vim: ft=erlang			
+%% like Unix crontab			
+%% Edit this file to introduce tasks to be run by cron.			
+%% 			
+%% Each task to run has to be defined through a single line			
+%% indicating with different fields when the task will be run			
+%% and what command to run for the task			
+%% 			
+%% To define the time you can provide concrete values for			
+%% minute (m), hour (h), day of month (dom), month (mon),			
+%% and day of week (dow) or use "*" in these fields (for 'any')			
+%% {1,4} (for 1,2,3,4), [1,2,4] (for 1,2,4)			
+%% 			
+%% -type month()    :: 1..12.			
+%% -type day()      :: 1..31.			
+%% -type hour()     :: 0..23.			
+%% -type minute()   :: 0..59.			
+%% -type dow()      :: 1..7.			
+%% 			
+%% For example, you can run M:F:A  at 5 a.m every week with:			
+%% {id, 0, 5, "*", "*", 1, {M,F,A}}			
+%% 			
+%% 注意每条配置以. 结尾			
+%顺序id，分钟，小时，月日期，月份，星期几，模块名，调用函数名，函数参数			
+%% id m  h  dom  mon  dow   M:F:A			
+%%-----------------------------------------			
+{1, 0, 5, "*", "*", 1,   {io,format,["starting io format"]}}. %%			

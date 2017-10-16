@@ -1,0 +1,20 @@
+﻿ID	名称	值	系数1	系数2	系数3	系数4
+id	client_name	coef	coef1	coef2	coef3	coef4
+1	等级压制系数	lv_suppress	1	1.3	1	1.3
+2	招架率	guard	0.5	100		
+3	精准率	precise	0.5	100		
+4	最终招架率	final_guard	0.1			
+5	暴击率	crit_rate	0.25	50		
+6	暴击倍率	crit_prob	0.5	50		
+7	韧性率	pliable_rate	0.25	50		
+8	韧性倍率	pliable_prob	0.5	50		
+9	实际暴击概率	crit_fact_prob	0.05			
+10	暴击伤害	crit_damage	2	1		
+11	pve普通伤害	pve_normal_damage	1	0.9	1	1
+12	pvp普通伤害	pvp_normal_damage	1	0.4	0.5	0.5
+13	pve技能伤害	pve_skill_damage	1	1	1.1	1
+14	pvp技能伤害	pvp_skill_damage	1	0.4	0.5	0.5
+15	防御率	def_rate	0.5	200		
+16	连击间隔时间	combo_time	2			
+17	PVP的最终伤害系数	pvp_last_rate	0.5			
+18	PVE的最终伤害系数	pve_last_rate	1			

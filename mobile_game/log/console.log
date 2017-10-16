@@ -1,0 +1,95 @@
+2016-04-05 10:17:15.516 [info] <0.7.0> Application lager started on node tt@client
+2016-04-05 10:17:15.554 [info] <0.7.0> Application global_table started on node tt@client
+2016-04-05 10:18:27.763 [info] <0.7.0> Application config started on node tt@client
+2016-04-05 10:18:28.245 [info] <0.7.0> Application mobile_game started on node tt@client
+2016-04-06 10:36:08.084 [error] <0.391.0> Supervisor robot_sup had child robot_server started with otp_util:callback_starting({worker,robot_server,anonym,[]}, {anonym,{10,"192.168.0.254",5000}}) at <0.401.0> exit with reason normal in context child_terminated
+2016-04-06 10:36:08.084 [error] <0.391.0> Supervisor robot_sup had child robot_server started with otp_util:callback_starting({worker,robot_server,anonym,[]}, {anonym,{10,"192.168.0.254",5000}}) at <0.401.0> exit with reason reached_max_restart_intensity in context shutdown
+2016-04-06 10:36:08.247 [info] <0.7.0> Application mobile_game exited with reason: shutdown
+2016-04-07 12:18:39.186 [info] <0.7.0> Application lager started on node tt@client
+2016-04-07 12:18:39.192 [info] <0.7.0> Application global_table started on node tt@client
+2016-04-07 12:18:57.154 [info] <0.7.0> Application config started on node tt@client
+2016-04-07 12:18:57.635 [info] <0.7.0> Application mobile_game started on node tt@client
+2016-04-09 14:50:17.711 [error] <0.391.0> Supervisor robot_sup had child robot_server started with otp_util:callback_starting({worker,robot_server,anonym,[]}, {anonym,{10,"192.168.0.254",5000}}) at <0.401.0> exit with reason normal in context child_terminated
+2016-04-09 14:50:17.802 [error] <0.391.0> Supervisor robot_sup had child robot_server started with otp_util:callback_starting({worker,robot_server,anonym,[]}, {anonym,{10,"192.168.0.254",5000}}) at <0.401.0> exit with reason reached_max_restart_intensity in context shutdown
+2016-04-09 14:50:20.394 [info] <0.7.0> Application mobile_game exited with reason: shutdown
+2016-04-21 15:56:54.466 [info] <0.7.0> Application lager started on node tt@client
+2016-04-21 15:56:54.551 [info] <0.7.0> Application global_table started on node tt@client
+2016-04-21 15:57:25.666 [info] <0.7.0> Application config started on node tt@client
+2016-04-21 15:57:26.150 [info] <0.7.0> Application mobile_game started on node tt@client
+2016-04-21 15:59:24.733 [info] <0.7.0> Application lager started on node tt@client
+2016-04-21 15:59:24.749 [info] <0.7.0> Application global_table started on node tt@client
+2016-04-21 15:59:47.614 [info] <0.7.0> Application config started on node tt@client
+2016-04-21 15:59:48.058 [info] <0.7.0> Application mobile_game started on node tt@client
+2016-04-21 16:02:27.603 [info] <0.7.0> Application lager started on node tt@client
+2016-04-21 16:02:27.652 [info] <0.7.0> Application global_table started on node tt@client
+2016-04-21 16:02:51.869 [info] <0.7.0> Application config started on node tt@client
+2016-04-21 16:02:52.285 [info] <0.7.0> Application mobile_game started on node tt@client
+2016-04-21 18:58:00.567 [info] <0.7.0> Application lager started on node tt@client
+2016-04-21 18:58:00.594 [info] <0.7.0> Application global_table started on node tt@client
+2016-04-21 18:58:30.794 [info] <0.7.0> Application config started on node tt@client
+2016-04-21 18:58:34.887 [info] <0.7.0> Application mobile_game started on node tt@client
+2016-05-10 21:35:32.798 [info] <0.7.0> Application lager started on node 's1@192.168.0.95'
+2016-05-10 21:35:33.108 [info] <0.7.0> Application inets started on node 's1@192.168.0.95'
+2016-05-10 21:35:33.201 [info] <0.7.0> Application global_table started on node 's1@192.168.0.95'
+2016-05-10 21:35:34.331 [info] <0.7.0> Application mnesia started on node 's1@192.168.0.95'
+2016-05-10 21:35:42.224 [info] <0.7.0> Application pangzi started on node 's1@192.168.0.95'
+2016-05-10 21:35:42.444 [info] <0.7.0> Application esqlite started on node 's1@192.168.0.95'
+2016-05-10 21:36:32.451 [info] <0.7.0> Application config started on node 's1@192.168.0.95'
+2016-05-10 21:36:32.554 [info] <0.7.0> Application cron started on node 's1@192.168.0.95'
+2016-05-10 21:36:32.618 [info] <0.7.0> Application lc started on node 's1@192.168.0.95'
+2016-05-10 21:36:32.669 [info] <0.7.0> Application system_broadcast started on node 's1@192.168.0.95'
+2016-05-10 21:36:32.938 [info] <0.7.0> Application crypto started on node 's1@192.168.0.95'
+2016-05-10 21:36:33.212 [info] <0.7.0> Application mobile_game started on node 's1@192.168.0.95'
+2016-05-10 21:36:33.314 [info] <0.7.0> Application gm_controller_server started on node 's1@192.168.0.95'
+2016-05-10 21:38:58.600 [info] <0.7.0> Application lager started on node 'hand@192.168.0.254'
+2016-05-10 21:38:58.795 [info] <0.7.0> Application inets started on node 'hand@192.168.0.254'
+2016-05-10 21:38:58.841 [info] <0.7.0> Application global_table started on node 'hand@192.168.0.254'
+2016-05-10 21:38:59.778 [info] <0.7.0> Application mnesia started on node 'hand@192.168.0.254'
+2016-05-10 21:39:14.234 [error] <0.146.0> CRASH REPORT Process <0.146.0> with 0 neighbours exited with reason: {aborted,{no_exists,[player_auction_tab,[{'$1',[],['$1']}]]}} in gen_server:init_it/6 line 330
+2016-05-10 21:39:14.235 [error] <0.142.0> Supervisor pangzi_sup had child player_auction_tab started with pangzi_worker:start_link({db_table_meta,player_auction_tab,set,[id,ver,auction_bag],auction_tab,3,false,undefined,true,[],...}) at undefined exit with reason {aborted,{no_exists,[player_auction_tab,[{'$1',[],['$1']}]]}} in context start_error
+2016-05-10 21:39:14.336 [error] <0.142.0> Supervisor pangzi_sup had child player_arena_log_tab started with pangzi_worker:start_link({db_table_meta,player_arena_log_tab,set,[id,log],undefined,5,false,undefined,false,[],10,30,undefined}) at <0.144.0> exit with reason killed in context shutdown_error
+2016-05-10 21:39:33.550 [info] <0.7.0> Application lager started on node 'hand@192.168.0.254'
+2016-05-10 21:39:33.750 [info] <0.7.0> Application inets started on node 'hand@192.168.0.254'
+2016-05-10 21:39:33.803 [info] <0.7.0> Application global_table started on node 'hand@192.168.0.254'
+2016-05-10 21:39:34.610 [info] <0.7.0> Application mnesia started on node 'hand@192.168.0.254'
+2016-05-10 21:40:42.150 [info] <0.7.0> Application lager started on node 'hand@192.168.0.254'
+2016-05-10 21:40:42.352 [info] <0.7.0> Application inets started on node 'hand@192.168.0.254'
+2016-05-10 21:40:42.399 [info] <0.7.0> Application global_table started on node 'hand@192.168.0.254'
+2016-05-10 21:40:43.018 [info] <0.7.0> Application mnesia started on node 'hand@192.168.0.254'
+2016-05-10 21:40:58.799 [error] <0.136.0> CRASH REPORT Process <0.136.0> with 0 neighbours exited with reason: {aborted,{no_exists,[player_auction_tab,[{'$1',[],['$1']}]]}} in gen_server:init_it/6 line 330
+2016-05-10 21:40:58.800 [error] <0.132.0> Supervisor pangzi_sup had child player_auction_tab started with pangzi_worker:start_link({db_table_meta,player_auction_tab,set,[id,ver,auction_bag],auction_tab,3,false,undefined,true,[],...}) at undefined exit with reason {aborted,{no_exists,[player_auction_tab,[{'$1',[],['$1']}]]}} in context start_error
+2016-05-10 21:41:37.981 [info] <0.7.0> Application lager started on node 'hand@192.168.0.254'
+2016-05-10 21:41:38.397 [info] <0.7.0> Application inets started on node 'hand@192.168.0.254'
+2016-05-10 21:41:38.468 [info] <0.7.0> Application global_table started on node 'hand@192.168.0.254'
+2016-05-10 21:41:39.359 [info] <0.7.0> Application mnesia started on node 'hand@192.168.0.254'
+2016-05-10 21:41:53.388 [error] <0.136.0> CRASH REPORT Process <0.136.0> with 0 neighbours exited with reason: {aborted,{no_exists,[player_auction_tab,[{'$1',[],['$1']}]]}} in gen_server:init_it/6 line 330
+2016-05-10 21:41:53.390 [error] <0.132.0> Supervisor pangzi_sup had child player_auction_tab started with pangzi_worker:start_link({db_table_meta,player_auction_tab,set,[id,ver,auction_bag],auction_tab,3,false,undefined,true,[],...}) at undefined exit with reason {aborted,{no_exists,[player_auction_tab,[{'$1',[],['$1']}]]}} in context start_error
+2016-05-10 21:43:08.373 [info] <0.7.0> Application lager started on node 'hand@192.168.0.254'
+2016-05-10 21:43:08.588 [info] <0.7.0> Application inets started on node 'hand@192.168.0.254'
+2016-05-10 21:43:08.636 [info] <0.7.0> Application global_table started on node 'hand@192.168.0.254'
+2016-05-10 21:43:09.351 [info] <0.7.0> Application mnesia started on node 'hand@192.168.0.254'
+2016-05-10 21:43:35.716 [info] <0.7.0> Application lager started on node 'hand@192.168.0.254'
+2016-05-10 21:43:35.872 [info] <0.7.0> Application inets started on node 'hand@192.168.0.254'
+2016-05-10 21:43:35.921 [info] <0.7.0> Application global_table started on node 'hand@192.168.0.254'
+2016-05-10 21:43:36.565 [info] <0.7.0> Application mnesia started on node 'hand@192.168.0.254'
+2016-05-10 21:43:43.825 [info] <0.7.0> Application pangzi started on node 'hand@192.168.0.254'
+2016-05-10 21:43:43.975 [info] <0.7.0> Application esqlite started on node 'hand@192.168.0.254'
+2016-05-10 21:44:33.705 [info] <0.7.0> Application config started on node 'hand@192.168.0.254'
+2016-05-10 21:44:33.835 [info] <0.7.0> Application cron started on node 'hand@192.168.0.254'
+2016-05-10 21:44:33.874 [info] <0.7.0> Application lc started on node 'hand@192.168.0.254'
+2016-05-10 21:44:33.902 [info] <0.7.0> Application system_broadcast started on node 'hand@192.168.0.254'
+2016-05-10 21:44:34.173 [info] <0.7.0> Application crypto started on node 'hand@192.168.0.254'
+2016-05-10 21:44:34.497 [info] <0.7.0> Application mobile_game started on node 'hand@192.168.0.254'
+2016-05-10 21:44:34.546 [info] <0.7.0> Application gm_controller_server started on node 'hand@192.168.0.254'
+2016-05-10 21:46:20.312 [error] <0.1127.0> gen_server <0.1127.0> terminated with reason: no match of right hand value {error,enoent} in load_rule_chart:get_states/1 line 43
+2016-05-10 21:46:20.315 [error] <0.1127.0> CRASH REPORT Process <0.1127.0> with 0 neighbours exited with reason: no match of right hand value {error,enoent} in load_rule_chart:get_states/1 line 43 in gen_server:terminate/6 line 746
+2016-05-10 21:46:20.323 [error] <0.968.0> Supervisor room_sup had child room_scene started with {otp_util,callback_starting,undefined} at <0.1127.0> exit with reason no match of right hand value {error,enoent} in load_rule_chart:get_states/1 line 43 in context child_terminated
+2016-05-10 21:46:23.579 [error] <0.1120.0> gen_server <0.1120.0> terminated with reason: crash
+2016-05-10 21:46:23.589 [error] <0.1120.0> CRASH REPORT Process <0.1120.0> with 0 neighbours exited with reason: crash in gen_server:terminate/6 line 746
+2016-05-10 21:46:23.590 [error] <0.967.0> Supervisor player_sup had child player started with {player_eng,start_link,undefined} at <0.1120.0> exit with reason crash in context child_terminated
+2016-07-25 11:47:56.048 [info] <0.7.0> Application lager started on node 'hand@192.168.0.254'
+2016-07-25 11:47:56.181 [info] <0.7.0> Application inets started on node 'hand@192.168.0.254'
+2016-07-25 11:47:56.190 [info] <0.7.0> Application global_table started on node 'hand@192.168.0.254'
+2016-07-25 11:47:57.199 [info] <0.7.0> Application mnesia started on node 'hand@192.168.0.254'
+2016-07-25 11:48:00.221 [info] <0.7.0> Application pangzi started on node 'hand@192.168.0.254'
+2016-07-25 11:48:00.314 [info] <0.7.0> Application esqlite started on node 'hand@192.168.0.254'

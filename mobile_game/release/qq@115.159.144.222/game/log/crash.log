@@ -1,0 +1,25 @@
+2016-06-21 17:09:43 =ERROR REPORT====
+Mnesia('qq@115.159.144.222'): ** ERROR ** (core dumped to file: "/home/fengzhu/work/server/mobile_game/release/qq@115.159.144.222/game/MnesiaCore.qq@115.159.144.222_1466_500183_812935")
+ ** FATAL ** Possibly truncated decision_tab file: {corrupt_log_file,"/home/fengzhu/work/server/mobile_game/release/qq@115.159.144.222/game/../Database/Mnesia.game/DECISION_TAB.LOG"}
+2016-06-21 17:09:53 =ERROR REPORT====
+** Generic server mnesia_monitor terminating 
+** Last message in was {'EXIT',<0.99.0>,killed}
+** When Server state == {state,<0.99.0>,[],[],false,[],undefined,[],[]}
+** Reason for termination == 
+** killed
+2016-06-21 17:09:53 =CRASH REPORT====
+  crasher:
+    initial call: mnesia_monitor:init/1
+    pid: <0.100.0>
+    registered_name: mnesia_monitor
+    exception exit: {killed,[{gen_server,terminate,6,[{file,"gen_server.erl"},{line,746}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,239}]}]}
+    ancestors: [mnesia_kernel_sup,mnesia_sup,<0.96.0>]
+    messages: []
+    links: [<0.112.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 2586
+    stack_size: 27
+    reductions: 2345
+  neighbours:

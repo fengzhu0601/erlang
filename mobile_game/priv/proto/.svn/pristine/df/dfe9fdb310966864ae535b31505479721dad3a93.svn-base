@@ -1,0 +1,124 @@
+## 天空之城大副本系统
+
+@include "game.sproto"
+
+#目前宝箱阶段
+proto MSG_SKY_INS_BOX_LEVEL=1
+{
+     client
+     {
+         message=empty
+     }
+     server{
+         message
+         {
+            box_level:u8
+         }
+     }
+}
+
+# 进入副本
+proto MSG_ENTER_CLIENT_INS=2
+{
+     client{
+         message{
+            type:u8       #1.单机副本 2.网络副本
+         }
+     }
+     server{
+         message
+         {
+            ins_id:u16
+         }
+     }
+     errnos
+     {
+         ERR_NOT_OPEN_FUN,          ##功能未开放
+         ERR_CAMP_NOT_JOIN_CAMP     ##没有加入阵营
+     }
+}
+
+# 被击杀的宝箱排行榜信息
+proto MSG_SKY_INS_RANK=3
+{
+     client
+     {
+         message=empty
+     }
+     server{
+         message
+         {
+            box_rank:list<{
+                box_rank_id:u8,                #宝箱序号
+                playerCarrer:player_carrer,    #角色职业
+                playerId:player_id,            #角色id
+                playerName:sstr,               #角色名字
+                playerLev:player_level,        #角色等级
+                box_drop:list<{
+                    item_bid:item_bid,
+                    item_num:u32
+                }>
+            }>
+
+         }
+     }
+}
+
+# 混乱模式推送自己击杀数量
+proto PUSH_KILL_COUNT=11
+{
+     client
+     {
+     }
+     server
+     {
+         message
+         {
+            kill_monster:u16, #杀怪数量
+            kill_player:u16   #杀人数量
+         }
+     }
+}
+
+# 活动结算，服务器推送单人模式结算奖励
+proto PUSH_ACTIVITY_END=12
+{
+     client
+     {
+     }
+     server
+     {
+         message
+         {
+            kill_monster:u16, #杀怪数量
+            exp:u32,          #经验结算奖励
+            drop:list<{
+                item_bid:item_bid,
+                item_num:u32
+            }>
+         }
+     }
+}
+
+# 活动结算，服务器推送混乱模式结算奖励
+proto PUSH_ACTIVITY_END_PRIZE=13
+{
+     client
+     {
+     }
+     server
+     {
+         message
+         {
+            kill_monster:u16,      #杀怪数量
+            kill_monster_rank:u16, #杀怪排名
+            kill_player:u16,       #杀人数量
+            kill_player_rank:u16,  #杀人排名
+            exp:u32,               #经验结算奖励
+            drop:list<{
+                item_bid:item_bid,
+                item_num:u32
+            }>
+         }
+     }
+}

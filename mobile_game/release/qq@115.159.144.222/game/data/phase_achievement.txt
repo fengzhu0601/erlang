@@ -1,0 +1,2 @@
+ID(阶段成就)	完成成就的条件	奖励
+id	goal_list	prize

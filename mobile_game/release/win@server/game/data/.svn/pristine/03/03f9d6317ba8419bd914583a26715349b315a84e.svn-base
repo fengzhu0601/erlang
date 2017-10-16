@@ -1,0 +1,12 @@
+﻿id(skill_id=类型相加之和 冰火雷1,10,100，由程序确认)	怒气技名称	技能ID(填写技能的第一段的segment_id)	icon[激活状态icon路径,未激活icon路径]	皇冠名称（资源路径）	宝石槽位置（前端UI上的皇冠槽位置编号，参见UI）	描述
+id	client_name	skill_id	client_icon	client_crown_name_image	client_slot	client_desc
+3	冰之领域	4000011	{"skill/spell_icon_400001.png","skill/spell_nact_icon_400001.png"}	crown/crown_name_01.png	7	召唤一个寒冰法阵将敌人冰封，短时间后该冰阵爆裂，并对冰阵区域内的敌人造成伤害。
+12	冰火龙卷	4000021	{"skill/spell_icon_400002.png","skill/spell_nact_icon_400002.png"}	crown/crown_name_02.png	8	召唤出一个冰火环绕的龙卷风袭向敌人，受击的敌人将会被击飞并处于灼烧、迟缓状态
+102	冰封雷电	4000031	{"skill/spell_icon_400003.png","skill/spell_nact_icon_400003.png"}	crown/crown_name_02.png	2	召唤出寒冰之力冻结住敌人，并用雷电给以敌人伤害
+21	虚无冰火	4000041	{"skill/spell_icon_400004.png","skill/spell_nact_icon_400004.png"}	crown/crown_name_02.png	10	纯白色的火焰，从天而降，受击的敌人将会处于灼烧和行动迟缓状态。
+30	末日火焰	4000051	{"skill/spell_icon_400005.png","skill/spell_nact_icon_400005.png"}	crown/crown_name_01.png	9	流星火雨从天而降，施法者的四周会遭到火球持续的攻击
+120	雷火缠绕	4000061	{"skill/spell_icon_400006.png","skill/spell_nact_icon_400006.png"}	crown/crown_name_02.png	5	召唤出附带雷电的火焰将敌人缠绕住，受击的敌人将会处于灼烧和麻痹状态。
+201	雷电冰球	4000071	{"skill/spell_icon_400007.png","skill/spell_nact_icon_400007.png"}	crown/crown_name_02.png	3	召唤出一颗附带雷电的冰球击向敌人，受到攻击的敌人将会处于冰冻状态，并造成伤害
+210	雷火天罚	4000081	{"skill/spell_icon_400008.png","skill/spell_nact_icon_400008.png"}	crown/crown_name_02.png	4	从天而降的雷霆会不断的劈向施法者四周，受到攻击的敌人会被击飞并处于麻痹、灼烧状态。
+300	电磁能量球	4000091	{"skill/spell_icon_400009.png","skill/spell_nact_icon_400009.png"}	crown/crown_name_01.png	1	召唤出一个由雷电之力形成的能量球，可连续击退敌方并造成伤害。
+111	奥术光罩	4000101	{"skill/spell_icon_400010.png","skill/spell_nact_icon_400010.png"}	crown/crown_name_02.png	6	在自己的周围释放一个色彩斑斓的魔法光罩，光罩破裂后对周围敌人造成大量伤害。

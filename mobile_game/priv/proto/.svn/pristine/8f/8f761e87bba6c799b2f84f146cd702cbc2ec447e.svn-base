@@ -1,0 +1,59 @@
+# 卡片大师
+
+@include "game.sproto"
+
+# 抽奖
+proto MSG_CARD_AWARD=1
+{
+    client{
+        message{
+            Info:list<{ItemBid:item_bid, Count:u16}>
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+#-define(REPLY_MSG_CARD_AWARD_OK,   0).      %% 抽奖成功
+#-define(REPLY_MSG_CARD_AWARD_1,    1).      %% 抽奖失败，扣除物品失败
+#-define(REPLY_MSG_CARD_AWARD_255,  255).    %% 抽奖异常
+            , ItemTpL:list<{ItemBid:item_bid, Count:u32}>
+        }
+    }
+}
+
+
+# 获取奖励公告列表
+proto MSG_CARD_AWARD_INFO=2
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message{
+            PageData:list<{
+                Time:u64, Id:player_id, Name:sstr
+                , ItemTpL:list<{ItemBid:item_bid, Count:u32}>
+            }>
+        }
+    }
+}
+
+
+# 广播公告
+proto MSG_CARD_BROADCAST_NOTICE=3
+{
+    client
+    {
+        message=empty
+    }
+
+    server{
+        message{
+            Id:player_id, Name:sstr
+            , ItemTpL:list<{ItemBid:item_bid, Count:u32}>
+        }
+    }
+}
+

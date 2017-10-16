@@ -1,0 +1,113 @@
+@include "game.sproto"
+
+
+# 服务器推送
+proto MSG_LOGIN_DAY_DATA_SC = 1
+{
+    client
+    {
+        message=empty
+    }
+    server
+    {
+        message
+        {
+            loginDay:u8,        # 登陆天数
+            signinDay:u8        # 签到天数
+        }
+    }
+}
+
+# 抽奖--下发8个物品数据和状态
+proto MSG_ROLL_ITEM_DATA_SC = 2
+{
+    client
+    {
+        message=empty
+    }
+    server
+    {
+        message
+        {
+            count:u8,   # 已转次数
+            ItemData:list<{itemBid:u32, num:u32, isLock:u8}>    # 8个物品数据和状态
+        }
+    }
+}
+
+
+# 抽奖--单独更新单个物品状态
+proto MSG_ROLL_ITEM_UPDATE_SC = 3
+{
+    client
+    {
+        message=empty
+    }
+    server
+    {
+        message
+        {
+            index:u8,           # 物品位置
+            isLock:u8           # 状态
+        }
+    }
+}
+
+
+#签到请求
+proto MSG_SIGNIN_REWARD_CS = 4
+{
+    client
+    {
+        message
+        {
+            dayth:u8            # 签到天数
+        }
+    }
+
+    server
+    {
+        message
+        {
+            loginDay:u8,        # 登陆天数
+            signinDay:u8        # 签到天数
+        }
+    }
+}
+
+#等级奖励请求
+proto MSG_LEVEL_REWARD_CS = 5
+{
+    client
+    {
+        message
+        {
+            level:u8            # 等级奖励
+        }
+    }
+
+    server
+    {
+         message=empty
+    }
+}
+
+#抽奖请求
+proto MSG_ROLL_LOTTERY_CS = 6
+{
+    client
+    {
+        message=empty
+    }
+    server
+    {
+        message
+        {
+            count:u8,           # 已转次数
+            index:u8            # 物品位置
+        }
+    }
+}
+
+
+

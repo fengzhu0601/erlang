@@ -1,0 +1,4 @@
+﻿平台ID	区服ID	平台名	区服名	Gm端口	游戏服端口
+id	server_id	platform_name	server_name	gm_port	game_port
+1	1	<<"墨麟">>	<<"龙之起源测试1区">>	9010	5000
+1	2	<<"墨麟">>	<<"龙之起源测试2区">>	9011	4999

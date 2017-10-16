@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<!-- edited with XMLSpy v2011 (http://www.altova.com) by clk (clk) -->
+<npc_10011>
+	<!--副本事件流程-->
+	<State StateId="1" Desc="npc状态1">
+		<Event EventId="10005" Times="1" Desc="玩家移动">
+			<Do Func="send_evt" Par="{2000,13}" Desc=""/>
+		</Event>
+		<Event EventId="13" Times="-1" Desc="玩家移动">
+			<Do Func="send_evt" Par="{10000,14}" Desc=""/>
+			<Do Func="trace" Par="npc_1_13" Desc=""/>
+			<Do Func="move" Par="{7, 0}" Desc=""/>
+		</Event>
+		<Event EventId="14" Times="-1" Desc="玩家移动">
+			<Do Func="send_evt" Par="{10000,13}" Desc=""/>
+			<Do Func="trace" Par="npc_1_14" Desc=""/>
+			<Do Func="skill" Par="2002011" Desc=""/>
+		</Event>
+	</State>
+</npc_10011>

@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Module com_string</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css" title="EDoc">
+</head>
+<body bgcolor="white">
+<div class="navbar"><a name="#navbar_top"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<hr>
+
+<h1>Module com_string</h1>
+<ul class="index"><li><a href="#description">Description</a></li><li><a href="#index">Function Index</a></li><li><a href="#functions">Function Details</a></li></ul> 字符串常用操作.
+
+
+<h2><a name="description">Description</a></h2> 字符串常用操作
+<h2><a name="index">Function Index</a></h2>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#binary_to_hexstring-1">binary_to_hexstring/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#datetime_to_short_string-1">datetime_to_short_string/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#datetime_to_string-1">datetime_to_string/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#escape_uri-1">escape_uri/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#make_int_str-1">make_int_str/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#make_int_str-2">make_int_str/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#make_ipaddress_str-1">make_ipaddress_str/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#make_node-2">make_node/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#make_node_str-2">make_node_str/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#make_socket_str-1">make_socket_str/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#my_list_to_atom-1">my_list_to_atom/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#replace-3">replace/3</a></td><td></td></tr>
+<tr><td valign="top"><a href="#split_node-1">split_node/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#sprintf-2">sprintf/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#string_to_print_term-1">string_to_print_term/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#string_to_term-1">string_to_term/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#term_to_string-1">term_to_string/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#token_str-2">token_str/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#upper_first_char-1">upper_first_char/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#utf_length-1">utf_length/1</a></td><td></td></tr>
+</table>
+
+<h2><a name="functions">Function Details</a></h2>
+
+<h3 class="function"><a name="binary_to_hexstring-1">binary_to_hexstring/1</a></h3>
+<div class="spec">
+<p><tt>binary_to_hexstring(Bin) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="datetime_to_short_string-1">datetime_to_short_string/1</a></h3>
+<div class="spec">
+<p><tt>datetime_to_short_string(DateTime) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="datetime_to_string-1">datetime_to_string/1</a></h3>
+<div class="spec">
+<p><tt>datetime_to_string(DateTime) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="escape_uri-1">escape_uri/1</a></h3>
+<div class="spec">
+<p><tt>escape_uri(S) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="make_int_str-1">make_int_str/1</a></h3>
+<div class="spec">
+<p><tt>make_int_str(Int) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="make_int_str-2">make_int_str/2</a></h3>
+<div class="spec">
+<p><tt>make_int_str(LenNum, Int) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="make_ipaddress_str-1">make_ipaddress_str/1</a></h3>
+<div class="spec">
+<p><tt>make_ipaddress_str(X1) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="make_node-2">make_node/2</a></h3>
+<div class="spec">
+<p><tt>make_node(SName, Ip) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="make_node_str-2">make_node_str/2</a></h3>
+<div class="spec">
+<p><tt>make_node_str(SName, Ip) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="make_socket_str-1">make_socket_str/1</a></h3>
+<div class="spec">
+<p><tt>make_socket_str(Socket) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="my_list_to_atom-1">my_list_to_atom/1</a></h3>
+<div class="spec">
+<p><tt>my_list_to_atom(String) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="replace-3">replace/3</a></h3>
+<div class="spec">
+<p><tt>replace(String, TokenStr, NewString) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="split_node-1">split_node/1</a></h3>
+<div class="spec">
+<p><tt>split_node(Node) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="sprintf-2">sprintf/2</a></h3>
+<div class="spec">
+<p><tt>sprintf(Format, Data) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="string_to_print_term-1">string_to_print_term/1</a></h3>
+<div class="spec">
+<p><tt>string_to_print_term(String) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="string_to_term-1">string_to_term/1</a></h3>
+<div class="spec">
+<p><tt>string_to_term(String) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="term_to_string-1">term_to_string/1</a></h3>
+<div class="spec">
+<p><tt>term_to_string(Term) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="token_str-2">token_str/2</a></h3>
+<div class="spec">
+<p><tt>token_str(String, TokenStr) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="upper_first_char-1">upper_first_char/1</a></h3>
+<div class="spec">
+<p><tt>upper_first_char(String) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="utf_length-1">utf_length/1</a></h3>
+<div class="spec">
+<p><tt>utf_length(StringBin) -&gt; any()</tt></p>
+</div>
+<hr>
+
+<div class="navbar"><a name="#navbar_bottom"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<p><i>Generated by EDoc, May 10 2015, 19:34:57.</i></p>
+</body>
+</html>

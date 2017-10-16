@@ -1,0 +1,9 @@
+﻿路牌id	所在场景id	所在场景坐标点	路牌杆图片路径	指示牌数组参数({图片路径, 位置偏移,旋转角度,是否镜像, 文字图片路径, 文字图片偏移})    
+id	client_scene_id	position	pole_icon	boards
+1	103	{576,192}	"guidepost/1001.png"	[{"guidepost/1004.png",{-30,120},0,0,"guidepost/diaoqiao.png", {0,0}},{"guidepost/1005.png",{-30,192},0,0,"guidepost/jishi.png", {0, 0}},{"guidepost/1003.png",{40,161},0,0,"guidepost/shggch.png", {0,0}}]
+2	103	{2592,192}	"guidepost/1001.png"	[{"guidepost/1004.png",{-30,120},0,0,"guidepost/shggch.png", {0,0}},{"guidepost/1005.png",{30,192},0,1,"guidepost/fgzl.png", {0, 0}},{"guidepost/1003.png",{30,161},0,0,"guidepost/fbrk.png", {0, 0}}]
+3	101	{480,182}	"guidepost/1001.png"	[{"guidepost/1004.png",{-30,160},0,0,"guidepost/ltzd.png", {0,0}},{"guidepost/1003.png",{30,200},0,0,"guidepost/shggch.png", {0, 0}}]
+4	105	{1440,192}	"guidepost/1001.png"	[{"guidepost/1004.png",{-30,150},0,0,"guidepost/shizhenting.png", {0,0}},{"guidepost/1002.png",{-30,190},0,0,"guidepost/shggch.png", {0, 0}}]
+5	201	{576,170}	"guidepost/2001.png"	[{"guidepost/2003.png",{-30,150},0,0,"guidepost/jgdl.png", {0,0}},{"guidepost/2004.png",{-30,221},0,0,"guidepost/lsyz.png", {0, 0}},{"guidepost/2003.png",{30,185},0,1,"guidepost/ltzl.png", {0, 0}}]
+6	201	{1664,170}	"guidepost/2001.png"	[{"guidepost/2002.png",{-30,150},0,0,"guidepost/ltzl.png", {0,0}},{"guidepost/2004.png",{30,223},0,1,"guidepost/pmh.png", {0, -5}},{"guidepost/2003.png",{30,185},0,1,"guidepost/fbrk2.png", {0, 0}}]
+7	203	{1280,110}	"guidepost/2001.png"	[{"guidepost/2002.png",{-30,171},0,0,"guidepost/mgsl.png", {0,0}},{"guidepost/2003.png",{30,223},0,1,"guidepost/ltzl.png", {0, 0}}]

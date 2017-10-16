@@ -1,0 +1,5 @@
+﻿品质（1蓝、2紫色、3橙色）	最大进阶次数	主动技能开启槽数	主动技能最大槽数	被动技能开启槽数	被动技能最大槽数
+quality	max_level	initialtive_open	initialtive_max	passivity_open	passivity_max
+1	5	1	3	1	6
+2	8	1	3	1	6
+3	10	1	3	1	6

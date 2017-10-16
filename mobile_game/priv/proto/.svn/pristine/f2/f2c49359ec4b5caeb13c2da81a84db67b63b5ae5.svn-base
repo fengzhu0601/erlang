@@ -1,0 +1,62 @@
+## 赏金任务
+
+@include "game.sproto"
+
+#转盘奖品数据
+proto MSG_NINE_LOTTERY_INFO=1
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message
+        {
+            lotteryList:list<{
+                idx:u8,       ## 格子位置1-9 0表示活动已结束
+                rewards:list<{itemId:item_bid, num:u32}>, #格子里的几个奖品
+                count:u16       ## 奖品份数
+            }>
+        }
+    }
+}
+
+## 抽奖
+proto MSG_NINE_LOTTERY_GET_PRIZE=2
+{
+    client{
+        message
+        {
+            count:u8         ##抽奖次数(目前只有1次和10次)
+        }
+    }
+
+    server{
+        message
+        {
+            idx:u8,       ## 奖品位置1-9
+            rewards:list<{itemId:item_bid, num:u32, isSuper:u8}> #获得奖品
+        }
+    }
+}
+
+##抽奖记录列表
+proto MSG_NINE_LOTTERY_RECORD=3
+{
+    client{
+        message
+        {
+            type:u8       ##1:全部 2:个人
+        }
+    }
+
+    server{
+        message
+        {
+            pageData:list<{
+                Time:u64, Id:player_id, Name:sstr
+                , ItemTpL:list<{ItemBid:item_bid, Count:u32}>
+            }>
+        }
+    }
+}

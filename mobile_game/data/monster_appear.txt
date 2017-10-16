@@ -1,0 +1,217 @@
+﻿id（由策划确定）	名称	出现特效（配置骨骼skel路径，appear文件夹）	角色身上出场动画（动画名称，类似action名称）
+id	client_name	effect	action
+1	通用特效1	appears/chuxian_1.skel	
+2	通用特效2	appears/chuxian_2.skel	
+1000	竞技场刷新		
+1001	清风河岸怪物出现方式1	appears/chuxian_4.skel	entrance
+1002	清风河岸怪物出现方式2	appears/chuxian_4.skel	entrance
+1003	清风河岸怪物出现方式3	appears/chuxian_3.skel	
+1004	清风河岸怪物出现方式4	appears/chuxian_3.skel	
+1005	清风河岸怪物出现方式5	appears/chuxian_3.skel	
+1006	清风河岸怪物出现方式6		entrance
+1007	清风河岸怪物出现方式7		entrance
+1008	清风河岸怪物出现方式8		entrance
+1009	清风河岸怪物出现方式9		entrance
+1010	清风河岸怪物出现方式10		entrance
+1011	清风河岸怪物出现方式11	appears/chuxian_4.skel	entrance
+1012	清风河岸怪物出现方式12	appears/chuxian_3.skel	
+1013	清风河岸怪物出现方式13	appears/chuxian_3.skel	
+1014	清风河岸怪物出现方式14	appears/chuxian_4.skel	entrance
+1015	清风河岸怪物出现方式15		entrance
+1016	清风河岸怪物出现方式16		entrance
+1017	清风河岸怪物出现方式17	appears/chuxian_2.skel	
+1018	清风河岸怪物出现方式18	appears/chuxian_2.skel	
+1019	清风河岸怪物出现方式19	appears/chuxian_2.skel	
+1020	清风河岸怪物出现方式20	appears/chuxian_2.skel	
+1021	清风河岸怪物出现方式21		
+1022	清风河岸怪物出现方式22		
+1023	清风河岸怪物出现方式23		entrance
+1024	清风河岸怪物出现方式24	appears/chuxian_2.skel	
+1025	清风河岸怪物出现方式25	appears/chuxian_2.skel	
+1026	清风河岸怪物出现方式26	appears/chuxian_2.skel	
+1027	清风河岸怪物出现方式27	appears/chuxian_2.skel	
+1028	清风河岸怪物出现方式28		
+1029	清风河岸怪物出现方式29		
+1030	清风河岸怪物出现方式30	appears/chuxian_2.skel	
+1031	清风河岸怪物出现方式31	appears/chuxian_2.skel	
+1032	清风河岸怪物出现方式32	appears/chuxian_2.skel	
+1033	清风河岸怪物出现方式33	appears/chuxian_2.skel	
+1034	清风河岸怪物出现方式34		
+1035	清风河岸怪物出现方式35		
+1036	清风河岸BOSS出现（清风河岸-困难）		entrance
+1037	清风河岸怪物出现方式36	appears/chuxian_2.skel	
+1038	清风河岸怪物出现方式37	appears/chuxian_2.skel	
+1039	清风河岸怪物出现方式38	appears/chuxian_2.skel	
+1040	清风河岸怪物出现方式39	appears/chuxian_2.skel	
+1041	清风河岸怪物出现方式40		
+1042	清风河岸怪物出现方式41		
+2000	斗士学院怪物出现方式1		entrance
+2001	斗士学院怪物出现方式2		entrance
+2002	斗士学院怪物出现方式3	appears/chuxian_3.skel	
+2003	斗士学院怪物出现方式4	appears/chuxian_3.skel	
+2004	斗士学院怪物出现方式5		entrance
+2005	斗士学院怪物出现方式6		entrance
+2006	斗士学院怪物出现方式7		entrance
+2007	斗士学院怪物出现方式8		entrance
+2008	斗士学院BOSS出现		entrance
+2009	斗士学院怪物出现方式9	appears/chuxian_3.skel	
+2010	斗士学院怪物出现方式10		entrance
+2011	斗士学院怪物出现方式11		entrance
+2012	斗士学院怪物出现方式12		entrance
+2013	斗士学院怪物出现方式13		entrance
+2014	斗士学院怪物出现方式14		entrance
+3000	雕像走廊怪物出现方式1	appears/chuxian_3.skel	
+3001	雕像走廊怪物出现方式2	appears/chuxian_3.skel	
+3002	雕像走廊怪物出现方式3		entrance
+3003	雕像走廊怪物出现方式4	appears/chuxian_3.skel	entrance
+3004	雕像走廊怪物出现方式5		entrance
+3005	雕像走廊怪物出现方式6		entrance
+3008	雕像走廊BOSS出现		entrance
+3009	雕像走廊怪物出现方式7	appears/chuxian_3.skel	
+3010	雕像走廊怪物出现方式8		entrance
+3011	雕像走廊怪物出现方式9	appears/chuxian_3.skel	entrance
+3012	雕像走廊怪物出现方式10	appears/chuxian_3.skel	
+3013	雕像走廊怪物出现方式11		
+3014	雕像走廊怪物出现方式12		
+4000	地精工坊怪物出现方式1		entrance
+4001	地精工坊怪物出现方式2		entrance
+4002	地精工坊怪物出现方式3		entrance
+4003	地精工坊怪物出现方式4	appears/chuxian_3.skel	
+4004	地精工坊怪物出现方式5		entrance
+4005	地精工坊怪物出现方式6		entrance
+4006	地精工坊怪物出现方式7		entrance
+4007	地精工坊怪物出现方式8		entrance
+4008	地精工坊2BOSS出现		entrance
+4009	地精工坊怪物出现方式9	appears/chuxian_3.skel	
+4010	地精工坊怪物出现方式10		entrance
+4011	地精工坊怪物出现方式11		entrance
+4012	地精工坊怪物出现方式12		entrance
+4013	地精工坊怪物出现方式13		entrance
+4014	地精工坊怪物出现方式14		entrance
+5000	审判大厅怪物出现方式1		entrance
+5001	审判大厅怪物出现方式2		entrance
+5002	审判大厅怪物出现方式3		entrance
+5003	审判大厅怪物出现方式4	appears/chuxian_1.skel	
+5004	审判大厅怪物出现方式5	appears/chuxian_1.skel	
+5005	审判大厅怪物出现方式6	appears/chuxian_1.skel	
+5006	审判大厅怪物出现方式7		
+5007	审判大厅怪物出现方式8		
+5008	审判大厅BOSS出现		entrance
+5009	审判大厅怪物出现方式9		entrance
+5010	审判大厅怪物出现方式10		entrance
+5011	审判大厅怪物出现方式11	appears/chuxian_1.skel	
+5012	审判大厅怪物出现方式12	appears/chuxian_1.skel	
+5013	审判大厅怪物出现方式13	appears/chuxian_1.skel	
+5014	审判大厅怪物出现方式14	appears/chuxian_1.skel	
+6000	镜面走廊怪物出现方式1	appears/chuxian_3.skel	
+6001	镜面走廊怪物出现方式2	appears/chuxian_3.skel	
+6002	镜面走廊怪物出现方式3		entrance
+6003	镜面走廊怪物出现方式4		entrance
+6004	镜面走廊怪物出现方式5	appears/chuxian_3.skel	
+6005	镜面走廊怪物出现方式6	appears/chuxian_3.skel	
+6006	镜面走廊怪物出现方式7		entrance
+6008	boss延迟0.5秒出现		entrance
+6009	镜面走廊怪物出现方式8	appears/chuxian_3.skel	
+6010	镜面走廊怪物出现方式9	appears/chuxian_3.skel	
+6011	镜面走廊怪物出现方式10		entrance
+6012	镜面走廊怪物出现方式11		entrance
+75	守望哨所怪物出现方式1		entrance
+76	守望哨所怪物出现方式2		entrance
+77	守望哨所怪物出现方式3		entrance
+78	守望哨所怪物出现方式4		entrance
+79	守望哨所怪物出现方式5		entrance
+80	守望哨所怪物出现方式6		entrance
+81	守望哨所怪物出现方式7		entrance
+82	守望哨所怪物出现方式8		entrance
+83	守望哨所怪物出现方式9		entrance
+84	古树磨坊怪物出现方式1		entrance
+85	古树磨坊怪物出现方式2		entrance
+86	古树磨坊怪物出现方式3		entrance
+87	古树磨坊怪物出现方式4		entrance
+88	古树磨坊怪物出现方式5		entrance
+89	古树磨坊怪物出现方式6		entrance
+90	古树磨坊怪物出现方式7		entrance
+91	古树磨坊怪物出现方式8		entrance
+92	古树磨坊怪物出现方式9		entrance
+93	试炼之地怪物出现方式1		entrance
+94	试炼之地怪物出现方式2		entrance
+95	试炼之地怪物出现方式3		entrance
+96	试炼之地怪物出现方式4		entrance
+97	试炼之地怪物出现方式5		entrance
+98	试炼之地怪物出现方式6		entrance
+99	试炼之地怪物出现方式7		entrance
+100	试炼之地怪物出现方式8		entrance
+101	试炼之地怪物出现方式9		entrance
+102	迷雾石林怪物出现方式1		entrance
+103	迷雾石林怪物出现方式2		entrance
+104	迷雾石林怪物出现方式3		entrance
+105	迷雾石林怪物出现方式4		entrance
+106	迷雾石林怪物出现方式5		entrance
+107	迷雾石林怪物出现方式6		entrance
+108	迷雾石林怪物出现方式7		entrance
+109	迷雾石林怪物出现方式8		entrance
+110	迷雾石林怪物出现方式9		entrance
+111	陨星之地怪物出现方式1		entrance
+112	陨星之地怪物出现方式2		entrance
+113	陨星之地怪物出现方式3		entrance
+114	陨星之地怪物出现方式4		entrance
+115	陨星之地怪物出现方式5		entrance
+116	陨星之地怪物出现方式6		entrance
+117	陨星之地怪物出现方式7		entrance
+118	陨星之地怪物出现方式8		entrance
+119	陨星之地怪物出现方式9		entrance
+120	雷神要塞怪物出现方式1		entrance
+121	雷神要塞怪物出现方式2		entrance
+122	雷神要塞怪物出现方式3		entrance
+123	雷神要塞怪物出现方式4		entrance
+124	雷神要塞怪物出现方式5		entrance
+125	雷神要塞怪物出现方式6		entrance
+126	雷神要塞怪物出现方式7		entrance
+127	雷神要塞怪物出现方式8		entrance
+128	雷神要塞怪物出现方式9		entrance
+129	暮光营地怪物出现方式1		entrance
+130	暮光营地怪物出现方式2		entrance
+131	暮光营地怪物出现方式3		entrance
+132	暮光营地怪物出现方式4		entrance
+133	暮光营地怪物出现方式5		entrance
+134	暮光营地怪物出现方式6		entrance
+135	暮光营地怪物出现方式7		entrance
+136	暮光营地怪物出现方式8		entrance
+137	暮光营地怪物出现方式9		entrance
+138	堕落沼泽怪物出现方式1		entrance
+139	堕落沼泽怪物出现方式2		entrance
+140	堕落沼泽怪物出现方式3		entrance
+141	堕落沼泽怪物出现方式4		entrance
+142	堕落沼泽怪物出现方式5		entrance
+143	堕落沼泽怪物出现方式6		entrance
+144	堕落沼泽怪物出现方式7		entrance
+145	堕落沼泽怪物出现方式8		entrance
+146	堕落沼泽怪物出现方式9		entrance
+147	日月神庙怪物出现方式1		entrance
+148	日月神庙怪物出现方式2		entrance
+149	日月神庙怪物出现方式3		entrance
+150	日月神庙怪物出现方式4		entrance
+151	日月神庙怪物出现方式5		entrance
+152	日月神庙怪物出现方式6		entrance
+153	日月神庙怪物出现方式7		entrance
+154	日月神庙怪物出现方式8		entrance
+155	日月神庙怪物出现方式9		entrance
+156	燃烧矿洞怪物出现方式1		entrance
+157	燃烧矿洞怪物出现方式2		entrance
+158	燃烧矿洞怪物出现方式3		entrance
+159	燃烧矿洞怪物出现方式4		entrance
+160	燃烧矿洞怪物出现方式5		entrance
+161	燃烧矿洞怪物出现方式6		entrance
+162	燃烧矿洞怪物出现方式7		entrance
+163	燃烧矿洞怪物出现方式8		entrance
+164	燃烧矿洞怪物出现方式9		entrance
+165	遗忘之地怪物出现方式1		entrance
+166	遗忘之地怪物出现方式2		entrance
+167	遗忘之地怪物出现方式3		entrance
+168	遗忘之地怪物出现方式4		entrance
+169	遗忘之地怪物出现方式5		entrance
+170	遗忘之地怪物出现方式6		entrance
+171	遗忘之地怪物出现方式7		entrance
+172	遗忘之地怪物出现方式8		entrance
+173	遗忘之地怪物出现方式9		entrance
+500	日常活动人鱼怪物出现方式		entrance

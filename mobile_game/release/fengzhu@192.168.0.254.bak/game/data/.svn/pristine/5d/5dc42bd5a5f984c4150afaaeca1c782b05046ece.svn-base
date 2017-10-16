@@ -1,0 +1,4 @@
+﻿ID(按照序列即可）	场景ID（gatesID）	传送门名称	资源名称
+id	scene_id	scene_name	package_name
+1	1005	凯旋门->圣光广场	updata_001
+2	1051	广场->副本	updata_002

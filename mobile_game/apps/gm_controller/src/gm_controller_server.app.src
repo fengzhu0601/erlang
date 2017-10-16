@@ -1,0 +1,12 @@
+{application, gm_controller_server,
+ [
+  {description, ""},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, {gm_controller_server_app, []}},
+  {env, []}
+ ]}.

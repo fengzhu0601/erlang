@@ -1,0 +1,148 @@
+@include "game.sproto"
+
+typedef crown_gem_id=u16
+struct crown_gem
+{
+    id:crown_gem_id,
+    cfgId:u16,
+    Sats:list<{satId:u8, Value:u32}>
+}
+struct dressGem
+{
+	position:u8,
+	id:crown_gem_id
+}
+##
+proto MSG_CROWN_INIT_CLIENT=10
+{
+    client{
+    }
+
+    server{
+        message{
+            anger_point:u16,
+            gems:list<gem:crown_gem>, ## 所有宝石
+            dress_gems:list<dress:dressGem> ## 装备的宝石的id
+        }
+    }
+}
+
+
+## 添加宝石
+proto MSG_CROWN_GEM_ADD=8
+{
+    client{
+    }
+
+    server{
+        message{
+            id:crown_gem_id,
+            cfgId:u16
+        }
+    }
+}
+
+## 兑换
+proto MSG_CROWN_GEM_SELL=1
+{
+    client{
+        message{
+            IdList:list<id:crown_gem_id>
+        }
+    }
+
+    server{
+        message=empty
+    }
+}
+
+## 附魔
+proto MSG_CROWN_GEM_ENCHANT=2
+{
+    client{
+        message{
+            Id:crown_gem_id
+        }
+    }
+
+    server{
+        message{
+            Id:crown_gem_id,
+            Sats:list<{satId:u8, Value:u32}>
+        }
+    }
+}
+
+## 升级
+proto MSG_CROWN_GEM_UPGRADE=3
+{
+    client{
+        message{
+            Id:crown_gem_id
+        }
+    }
+
+    server{
+        message{
+            Id:crown_gem_id
+        }
+    }
+    errnos{
+        ERR_CROWN_GEM_FULL_LEVEL
+    }
+
+}
+
+## 装备
+proto MSG_CROWN_GEM_DRESS=4
+{
+    client{
+        message{
+        	position:u8,
+            Id:crown_gem_id
+        }
+    }
+
+    server{
+        message{
+        	position:u8,
+            Id:crown_gem_id
+        }
+    }
+    errnos{
+        ERR_CROWN_GEM_ALREADY_DRESS,
+        ERR_CROWN_SLOT_FULL
+    }
+}
+
+## 卸下
+proto MSG_CROWN_GEM_UNDRESS=5
+{
+    client{
+        message{
+            Id:crown_gem_id
+        }
+    }
+
+    server{
+        message{
+            Id:crown_gem_id
+        }
+    }
+    errnos{
+        ERR_CROWN_GEM_NOT_DRESSED
+    }
+}
+
+## 更新怒气值
+proto MSG_CROWN_ANGER_CHANGE =6
+{
+    client{
+    }
+
+    server{
+        message{
+            anger_point:u16
+        }
+    }
+}

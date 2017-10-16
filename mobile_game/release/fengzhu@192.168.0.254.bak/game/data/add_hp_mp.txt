@@ -1,0 +1,3 @@
+﻿ButtonId（由策划确定）	客户端名字	类型（1直接加满hp和MP、2使用buff加）	buffId（buff表ID）
+id	client_name	type	buff_id
+1	加血加蓝	1	

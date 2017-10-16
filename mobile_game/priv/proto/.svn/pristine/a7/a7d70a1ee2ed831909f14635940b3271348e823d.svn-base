@@ -1,0 +1,68 @@
+##{mod_name, proto_file, ModId}
+## 如果不需要消息号,proto_file nil
+## 如果不是player 模块 mod_name 写nil
+
+PROTOS=(
+player_handle_client   player.sproto         1
+scene_mng    scene.sproto          2
+goods_mng    item.sproto           3
+equipment_mng equip.sproto          4
+gem_mng      gem.sproto            5
+mail_mng     mail.sproto           6
+skill_mng    skill.sproto          7
+auction_new_mng  auction.sproto        8
+shop_mng     shop.sproto          10
+gm_mng       gm.sproto            11
+task_mng_new     task.sproto      12
+chat_mng     chat.sproto          13
+friend_mng   friend.sproto        14
+crown_mng    crown.sproto         15
+main_instance_mng main_instance.sproto 16
+achievement_mng	accomplishments.sproto 17
+title_mng	titles.sproto 18
+pet_mng pet.sproto 19
+arena_handle_client arena.sproto 20
+team_mng team.sproto 21
+guild_handle_client guild.sproto 22
+card_mng card.sproto 23
+rank_mng rank.sproto 24
+seller_mng seller.sproto 25
+mall_mng mall.sproto 26
+camp_handle_client camp.sproto 27
+abyss_mng abyss.sproto 28
+daily_activity_handle_client daily_activity.sproto 29
+sinks_state_part sinks_state.sproto 30
+login_prize_part login_prize.sproto 31
+#pay_goods_part vip.sproto 32
+sky_handle_client sky_ins.sproto 33
+#charge_reward_part charge_reward.sproto 34
+single_dig dig.sproto 35
+version_mng version.sproto 36
+alchemy_mng alchemy.sproto 37
+course_mng course.sproto 38
+phase_achievement_mng phase_achievement.sproto 39
+honest_user_mng honest_user.sproto 40
+main_star_shop_mng main_star_shop.sproto 41
+ride_mng ride.sproto 42
+pet_new_mng pet_new.sproto 43
+gongcheng_mng gongcheng.sproto 44
+crown_new_mng   crown_new.sproto    45
+open_server_happy_mng   open_server_happy.sproto    46
+bounty_mng  bounty.sproto   47
+nine_lottery_mng    nine_lottery.sproto    48
+recharge_reward_mng recharge_reward.sproto  49
+vip_new_mng vip_new.sproto  50
+impact_ranking_list_handle_client impact_ranking_list.sproto 51
+server_login_prize_mng server_login_prize.sproto 52
+guild_mining_mng guild_mining.sproto 53
+nil          debug.sproto         99
+)
+
+## robot
+PROTOS_ROBOT=(
+robot_player player.sproto         1
+robot_player item.sproto         3
+#robot_arena arena.sproto 20
+nil debug.sproto                    99
+)
+

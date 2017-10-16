@@ -1,0 +1,113 @@
+@include "game.sproto"
+
+
+struct mail_info {
+    id:u64
+    ,from_id:player_id   #id为0的时候为系统邮件
+    ,from:sstr
+    ,subject:lstr
+    ,body:lstr
+    ,cdate:u32
+    ,auto_delete_sec:u32
+    ,itemInfoL:list<itemInfo:item_info>               #物品列表
+    ,assetsL:list<{assetsId:u8, assetsVal:u32}>       #资产列表
+    ,exState:u8            #附件状态 1附件未提取 2附件已提取
+    ,state:u8              #邮件状态 1未读取 2已读取
+#,sys_info:u8
+}
+
+
+
+#获取所有邮件
+proto MSG_MAIL_LOAD_ALL=1
+{
+    client{
+        message=empty
+    }
+    server{
+        message{
+            mailInfoL:list<mailInfo:mail_info>
+            ,newTime:u32                            #新旧时间戳
+        }
+    }
+}
+
+
+#阅读邮件
+proto MSG_MAIL_READ=2
+{
+    client{
+        message{ id:u64 }
+    }
+    server{}
+}
+
+#删除邮件
+proto MSG_MAIL_DELETE=3
+{
+    client{
+        message{
+            delIdL:list<id:u64>
+        }
+    }
+    server{
+#       message{
+#            replyNum:reply_num
+#        }
+    }
+}
+#推送删除邮件删除列表
+proto MSG_MAIL_PUSH_DELETE=4
+{
+    client{}
+    server{
+        message{
+            delMailIdL:list<delMailId:u64>
+        }
+    }
+}
+
+#提取邮件中的附件
+proto MSG_MAIL_GET_PRIZE=5
+{
+    client{
+        message{ id:u64 }
+    }
+    server{
+        message{ replyNum:reply_num }
+    }
+}
+
+#一键提取附件
+proto MSG_MAIL_ONE_KEY_GET_PRIZE=6
+{
+    client{
+        message=empty 
+    }
+    server{
+        message{ 
+            MailId:u64  #第一个没有提取成功的邮件id，该值为0的时候为顺利提取所有邮件附件
+        }
+    }
+}
+
+#通知新邮件
+proto MSG_MAIL_NEW=7
+{
+    client{}
+    server{
+        message{
+            mailInfo:mail_info
+        }
+    }
+}
+
+
+#更新邮件新旧时间戳
+proto MSG_MAIL_NEW_TIME=8
+{
+    client{
+        message=empty
+    }
+    server{}
+}

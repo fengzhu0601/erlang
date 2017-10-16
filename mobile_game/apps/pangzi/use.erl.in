@@ -1,0 +1,31 @@
+%%% coding:utf-8
+%%%-------------------------------------------------------------------
+%%% @author zl
+%%% @doc
+%%%
+%%% @end
+%%%-------------------------------------------------------------------
+
+-module(use_persis).
+-export([pangzi_meta_info/0, st/2, sti/2,stt/2 ,dd/3, ch/2,chx/2]).
+
+
+-include("../include/pangzi.hrl").
+
+-behavior(?pangzi_behavior).
+
+-export([load_db_table_meta/0]).
+
+-record(aa, {id, name}).
+
+%% 
+ load_db_table_meta() ->
+     [
+      #?db_table_meta{
+         name = aa,
+         type = set,
+         fields = record_info(fields, aa),
+         kv = false,
+         flush_interval = 1
+        }
+     ].

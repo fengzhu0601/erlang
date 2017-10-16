@@ -1,0 +1,201 @@
+# ItemData  根据不同的物品类型数据不同
+#     if Type == Gem
+#        GemId:32;
+#      else if Type == Goods 
+#        GoodsId:32 
+#      else Type == Equip
+#         EquipInfo
+#
+## EquipInfo
+# job:8   装备职业
+# type:8  装备类型
+# suit:8  套装id 0是没有套装
+# level:8 装备等级
+# qh_level:8 强化等级
+# is_jd:8  是否鉴定过 0没有,1有
+# bind:8 绑定状态
+# attr_mark:8
+# GemLen:8 宝石槽数
+#   for GemLen
+#      GemId:32
+#      
+#  BaseAttrLen:8 基本属性数量
+#    for BaseAttrLen
+#       Type:8
+#       Value:32
+#
+#  JDAttrLen:8 鉴定属性数量
+#    for JDaseAttrLen
+#       Type:8
+#       Value:32
+#       
+#%% 物品绑定状态
+#-define(EQUIP_NOT_BIND, 0). %% 没有绑定
+#-define(EQUIP_BINDING, 1). %% 绑定，可以以变为非绑定
+#-define(EQUIP_BIND_FOREVER, 2). %% 永久绑定
+       
+#-define(EQUIP_TYPE_WEAPON      , 1). % 武器
+#-define(EQUIP_TYPE_HELMET      , 2). % 头盔
+#-define(EQUIP_TYPE_CLOTHES     , 3). % 衣服
+#-define(EQUIP_TYPE_SASH        , 4). % 腰带
+#-define(EQUIP_TYPE_PANTS       , 5). % 裤子
+#-define(EQUIP_TYPE_SHOES       , 6). % 鞋子
+#-define(EQUIP_TYPE_RING        , 7). % 戒指
+#-define(EQUIP_TYPE_BADGE       , 8). % 徽章
+#
+#-define(PL_ATTR_HP          , 11). %%最大血量
+#-define(PL_ATTR_MP          , 12). %%最大蓝量
+#-define(PL_ATTR_SP          , 13). %%体力
+#-define(PL_ATTR_NP          , 14). %%能量
+#-define(PL_ATTR_STRENGTH    , 15). %%力量
+#-define(PL_ATTR_INTELLECT   , 16). %%智力
+#-define(PL_ATTR_NIMBLE      , 17). %%敏捷
+#-define(PL_ATTR_STRONG      , 18). %%体质
+#-define(PL_ATTR_ATK         , 19). %%攻击
+#-define(PL_ATTR_DEF         , 20). %%防御
+#-define(PL_ATTR_CRIT        , 21). %%暴击
+#-define(PL_ATTR_BLOCK       , 22). %%格挡
+#-define(PL_ATTR_PLIABLE     , 23). %%柔韧
+#-define(PL_ATTR_PURE_ATK    , 24). %%无视防御伤害
+#-define(PL_ATTR_BREAK_DEF   , 25). %%破甲
+#-define(PL_ATTR_ATK_DEEP    , 26). %%伤害加深
+#-define(PL_ATTR_ATK_FREE    , 27). %%伤害减免
+#-define(PL_ATTR_ATK_SPEED   , 28). %%攻击速度
+#-define(PL_ATTR_PRECISE     , 29). %%精确
+#-define(PL_ATTR_THUNDER_ATK , 30). %%雷公
+#-define(PL_ATTR_THUNDER_DEF , 31). %%雷放
+#-define(PL_ATTR_FIRE_ATK    , 32). %%火攻
+#-define(PL_ATTR_FIRE_DEF    , 33). %%火访
+#-define(PL_ATTR_ICE_ATK     , 34). %%冰攻
+#-define(PL_ATTR_ICE_DEF     , 35). %%冰防
+#-define(PL_ATTR_MOVE_SPEED  , 36). %%移动速度
+
+# 背包类型
+#-define(BAG_TYPE, 1).
+#-define(DEPOT_TYPE, 2).
+
+#物品类型
+#-define(ITEM_TYPE_EQUIP, 1).
+#-define(ITEM_TYPE_GEM, 2).
+#-define(ITEM_TYPE_GOODS, 3).
+       
+#          
+# 整理背包,
+# Type:8 
+MSG_DEPOT_SORT=1
+## S->C
+# Type:8 
+# 所有的消息
+
+
+# 丢物品,每个格子全部丢弃
+# C->S
+# pos:16, 背包位置
+MSG_DEPOT_DISCARD=2
+# S-C pos:16
+
+
+# C->S
+# SrcBagType:8,
+# SrcPos:16, 
+MSG_DEPOT_MOVE=3
+
+
+# 使用物品
+# pos:16, 位置
+MSG_DEPOT_USE_GOODS=4
+
+
+# 添加物品
+# S->C
+# BagType:8
+# len:8 添加物品种类
+# for len:8
+# 	GoodsType:8
+#  	ItemData
+#  	loop
+#    		Pos:16
+#    		AddCount:8
+MSG_DEPOT_ADD_GOODS=5
+
+
+
+# 删除物品
+# BagType;8
+#  loop
+#    Pos:16
+#    DelCount:8
+MSG_DEPOT_DEL_GOODS=6
+
+
+# 拆分物品
+# BagPos:16 
+# EmptyPos:16
+# SplitCount
+MSG_DEPOT_SPLIT_GOODS=7
+
+
+# 解锁格子 
+# C-S
+# Type:8 1背包　2仓库
+# PageId:8 解锁的位置
+MSG_DEPOT_UNLOCK_GRID=8
+#   S-C
+#   Type:8 1背包　2仓库
+#   PageId:8 解锁的位置
+
+
+# 开始自动解锁计时
+# C-S
+# Type:8 1背包　2仓库
+# PageId:8 解锁的位置
+MSG_DEPOT_UNLOCK_START_TIMER=9
+
+
+## C-S 镶嵌宝石给装备的物品镶嵌
+## BagPos:16, 装备位置在背包中的位置
+## SlotIndex:8 宝石槽的位置　　第一个槽从１开始
+## BagPos:16 宝石在背包中的位置
+MSG_DEPOT_EMBED_GEM=10
+
+## C-S 卸下宝石
+## BagPos:16, 装备位置在背包中的位置
+## SlotIndex:8 宝石槽的位置　　第一个槽从１开始
+MSG_DEPOT_UNEMBED_GEM=11
+
+
+## 强化
+## BagPos:16, 装备位置在背包中的位置
+## IsDownLevelFree:8 是否下降免疫　１是，０否
+MSG_DEPOT_QIANG_HUA=12
+
+
+## 合成
+# C-S
+## BagPos0:16,
+## BagPos1:16  
+## BagPos2:16 
+MSG_DEPOT_HE_CHENG=13
+
+## 合成预览
+## BagPos0:16,
+## BagPos1:16  
+## BagPos2:16 
+MSG_DEPOT_HE_CHENG_YL=20
+# S-C EquipInfo
+
+## 确认合成预览
+MSG_DEPOT_HE_CHENG_YL_SUBMIT=21
+
+## 继承
+# C-> S
+## BagPos0:16
+## BagPos1:16  
+MSG_DEPOT_JI_CHENG=14
+
+## 卖物品
+#BagPos
+MSG_DEPOT_SELL_GOODS=15
+# S-C
+## BagPos:16
+## Index:8

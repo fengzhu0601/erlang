@@ -1,0 +1,6 @@
+﻿ID	前端活动标识	名称（最后一条每日重置记录不能改变，有写死）	活动开启哪一天(星期为单位,0表示每天)	命令执行类型(1是预告开始，2是预告结束，3是活动开始，4是活动结束)	触发时间{时,分,秒}	预告规则{次数,间隔时间秒},没有预告不填	触发命令	广播信息
+id	activity_id	client_name	week	is_end	time	broadcast_rule	command	broadcast_id
+1	4	怪物攻城开始预告	5	1	{14,25,0}	{4,10}		4101
+2	4	怪物攻城开始	5	3	{15,30,0}		{gongcheng_mng,start_activity,[]}	4102
+3	4	怪物攻城结束预告	5	2	{19,0,0}	{4,10}		4103
+4	4	怪物攻城结束	5	4	{19,30,0}		{gongcheng_mng,stop_activity,[]}	4104

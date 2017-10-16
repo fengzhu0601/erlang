@@ -1,0 +1,83 @@
+
+[
+	{
+		lager,
+		[
+			{
+				handlers,
+				[
+					{lager_console_backend, info},
+					{lager_file_backend, [{file, "log/error.log"}, {level, error}]},
+					{lager_file_backend, [{file, "log/console.log"}, {level, info}]}
+				]
+			}
+		]
+	},
+
+	{
+		kernel,
+		[
+			{inetrc, "priv/etc/inetrc"},
+			{inet_dist_listen_min, 9000},
+			{inet_dist_listen_max, 9010}
+		]
+	},
+
+	{
+		cron,
+		[
+			{crontab, "./data/crontab"}
+		]
+	},
+
+
+	{
+		mobile_game,
+		[
+			{platform_id, 1}							%% 平台ID
+			, {server_id, 1}							%% 服务器ID
+			, {server_ip, "192.168.0.142"}				%% 服务器IP
+			, {server_name, <<"logic_server_1">>}		%% 服务器名称
+			, {server_port, 5000}						%% 服务器端口
+			, {key_login, <<"login">>}
+			, {key_recharge, <<"recharge">>}
+			, {gm_port, 11000}							%% 后台端口
+			, {logsrv_node_name, 'logsrv@127.0.0.1'}	%% 日志结点
+			, {server_main_version, 13}					%% 主版本
+			, {server_debug_version, 0}					%% 调试版本
+			, {server_assish_version, 0}				%% 副版本
+			, {server_res_version, 6503}				%% 资源版本
+			, {trace_node, 'local@192.168.0.218'}		%% 打印功能的结点, 0为本地打印
+
+			%% 机器人
+			, {is_robot, 1}
+			, {config_file_path, "./data/"}
+			, {robot_num, 10}
+			, {create_cold_time, 39}    				%% 创建机器人间隔时间（毫秒）
+			, {
+				transport_door_list,
+				[
+					{103, [{88, 12, 1001}, {14, 12, 1002}, {0, 19, 1004}]},
+					{101, [{55, 18, 1005}, {0, 18, 1010}]},
+					{102, [{0, 18, 1006}]},
+					{104, [{41, 18, 1007}]},
+					{105, [{38, 12, 1008}, {0, 18, 1009}]},
+					{201, [{59, 13, 1047}, {11, 12, 1049}, {0, 19, 1052}]},
+					{202, [{0, 19, 1048}]},
+					{203, [{52, 19, 1050}, {0, 19, 1053}]},
+					{301, [{16, 12, 1090}, {0, 19, 1092}]},
+					{302, [{51, 19, 1091}, {0, 19, 1230}]},
+					{303, [{52, 19, 1093}, {0, 19, 1095}]},
+					{401, [{0, 19, 1126}, {49, 14, 1127}]},
+					{402, [{52, 19, 1129}, {0, 19, 1130}]},
+					{403, [{52, 19, 1131}]}
+				]
+			}
+				%% 套装列表
+				, {
+				%% {基准值（用于调节套装比例）, [{Job, SuitId}...]}
+				suit_list, {18, [{1, 3104}, {1, 3105}, {1, 3106}, {2, 3107}, {2, 3108}, {2, 3109}, {4, 3110}, {4, 3111}, {4, 3112}]}
+			}
+		]
+	}
+].

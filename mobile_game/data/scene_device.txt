@@ -1,0 +1,2 @@
+场景id	id	client_name	位置{x,Y}	触发范围	每次攻击间隔秒	可被攻击次数默认为1	释放技能	可释放次数,默认为无限次	是否延迟秒(毫秒)	伤害百分比(整数) 1~100
+scene_id	id	client_name	position	range	interval	hit_times	skill_id	release_times	release_delay	hit_per

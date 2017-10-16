@@ -1,0 +1,261 @@
+
+enum wait_timeout
+{
+		ONLINE_TIMEOUT=1000000 ## 上线登陆时间   
+}
+	
+
+## Dont change value
+## 属性id  spirit attr type
+enum sat
+{
+	 SAT_HP          = 11, ##最大血量
+	 SAT_MP          = 12, ##最大蓝量
+	 SAT_SP          = 13, ##体力
+	 SAT_NP          = 14, ##能量
+	 SAT_STRENGTH    = 15, ##力量
+	 SAT_INTELLECT   = 16, ##智力
+	 SAT_NIMBLE      = 17, ##敏捷
+	 SAT_STRONG      = 18, ##体质
+	 SAT_ATK         = 19, ##攻击
+	 SAT_DEF         = 20, ##防御
+	 SAT_CRIT        = 21, ##暴击
+	 SAT_BLOCK       = 22, ##格挡
+	 SAT_PLIABLE     = 23, ##柔韧
+	 SAT_PURE_ATK    = 24, ##无视防御伤害
+	 SAT_BREAK_DEF   = 25, ##破甲
+	 SAT_ATK_DEEP    = 26, ##伤害加深
+	 SAT_ATK_FREE    = 27, ##伤害减免
+	 SAT_ATK_SPEED   = 28, ##攻击速度
+	 SAT_PRECISE     = 29, ##精确
+	 SAT_THUNDER_ATK = 30, ##雷公
+	 SAT_THUNDER_DEF = 31, ##雷放
+	 SAT_FIRE_ATK    = 32, ##火攻
+	 SAT_FIRE_DEF    = 33, ##火访
+	 SAT_ICE_ATK     = 34, ##冰攻
+	 SAT_ICE_DEF     = 35, ##冰防
+	 SAT_MOVE_SPEED  = 36, ##移动速度
+	 SAT_RUN_SPEED   = 37  ##跑步速度
+}
+
+## 复活方式
+enum relive_type
+{
+		ORIGINAL_PLACE_RELIVE= 1,
+		RELIVE_PLACE_RELIVE= 2
+}
+
+## 装备类型
+#enum equip_type_id
+#{
+#    EQUIP_TYPE_WEAPON    = 1, ## 武器
+#    EQUIP_TYPE_HELMET    = 2, ## 头盔
+#    EQUIP_TYPE_CLOTHES   = 3, ## 衣服
+#    EQUIP_TYPE_SASH      = 4, ## 腰带
+#    EQUIP_TYPE_PANTS     = 5, ## 裤子
+#    EQUIP_TYPE_SHOES     = 6, ## 鞋子
+#    EQUIP_TYPE_RING      = 7, ## 戒指
+#    EQUIP_TYPE_BADGE     = 8,  ## 徽章
+#}
+
+##副本状态
+enum ins_state
+{
+		ins_state_client  = 0, ##单机副本
+		ins_state_online  = 1, ##联网副本
+}
+
+##战斗状态
+enum fight_state
+{
+		ins_fighting  = 2, ##正在副本中
+		ins_complete  = 1, ##通关副本成功
+		ins_leave     = 0, ##通关副本失败
+		ins_fail      = 3, ##离开副本
+}
+
+## 场景类型 需要和scene_type_mod 名字相同
+enum scene_type_id 
+{
+		SC_TYPE_NORMAL        = 1 : scene_normal, ## 永久场景
+		SC_TYPE_PSEDUO        = 2 : scene_pseduo, ## 副本场景伪场景
+		SC_TYPE_MAIN_INS      = 3 : scene_main_ins, ## 副本场景
+		SC_TYPE_ARENA         = 4 : scene_arena,    ## 竞技场场景
+		SC_TYPE_TEAM          = 5 : scene_team   ## 组队副本场景
+		#SC_TYPE_SKY           = 6 : 
+		#SC_TYPE_COURSE        = 6 : scene_course    ## course fight
+}
+
+## 副本类型
+enum ins_type
+{
+		T_INS_MAIN				=1      ## 主线副本
+		,T_INS_FREE				=2      ## 自由副本
+		,T_INS_SHENMO			=3      ## 神魔
+		,T_INS_XUKONG			=4      ## 虚空
+		,T_INS_SKY_RAND         =6      ## 天空之城随机
+		,T_INS_SKY_MIGONG       =7      ## 天空之城迷宫
+		,T_INS_DAILY_1          =8      ## 日常活动-保卫人鱼公主
+		,T_INS_DAILY_2          =9      ## 日常活动-桑尼号
+		,T_INS_DAILY_3          =10     ## 日常活动-时空裂痕
+		,T_INS_PORTAL           =11     ## 传送们通用副本，所有其他类型的副本都可以进入的副本
+		,T_INS_COURSE           =12     ## 战争学院
+		,T_INS_GUILD_BOSS       =13     ## 公会boss
+		,T_INS_GWGC             =14		## 怪物攻城
+		,T_INS_DAILY_4          =15		## 打木桶
+		,T_INS_DAILY_5			=16		## 摘星星
+		,T_INS_DAILY_6          =17     ## 钓鱼
+}
+
+## pk 模式
+## !!! 不要改变定义,除非你知道会发生什么
+enum pk_mode
+{
+	 PK_PEACE    = 1,  ##和平模式
+	 PK_ALL      = 2,  ##全体模式
+	 PK_TEAM     = 3,  ##组队模式
+	 PK_FAMILY   = 4,  ##家族模式
+	 PK_NATIONr  = 5,  ##国家模式
+	 PK_GOOD_BAD = 6,  ##善恶模式
+}
+
+atom offline
+atom offline_ok
+atom relive %% 复活
+atom alreay_exist
+
+eatom frame_name
+{
+		frame_flush_data,  ## 持久化数据
+		frame_update_rank, ## 更新排行榜
+		frame_zero_clock,  ## 零点
+		frame_levelup,     ## 升级
+		frame_vip_levelup, ## vip 升级
+}
+
+## 技能属性
+enum skill_attr
+{
+		S_STRENGTH=1,  ## 力量
+		S_INTELLECT=2, ## 智力
+		S_NIMBLE=3,    ## 敏捷
+		S_STRONG=4,    ## 特质
+}
+
+## 特殊状态
+enum ex_state
+{
+		EX_STATE_NONE=0    ## 无特殊状态
+		,EX_STATE_WUDI=1   ## 无敌
+		,EX_STATE_BATI=2   ## 霸体
+}
+
+## 系统邮件号 * 需要对用同步到mail_sys.txt表
+enum mail
+{
+		S_MAIL_TASK              = 10       ## 任务完成奖励（背包满，发邮件
+		,S_MAIL_INSTANCE         = 20       ## 副本完成奖励（背包满，发邮件
+		,S_MAIL_ARENA_TRUN       = 30       ## 竞技场转盘奖励物
+		,S_MAIL_ARENA_DAY        = 31       ## 竞技场每日奖励
+		,S_MAIL_AUCTION_BIDER_WIN  = 40     ## 拍卖行,竞拍者成功拍得物品
+		,S_MAIL_AUCTION_BIDER_LOSS = 41     ## 拍卖行,竞拍者失败返还拍卖金
+		,S_MAIL_AUCTION_OWNER_WIN  = 42     ## 拍卖行,拥有者售出物品成功
+		,S_MAIL_AUCTION_OWNER_LOSS = 43     ## 拍卖行,拥有者售出物品失败
+		,S_MAIL_FRIEND_GIFT        = 44     ## 获得好友礼包
+		,S_MAIL_CARD_AWARD         = 45     ## 卡牌抽奖
+		,S_MAIL_ARENA_RESULT       = 46     ## 竞技场奖励物品
+		,S_MAIL_RAND_INSTANCE      = 47     ## 随机部分奖励
+		,S_MAIL_CAMP_PRIZE_WIN     = 50     ##神魔系统战争获胜奖励
+		,S_MAIL_CAMP_PRIZE_TIE     = 51     ##神魔系统战争战平奖励
+		,S_MAIL_CAMP_PRIZE_LOSE    = 52     ##神魔系统战争战败奖励
+		,S_MAIL_ABYSS_PRIZE        = 53     ##虚空深渊（背包满，发邮件）
+		,S_MAIL_DIALY_PRIZE        = 54     ##日常活动（背包满，发邮件）
+		,S_MAIL_SKY_INS_RANK_KILL_MONSTER=55 ##天空副本杀怪排行奖励
+		,S_MAIL_SKY_INS_RANK_KILL_PEOPLE=56  ##天空副本杀人排行奖励
+		,S_MAIL_SKY_INS_CLIENT     = 57      ##天空单人副本结算奖励
+		,S_MAIL_SKY_INS_ONLINE     = 58      ##天空混乱副本结算奖励
+		,S_MAIL_COURSE_INS_PRIZE   = 59      ## 战争学院奖励
+		,S_MAIL_MAIN_CHAPTER_PRIZE = 60      ## 副本章节星奖励
+		,S_MAIL_DAILY_ATTENDANCE   = 61      ## 每日签到奖励
+		,S_MAIL_LEVEL              = 62      ## 等级奖励
+		,S_MAIL_TURNTABLE          = 63      ## 转盘抽奖奖励
+		,S_MAIL_DAILY_BAOXIANG_PRIZE = 64    ## 日常任务宝箱奖励
+		,S_MAIL_FIRST_NINE_STAR_PASS_PRIZE = 65 ## 副本9星通关奖励
+		,S_MAIL_JIEDUAN_CHENGJIU_PRIZE    = 66 ## 阶段成就奖
+		,S_MAIL_LEVEL_PRIZE        = 67        ## 忠实用户等级奖励
+		,S_MAIL_SUIT_PRIZE         = 68        ## 忠实用户套装奖励
+		,S_MAIL_PET_ADD_DAN        = 69        ## 宠物封印返回的材料
+		,S_MAIL_GUILD_BOSS_CHALLENGE    = 70         ## 公会BOSS挑战奖励
+		,S_MAIL_GUILD_BOSS_KILL         = 71         ## 公会BOSS击杀奖励
+		,S_MAIL_GUILD_BOSS_FIRST_KILL   = 72         ## 公会BOSS首杀奖励
+		,S_MAIL_RIDE_SOUL_PRIZE         = 73         ## 兽魂转化奖励
+		,S_MAIL_ABYSS_LEAVE_PRIZE       = 74         ## 虚空深渊奖励补发
+		,S_MAIL_ABYSS_WEEK_PRIZE        = 75         ## 虚空深渊每周奖励
+		,S_MAIL_GWGC_PRIZE              = 76         ## 怪物攻城的排名奖励
+		,S_MAIL_FIRST_PAY_PRIZE         = 77         ## 首冲礼包奖励
+		,S_MAIL_MAIN_OPEN_CARD_PRIZE   = 78          ## 副本翻牌奖励
+		,S_MAIL_BOUNTY_PRIZE            = 79         ## 赏金任务排行奖励
+		,S_MAIL_NINE_LOTTERY_PRIZE      = 80         ## 九宫格奖励
+		,S_MAIL_POWER_RANKING_PRIZE     = 81         ## 战力排行榜奖励
+		,S_MAIL_PET_RANKING_PRIZE       = 82         ## 宠物排行榜奖励
+		,S_MAIL_RIDE_RANKING_PRIZE      = 83         ## 坐骑排行榜奖励
+		,S_MAIL_SUIT_RANKING_PRIZE      = 84         ## 套装排行榜奖励
+		,S_MAIL_ABYSS_RANKING_PRIZE     = 85         ## 深渊排行榜奖励
+		,S_MAIL_GUILD_RANKING_MASTER_PRIZE     = 86  ## 公会排行榜会长奖励
+		,S_MAIL_GUILD_RANKING_MEMBER_PRIZE     = 87  ## 公会排行榜成员奖励
+		,S_MAIL_GUILD_RANKING_GUILD_PRIZE      = 88  ## 公会排行榜公会奖励
+		,S_MAIL_DO_SURVEY_PRIZE         = 89         ## 完成调查问卷奖励
+		,S_MAIL_VIP_DAY_COST_1          = 90         ## 每日消费199钻石奖励
+		,S_MAIL_VIP_DAY_COST_2          = 91         ## 每日消费399钻石奖励
+		,S_MAIL_VIP_DAY_COST_3          = 92         ## 每日消费999钻石奖励
+		,S_MAIL_GUILD_RANKING_GUILD_PRIZE_1      = 93  ## 王者公会第1名奖励
+		,S_MAIL_GUILD_RANKING_GUILD_PRIZE_2      = 94  ## 王者公会第2名奖励
+		,S_MAIL_GUILD_RANKING_GUILD_PRIZE_3      = 95  ## 王者公会第3名奖励
+		,S_MAIL_GUILD_RANKING_GUILD_PRIZE_4      = 96  ## 王者公会第4-10名奖励
+		,S_MAIL_GUILD_RANKING_GUILD_PRIZE_5      = 97  ## 王者公会第11-20名奖励
+		,S_MAIL_GUILD_RANKING_GUILD_PRIZE_6      = 98  ## 王者公会第21-50名奖励
+		,S_MAIL_SERVER_HAPPY_PRIZE  = 99              ## 开服狂欢奖励邮件
+		,S_MAIL_SERVER_LOGIN_PRIZE = 100               ## 7天登录奖励
+		,S_MAIL_BOUNTY_COMPLETE_PRIZE = 101                ## 赏金任务完成奖励
+		,S_MAIL_CD_KEY                  =   102            ## CD_KEY奖励
+        		,S_MAIL_DAILY_ACTIVITY_4_RANK_PRIZE     =   103 ## 打木桶排行奖励
+        		,S_MAIL_DAILY_ACTIVITY_5_RANK_PRIZE     =   104 ## 摘星星排行奖励
+		,S_MAIL_ATTENTION_WECHAT        =   105            ## 微信分享
+		,S_MAIL_SHARE_GAME              =   106            ## 分享游戏
+		,S_MAIL_FISHING                 =   107            ## 钓鱼
+		,S_MAIL_GUILD_MINING_PRIZE = 108 ## 公会挖矿奖励
+		,S_MAIL_GUILD_SAINT        = 109    ## 公会圣物
+}
+
+
+## 功能开放
+enum open_fun
+{
+		OPEN_BAG            = 1,    ##背包
+		OPEN_DEPOT          = 2,    ##仓库
+		OPEN_SHOP           = 3,    ##商店
+		OPEN_MAIL           = 4,    ##邮件
+		OPEN_LOGIN_REWARD   = 5,    ##登陆奖励
+		OPEN_CHARGE         = 6,    ##消费奖励
+		OPEN_RANK           = 7,    ##排名
+		OPEN_ACC            = 8,    ##成就
+		OPEN_FRIEND         = 9,    ##好友
+		OPEN_CROWN          = 10,   ##皇冠
+		OPEN_CARD           = 11,   ##卡牌
+		OPEN_GUILD          = 12,   ##工会
+		OPEN_PET            = 14,   ##宠物
+		OPEN_VIP            = 15,   ##VIP
+		OPEN_AUCTION        = 16,   ##拍卖行功能开放
+		OPEN_ARENA          = 17,   ##竞技场
+		OPEN_SKILL          = 18,   ##技能
+		OPEN_DAILY_ACTIVITY = 19,   ##日常活动副本
+		OPEN_WORD_BOSS      = 20,   ##世界boss
+		OPEN_PK             = 21,   ##决斗场
+		OPEN_ABYSS          = 22,   ##虚空深渊
+		OPEN_CAMP           = 23,   ##神魔系统
+		OPEN_SELLER         = 24,   ##神秘商人
+		OPEN_RIDE           = 27,   ##坐骑
+		OPEN_HAPPY_SERVER   = 30,   ##开服狂欢
+		OPEN_BOUNTY         = 31,   ##赏金任务
+		OPEN_HOURLY_SP      = 32    ##英雄盛宴
+}

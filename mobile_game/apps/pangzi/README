@@ -1,0 +1,100 @@
+=====================================================
+ETS-Mnesia-based data persistence system.
+Front End use ETS table interface, data store to Mnesia 
+基于ETS 和 Mnesia 的数据持久化系统.
+在本地开启mnesia 这样实现更简单,性能负载更好一些
+
+1. behaviour
+  `db_mode'
+    提供数据持久化模式。
+
+
+提供只曾不减的接口
+提供cache命中率的统计
+    
+
+2. 导出接口列表:生成 gen_mod 环境变量的模块来导出所有操作相关db的函数 
+   在本地对应的ets中操作
+   + insert(T, Objecs) -> true. 
+   + insert_new(T, Objecs) -> true | false.
+   + update_counter(T, Key, UpdataOp) -> Value.   %same as ets:update_counter/3.
+   + update_element(T, Key, UpdataOp) -> boolean().  %same as ets:update_element/3.
+   + delete(T, Key) -> true.
+
+   lookup
+   + lookup(T, Key) -> [Object]. %same as ets:lookup/2.
+   + lookup_element(T, Key, Pos) -> Elem. %same as ets:lookup_element.
+   
+   TODO
+   %delete_object(DBTable, Key, Obj) ->
+       %ets:delete_object(DBTable, Obj),
+       %ets:insert(change_mark, {Key,-1}),
+       %true.
+ TODO 非set类型的db支持
+
+
+优化
+----------------
+1. 尽量少使用kv类型的table, kv 类型的table会储存字段名字，会占用大量内存
+
+Qus.
+ 首次加载所有db 中的数据吗,
+
+如果不是完全加载,
+访问不到,在去DB中查询, 在缓存到ets中, 查看有没有race condition
+
+
+当table 的实际大小大于最大设置时,
+开始收缩
+   访问
+
+
+  worker 两张表
+  allkeysTab allkeys, 就是所有已经加载到ets中的key, 同一时刻只会是真实的ets allkeys 的子集
+  visitKyes,从上个计时开始, 访问过的key,包括更新
+
+对ets的更新插入永远是实际更新者,
+使用当
+
+rece confition
+  所有在ets中没有查到的东西到会call server, 再查这样可以保证,
+  由于shrik删除一个obj后,再次查到的始终是最新的.
+  
+  前提,写入操作必须先写  ets,再给worker 发送set msg
+  
+  flush 时间到
+   1.  foreach 第三张
+         写到db 中
+         清空第三张表
+
+   2. if 查看ets是否超过最大size
+       false - >清空visitKeys
+       true ->
+          缩减
+          把allkeyTab 减去visiKeys
+           得到上轮中没有被访问到的key
+           删除ets中对应的obj, 不用担心race condition
+           
+  受到set消息,有可能和ets相同,也可能是久的,保存
+
+  lookup->
+     case insert_new table of
+          如果返回false
+        说明已经有人更新了,
+       直接查询ets,返回
+      true ->
+           返回
+    
+删除 rom
+    
+dbcache API
+info
+load_data/2
+lookup()
+lookup_element
+update_element
+update_counter
+insert_new
+update
+
+

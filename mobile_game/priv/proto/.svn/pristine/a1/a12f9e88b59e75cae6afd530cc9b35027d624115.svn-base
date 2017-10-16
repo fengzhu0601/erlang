@@ -1,0 +1,22 @@
+typedef item_id     = u32
+typedef item_count  = u8
+typedef reply_num   = u8
+
+
+#宝石合成
+proto MSG_GEM_UPDATE=1
+{
+    client{
+        message{
+            gemid:item_id,
+            num:u16
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+        }
+    }
+}
+

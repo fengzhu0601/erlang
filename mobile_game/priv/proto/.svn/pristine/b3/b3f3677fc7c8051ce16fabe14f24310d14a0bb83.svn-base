@@ -1,0 +1,417 @@
+@include "game.sproto"
+
+typedef team_id = u32
+
+struct member_info
+{
+    id:player_id,
+    name:sstr,
+    level:player_level,
+    jifen:u32,
+    combar_power:player_power,
+    carrer:player_carrer,
+    MaxHp:u32,
+    online:bool
+}
+
+
+## 创建队伍信息
+proto MSG_TEAM_CREATE=1
+{
+    client{
+        message{
+            teamType:u8,      ## 队伍类型 1多人竞技场队伍
+            teamName:sstr
+        }
+    }
+
+    server{
+        message {
+            teamid:team_id,
+            teamtype:u8,
+            teamname:sstr,
+            teammembers:list<member:member_info>
+        }
+    }
+
+    errnos{
+        ERR_TEAM_ALREADY_EXIST,
+        ERR_GWGC_NOT_STAR,
+        ERR_TEAM_TYPE_ERROR
+    }
+}
+
+
+## 主动离开队伍
+proto MSG_TEAM_QUIT=2
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message {
+            id:player_id
+        }
+    }
+
+    errnos{
+        ERR_TEAM_INS_ROOM_NOT_EXIST,
+        ERR_TEAM_NOT_EXIST_PLAYER
+    }
+}
+
+#踢出队伍
+proto MSG_TEAM_KICKOUT=3
+{
+    client{
+        message{
+            id:player_id 
+        }
+    }
+
+    server{
+        #message{ id:player_id }    返回使用主动离开队伍的返回(暂时屏蔽)
+    }
+
+    errnos{
+        ERR_TEAM_INS_ROOM_NOT_EXIST,
+        ERR_TEAM_NOT_EXIST_PLAYER,
+        ERR_TEAM_NOT_LEADER
+    }
+}
+## 加入队伍
+proto MSG_TEAM_JOIN=4
+{
+    client{
+        message{
+            teamId:team_id
+        }
+    }
+
+    server{ 
+        message{
+            teamid:team_id,
+            teamtype:u8,
+            teamname:sstr,
+            #info:binary
+            teammembers:list<member:member_info>
+        }
+    }
+
+    errnos{
+        ERR_TEAM_INS_ROOM_NOT_EXIST,
+        ERR_TEAM_NOT_EXIST_PLAYER,
+        ERR_TEAM_NOT_LEADER
+    }
+}
+
+## 加入队伍通知（通知队伍内其他成员
+proto MSG_TEAM_MEMBER_JOIN=5
+{
+    client{}
+
+    server{ 
+        message{
+            teamMember:member_info 
+        }
+    }
+}
+## 解散
+proto MSG_TEAM_DISSOLVE=6
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message=empty 
+    }
+
+    errnos{
+        ERR_TEAM_INS_ROOM_NOT_EXIST,
+        ERR_TEAM_NOT_LEADER
+    }
+}
+
+## 通过组队类型，获取队伍列表信息
+proto MSG_TEAM_GC_LIST_BY_TYPE=7
+{
+    client{
+        message{
+            Type:u8
+        }
+    }
+
+    server{
+        message{
+            #Size:u8,
+            #while
+                #TeamId:team_id
+                #TeamName/sstr
+                #Size:u8
+                #TeamMember/binary
+            Teammembers:binary
+        }
+    }
+}
+## 申请加入队伍的消息列表，仅限于队长
+proto MSG_TEAM_GC_SHENQING_LIST=8
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message{
+            #Size:u8,
+            #while
+                #PlayerId:u64
+                #PlayerName/binary
+                #PlayerLevel:u8
+                #PlayerPower:u32
+                #PlayerJob:u8,
+                #PlayerIsOnline:u8
+            PlayerInfo:binary
+        }
+    }
+
+    errnos{
+        ERR_TEAM_INS_ROOM_NOT_EXIST,
+        ERR_TEAM_NOT_LEADER
+    }
+}
+## 队长处理玩家申请加入队伍的消息
+proto MSG_TEAM_GC_DEAL_SHENQING=9
+{
+    client{
+        message{
+            IsOk:u8,   ## 1->ok    2->fail
+            PlayerId:u64
+        }
+    }
+
+    server{
+        message{
+            IsOk:u8   ## 1->ok    2->fail
+        }
+    }
+
+    errnos{
+        ERR_TEAM_INS_ROOM_NOT_EXIST,
+        ERR_TEAM_NOT_LEADER,
+        ERR_ROLE_NOT_EXIST,
+        ERR_SYSTEM,
+        ERR_TEAM_IS_FULL
+    }
+}
+
+## 玩家注册或者取消关注队伍列表的动态
+proto MSG_TEAM_GC_RE=10
+{
+    client{
+        message{
+            ReOrUre:u8 ## 1->Re    2->Ure
+        }
+    }
+
+    server{}
+}
+
+## 邀请玩家加入我的队伍
+proto MSG_TEAM_GC_JOIN_MY_TAEA=11
+{
+    client{
+        message{
+            Size:u8,
+            PlayerIdList:binary
+        }
+    }
+    server{}
+}
+
+## 给被邀请的发送邀请通知
+proto MSG_TEAM_GC_NOTICE_JOIN_MY_TEAM_OF_PLAYERS=12
+{
+    client{}
+    server{
+        message{
+            TeamId:team_id,
+            Name:sstr
+        }
+    }
+}
+
+## 申请加入队伍
+proto MSG_TEAM_GC_APPLY_JOIN=13
+{
+    client{
+        message{
+            TeamId:team_id
+        }
+    }
+
+    server{
+        message{
+            IsOk:u8   ## 1->ok
+        }
+    }
+
+    errnos{
+        ERR_TEAM_INS_ROOM_NOT_EXIST,
+        ERR_TEAM_NOT_EXIST_PLAYER,
+        ERR_TEAM_NOT_LEADER
+    }
+}
+
+## 快速匹配
+proto MSG_TEAM_GC_FAST_JOIN=14
+{
+    client{
+        message{
+            teamType:u8
+        }
+    }
+
+    server{}
+
+    errnos{
+        ERR_TEAM_FAST_JOIN,
+        ERR_TEAM_NOT_JOIN_SELF
+    }
+}
+
+proto MSG_TEAM_AUTO_JOIN_FLG=15
+{
+    client{
+        message{
+            flg:u8 ## 1 -> ok    0 -> not ok
+        }
+    }
+
+    server{}
+
+    errnos{
+        ERR_TEAM_NOT_LEADER
+    }
+}
+
+proto MSG_TEAM_REFUSE_ASK=16
+{
+    client{
+        message{
+            TeamId:team_id
+        }
+    }
+
+    server{}
+}
+
+proto MSG_TEAM_NOTICE_MASTER_REFUSE_ASK=17
+{
+    client{}
+
+    server{
+        message{
+            name:sstr
+        }
+    }
+}
+
+# A邀请B
+proto MSG_TEAM_INVITE=18
+{
+    client{
+        message{
+            player_id:u64,  # B玩家id
+            type:u8,        # 组队类型
+            scene_id:u32    # 副本id
+        }
+    }
+
+    server{}
+}
+
+# A接收到的结果:一般处理错误码
+proto MSG_TEAM_INVITE_RESULT=19
+{
+    client{}
+    server{
+        message{
+            player_id:u64,  # B玩家id
+            name:sstr,
+            result:u8       # 1:玩家不在线 2:玩家在副本中 3:已经在队伍中
+        }
+    }
+}
+
+# B接收到邀请
+proto MSG_TEAM_BE_INVITE=20
+{
+    client{}
+    server{
+        message{
+            player_id:u64,  # A玩家id
+            name:sstr,
+            type:u8,
+            scene_id:u32
+        }
+    }
+}
+
+# B处理邀请
+proto MSG_TEAM_HANDLE_INVITE=21
+{
+    client{
+        message{
+            player_id:u64,  # A玩家id
+            type:u8,
+            scene_id:u32,
+            result:u8   # 0:拒绝 1:同意
+        }
+    }
+    server{
+        message{
+            err_code:u8 # 0:拒绝 1:加入成功 2:队伍已满 3:等级不匹配 4:次数不足 5:体力不足 6:不能加入自己的队伍
+        }
+    }
+}
+
+# 组队召唤队友
+proto MSG_TEAM_CALL_TEAMMATE=22
+{
+    client{
+        message{
+            type:u8,        ## 类型：1:多人竞技场 2:多人组队副本 3:怪物攻城 4:单人竞技场
+            scene_id:u32    ## 副本id 没有的为0
+        }
+    }
+    server{}
+}
+
+# 请求队伍大厅信息
+proto MSG_TEAM_GET_ALL_INFO=23
+{
+    client{
+        message{
+            type:u8,
+            scene_id:u32
+        }
+    }
+    server{
+        message{
+            teamlist:list<{
+                team_id:u32,    ## 队伍id
+                team_name:sstr, ## 队伍名字
+                master_id:u64,  ## 队长玩家id
+                members:list<{
+                    playerId:u64,
+                    playerName:sstr,
+                    playerJob:player_carrer,
+                    playerLev:player_level,
+                    playerPower:player_power
+                }>
+            }>
+        }
+    }
+}

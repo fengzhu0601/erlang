@@ -1,0 +1,22 @@
+# 卡牌系统终极版
+
+@include "game.sproto"
+
+# 卡牌信息
+proto MSG_CARD_NEW_INFO=1
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message{
+            card_list:list<{
+                cardId:u8,       ## 卡牌Id
+                use_times:u8,    ## 使用次数
+                max_times:u8     ## 激活次数
+            }>
+        }
+    }
+}
+

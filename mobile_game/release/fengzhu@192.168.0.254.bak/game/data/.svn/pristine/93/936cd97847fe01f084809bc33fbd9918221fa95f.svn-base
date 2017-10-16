@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<!-- edited with XMLSpy v2011 (http://www.altova.com) by clk (clk) -->
+<ai_common>
+	<!--AI事件流程-->
+	<State StateId="1" Desc="初始状态">
+		<Event EventId="10006" Times="1" Desc="">
+			<True Func="set_state" Par="{0,2}" Desc=""/>
+		</Event>
+	</State>
+	<State StateId="2" Desc="闲逛">
+		<Event EventId="10008" Times="-1" Desc="">
+			<Can Func="is_mutex" Par="{2, 50}" Desc=""/>
+			<Can Func="is_near_born_x" Par="{0, stroll_radius}" Desc=""/>
+			<True Func="move_rand" Par="" Desc=""/>
+			<False Func="move_to_born_x" Par="" Desc=""/>
+		</Event>
+		<Event EventId="10008" Times="-1" Desc="">
+			<Can Func="is_mutex" Par="{2, 70}" Desc=""/>
+			<Can Func="is_near_player_x" Par="{0, alert_radius}" Desc=""/>
+			<True Func="set_state" Par="{0,3}" Desc=""/>
+		</Event>
+	</State>
+	<State StateId="3" Desc="追击">
+		<Event EventId="10008" Times="-1" Desc="靠近玩家">
+			<Can Func="is_mutex" Par="{1, 50}" Desc=""/>
+			<Can Func="is_near_player_x" Par="{3, alert_radius}" Desc=""/>
+			<True Func="move_to_near_player" Par="" Desc=""/>
+			<False Func="set_state" Par="{0,4}" Desc=""/>
+		</Event>
+		<Event EventId="10008" Times="-1" Desc="靠近玩家">
+			<Can Func="is_mutex" Par="{1, 50}" Desc=""/>
+			<Can Func="is_near_player_y" Par="{3, alert_radius}" Desc=""/>
+			<True Func="move_to_near_player" Par="" Desc=""/>
+			<False Func="set_state" Par="{0,4}" Desc=""/>
+		</Event>
+	</State>
+	<State StateId="4" Desc="攻击">
+		<Event EventId="10008" Times="-1" Desc="攻击">
+			<Can Func="is_near_player_x" Par="{0,2}" Desc=""/>
+			<Can Func="is_near_player_y" Par="{0,2}" Desc=""/>
+			<True Func="skill_segment" Par="rand_skill" Desc=""/>
+			<False Func="set_state" Par="{0,3}" Desc=""/>
+		</Event>
+	</State>
+</ai_common>

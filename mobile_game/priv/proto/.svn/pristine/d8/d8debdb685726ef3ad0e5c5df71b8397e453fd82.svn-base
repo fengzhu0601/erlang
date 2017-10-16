@@ -1,0 +1,50 @@
+
+@include "game.sproto"
+
+typedef item_id     = u32
+typedef item_count  = u8
+typedef reply_num   = u8
+
+
+#宝石合成
+proto MSG_GEM_UPDATE=1
+{
+    client{
+        message{
+            gemid:item_id,
+            num:u16
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+        }
+    }
+}
+
+## 史诗宝石升级
+proto MSG_EPIC_GEM_UP=2
+{
+    client{
+        message{
+            bucketType:bucket_type,   #装备背包类型
+            eqmId:item_id,       #装备id      #如果要升级的是装备上的宝石，要给装备Id，背包里的宝石给0
+            gemId:item_id,       #升级的宝石Id
+            itemList:list<{      #消耗的宝石列表
+            itemId:item_id,
+            itemCount:u8
+            }>
+
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+        }
+    }
+}
+
+
+

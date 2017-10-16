@@ -1,0 +1,148 @@
+## fight course
+
+@include "game.sproto"
+
+#
+proto MSG_ENTER_COURSE=1
+{
+    client
+    {
+        message{
+            id:u16
+        }
+    }
+
+    server{
+        message=empty
+    }
+}
+
+proto MSG_COURSE_PRIZE=2
+{
+	client
+	{
+		message{
+			id:u16
+		}
+	}
+
+	server{
+		message{
+		    course_prize:list<{itemId:u32, itemCount:u32}>
+		}
+	}
+}
+
+proto MSG_COURSE_BEST_PRIZE=3
+{
+    client
+    {
+        message=empty
+    }
+    server{
+        message
+        {
+            Count:u8,## 已经挑战的次数
+            BuyCount:u8,
+            FlushCount:u8,
+            prize:list<{CourseInsId:u16, itemId:u32, itemCount:u32}>
+        }
+    }
+}
+
+proto MSG_COURSE_BUY_COUNT=4
+{
+    client
+    {
+        message
+        {
+            count:u8 # 购买的挑战次数
+        }
+    }
+    server{
+        message
+        {
+            isSucc:u8 #1成功 2失败
+        }
+    }
+}
+
+proto MSG_COURSE_CHALLENGE_BOSS_ENTER=5
+{
+    client
+    {
+        message
+        {
+            CourseInsId:u16
+        }
+    }
+    server{
+        message
+        {
+            succ:u8 #1成功 2失败
+        }
+    }
+}
+
+proto MSG_COURSE_CHALLENGE_BOSS_PRIZE_INFO=6
+{
+    client
+    {
+    }
+    server{
+        message
+        {
+            prize:list<{itemId:u32, itemCount:u32}>
+        }
+    }
+}
+
+proto MSG_COURSE_USE_COUNT = 7
+{
+    client{}
+
+    server{
+        message{
+            count:u8
+        }
+    }
+
+    errnos{
+        ERR_MAX_COUNT
+    }
+}
+
+proto MSG_COURSE_FLUSH_BOSS_INFO=8
+{
+    client
+    {
+        message
+        {
+            buyCount:u8
+        }
+    }
+    server{
+        message
+        {
+            FlushCount:u8,
+            prize:list<{CourseInsId:u16, itemId:u32, itemCount:u32}>
+        }
+    }
+
+    errnos{
+        ERR_COST_NOT_ENOUGH,
+        ERR_MAX_COUNT
+    }
+}
+
+proto MSG_COURSE_FIGHT_DATA_OF_NOT_BOSS=9
+{
+    client{}
+
+    server{
+        message{
+            course_data:list<{d:u16, Count:u8}>
+        }
+    }
+
+}

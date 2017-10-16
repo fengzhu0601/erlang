@@ -1,0 +1,16 @@
+﻿id	优先级	标签类型（0不显示，1我要变强，2玩法指引，3社交互动）	名称	图标	标题	描述	执行代码
+id	priority	client_type	 name	icon	title	desc	code
+1	1	1	锻造	helper/help_icon/7.png		强化、镶嵌、洗练和附魔，更快的提升自己的战力	{ui,open_equip_op_ui}
+2	2	0	技能	helper/help_icon/8.png		升级技能龙纹可使技能威力更强大。	{ui,open_skill_ui}
+3	3	1	皇冠	helper/help_icon/9.png		升级皇冠可大幅提升怒气技能效果。	{ui,open_crown_ui}
+4	4	1	坐骑	helper/help_icon/10.png		解锁坐骑可获得更加炫酷的坐骑。	{ui,open_horse_ui}
+5	5	1	宠物	helper/help_icon/11.png		升级宠物可获得强大的宠物助手。	{ui,open_pet_ui}
+6	6	2	副本	helper/help_icon/12.png		前往副本可获得大量装备、金币、材料与道具。	{ui,open_instance_ui}
+7	7	2	虚空深渊	helper/help_icon/14.png		挑战虚空深渊可获得大量装备、金币、材料与道具。	{ui,open_abyss_ui}
+8	8	2	竞技场	helper/help_icon/15.png	当前剩余次数:%count%	前往竞技场可挑战其他玩家，提高自己的游戏排名。	{ui,open_arena_ui}
+9	9	2	战争学院	helper/help_icon/17.png		进行战争学院的训练可获得大量的钻石。	{ui,open_war_course_ui}
+10	10	2	每日任务	helper/help_icon/18.png		完成每日任务可获得大量奖励。	{ui,open_daily_task_ui}
+11	11	2	拍卖行	helper/help_icon/19.png		前往拍卖行可与其他玩家竞拍稀有道具。	{ui,open_auction_ui}
+12	12	2	成就	helper/help_icon/16.png		完成成就任务，可获得大量钻石奖励。	{ui,open_achievement_ui}
+13	13	3	公会	helper/help_icon/20.png		多参与公会的活动内容可获得大量的奖励内容。	{ui,open_guild_ui}
+14	14	3	好友	helper/help_icon/21.png		与好友之间进行互动可获得额外的愉快游戏体验。	{ui,open_friend_ui}

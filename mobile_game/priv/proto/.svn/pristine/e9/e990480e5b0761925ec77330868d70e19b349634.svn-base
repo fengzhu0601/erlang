@@ -1,0 +1,96 @@
+@include "game.sproto"
+
+typedef team_id = u32
+
+struct member_info
+{
+    id:player_id,
+    name:sstr,
+    level:player_level,
+    combar_power:player_power,
+    carrer:player_carrer,
+    online:bool
+}
+
+
+## 创建队伍信息
+proto MSG_TEAM_CREATE=1
+{
+    client{
+        message{
+            teamType:u8      ## 队伍类型 1多人竞技场队伍
+        }
+    }
+
+    server{
+        message {
+            teamid:team_id
+            ,teammembers:list<member:member_info>
+        }
+    }
+}
+
+
+## 主动离开队伍
+proto MSG_TEAM_QUIT=2
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message {
+            id:player_id
+        }
+    }
+}
+
+#踢出队伍
+proto MSG_TEAM_KICKOUT=3
+{
+    client{
+        message{ id:player_id }
+    }
+
+    server{
+        #message{ id:player_id }    返回使用主动离开队伍的返回(暂时屏蔽)
+    }
+}
+## 加入队伍
+proto MSG_TEAM_JOIN=4
+{
+    client{
+        message{
+            teamId:team_id
+        }
+    }
+
+    server{ 
+        message{
+            replyNum:reply_num
+            ,teamid:team_id
+            ,teammembers:list<member:member_info>
+        }
+    }
+}
+
+## 加入队伍通知（通知队伍内其他成员
+proto MSG_TEAM_MEMBER_JOIN=5
+{
+    client{ }
+
+    server{ 
+        message{
+            teamMember:member_info 
+        }
+    }
+}
+## 解散
+proto MSG_TEAM_DISSOLVE=6
+{
+    client{ message = empty }
+
+    server{ message = empty }
+}
+
+

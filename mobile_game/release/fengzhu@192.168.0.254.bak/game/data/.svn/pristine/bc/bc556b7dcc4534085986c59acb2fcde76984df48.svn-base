@@ -1,0 +1,18 @@
+﻿id（资源类型*1000+次序）	名称	所在场景	寻路位置	资源偏移（格子）{x(右方向为正,左方向为负),y(上方为负,下方为正)}寻找物品：在其中的一个点刷出物品	采集到物品的ID(prize表ID）	资源类型（1共同、2单人、3藏宝图、4寻找）	采集数量上限	读条时间（毫秒）	采集类型图标(1采集、2挖矿、3翻阅、4宝藏）	采集动作（没有填空,2是祈祷，3是采集）	读条文字内容	采集距离半径（像素）	消失特效	采集点图标
+id	client_name	scene_id	position	client_offset	dig_goods_id	type	quantity_limit	time	client_collect_type	client_action	client_content	distance	client_fade_ani	client_icon
+2000	圣光沐浴	103	{46,16}	[{2,2}]	6	2	10	5000	1	2	祈祷中	0		collect/shengguang.skel
+2001	女神之泪	101	{30,16}	[{0,-7}]	6	2	10	5000	1	2	祈祷中	0		collect/nszl.skel
+2002	玫瑰	102	{40,20}	[{0,0},{1,0},{2,0},{3,0},{2,-2},{3,-3},{5,-4}]	6	2	10	5000	1	3	采集中	0		collect/rose.skel
+2003	生命之泉	204	{21,15}	[{0,0}]	6	2	10	6000	2	2	采集中	10		collect/guang.skel
+3000	藏宝图测试1	201	{12,16}	[{12,13}]	6	3	10	5000	4		寻宝中	30		items/icon/gem_1001.png
+3001	藏宝图测试1	201	{18,16}	[{18,13}]	7	3	10	5000	4		寻宝中	30		items/icon/gem_1001.png
+4000	阿尔法狗	103	{46,16}	[{10,0},{25,1},{34,-2},{-10,2},{-25,-2},{-20,-1},{-38,-4}]		4	10	1	1		寻找中	0	collect/paopao.skel	collect/dog.skel
+4001	贝塔猫	105	{45,15}	[{10,1},{15,2},{-22,3},{-10,-1},{-15,-1},{-20,-1},{-35,4}]		4	10	1	1		寻找中	0	collect/paopao.skel	collect/cat.skel
+4002	维尼兔	105	{46,15}	[{10,2},{15,3},{-20,3},{-10,1},{-15,1},{-20,-1},{-35,2}]		4	10	1	1		寻找中	0	collect/paopao.skel	collect/rabbit.skel
+4003	女士帽	105	{31,14}	[{0,-4},{0,-7},{-17,-3},{35,-4},{34,-8}]		4	10	1	1		寻找中	0	collect/paopao.skel	collect/hat.skel
+4004	精灵宝镜	202	{31,17}	[{-14,-7},{-14,-10},{-14,-10},{5,-5},{5,-10},{20,-5},{20,-7},{20,-10}]		4	10	1	1		寻找中	0	collect/paopao.skel	collect/jingzi.skel
+4005	苏摩酒	202	{26,17}	[{-13,-2},{-18,-2},{0,-3},{-4,-4},{15,-4},{14,-3},{20,-1},{18,-2},{-20,2}]		4	10	1	1		寻找中	0	collect/paopao.skel	collect/jiu.skel
+4006	月亮蝶	403	{25,14}	[{-6,-5},{-11,-7},{15,-7}]		4	10	1	1		寻找中	0	collect/paopao.skel	collect/hudie_1.skel
+4007	太阳蝶	403	{25,14}	[{-5,-7},{-12,-8},{15,-7}]		4	10	1	1		寻找中	0	collect/paopao.skel	collect/hudie_2.skel
+4008	远古化石	403	{30,17}	[{10,-3},{15,-3},{0,-3},{-20,-5},{-1,-5}]		4	10	1	1		寻找中	0	collect/paopao.skel	collect/huashi.skel
+4009	龙鱼骨	403	{30,17}	[{0,-4},{17,-5},{-15,-3},{-20,-4}]		4	10	1	1		寻找中	0	collect/paopao.skel	collect/yugu.skel

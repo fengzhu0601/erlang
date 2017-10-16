@@ -1,0 +1,727 @@
+#公会模块信息
+@include "game.sproto"
+
+typedef page=u16
+typedef totle_player=u8
+#获取所有公会列表信息
+ proto MSG_GUILD_DATA_LIST=1
+ {
+     client{
+         message{
+             pageStart:page,        #起始位置
+             pageEnd:page           #终止位置
+         }
+     }
+     server{
+         message{
+             guildMsg:list<{
+                  totem_id:u8,          #公会图腾
+                  border_id:u8,         #公会边框
+                  lv:u8,                #公会等级
+                  guild_name:sstr,      #公会名称
+                  master_name:sstr,     #公会会长名称
+                  master_id:player_id,  #公会会长Id
+                  totle_player:totle_player,#公会目前加入总人数
+                  guild_id:guild_id,    #公会编号
+                  is_apply:u8           #该玩家是否已经申请该公会. 0不能申请公会 1未申请，2已经加入公会，3正在申请中
+             }>
+         }
+     }
+     errnos{
+         ERR_GUILD_FIND_DATA_IS_NULL    #获取到的数据为空
+     }
+ }
+
+ #获取公会所有成员信息,不包含自己(上下线, 任免职位, 加入离开公会)
+ proto MSG_GUILD_MEMBER_LIST=2
+ {
+     client{
+         message=empty
+     }
+     server{
+         message{
+             guildMemberMsg:list<{
+                  player_id:player_id,       #角色ID
+                  player_level:player_level, #角色等级
+                  job_id:u8,                 #角色职业ID
+                  player_name:sstr,          #角色名称
+                  position_id:u8,            #公会职务ID（会长，副会长，成员）
+                  combat_power:player_power, #角色战斗力
+                  contribution_value:u32,    #在公会拥有的贡献值
+                  is_friend:u8,              #是否是自己好友 是否申请为好友 1未申请，2已经是好友，3正在申请中
+                  is_online:u8               #是否在线 0离线,1在线
+             }>
+         }
+     }
+     errnos{
+         ERR_GUILD_NOT_JOIN,                #玩家没有加入公会
+         ERR_GUILD_FIND_DATA_IS_NULL        #获取到的数据为空
+     }
+ }
+
+ #获取公会事件信息
+ proto MSG_GUILD_EVENT_LIST=3
+ {
+     client{
+          message{
+              pageStart:u8,        #起始位置
+              pageEnd:u8           #终止位置
+          }
+     }
+     server{
+         message{
+             guildEventMsg:list<{
+                  id:u8,                 #type：1，玩家获取贡献值, 2.加入公会. 3.移除公会 4.退出公会 5.任免职位
+                  time:timestamp,        #公会事件时间
+                  player_id:player_id,   #玩家角色ID
+                  player_name:sstr,      #玩家名称
+                  position:u8            #被操作人职位
+             }>
+         }
+     }
+     errnos{
+         ERR_GUILD_NOT_JOIN,             #玩家没有加入公会
+         ERR_GUILD_FIND_DATA_IS_NULL     #获取到的数据为空
+     }
+ }
+
+#获取公会信息，玩家自身关于公会的个人信息
+proto MSG_GUILD_INFO=5
+{
+    client{
+        message=empty
+    }
+    server{
+        message{
+            totem_id:u8,             #公会图腾
+            border_id:u8,            #公会边框
+            guild_lv:u8,             #公会等级
+            guild_name:sstr,         #公会名称
+            master_name:sstr,        #公会会长名称
+            master_id:player_id,
+            totle_player:totle_player,#公会目前加入总人数
+            guild_id:guild_id,       #公会编号
+            guild_rank:u16,          #公会排名
+            notice:sstr,             #公会公告
+            notice_time:timestamp,   #公会公告修改时间
+            guild_exp:player_exp,    #公会大厅贡献值
+            position:u8,             #角色职位ID
+            role_lv:u8,              #角色公会等级
+            role_exp:player_exp,     #角色公会当前等级经验
+            contribution_value:u32,  #在公会拥有的贡献值
+            building_info_list:list<{
+                building_type:u8,    #公会建筑类型
+                building_daily_task_count:u8,#角色日常提升建筑贡献值剩余次数
+                building_lv:u8,              #该公会建筑等级
+                building_exp:player_exp      #该公会建筑经验
+            }>,
+            tech_info_list:list<{
+                tech_id:u8,          #科技类型ID
+                tech_lv:u8           #科技等级
+            }>
+         }
+    }
+    errnos{
+        ERR_GUILD_NOT_JOIN           #玩家没有加入公会
+    }
+}
+
+#获取公会申请人列表
+proto MSG_GUILD_APPLY_LIST=6
+{
+    client{
+        message=empty
+    }
+    server{
+        message{
+            guildApplyMsg:list<{
+                player_id:player_id,     #角色ID
+                job_id:u8,               #角色职业ID
+                lv:u8,                   #角色等级
+                name:sstr,               #角色名称
+                combat_power:u32,        #角色战斗力
+                is_online:u8             #是否在线 0离线,1在线
+            }>
+        }
+    }
+    errnos{
+        ERR_GUILD_NOT_JOIN,              #玩家没有加入公会
+        ERR_GUILD_FIND_DATA_IS_NULL      #获取到的数据为空
+    }
+}
+
+#创建公会，选择图腾
+proto MSG_GUILD_CREATE=101
+{
+   client{
+       message{
+           name:sstr,                 #公会名称
+           totem_id:u8,               #公会图腾ID
+           border_id:u8               #公会边框
+       }
+   }
+   server{
+       message=empty
+   }
+   errnos{
+       ERR_GUILD_HAS_GUILD,                #已经加入公会
+       ERR_GUILD_INVALID_GUILDNAME,        #公会名称不合法
+       ERR_GUILD_CREATE_LEVEL_LESS_THAN,   #玩家等级不足
+       ERR_GUILD_CREATE_DIAMOND_LESS_THAN, #玩家钻石不足
+       ERR_GUILD_CREATE_ITEM_LESS_THAN,    #玩家道具不足
+       ERR_GUILD_CREATE_INSERT_DB_FAIL,    #创建公会失败
+       ERR_GUILD_CREATE_COST_ERROR         #创建公会失败
+   }
+}
+
+#修改公告
+proto MSG_GUILD_UPDATE_NOTICE=102
+{
+    client{
+        message{
+            notice:sstr                #公告内容
+        }
+    }
+    server{
+        message=empty
+    }
+    errnos{
+        ERR_GUILD_NOT_JOIN,            #玩家没有加入公会
+        ERR_GUILD_NOT_PERMISSION,      #玩家权限不足
+        ERR_GUILD_INVAILD_NOTICE       #公会公告不能为空或者长度大于70字节
+    }
+}
+
+#职位变更
+proto MSG_GUILD_POSITION=103
+{
+    client{
+        message{
+            to_player_id:player_id,    #任免玩家ID
+            position_id:u8             #任免职位
+        }
+    }
+    server{
+        message{
+            to_player_id:player_id,    #任免玩家ID
+            position_id:u8             #任免职位
+        }
+    }
+    errnos{
+        ERR_GUILD_NOT_JOIN,
+        ERR_GUILD_NOT_PERMISSION,
+        ERR_GUILD_NOT_ENOUGH_POSITION_NUM,
+        ERR_GUILD_THIS_POSITION_IS_NULL,
+        ERR_GUILD_OTHER_PLAYER_NOT_JOIN_GUILD,
+        ERR_GUILD_PLAYER_NOT_IN_THIS_GULD
+    }
+}
+
+
+
+#剔除公会
+proto MSG_GUILD_PLAYERDEL=104
+{
+    client{
+        message{
+             to_player_id:player_id     #剔除玩家ID
+        }
+    }
+    server{
+        message{
+             to_player_id:player_id     #剔除玩家ID
+        }
+    }
+    errnos{
+        ERR_GUILD_NOT_JOIN,
+        ERR_GUILD_OTHER_PLAYER_NOT_JOIN_GUILD,
+        ERR_GUILD_MASTER_CONNOT_QUIT,
+        ERR_GUILD_NOT_PERMISSION,
+        ERR_GUILD_NOT_IN_SAMEGUILD,
+        ERR_GUILD_NO_THIS_POSITION
+    }
+}
+
+#同意/拒绝单人玩家入会
+proto MSG_GUILD_ROLE_APPLY=105
+{
+    client{
+        message{
+             type:u8,                   #1.单个玩家入会 2拒绝玩家入会
+             to_player_id:player_id     #同意该玩家入会
+
+        }
+    }
+    server{
+        message{
+            type:u8
+        }
+    }
+    errnos{
+        ERR_GUILD_NOT_JOIN,
+        ERR_GUILD_NOT_PERMISSION
+    }
+}
+
+#同意/拒绝多人玩家入会
+proto MSG_GUILD_ROLES_APPLY=106
+{
+    client{
+        message{
+            type:u8                   #1.批量入会 2.批量拒绝
+        }
+    }
+    server{
+        message{
+            type:u8
+        }
+    }
+    errnos{
+        ERR_GUILD_NOT_JOIN,
+        ERR_GUILD_NOT_PERMISSION
+    }
+}
+
+#升级建筑
+proto MSG_GUILD_BUILDING_ADDEXP=107
+{
+    client{
+        message{
+             building_id:u8,            #公会建筑ID
+             cost_type:u8               #花费类型，（2表示钻石、1表示金币）
+        }
+    }
+    server{
+        message{
+             building_id:u8,                #公会建筑ID
+             building_lv:u8,                #建筑目前等级
+             building_exp:player_exp,       #建筑总经验值
+             buildingType_lv:u8,            #建筑大厅目前等级
+             buildingType_exp:player_exp    #建筑大厅总经验值
+        }
+    }
+    errnos{
+        ERR_GUILD_NOT_JOIN,
+        ERR_GUILD_DAILY_NUMBER_FINISHED
+    }
+}
+
+#退会
+proto MSG_GUILD_OUT=108
+{
+    client{
+        message=empty
+    }
+    server{
+        message=empty
+    }
+    errnos{
+        ERR_GUILD_NOT_JOIN,
+        ERR_GUILD_MASTER_CONNOT_QUIT
+    }
+}
+
+#申请入会
+proto MSG_GUILD_APPLY=109
+{
+    client{
+        message{
+             guild_id:guild_id       #工会Id
+        }
+    }
+    server{
+        message{
+             guild_id:guild_id       #工会Id
+        }
+    }
+    errnos{
+        ERR_GUILD_HAS_GUILD,
+        ERR_GUILD_HASALREADY_APPLY
+    }
+}
+
+#搜索公会
+proto MSG_GUILD_SEARCH=110
+{
+    client{
+        message{
+             guild_id:guild_id
+        }
+    }
+    server{
+        message{
+            rank:u16,                  #公会排名
+            totem_id:u8,               #公会图腾
+            border_id:u8,              #公会边框
+            lv:u8,                     #公会等级
+            name:sstr,                 #公会名称
+            master_name:sstr,          #公会会长名称
+            totle_player:totle_player, #公会目前加入总人数
+            guild_id:guild_id,         #公会编号
+            is_apply:u8                #该玩家是否已经申请该公会. 1表示已经申请 0表示未申请
+        }
+    }
+    errnos{
+        ERR_GUILD_FIND_DATA_IS_NULL
+    }
+}
+
+#公会商店购买物品
+proto MSG_GUILD_BUY_ITEM=111
+{
+    client{
+        message{
+             item_id:item_id,    #商品ID
+             item_num:u8         #商品数量
+        }
+    }
+    server{
+        message=empty
+    }
+    errnos{
+        ERR_GUILD_NOT_JOIN
+    }
+}
+
+#玩家科技升级
+proto MSG_GUILD_TECH_LVUP=112
+{
+    client{
+        message{
+             tech_id:u8,            #公会建筑ID
+             cost_type:u8           #花费类型，（2表示钻石、1表示金币）
+        }
+    }
+    server{
+        message{
+             tech_id:u8                  #公会建筑ID
+        }
+    }
+}
+
+##推送广播
+#玩家获取贡献值推送
+proto MSG_GUILD_PUSH_ROLEEXP=201
+{
+    client{
+    }
+    server{
+        message{
+             role_lv:u8,                      #角色公会等级
+             role_exp:player_exp,             #角色经验值
+             role_contribution:player_exp,    #角色贡献值
+             player_position_id:u8            #玩家职位变更
+        }
+    }
+}
+
+##玩家加入公会,给该玩家推送
+proto MSG_GUILD_PUSH_JOIN_GUILD=203
+{
+    client{
+    }
+    server{
+        message=empty
+    }
+}
+
+##玩家被踢出公会,给该玩家推送
+proto MSG_GUILD_PUSH_REMOVE_GUILD=204
+{
+    client{
+    }
+    server{
+        message=empty
+    }
+}
+
+##玩家加入公会
+proto MSG_GUILD_PUSH_GUILD_MEMBER_JOIN=205
+{
+    client{
+    }
+    server{
+        message{
+             guildMemberMsg:list<{
+                  player_id:player_id,       #角色ID
+                  player_level:player_level, #角色等级
+                  job_id:u8,                 #角色职业ID
+                  player_name:sstr,          #角色名称
+                  position_id:u8,            #公会职务ID（会长，副会长，成员）
+                  combat_power:player_power, #角色战斗力
+                  contribution_value:u32,    #在公会拥有的贡献值
+                  is_friend:u8,              #是否是自己好友 是否申请为好友 1未申请，2已经是好友，3正在申请中
+                  is_online:u8               #是否在线 0离线,1在线
+             }>
+        }
+    }
+}
+
+##玩家离开公会
+proto MSG_GUILD_PUSH_GUILD_MEMBER_QUIT=206
+{
+    client{
+    }
+    server{
+        message{
+            player_id:player_id       #角色ID
+        }
+    }
+}
+
+##玩家职位变更，推送给所有在线玩家
+proto PUSH_GUILD_MEMBER_POSITION=207
+{
+    client{
+    }
+    server{
+        message{
+            player_id:player_id,      #角色ID
+            position_id:u8            #公会职务ID（会长，副会长，成员）
+        }
+    }
+}
+
+
+## 零时刷新数据，推送变更数据, 升级公会建筑的次数角色日常提升建筑贡献值剩余次数
+proto PUSH_GUILD_BUILDING_ADD_EXP=208
+{
+     client
+     {}
+     server
+     {
+         message
+         {
+             daily_task_count:list
+             <{
+                 building_type:u8,            #公会建筑类型
+                 building_daily_task_count:u8 #角色日常提升建筑贡献值剩余次数
+             }>
+         }
+     }
+}
+
+## 公会boss界面信息
+proto MSG_GUILD_BOSS_INFO=11
+{
+    client{
+        message=empty
+    }
+    server{
+        message{
+            id:u16,
+            exp:u32,
+            hp:u32,
+            end_time:u32,
+            has_challage_count:u16,
+            has_donate_count:u16,
+            has_call_count:u16
+        }
+    }
+}
+
+## 公会boss献祭
+proto MSG_GUILD_BOSS_DONATE=12
+{
+    client{
+        message{
+            id:u16
+        }
+    }
+    server{
+        message{
+            id:u16,
+            exp:u32,
+            donate_count:u16,
+            ret:u8  ## 0:成功 1:次数已满, 2,没有相关公会,3经验条已满,4 BOSS已进阶
+        }
+    }
+    errnos{
+        ERR_GUILD_UNKNOWN
+    }
+}
+
+## 公会boss进阶
+proto MSG_GUILD_BOSS_PHASE=13
+{
+    client{
+        message{
+            id:u16
+        }
+    }
+    server{
+        message{
+            id:u16,
+            ret:u8  ## 0:成功 1:BOSS已进阶, 2:BOSS已召唤
+        }
+    }
+    errnos{
+        ERR_GUILD_UNKNOWN
+    }
+}
+
+## 公会boss召唤
+proto MSG_GUILD_BOSS_CALL=14
+{
+    client{
+        message{
+            id:u16
+        }
+    }
+    server{
+        message{
+            id:u16,
+            dt:u32,
+            call_count:u16,
+            ret:u8  ## 0:成功 1:BOSS已召唤
+        }
+    }
+    errnos{
+        ERR_GUILD_UNKNOWN
+    }
+}
+
+## 公会boss伤害
+struct guild_boss_damage_rank
+{
+    index:u8                        #排名
+    ,playerCarrer:player_carrer     #角色职业
+    ,playerName:sstr                #角色名字
+    ,damage:u32                     #输出伤害
+}
+proto MSG_GUILD_BOSS_DAMAGE=15
+{
+    client
+    {
+        message{
+            id:u16,
+            damage:u32  ## 要扣的血量
+        }
+    }
+    server{
+        message{
+            id:u16,
+            cur_hp:u32, ## 当前血量
+            damage:list<DamageInfo:guild_boss_damage_rank>
+        }
+    }
+    errnos{
+        ERR_GUILD_UNKNOWN
+    }
+}
+
+
+## 公会boss通知
+proto MSG_GUILD_BOSS_COMPELE=16
+{
+    client{
+        message=empty
+    }
+    server{
+        message{
+            id:u16,
+            killer:player_id, ## 0时是系统时间到进行结算
+            ret:u8      ## 0:成功 _:失败
+        }
+    }
+    errnos{
+        ERR_GUILD_UNKNOWN
+    }
+}
+
+## 公会boss挑战
+proto MSG_GUILD_BOSS_CHALLENGE=17
+{
+    client
+    {
+        message{
+            id:u16
+        }
+    }
+    server{
+        message{
+            id:u16,
+            cur_hp:u32,
+            ret:u8      ## 0:成功 1:BOSS已死亡
+        }
+    }
+    errnos{
+        ERR_GUILD_UNKNOWN
+    }
+}
+
+
+## 公会boss结算奖励
+struct guild_boss_compele_prize
+{
+    index:u8                        #排名
+    ,playerCarrer:player_carrer     #角色职业
+    ,playerName:sstr                #角色名字
+    ,player_level:player_level      #角色等级
+    ,damage:u32                     #输出伤害
+    ,prizeInfo:list<{itemId:u32, itemCount:u32}>
+}
+proto MSG_GUILD_BOSS_COMPELE_PRIZE=18
+{
+    client{
+        message=empty
+    }
+    server{
+        message{
+            is_succeed:u8,      ## 1:成功 _:失败
+            myPrize:guild_boss_compele_prize,
+            playerPrize:list<PrizeInfo:guild_boss_compele_prize>
+        }
+    }
+    errnos{
+        ERR_GUILD_UNKNOWN
+    }
+}
+
+## ## 死亡
+## proto MSG_GUILD_BOSS_PLAYER_DIE=19
+## {
+##     client{
+##         message=empty
+##     }
+##     server{
+##         message{
+##             revive:u32
+##         }
+##     }
+##     errnos{
+##         ERR_GUILD_UNKNOWN
+##     }
+## }
+
+## 买活
+proto MSG_GUILD_BOSS_BUY_REVIVE=20
+{
+    client{
+        message=empty
+    }
+    server{
+        message{
+            ret:u8      ## 0:成功 _:失败
+        }
+    }
+    errnos{
+        ERR_GUILD_UNKNOWN
+    }
+}
+
+## 刷新当前申请入会人员数量
+proto MSG_GUILD_APPLY_UPDATE=21
+{
+    client{
+        message=empty
+    }
+    server{
+        message{
+            num:u8      ## 当前申请入会人员数量
+        }
+    }
+    errnos{
+        ERR_GUILD_UNKNOWN
+    }
+}

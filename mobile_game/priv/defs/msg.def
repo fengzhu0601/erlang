@@ -1,0 +1,53 @@
+## @file 定义所有的内部消息atom
+
+## player process <-> scene process msg
+eatom scene_player
+{
+    move_msg, ## 移动
+    switch_move_mode_msg,
+    move_stop_msg,
+    jump_msg,
+    resize_view_msg,
+
+    die_msg,
+
+    enter_scene_msg,
+    leave_scene_msg,
+
+    release_skill_msg,
+    skill_move_msg,
+    release_buff_msg,
+
+    msg_kickout, %% 被提下线
+    msg_relive, %% 玩家复活
+    msg_kill_player,
+    msg_kill_monster,
+    msg_add_item,
+    msg_del_item,
+    msg_add_prize,
+    msg_pickup_drop_item,
+    msg_kill_monster_add_exp,
+    msg_killed_by_agent,
+    msg_killed_by_device,
+    msg_game_frame,
+    msg_update_attr,
+
+    msg_add_hp,
+    msg_del_hp,
+    msg_full_hp_mp,
+    msg_full_hp,
+    msg_full_mp,
+    msg_update_view_data,
+    msg_update_equip_efts,
+    msg_update_shapeshift_data,
+    msg_update_ride_data,
+    msg_shapeshift_timer
+}
+
+eatom scene_pet
+{
+    pet_idx,
+    pet_msg_move,
+    pet_msg_move_stop,
+    pet_switch_move_mode_msg
+}

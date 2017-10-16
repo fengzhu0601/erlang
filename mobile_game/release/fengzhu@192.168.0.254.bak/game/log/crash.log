@@ -1,0 +1,130 @@
+2016-04-11 12:12:38 =ERROR REPORT====
+** Generic server auction_svr terminating 
+** Last message in was my_init
+** When Server state == {state,0}
+** Reason for termination == 
+** {function_clause,[{lists,keyreplace3,[2,1,none,{2,true}],[{file,"lists.erl"},{line,704}]},{auction_svr,handle_auction_timeout,1,[{file,"src/game/link/wk_auction/auction/auction_svr.erl"},{line,153}]},{lists,foreach,2,[{file,"lists.erl"},{line,1336}]},{auction_svr,handle_info,2,[{file,"src/game/link/wk_auction/auction/auction_svr.erl"},{line,320}]},{gen_server,handle_msg,5,[{file,"gen_server.erl"},{line,599}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,239}]}]}
+2016-04-11 12:12:38 =CRASH REPORT====
+  crasher:
+    initial call: auction_svr:init/1
+    pid: <0.738.0>
+    registered_name: auction_svr
+    exception exit: {{function_clause,[{lists,keyreplace3,[2,1,none,{2,true}],[{file,"lists.erl"},{line,704}]},{auction_svr,handle_auction_timeout,1,[{file,"src/game/link/wk_auction/auction/auction_svr.erl"},{line,153}]},{lists,foreach,2,[{file,"lists.erl"},{line,1336}]},{auction_svr,handle_info,2,[{file,"src/game/link/wk_auction/auction/auction_svr.erl"},{line,320}]},{gen_server,handle_msg,5,[{file,"gen_server.erl"},{line,599}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,239}]}]},[{gen_server,terminate,6,[{file,"gen_server.erl"},{line,746}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,239}]}]}
+    ancestors: [com_mod_sup,mobile_game_sup,<0.730.0>]
+    messages: []
+    links: [<0.732.0>]
+    dictionary: [{pd_timer_mng_for_auction,{0,nil}}]
+    trap_exit: false
+    status: running
+    heap_size: 1598
+    stack_size: 27
+    reductions: 4206
+  neighbours:
+2016-04-11 12:12:38 =SUPERVISOR REPORT====
+     Supervisor: {local,com_mod_sup}
+     Context:    child_terminated
+     Reason:     {function_clause,[{lists,keyreplace3,[2,1,none,{2,true}],[{file,"lists.erl"},{line,704}]},{auction_svr,handle_auction_timeout,1,[{file,"src/game/link/wk_auction/auction/auction_svr.erl"},{line,153}]},{lists,foreach,2,[{file,"lists.erl"},{line,1336}]},{auction_svr,handle_info,2,[{file,"src/game/link/wk_auction/auction/auction_svr.erl"},{line,320}]},{gen_server,handle_msg,5,[{file,"gen_server.erl"},{line,599}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,239}]}]}
+     Offender:   [{pid,<0.738.0>},{name,auction_svr},{mfargs,{auction_svr,start_link,[]}},{restart_type,permanent},{shutdown,2000},{child_type,worker}]
+
+2016-04-11 12:12:38 =ERROR REPORT====
+** Generic server auction_svr terminating 
+** Last message in was my_init
+** When Server state == {state,0}
+** Reason for termination == 
+** {function_clause,[{lists,keyreplace3,[2,1,none,{2,true}],[{file,"lists.erl"},{line,704}]},{auction_svr,handle_auction_timeout,1,[{file,"src/game/link/wk_auction/auction/auction_svr.erl"},{line,153}]},{lists,foreach,2,[{file,"lists.erl"},{line,1336}]},{auction_svr,handle_info,2,[{file,"src/game/link/wk_auction/auction/auction_svr.erl"},{line,320}]},{gen_server,handle_msg,5,[{file,"gen_server.erl"},{line,599}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,239}]}]}
+2016-04-11 12:12:38 =CRASH REPORT====
+  crasher:
+    initial call: auction_svr:init/1
+    pid: <0.756.0>
+    registered_name: auction_svr
+    exception exit: {{function_clause,[{lists,keyreplace3,[2,1,none,{2,true}],[{file,"lists.erl"},{line,704}]},{auction_svr,handle_auction_timeout,1,[{file,"src/game/link/wk_auction/auction/auction_svr.erl"},{line,153}]},{lists,foreach,2,[{file,"lists.erl"},{line,1336}]},{auction_svr,handle_info,2,[{file,"src/game/link/wk_auction/auction/auction_svr.erl"},{line,320}]},{gen_server,handle_msg,5,[{file,"gen_server.erl"},{line,599}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,239}]}]},[{gen_server,terminate,6,[{file,"gen_server.erl"},{line,746}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,239}]}]}
+    ancestors: [com_mod_sup,mobile_game_sup,<0.730.0>]
+    messages: []
+    links: [<0.732.0>]
+    dictionary: [{pd_timer_mng_for_auction,{0,nil}}]
+    trap_exit: false
+    status: running
+    heap_size: 1598
+    stack_size: 27
+    reductions: 4274
+  neighbours:
+2016-04-11 12:12:38 =SUPERVISOR REPORT====
+     Supervisor: {local,com_mod_sup}
+     Context:    child_terminated
+     Reason:     {function_clause,[{lists,keyreplace3,[2,1,none,{2,true}],[{file,"lists.erl"},{line,704}]},{auction_svr,handle_auction_timeout,1,[{file,"src/game/link/wk_auction/auction/auction_svr.erl"},{line,153}]},{lists,foreach,2,[{file,"lists.erl"},{line,1336}]},{auction_svr,handle_info,2,[{file,"src/game/link/wk_auction/auction/auction_svr.erl"},{line,320}]},{gen_server,handle_msg,5,[{file,"gen_server.erl"},{line,599}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,239}]}]}
+     Offender:   [{pid,<0.756.0>},{name,auction_svr},{mfargs,{auction_svr,start_link,[]}},{restart_type,permanent},{shutdown,2000},{child_type,worker}]
+
+2016-04-11 12:12:38 =SUPERVISOR REPORT====
+     Supervisor: {local,com_mod_sup}
+     Context:    shutdown
+     Reason:     reached_max_restart_intensity
+     Offender:   [{pid,<0.756.0>},{name,auction_svr},{mfargs,{auction_svr,start_link,[]}},{restart_type,permanent},{shutdown,2000},{child_type,worker}]
+
+2016-04-11 12:12:38 =SUPERVISOR REPORT====
+     Supervisor: {local,mobile_game_sup}
+     Context:    child_terminated
+     Reason:     shutdown
+     Offender:   [{pid,<0.732.0>},{name,com_mod_sup},{mfargs,{com_mod_sup,start_link,[]}},{restart_type,permanent},{shutdown,5000},{child_type,supervisor}]
+
+2016-04-11 12:12:38 =ERROR REPORT====
+** Generic server auction_svr terminating 
+** Last message in was my_init
+** When Server state == {state,0}
+** Reason for termination == 
+** {function_clause,[{lists,keyreplace3,[2,1,none,{2,true}],[{file,"lists.erl"},{line,704}]},{auction_svr,handle_auction_timeout,1,[{file,"src/game/link/wk_auction/auction/auction_svr.erl"},{line,153}]},{lists,foreach,2,[{file,"lists.erl"},{line,1336}]},{auction_svr,handle_info,2,[{file,"src/game/link/wk_auction/auction/auction_svr.erl"},{line,320}]},{gen_server,handle_msg,5,[{file,"gen_server.erl"},{line,599}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,239}]}]}
+2016-04-11 12:12:38 =CRASH REPORT====
+  crasher:
+    initial call: auction_svr:init/1
+    pid: <0.788.0>
+    registered_name: auction_svr
+    exception exit: {{function_clause,[{lists,keyreplace3,[2,1,none,{2,true}],[{file,"lists.erl"},{line,704}]},{auction_svr,handle_auction_timeout,1,[{file,"src/game/link/wk_auction/auction/auction_svr.erl"},{line,153}]},{lists,foreach,2,[{file,"lists.erl"},{line,1336}]},{auction_svr,handle_info,2,[{file,"src/game/link/wk_auction/auction/auction_svr.erl"},{line,320}]},{gen_server,handle_msg,5,[{file,"gen_server.erl"},{line,599}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,239}]}]},[{gen_server,terminate,6,[{file,"gen_server.erl"},{line,746}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,239}]}]}
+    ancestors: [com_mod_sup,mobile_game_sup,<0.730.0>]
+    messages: []
+    links: [<0.781.0>]
+    dictionary: [{pd_timer_mng_for_auction,{0,nil}}]
+    trap_exit: false
+    status: running
+    heap_size: 1598
+    stack_size: 27
+    reductions: 4206
+  neighbours:
+2016-04-11 12:12:38 =SUPERVISOR REPORT====
+     Supervisor: {local,com_mod_sup}
+     Context:    child_terminated
+     Reason:     {function_clause,[{lists,keyreplace3,[2,1,none,{2,true}],[{file,"lists.erl"},{line,704}]},{auction_svr,handle_auction_timeout,1,[{file,"src/game/link/wk_auction/auction/auction_svr.erl"},{line,153}]},{lists,foreach,2,[{file,"lists.erl"},{line,1336}]},{auction_svr,handle_info,2,[{file,"src/game/link/wk_auction/auction/auction_svr.erl"},{line,320}]},{gen_server,handle_msg,5,[{file,"gen_server.erl"},{line,599}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,239}]}]}
+     Offender:   [{pid,<0.788.0>},{name,auction_svr},{mfargs,{auction_svr,start_link,[]}},{restart_type,permanent},{shutdown,2000},{child_type,worker}]
+
+2016-04-11 12:12:43 =CRASH REPORT====
+  crasher:
+    initial call: mysql:init/1
+    pid: <0.806.0>
+    registered_name: []
+    exception exit: {{error,"timed out"},[{gen_server,init_it,6,[{file,"gen_server.erl"},{line,322}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,239}]}]}
+    ancestors: [<0.730.0>]
+    messages: []
+    links: [<0.730.0>]
+    dictionary: []
+    trap_exit: false
+    status: running
+    heap_size: 376
+    stack_size: 27
+    reductions: 115
+  neighbours:
+2016-04-11 12:12:51 =SUPERVISOR REPORT====
+     Supervisor: {local,game}
+     Context:    child_terminated
+     Reason:     {noproc,{gen_server,call,[player_sup,{start_child,[#Port<0.6111>]},infinity]}}
+     Offender:   [{pid,<0.862.0>},{name,{acceptor,game,1}},{mfargs,{lc_acceptor,start_link,[#Port<0.6105>,#Fun<player_sup.start_child.1>]}},{restart_type,permanent},{shutdown,brutal_kill},{child_type,worker}]
+
+2016-04-11 12:17:35 =SUPERVISOR REPORT====
+     Supervisor: {local,game}
+     Context:    child_terminated
+     Reason:     {noproc,{gen_server,call,[player_sup,{start_child,[#Port<0.6116>]},infinity]}}
+     Offender:   [{pid,<0.863.0>},{name,{acceptor,game,2}},{mfargs,{lc_acceptor,start_link,[#Port<0.6105>,#Fun<player_sup.start_child.1>]}},{restart_type,permanent},{shutdown,brutal_kill},{child_type,worker}]
+
+2016-04-11 12:17:56 =SUPERVISOR REPORT====
+     Supervisor: {local,game}
+     Context:    child_terminated
+     Reason:     {noproc,{gen_server,call,[player_sup,{start_child,[#Port<0.6117>]},infinity]}}
+     Offender:   [{pid,<0.864.0>},{name,{acceptor,game,3}},{mfargs,{lc_acceptor,start_link,[#Port<0.6105>,#Fun<player_sup.start_child.1>]}},{restart_type,permanent},{shutdown,brutal_kill},{child_type,worker}]
+

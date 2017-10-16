@@ -1,0 +1,73 @@
+
+@include "game.sproto"
+#购买物品
+proto MSG_SHOP_BUY=1
+{
+    client{
+        message{
+            ShopType:u8,                #商店类型
+            butId:u32,                  #购买id
+            itemCount:item_count        #物品数量
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+        }
+    }
+}
+
+
+#出售物品
+proto MSG_SHOP_SELL=2
+{
+    client{
+        message{
+            itemId:item_id,           #物品id
+            itemCount:item_count        #物品数量
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+        }
+    }
+}
+
+
+#回购物品
+proto MSG_SHOP_BUY_BACK=3
+{
+    client{
+        message{
+            backPos:u8           #回购位置(从1开始)
+        }
+    }
+
+    server{
+        message{
+            replyNum:reply_num
+        }
+    }
+}
+
+#获取回购列表
+proto MSG_SHOP_BUY_BACK_LIST=4
+{
+    client{
+        message=empty
+    }
+
+    server{
+        message{
+            itemPriceL:list<{itemInfo:item_info, itemPrice:u32}>
+        }
+    }
+}
+
+
+
+
+
